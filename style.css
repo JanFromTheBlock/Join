@@ -129,6 +129,10 @@ header {
     margin-top: 10px;
 }
 
+.add-task-due-date h2{
+    color: #42526E;
+}
+
 .add-task-due-date-input{
     width: 422px;
     padding: 18px 21px;
@@ -136,7 +140,6 @@ header {
     border: none;
 }
 
-.add-task-due-date-input::placeholder{
+input[type=date] {
     color: #D1D1D1;
 }
-
