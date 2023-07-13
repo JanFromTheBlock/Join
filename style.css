@@ -2,6 +2,7 @@
 
 body {
   margin: 0;
+  font-family: 'Open Sans';
 }
 
 .d-none {
@@ -94,7 +95,7 @@ header {
     top: 137px;
 }
 
-.add-task-input{
+.add-task-title{
     width: 422px;
     height: 74px;
     margin-bottom: 20px;
@@ -105,7 +106,7 @@ header {
     font-size: 40px;
 }
 
-.add-task-input::placeholder{
+.add-task-title::placeholder{
     color: #D1D1D1;
 }
 
@@ -113,7 +114,6 @@ header {
     width: 464px;
     height: 51px;
     border: 0px 0px 1px 0px;
-    margin-top: 10px;
     padding: 0px 21px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.16)!important;
     border: none;
@@ -129,8 +129,10 @@ header {
     margin-top: 10px;
 }
 
-.add-task-due-date h2{
+.add-task h2{
     color: #42526E;
+    font-size: 19px;
+    font-weight: 700;
 }
 
 .add-task-due-date-input{
@@ -138,9 +140,11 @@ header {
     padding: 18px 21px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.16)!important;
     border: none;
+    outline: none;
+    color: black;
 }
 
-input[type=date] {
+input[type=date]::placeholder {
     color: #D1D1D1;
 }
 
@@ -149,5 +153,6 @@ input[type=date] {
     height: 23px;
     background-image: url('./assets/img/date-logo.png');
 }
+
 
 
