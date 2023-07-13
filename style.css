@@ -169,6 +169,7 @@ input[type="date"]::placeholder {
   justify-content: center;
   width: 422px;
   margin-top: 10px;
+  margin-bottom: -20px;
 }
 
 .add-task-importance-button {
@@ -203,7 +204,7 @@ input[type="date"]::placeholder {
   font-size: 19px;
 }
 
-.add-task-subtask img{
+.add-task-plus-button{
   margin-left: -50px;
 }
 
