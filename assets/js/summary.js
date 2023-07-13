@@ -25,7 +25,7 @@ function SummaryRender() {
                 <div id="ov-to-do" class="sum-out-con">
                     <div class="sum-in-con light-blue">
                         <div class="sum-in-upper">
-                            <img id="sum-in-upper-img" src="./assets/img/sum_task_do_to.png">
+                            <img id="sum-in-upper-img" class="sum-in-upper-img" src="./assets/img/sum_task_do_to.png">
                             <span class="sum-in-upper-img-nr">1</span>
                         </div>
                         <span class="sum-in-lower">Task To-do</span>
@@ -33,12 +33,23 @@ function SummaryRender() {
                 </div>
             </div>
             <div id="sum-overview" class="sum-overview">
-                <div id="ov-board" class="ov-board"></div>
-                <div id="ov-tip" class="ov-tip"></div>
-                <div id="ov-feedback" class="ov-feedback"></div>
-                <div id="ov-done" class="ov-done"></div>
             </div>
-            
         </div>
     `
+}
+
+function sumOverviewRender() {
+    let lower = ["Task in Board", "Task in Progress", "Awaiting Feedback", "Tasks <br>Done"];
+    let amount = [5, 2, 2, 1]
+    for (let i = 0; i < 4; i++) {
+        docID('sum-overview').innerHTML += /*html*/`
+            <div class="sum-in-con">
+                <div class="sum-in-upper">
+                    <img id="sum-in-upper-img" class="sum-in-upper-img" src="./assets/img/sum_task_do_to.png">
+                    <span class="sum-in-upper-img-nr">${amount[i]}</span>
+                </div>
+                <span class="sum-in-lower">${lower[i]}</span>
+            </div>
+        `        
+    }
 }
