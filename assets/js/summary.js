@@ -1,20 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-    <script src="mainrender.js"></script>
-    <script src=""></script>
-</head>
-<body onload="summaryInit()">
-    <header id="header">
-    </header>
-    <nav id="nav" class="nav">
-    </nav>
-    <div class="summary">
+function SummaryRender() {
+    docID('summary').innerHTML = /*html*/`
         <div id="greeting" class="greeting">
             <span id="greet-time">Good morning, </span>
             <span id="greet-name">Sofia Müller</span>
@@ -55,6 +40,5 @@
             </div>
             
         </div>
-    </div>
-</body>
-</html>
+    `
+}

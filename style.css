@@ -9,6 +9,10 @@ body {
   display: none;
 }
 
+.light-blue {
+    background-color: #D2E3FF;
+}
+
 /* header */
 
 header {
@@ -155,4 +159,135 @@ input[type=date]::placeholder {
 }
 
 
+/* summary */
 
+.summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Open Sans';
+    margin-left: 232px;
+}
+
+#greet-time {
+    font-size: 48px;
+    color: #2A3647;
+}
+
+#greet-name {
+    font-size: 64px;
+    color: #4589FF;
+}
+
+.sum-important {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+}
+
+.ov-urgent {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    gap: 35px;
+    width: 672px;
+    height: 191px;
+    padding: 28px 48px;
+    border-radius: 30px;
+    background-color: #4589FF;
+    color:white;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
+}
+
+#sum-task-nr {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.sum-urgent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 9px;
+}
+
+.sum-urgent-symbol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.sum-urgent-text {
+    font-size: 23px;
+    line-height: 27.6px;
+}
+
+.ver-line {
+    width: 0px;
+    height: 145px;
+    stroke-width: 3px;
+    stroke: white;
+}
+
+.sum-urgent-date {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 13px;
+}
+#sum-urgent-day {
+    font-weight: 700;
+    font-size: 33px;
+    line-height: 39.6px;
+    line-height: 120%;
+}
+
+#sum-urgent-text {
+    font-size: 23px;
+    line-height: 120%;
+}
+
+.sum-in-con {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    border-radius: 30px;
+    gap: 7px;;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
+}
+
+.sum-in-upper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: black;
+}
+
+.sum-in-upper-img {
+    width: 76px;
+    height: 76px;
+}
+
+.sum-in-upper-img-nr {
+    font-size: 48px;
+    font-weight: 700;
+    font-family: 'Open Sans';
+    text-align: center;
+    line-height: 120%;
+}
+
+.sum-in-lower {
+    color: #4589FF;
+    text-align: center;
+    font-family: 'Open Sans';
+    font-size: 23px;
+    line-height: 120%;
+}

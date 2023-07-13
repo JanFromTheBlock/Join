@@ -7,6 +7,7 @@ function docID (id){
 function summaryInit() {
     headerRender();
     navRender();
+    SummaryRender();
 }
 
 function taskInit() {
