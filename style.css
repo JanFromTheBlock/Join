@@ -2,7 +2,7 @@
 
 body {
   margin: 0;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
 }
 
 .d-none {
@@ -10,7 +10,7 @@ body {
 }
 
 .light-blue {
-    background-color: #D2E3FF;
+  background-color: #d2e3ff;
 }
 
 /* header */
@@ -90,74 +90,90 @@ header {
 /*addTask*/
 
 .add-task {
-    position:absolute;
-    flex-direction: column;
-    display: flex;
-    height: 1024px;
-    left: 320px;
-    width: 518px;
-    top: 137px;
+  position: absolute;
+  flex-direction: column;
+  display: flex;
+  height: 1024px;
+  left: 320px;
+  width: 518px;
+  top: 137px;
 }
 
-.add-task-title{
-    width: 422px;
-    height: 74px;
-    margin-bottom: 20px;
-    padding: 0px 21px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.16)!important;
-    outline: none;
-    border: none;
-    font-size: 40px;
+.add-task-title {
+  width: 380px;
+  height: 74px;
+  margin-bottom: 20px;
+  padding: 0px 21px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.16) !important;
+  outline: none;
+  border: none;
+  font-size: 40px;
 }
 
-.add-task-title::placeholder{
-    color: #D1D1D1;
+.add-task-title::placeholder {
+  color: #d1d1d1;
 }
 
-.add-task-select-contact{
-    width: 464px;
-    height: 51px;
-    border: 0px 0px 1px 0px;
-    padding: 0px 21px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.16)!important;
-    border: none;
-    outline: none;
-    font-size: 19px;
+.add-task-select-contact {
+  width: 422px;
+  height: 51px;
+  border: 0px 0px 1px 0px;
+  padding: 0px 21px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.16) !important;
+  border: none;
+  outline: none;
+  font-size: 19px;
+  appearance: none;
+  background-image: url('./assets/img/selectfieldArrow.png');
+  background-repeat: no-repeat;
+  background-position: right center;
 }
 
-.add-task-due-date{
-    width: 422px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.16)!important;
-    border: none;
-    outline: none;
-    margin-top: 10px;
+.add-task-due-date {
+  width: 422px;
+  border: none;
+  outline: none;
+  margin-top: 10px;
 }
 
-.add-task h2{
-    color: #42526E;
-    font-size: 19px;
-    font-weight: 700;
+.add-task h2 {
+  color: #42526e;
+  font-size: 19px;
+  font-weight: 700;
 }
 
-.add-task-due-date-input{
-    width: 422px;
-    padding: 18px 21px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.16)!important;
-    border: none;
-    outline: none;
-    color: black;
+.add-task-due-date-input {
+  width: 380px;
+  padding: 18px 21px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.16) !important;
+  border: none;
+  outline: none;
+  color: black;
 }
 
-input[type=date]::placeholder {
-    color: #D1D1D1;
+input[type="date"]::placeholder {
+  color: #d1d1d1;
 }
 
 .add-task-due-date-input::-webkit-calendar-picker-indicator {
-    width: 23px;
-    height: 23px;
-    background-image: url('./assets/img/date-logo.png');
+  width: 23px;
+  height: 23px;
+  background-image: url("./assets/img/date-logo.png");
 }
 
+.add-task-importance {
+  display: flex;
+  justify-content: center;
+  width: 422px;
+  margin-top: 10px;
+}
+
+.add-task-importance-button {
+  width: 136px;
+  height: 51px;
+  gap: 10px;
+  padding: 18px 13px;
+}
 
 /* summary */
 
@@ -172,8 +188,8 @@ input[type=date]::placeholder {
 }
 
 #greet-time {
-    font-size: 48px;
-    color: #2A3647;
+  font-size: 48px;
+  color: #2a3647;
 }
 
 #greet-name {
@@ -191,115 +207,115 @@ input[type=date]::placeholder {
 }
 
 .sum-important {
-    display: flex;
-    justify-content: center;
-    gap: 32px;
+  display: flex;
+  justify-content: center;
+  gap: 32px;
 }
 
 .ov-urgent {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-wrap: wrap;
-    flex-shrink: 0;
-    box-sizing: border-box;
-    gap: 35px;
-    width: 672px;
-    height: 191px;
-    padding: 28px 48px;
-    border-radius: 30px;
-    background-color: #4589FF;
-    color:white;
-    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  gap: 35px;
+  width: 672px;
+  height: 191px;
+  padding: 28px 48px;
+  border-radius: 30px;
+  background-color: #4589ff;
+  color: white;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
 }
 
 #sum-task-nr {
-    font-size: 48px;
-    font-weight: 700;
-    line-height: 120%;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 120%;
 }
 
 .sum-urgent {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 9px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 9px;
 }
 
 .sum-urgent-symbol {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }
 
 .sum-urgent-text {
-    font-size: 23px;
-    line-height: 27.6px;
+  font-size: 23px;
+  line-height: 27.6px;
 }
 
 .ver-line {
-    width: 0px;
-    height: 145px;
-    stroke-width: 3px;
-    stroke: white;
+  width: 0px;
+  height: 145px;
+  stroke-width: 3px;
+  stroke: white;
 }
 
 .sum-urgent-date {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    gap: 13px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 13px;
 }
 #sum-urgent-day {
-    font-weight: 700;
-    font-size: 33px;
-    line-height: 39.6px;
-    line-height: 120%;
+  font-weight: 700;
+  font-size: 33px;
+  line-height: 39.6px;
+  line-height: 120%;
 }
 
 #sum-urgent-text {
-    font-size: 23px;
-    line-height: 120%;
+  font-size: 23px;
+  line-height: 120%;
 }
 
 .sum-in-con {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-    border-radius: 30px;
-    gap: 7px;;
-    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  border-radius: 30px;
+  gap: 7px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
 }
 
 .sum-in-upper {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    color: black;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: black;
 }
 
 .sum-in-upper-img {
-    width: 76px;
-    height: 76px;
+  width: 76px;
+  height: 76px;
 }
 
 .sum-in-upper-img-nr {
-    font-size: 48px;
-    font-weight: 700;
-    font-family: 'Open Sans';
-    text-align: center;
-    line-height: 120%;
+  font-size: 48px;
+  font-weight: 700;
+  font-family: "Open Sans";
+  text-align: center;
+  line-height: 120%;
 }
 
 .sum-in-lower {
-    color: #4589FF;
-    text-align: center;
-    font-family: 'Open Sans';
-    font-size: 23px;
-    line-height: 120%;
+  color: #4589ff;
+  text-align: center;
+  font-family: "Open Sans";
+  font-size: 23px;
+  line-height: 120%;
 }
 
 .sum-overview {
