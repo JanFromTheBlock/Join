@@ -166,6 +166,7 @@ input[type=date]::placeholder {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: calc(100vh - 97px);
     font-family: 'Open Sans';
     margin-left: 232px;
 }
@@ -178,6 +179,15 @@ input[type=date]::placeholder {
 #greet-name {
     font-size: 64px;
     color: #4589FF;
+}
+
+.overview {
+    display: flex;
+    width: 912px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 32px;
 }
 
 .sum-important {
@@ -290,4 +300,12 @@ input[type=date]::placeholder {
     font-family: 'Open Sans';
     font-size: 23px;
     line-height: 120%;
+}
+
+.sum-overview {
+    display: flex;
+    height: 219px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 32px;
 }
