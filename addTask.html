@@ -16,18 +16,30 @@
     <div class="add-task">
         <form>
           <input required class="add-task-input" placeholder="Enter a title" type="text">
-          <select required placeholder="Select contacts to assign" class="add-task-select-contact" id="select">
+          <select required class="add-task-select-contact" id="select">
               <option disabled selected hidden value="">Selected contacts to assign</option>
               <option value="0">Test 2</option>
               <option value="1">Test 3</option>
           </select>
         </form>
+
         <form>
           <div class="add-task-due-date">
-           <h2>Due Date</h2>
-           <input class="add-task-due-date-input" id="" type="date">
+             <h2>Due Date</h2>
+             <input class="add-task-due-date-input" id="dueDate" type="date">
           </div>
         </form>
+
+        <form>
+            <div class="add-task-due-date">
+               <h2>Category</h2>
+               <select required class="add-task-select-contact" id="select">
+                 <option disabled selected hidden value="">Select Task category</option>
+                 <option value="0">Test 2</option>
+                 <option value="1">Test 3</option>
+               </select>
+            </div>
+          </form>
     </div>
 
 </body>

@@ -82,7 +82,7 @@ header {
   padding-top: 300px;
 }
 
-/* addTask*/
+/*addTask*/
 
 .add-task {
     position:absolute;
@@ -143,3 +143,11 @@ header {
 input[type=date] {
     color: #D1D1D1;
 }
+
+.add-task-due-date-input::-webkit-calendar-picker-indicator {
+    width: 23px;
+    height: 23px;
+    background-image: url('./assets/img/date-logo.png');
+}
+
+
