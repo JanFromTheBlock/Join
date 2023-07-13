@@ -126,7 +126,7 @@ header {
   appearance: none;
   background-image: url('./assets/img/selectfieldArrow.png');
   background-repeat: no-repeat;
-  background-position: right center;
+  background-position: right 21px center;
 }
 
 .add-task-due-date {
@@ -140,6 +140,8 @@ header {
   color: #42526e;
   font-size: 19px;
   font-weight: 700;
+  margin-top: 31px;
+  margin-bottom: 15px;
 }
 
 .add-task-due-date-input {
@@ -149,6 +151,7 @@ header {
   border: none;
   outline: none;
   color: black;
+ 
 }
 
 input[type="date"]::placeholder {
@@ -173,6 +176,39 @@ input[type="date"]::placeholder {
   height: 51px;
   gap: 10px;
   padding: 18px 13px;
+}
+
+.add-task-textarea{
+  width: 387px;
+  height: 103px;
+  padding: 16px;
+  outline: none;
+  border: 1px solid rgba(#D1D1D1);
+  border-radius: 0 10px 10px 10px;
+  font-size: 19px;
+}
+
+.add-task-textarea::placeholder{
+  color: #D1D1D1;
+}
+
+.add-task-subtask{
+  width: 380px;
+  height: 74px;
+  margin-bottom: 20px;
+  padding: 0px 21px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.16) !important;
+  outline: none;
+  border: none;
+  font-size: 19px;
+}
+
+.add-task-subtask img{
+  margin-left: -50px;
+}
+
+.add-task-subtask::placeholder {
+  color: #d1d1d1;
 }
 
 /* summary */
