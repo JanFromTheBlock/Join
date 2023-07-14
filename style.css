@@ -267,11 +267,10 @@ input[type="date"]::placeholder {
 
 .sum-important {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 672px;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 912px;
   height: 191px;
-  gap: 32px;
 }
 
 .ov-urgent {
