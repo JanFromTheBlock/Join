@@ -9,9 +9,17 @@ function summaryInit() {
     navRender();
     SummaryRender();
     sumOverviewRender();
+    
 }
 
 function taskInit() {
     headerRender();
     navRender();
+    
+}
+
+function addTaskInit(){
+    headerRender();
+    navRender();
+    addTaskRender();
 }

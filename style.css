@@ -13,6 +13,10 @@ body {
   background-color: #d2e3ff;
 }
 
+.cursor-pointer{
+  cursor: pointer;
+}
+
 /* header */
 
 header {
@@ -211,6 +215,23 @@ input[type="date"]::placeholder {
 .add-task-subtask::placeholder {
   color: #d1d1d1;
 }
+
+.change-color-urgent{
+  background-color: #FF3D00;
+  color: white;
+}
+
+.change-color-medium{
+    background-color: #FFA800;
+    color: white;
+  }
+
+  .change-color-low{
+    background-color: #7AE229;
+    color: white;
+  }
+  
+  
 
 /* summary */
 
