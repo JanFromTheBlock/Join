@@ -14,8 +14,8 @@ function SummaryRender() {
                         </div>
                         <span class="sum-urgent-text">Task Urgent</span>
                     </div>
-                    <div class="ver-line"><svg xmlns="http://www.w3.org/2000/svg" width="4" height="149" viewBox="0 0 4 149" fill="none">
-                        <path d="M2 2L2.00001 147" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                    <div class="ver-line"><svg xmlns="http://www.w3.org/2000/svg" fill="none"> <!--viewBox on hover change by js  -->
+                        <path/>
                       </svg></div>
                     <div id="sum-urgent-date" class="sum-urgent-date">
                         <span id="sum-urgent-day">October 16, 2022</span>

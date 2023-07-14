@@ -243,6 +243,7 @@ input[type="date"]::placeholder {
     height: calc(100vh - 97px);
     font-family: 'Open Sans';
     margin-left: 232px;
+    gap: 90px;
 }
 
 #greet-time {
@@ -260,13 +261,16 @@ input[type="date"]::placeholder {
     width: 912px;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     gap: 32px;
 }
 
 .sum-important {
   display: flex;
   justify-content: center;
+  align-items: center;
+  width: 672px;
+  height: 191px;
   gap: 32px;
 }
 
@@ -274,7 +278,6 @@ input[type="date"]::placeholder {
   display: flex;
   justify-content: center;
   align-content: center;
-  flex-wrap: wrap;
   flex-shrink: 0;
   box-sizing: border-box;
   gap: 35px;
@@ -285,6 +288,35 @@ input[type="date"]::placeholder {
   background-color: #4589ff;
   color: white;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
+}
+
+.ov-urgent:hover {
+  width: 688px;
+  height: 207px;
+  border-radius: 0 30px 30px 30px;
+  background-color: white;
+  color: #4589ff;
+}
+
+.ov-urgent:hover .sum-urgent-symbol img {
+  width: 86px;
+  height: 86px;
+}
+
+.ov-urgent:hover .ver-line {
+  stroke: var(--ligth-blue, #005DFF);
+}
+
+.ov-urgent:hover .ver-line path {
+  d: path("M1.5 2L1.50001 147");
+}
+
+.ov-urgent:hover #sum-urgent-day {
+  font-size: 43px;
+}
+
+.ov-urgent:hover #sum-urgent-text {
+  font-size: 28px;
 }
 
 #sum-task-nr {
@@ -313,10 +345,15 @@ input[type="date"]::placeholder {
 }
 
 .ver-line {
-  width: 0px;
+  width: 4px;
   height: 145px;
   stroke-width: 3px;
   stroke: white;
+  stroke-linecap: round;
+}
+
+.ver-line path {
+  d: path("M2 2L2.00001 147");
 }
 
 .sum-urgent-date {
@@ -328,7 +365,6 @@ input[type="date"]::placeholder {
 #sum-urgent-day {
   font-weight: 700;
   font-size: 33px;
-  line-height: 39.6px;
   line-height: 120%;
 }
 
@@ -358,6 +394,9 @@ input[type="date"]::placeholder {
 .sum-in-upper-img {
   width: 76px;
   height: 76px;
+  justify-content: center;
+  align-items: center;
+  
 }
 
 .sum-in-upper-img-nr {
