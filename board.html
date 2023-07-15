@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <script src="./assets/js/board.js"></script>
     <link rel="stylesheet" href="./assets/styles/board.css">
 </head>
+
 <body onload="addBoardInit()">
 
     <header id="header"></header>
@@ -20,15 +22,47 @@
                 <input id="input" type="text" placeholder="Find Task">
                 <img id="img-search" src="./assets/img/search.png">
             </div>
-            <button id="board-button">Add Task  <span id="board-button-plus">+</span></button>
+            <button id="board-button">Add Task <span id="board-button-plus">+</span></button>
         </div>
         <div id="task-area">
-            <div class="task-body"><span>To do</span><img src="./assets/img/board_plus.png"></div>
-            <div class="task-body"><span>In progress</span><img src="./assets/img/board_plus.png"></div>
-            <div class="task-body"><span>Await Feedback</span><img src="./assets/img/board_plus.png"></div>
-            <div class="task-body"><span>Done</span></div>
+            <div class="task-body">
+                <div class="task-body-flex">
+                    <span>To do</span>
+                    <img src="./assets/img/board_plus.png">
+                </div>
+                <div>
+                    Test
+                </div>
+            </div>
+            <div class="task-body">
+                <div class="task-body-flex">
+                    <span>In progress</span>
+                    <img src="./assets/img/board_plus.png">
+                </div>
+                <div>
+                    Test
+                </div>
+            </div>
+            <div class="task-body">
+                <div class="task-body-flex">
+                    <span>Await feedback</span>
+                    <img src="./assets/img/board_plus.png">
+                </div>
+                <div>
+                    Test
+                </div>
+            </div>
+            <div class="task-body">
+                <div class="task-body-flex">
+                    <span>Done</span>
+                </div>
+                <div>
+                    Test
+                </div>
+            </div>
         </div>
     </div>
-    
+
 </body>
+
 </html>

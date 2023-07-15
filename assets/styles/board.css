@@ -49,11 +49,17 @@
 .task-body{
     width: 25%;
     display: flex;
-    justify-content: space-between;
-    font-size: 23px;
-    font-weight: 700;
+    flex-direction: column;
+    gap: 35px;
 }
 .task-body img{
     height: 24px;
     width: auto;
+}
+.task-body-flex{
+    font-size: 23px;
+    font-weight: 700;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
 }
