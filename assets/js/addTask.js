@@ -80,16 +80,22 @@ function changeColor(i) {
     urgent.classList.add('change-color-urgent');
     urgent.classList.add('clicked');
     medium.classList.remove('change-color-medium');
+    medium.classList.remove('clicked');
+    low.classList.remove('clicked');
     low.classList.remove('change-color-low');
   } else if (i === 'medium') {
     urgent.classList.remove('change-color-urgent');
     medium.classList.add('clicked');
+    low.classList.remove('clicked');
+    urgent.classList.remove('clicked');
     medium.classList.add('change-color-medium');
     low.classList.remove('change-color-low');
   } else if (i === 'low') {
     urgent.classList.remove('change-color-urgent');
     medium.classList.remove('change-color-medium');
     low.classList.add('change-color-low');
+    medium.classList.remove('clicked');
+    urgent.classList.remove('clicked');
     low.classList.add('clicked');
   }
 }
