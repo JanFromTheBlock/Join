@@ -22,6 +22,7 @@ function addTaskInit(){
     headerRender();
     navRender();
     addTaskRender();
+    newTask();
 }
 
 function addBoardInit(){
