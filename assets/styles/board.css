@@ -38,3 +38,22 @@
 #board-button-plus{
     font-size: 27px;
 }
+
+#task-area{
+    display: flex;
+    margin-top: 80px;
+    margin-left: 70px;
+    margin-right: 70px;
+    gap: 26px;
+}
+.task-body{
+    width: 25%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 23px;
+    font-weight: 700;
+}
+.task-body img{
+    height: 24px;
+    width: auto;
+}
