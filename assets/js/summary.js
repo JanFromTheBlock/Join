@@ -41,11 +41,12 @@ function SummaryRender() {
 function sumOverviewRender() {
     let lower = ["Task in Board", "Task in Progress", "Awaiting Feedback", "Tasks <br>Done"];
     let amount = [5, 2, 2, 1]
+    let img = ["./assets/img/sum_task_do_to.png", "./assets/img/sum_progress.png", "./assets/img/sum_awaiting.png", "./assets/img/sum_done.png"]
     for (let i = 0; i < 4; i++) {
         docID('sum-overview').innerHTML += /*html*/`
             <div class="sum-in-con">
                 <div class="sum-in-upper">
-                    <img id="sum-in-upper-img" class="sum-in-upper-img" src="./assets/img/sum_task_do_to.png">
+                    <img id="sum-in-upper-img" class="sum-in-upper-img" src="${img[i]}">
                     <span class="sum-in-upper-img-nr">${amount[i]}</span>
                 </div>
                 <span class="sum-in-lower">${lower[i]}</span>

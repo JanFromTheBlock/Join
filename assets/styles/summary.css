@@ -1,0 +1,226 @@
+/* the basic container */
+.summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 97px);
+    font-family: 'Open Sans';
+    margin-left: 232px;
+    gap: 90px;
+}
+
+/* the greeting formula */
+#greet-time {
+  font-size: 48px;
+  color: #2a3647;
+}
+
+/* username in greeting */
+#greet-name {
+    font-size: 64px;
+    color: #4589FF;
+}
+
+/* section for all overview buttons */
+.overview {
+    display: flex;
+    width: 912px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+}
+
+/* the container of the upper line */
+.sum-important {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 912px;
+  height: 191px;
+}
+
+/* the big button */
+.ov-urgent {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  gap: 35px;
+  width: 672px;
+  height: 191px;
+  padding: 28px 48px;
+  border-radius: 30px;
+  background-color: #4589ff;
+  color: white;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
+}
+
+/* change of the big button by hover effect */
+.ov-urgent:hover {
+  width: 688px;
+  height: 207px;
+  border-radius: 0 30px 30px 30px;
+  background-color: white;
+  color: #4589ff;
+}
+
+.ov-urgent:hover .sum-urgent-symbol img {
+  width: 86px;
+  height: 86px;
+}
+
+.ov-urgent:hover .ver-line {
+  stroke: #005DFF;
+}
+
+.ov-urgent:hover .ver-line path {
+  d: path("M1.5 2L1.50001 147");
+}
+
+.ov-urgent:hover #sum-urgent-day {
+  font-size: 43px;
+}
+
+.ov-urgent:hover #sum-urgent-text {
+  font-size: 28px;
+}
+
+/* change of the big button while mouseclick */
+
+.ov-urgent:active {
+    background-color: #005DFF;
+}
+/* !!! follow active classes to come */
+
+
+/* urgent task setion */
+.sum-urgent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 9px;
+  }
+
+.sum-urgent-symbol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
+#sum-task-nr {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 120%;
+}
+
+.sum-urgent-text {
+  font-size: 23px;
+  line-height: 27.6px;
+}
+
+/* the vertical line on the big button */
+.ver-line {
+  width: 4px;
+  height: 145px;
+  stroke-width: 3px;
+  stroke: white;
+  stroke-linecap: round;
+}
+
+.ver-line path {
+  d: path("M2 2L2.00001 147");
+}
+
+/*  */
+.sum-urgent-date {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 13px;
+}
+#sum-urgent-day {
+  font-weight: 700;
+  font-size: 33px;
+  line-height: 120%;
+}
+
+#sum-urgent-text {
+  font-size: 23px;
+  line-height: 120%;
+}
+
+.sum-in-con {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  border-radius: 30px;
+  gap: 7px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
+}
+
+.sum-in-con:hover {
+  border-radius: 0px 30px 30px 30px;
+}
+
+.sum-in-con:hover .sum-in-upper-img{
+  width: 86px;
+  height: 86px;
+}
+
+.sum-in-con:hover .sum-in-upper{
+  color: #005DFF;
+}
+
+.sum-in-con:hover .sum-in-upper-img-nr{
+  font-size: 58px;
+}
+
+.sum-in-con:hover .sum-in-lower{
+  color: #005DFF;
+  font-size: 28px;
+}
+
+.sum-in-upper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: black;
+}
+
+.sum-in-upper-img {
+  width: 76px;
+  height: 76px;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.sum-in-upper-img-nr {
+  font-size: 48px;
+  font-weight: 700;
+  font-family: "Open Sans";
+  text-align: center;
+  line-height: 120%;
+}
+
+.sum-in-lower {
+  color: #4589ff;
+  text-align: center;
+  font-family: "Open Sans";
+  font-size: 23px;
+  line-height: 120%;
+}
+
+.sum-overview {
+    display: flex;
+    height: 219px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 32px;
+}
