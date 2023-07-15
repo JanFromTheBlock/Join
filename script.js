@@ -23,3 +23,9 @@ function addTaskInit(){
     navRender();
     addTaskRender();
 }
+
+function addBoardInit(){
+    headerRender();
+    navRender();
+    addBoardRender();
+}

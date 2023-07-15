@@ -3,9 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>board</title>
+    <title>Board</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <script src="mainrender.js"></script>
+    <script src="./assets/js/board.js"></script>
+    <link rel="stylesheet" href="./assets/styles/board.css">
 </head>
-<body>
+<body onload="addBoardInit()">
+
+    <header id="header"></header>
+    <nav id="nav" class="nav"></nav>
+    <div id="board">
+        <div id="board-input">
+            <div id="find-task">
+                <input id="input" type="text" placeholder="Find Task">
+                <img id="img-search" src="./assets/img/search.png">
+            </div>
+            <button id="board-button">Add Task  <span id="board-button-plus">+</span></button>
+        </div>
+    </div>
     
 </body>
 </html>

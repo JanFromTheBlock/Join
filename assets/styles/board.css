@@ -1,0 +1,40 @@
+#board{
+    margin-left: 232px;
+}
+
+#input{
+    border: none;
+    width: 180px;
+    font-size: 16px;
+}
+#img-search{
+    height: 20px;
+    width: 20px;
+    border-left: 1px solid #D7D7D7;
+    padding-left: 13px;
+}
+
+#find-task{
+    display: flex;
+    border: 1px solid #D7D7D7;
+    border-radius: 10px;
+    width: 210px;
+    padding: 13px 21px;
+}
+#board-input{
+    display: flex;
+    margin-left: 70px;
+    margin-top: 80px;
+    gap: 35px;
+}
+#board-button{
+    background-color: #4589FF;
+    border-radius: 10px;
+    padding: 10px 10px;
+    color: white;
+    font-size: 23px;
+    border: none;
+}
+#board-button-plus{
+    font-size: 27px;
+}
