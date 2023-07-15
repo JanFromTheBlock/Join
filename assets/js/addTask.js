@@ -28,12 +28,12 @@ function addTaskRender(){
             </div>
         </form>
         <div class="add-task-importance">
-          <img id="urgent" onclick="changeColor('urgent')" class="add-task-importance-button cursor-pointer" src="./assets/img/urgent.png">
-          <img id="medium" onclick="changeColor('medium')" class="add-task-importance-button cursor-pointer" src="./assets/img/medium.png">
-          <img id="low" onclick="changeColor('low')" class="add-task-importance-button cursor-pointer" src="./assets/img/low.png">
+          <button id="urgent" onclick="changeColor('urgent')" class="add-task-button-importance cursor-pointer">Urgent <img id="urgentLogo" src="./assets/img/urgentLogo.png"></button>
+          <button id="medium" onclick="changeColor('medium')" class="add-task-button-importance cursor-pointer">Medium <img src="./assets/img/mediumLogo.png"></button>
+          <button id="low" onclick="changeColor('low')" class="add-task-button-importance cursor-pointer">Low <img src="./assets/img/lowLogo.png"></button>
         </div>
-
-        <div>
+       
+        <div class="add-task-description">
           <h2>Description</h2>
           <textarea placeholder="Enter a Description" class="add-task-textarea cursor-pointer"></textarea>
         </div>
@@ -71,19 +71,27 @@ function showSubtasks(){
   
 }
 
-function changeColor(i){
-  let urgent = document.getElementById(`urgent`);
-  let medium = document.getElementById(`medium`);
-  let low = document.getElementById(`low`);
-  if(i == `urgent`){
-  urgent.classList.add(`change-color-urgent`);
+function changeColor(i) {
+  let urgent = document.getElementById('urgent');
+  let medium = document.getElementById('medium');
+  let low = document.getElementById('low');
+
+  if (i === 'urgent') {
+    urgent.classList.add('change-color-urgent');
+    urgent.classList.add('clicked');
+    medium.classList.remove('change-color-medium');
+    low.classList.remove('change-color-low');
+  } else if (i === 'medium') {
+    urgent.classList.remove('change-color-urgent');
+    medium.classList.add('clicked');
+    medium.classList.add('change-color-medium');
+    low.classList.remove('change-color-low');
+  } else if (i === 'low') {
+    urgent.classList.remove('change-color-urgent');
+    medium.classList.remove('change-color-medium');
+    low.classList.add('change-color-low');
+    low.classList.add('clicked');
   }
-  if(i == `medium`){
-    medium.classList.add(`change-color-medium`);
-  }
-  if(i  == `low`){
-    low.classList.add(`change-color-low`);
-  }
-  }
+}
 
 

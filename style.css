@@ -174,13 +174,11 @@ input[type="date"]::placeholder {
   width: 422px;
   margin-top: 10px;
   margin-bottom: -20px;
+  gap: 10px;
 }
 
-.add-task-importance-button {
-  width: 136px;
-  height: 51px;
-  gap: 10px;
-  padding: 18px 13px;
+.add-task-description{
+  margin-top: 20px;
 }
 
 .add-task-textarea{
@@ -217,22 +215,60 @@ input[type="date"]::placeholder {
 }
 
 .change-color-urgent{
-  background-color: #FF3D00;
+  background-color: #FF3D00!important;
   color: white;
 }
 
 .change-color-medium{
-    background-color: #FFA800;
+    background-color: #FFA800!important;
     color: white;
   }
 
   .change-color-low{
-    background-color: #7AE229;
+    background-color: #7AE229!important;
     color: white;
   }
-  
-  
 
+  .add-task-button-importance{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 136px;
+    height: 51px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 10px;
+    padding: 18px 10px;
+    gap: 10px;
+    font-size: 19px;
+  }
+
+  #urgent:hover{
+    box-shadow: 0 4px 0px 0px #FF3D00;
+  }
+
+  #medium:hover{
+    box-shadow: 0 4px 0px 0px #FFA800;
+  }
+
+  #low:hover{
+    box-shadow: 0 4px 0px 0px #7AE229;
+  }
+
+  #urgent.clicked {
+   box-shadow: none;
+  }
+
+  #medium.clicked {
+    box-shadow: none;
+   }
+
+   #low.clicked {
+    box-shadow: none;
+   }
+  
+  
+  
 /* summary */
 
 .summary {
