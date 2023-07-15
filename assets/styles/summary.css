@@ -135,7 +135,7 @@
   d: path("M2 2L2.00001 147");
 }
 
-/*  */
+/* deadlin section */
 .sum-urgent-date {
   display: flex;
   justify-content: center;
@@ -153,6 +153,7 @@
   line-height: 120%;
 }
 
+
 .sum-in-con {
   display: flex;
   flex-direction: column;
@@ -164,7 +165,7 @@
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
 }
 
-.sum-in-con:hover {
+/* .sum-in-con:hover {
   border-radius: 0px 30px 30px 30px;
 }
 
@@ -184,7 +185,7 @@
 .sum-in-con:hover .sum-in-lower{
   color: #005DFF;
   font-size: 28px;
-}
+} */
 
 .sum-in-upper {
   display: flex;
@@ -193,12 +194,20 @@
   color: black;
 }
 
+.circle {
+    width: 75px;
+    height: 74px;
+    fill: none;
+    stroke: yellow;
+    stroke-width: 3px;
+}
+
 .sum-in-upper-img {
-  width: 76px;
-  height: 76px;
-  justify-content: center;
-  align-items: center;
-  
+    content: url("../img/sum_task_do_to.png");
+    width: 76px;
+    height: 76px;
+    justify-content: center;
+    align-items: center;
 }
 
 .sum-in-upper-img-nr {
@@ -224,3 +233,12 @@
     align-items: flex-start;
     gap: 32px;
 }
+
+.light-blue {
+    background-color: #d2e3ff;
+  }
+  
+  .light-blue:hover {
+    background-color:  #FFFFFF;
+    
+  }

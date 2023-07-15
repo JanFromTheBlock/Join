@@ -9,15 +9,6 @@ body {
   display: none;
 }
 
-.light-blue {
-  background-color: #d2e3ff;
-}
-
-.light-blue:hover {
-  background-color:  #FFFFFF;
-  
-}
-
 .cursor-pointer{
   cursor: pointer;
 }

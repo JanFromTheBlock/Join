@@ -25,7 +25,7 @@ function SummaryRender() {
                 <div id="ov-to-do" class="sum-out-con">
                     <div class="sum-in-con light-blue">
                         <div class="sum-in-upper">
-                            <img id="sum-in-upper-img" class="sum-in-upper-img" src="./assets/img/sum_task_do_to.png">
+                            <img id="sum-in-upper-img" class="sum-in-upper-img" >
                             <span class="sum-in-upper-img-nr">1</span>
                         </div>
                         <span class="sum-in-lower">Task To-do</span>
@@ -46,7 +46,10 @@ function sumOverviewRender() {
         docID('sum-overview').innerHTML += /*html*/`
             <div class="sum-in-con">
                 <div class="sum-in-upper">
-                    <img id="sum-in-upper-img" class="sum-in-upper-img" src="${img[i]}">
+                <svg class="circle">
+                    <circle cx="37.5" cy="37" r="35.5"/>
+                    <image id="sum-in-upper-img" class="sum-in-upper-img" href="${img[i]}">
+                </svg>
                     <span class="sum-in-upper-img-nr">${amount[i]}</span>
                 </div>
                 <span class="sum-in-lower">${lower[i]}</span>
