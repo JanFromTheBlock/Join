@@ -53,14 +53,10 @@ function addTaskRender() {
 
            <div class="add-task-button">
             <button class="add-task-button-clear cursor-pointer">Clear<img src="./assets/img/xClear.png"></button>  
-            <button class="add-task-button-create cursor-pointer">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
+            <button onclick="newTask()" class="add-task-button-create cursor-pointer">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
           </div>
 
         </div>
-
-         
-       
-  
     </div>
     `;
 }
