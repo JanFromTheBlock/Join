@@ -25,7 +25,7 @@ function SummaryRender() {
                 <div id="ov-to-do" class="sum-out-con">
                     <div class="sum-in-con light-blue">
                         <div class="sum-in-upper">
-                            <img id="sum-in-upper-img" class="sum-in-upper-img" >
+                            <img id="sum-in-upper-img" class="sum-in-upper-img">
                             <span class="sum-in-upper-img-nr">1</span>
                         </div>
                         <span class="sum-in-lower">Task To-do</span>
