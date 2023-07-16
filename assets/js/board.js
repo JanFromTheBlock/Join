@@ -58,6 +58,7 @@ function loadTasks() {
                         <div id="task-category">${tasks[id]['category']}</div>
                         <div id="task-title">${tasks[id]['title']}</div>
                         <div id="task-description">${tasks[id]['description']}</div>
+                        <div id="progress-bar"><div id="progress-bar-outside"><div id="progress-bar-inside"></div></div><span>1/4 Subtasks</span></div>
                         <div id="task-footer">
                             <div id="contact-area">
                                 <span class="contacts">SM</span>
