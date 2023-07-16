@@ -4,6 +4,12 @@ let tasks = [
     "description": "Modify the contents of the main website ...",
     "category": "Design",
     "progress": "1",
+  },
+  {
+    "title": "Call potential clients",
+    "description": "Make the product presentation to prospective buyers",
+    "category": "Sales",
+    "progress": "2",
   }
 ];
 
