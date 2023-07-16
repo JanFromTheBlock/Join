@@ -1,16 +1,13 @@
-function addBoardRender(){
-    let taskArea = docID('task-area')
-    taskArea.innerHTML = ''
-    taskArea.innerHTML += /*html*/`
-    <div class="task-body">
-                <div class="task-body-flex">
-                    <span>To do</span>
-                    <img src="./assets/img/board_plus.png">
-                </div>
-                <div id="task">
-                    <div id="task-category">Design</div>
-                    <div id="task-title">Website redesign</div>
-                    <div id="task-description">Modify the contents of the main website ...</div>
+function addBoardRender() {
+    let j = tasks[0]["progress"];
+    let taskBody = docID('task' + j);
+    taskBody.innerHTML = ''
+    taskBody.innerHTML += /*html*/`
+                
+                <div id="task" class="task-decoration">
+                    <div id="task-category">${tasks[0]['category']}</div>
+                    <div id="task-title">${tasks[0]['title']}</div>
+                    <div id="task-description">${tasks[0]['description']}</div>
                     <div id="task-footer">
                         <div id="contact-area">
                             <span class="contacts">SM</span>
@@ -21,32 +18,5 @@ function addBoardRender(){
                     </div>
                     
                 </div>
-            </div>
-            <div class="task-body">
-                <div class="task-body-flex">
-                    <span>In progress</span>
-                    <img src="./assets/img/board_plus.png">
-                </div>
-                <div>
-                    Test
-                </div>
-            </div>
-            <div class="task-body">
-                <div class="task-body-flex">
-                    <span>Await feedback</span>
-                    <img src="./assets/img/board_plus.png">
-                </div>
-                <div>
-                    Test
-                </div>
-            </div>
-            <div class="task-body">
-                <div class="task-body-flex">
-                    <span>Done</span>
-                </div>
-                <div>
-                    Test
-                </div>
-            </div>
     `
-    }
+}

@@ -1,4 +1,11 @@
-let tasks = [];
+let tasks = [
+  {
+    "title": "Website redesign",
+    "description": "Modify the contents of the main website ...",
+    "category": "Design",
+    "progress": "1",
+  }
+];
 
 function addTaskRender() {
   docID("addTask").innerHTML = /*html*/ `
