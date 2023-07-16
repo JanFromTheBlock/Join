@@ -33,9 +33,28 @@
   outline: none;
   font-size: 19px;
   appearance: none;
-  background-image: url("./assets/img/selectfieldArrow.png");
+  background-image: url("../img/selectfieldArrow.png");
   background-repeat: no-repeat;
   background-position: right 21px center;
+}
+
+.add-task-choose-contacts {
+  display: flex;
+  flex-direction: column;
+  font-size: 19px;
+}
+
+.add-task-single-contact {
+  width: 440px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+}
+
+.add-task-single-contact:hover {
+  cursor: pointer;
+  background-color: #d2e3ff;
 }
 
 .add-task-due-date {
@@ -69,7 +88,7 @@ input[type="date"]::placeholder {
 .add-task-due-date-input::-webkit-calendar-picker-indicator {
   width: 23px;
   height: 23px;
-  background-image: url("./assets/img/date-logo.png");
+  background-image: url("../img/date-logo.png");
 }
 
 .add-task-priority {
@@ -79,6 +98,25 @@ input[type="date"]::placeholder {
   margin-top: 10px;
   margin-bottom: -20px;
   gap: 10px;
+}
+
+.add-task-choose-priority {
+  display: flex;
+  flex-direction: column;
+  font-size: 19px;
+}
+
+.add-task-single-priority{
+  width: 440px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+}
+
+.add-task-single-priority:hover {
+  cursor: pointer;
+  background-color: #d2e3ff;
 }
 
 .add-task-button-priority {
@@ -104,7 +142,7 @@ input[type="date"]::placeholder {
   height: 103px;
   padding: 16px;
   outline: none;
-  border: 1px solid rgba(#d1d1d1);
+  border-color: rgba(0, 0, 0, 0.2);
   border-radius: 0 10px 10px 10px;
   font-size: 19px;
 }
@@ -187,7 +225,7 @@ input[type="date"]::placeholder {
 }
 
 .add-task-button-create {
-  background-color: #4589FF;
+  background-color: #4589ff;
   color: white;
   border-radius: 10px;
   border: 1px solid;
@@ -196,11 +234,11 @@ input[type="date"]::placeholder {
   height: 61px;
 }
 
-.add-task-button-clear img{
+.add-task-button-clear img {
   margin-left: 12px;
 }
 
-.add-task-button-create img{
+.add-task-button-create img {
   margin-left: 12px;
 }
 
@@ -212,20 +250,18 @@ input[type="date"]::placeholder {
   margin-top: 136px;
 }
 
-.add-task-button-clear:hover{
-border: 1px solid rga#647188;
-color: #005DFF;
-
+.add-task-button-clear:hover {
+  border: 1px solid rga#647188;
+  color: #005dff;
 }
 
-.add-task-button-create:hover{
+.add-task-button-create:hover {
   border: 1px solid rga#647188;
-  background-color: #005DFF;
-  }
+  background-color: #005dff;
+}
 
-
-  #task{
-    margin-top: 100px;
-    width: 208px;
-    margin-left: 825px;
-  }
+#task {
+  margin-top: 100px;
+  width: 208px;
+  margin-left: 825px;
+}

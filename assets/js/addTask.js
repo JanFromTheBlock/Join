@@ -30,11 +30,13 @@ function addTaskRender() {
     <div class="add-task">
         <form>
           <input id="inputFieldTitle" required class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
-          <select required class="add-task-select-contact cursor-pointer" id="selectContact">
-              <option disabled selected hidden value="">Selected contacts to assign</option>
-              <option value="0">Test 2</option>
-              <option value="1">Test 3</option>
-          </select>
+          <input onclick ="showContactList()" placeholder="Selected contacts to assign" class="add-task-select-contact cursor-pointer" id="selectContact">
+          <div id="showContacts" class="d-none add-task-choose-contacts">
+              <span class="add-task-single-contact">You</span>
+              <span class="add-task-single-contact">Test</span>
+              <span class="add-task-single-contact">Invite new contact</span>
+          </div>
+        
         </form>
 
         <form>
@@ -47,11 +49,13 @@ function addTaskRender() {
         <form>
             <div class="add-task-due-date">
                <h2>Category</h2>
-               <select required class="add-task-select-contact cursor-pointer" id="selectCategory">
-                 <option disabled selected hidden value="">Select Task category</option>
-                 <option value="0">Test 2</option>
-                 <option value="1">Test 3</option>
-               </select>
+               <input onclick="showCategories()" required class="add-task-select-contact cursor-pointer" id="selectCategory" placeholder="Select Task category">
+                 <div id="showCategories" class="add-task-choose-priority d-none">
+                   <span class="add-task-single-priority">Sales</span>
+                   <span class="add-task-single-priority">Backoffice</span>
+                   <span class="add-task-single-priority">New category</span>
+                 </div>
+              
             </div>
         </form>
           <div class="add-task-priority">
@@ -144,7 +148,7 @@ function changeColor(i) {
 function newTask() {
   let title = document.getElementById(`inputFieldTitle`).value;
   let date = document.getElementById(`inputDate`).value;
-  let category = document.getElementById(`selectCategory`).innerHTML;
+  let category = document.getElementById(`selectCategory`).value;
   let description = document.getElementById(`description`).value;
 
   document.getElementById(`inputFieldTitle`).value = ``;
@@ -157,6 +161,8 @@ function newTask() {
   };
 
   tasks.push(task);
+  console.log(tasks);
+ 
 
   // zu TestZwecke
 
@@ -179,11 +185,38 @@ function newTask() {
 </div>
   `;
   }
-  console.log(tasks);
+
 
 
 function clearTask(i) {
   tasks.splice(i, 1);
-  newTask(i);
+
   console.log(tasks);
+ 
+}
+
+let clicked = false;
+
+function showContactList(){
+let showContacts = document.getElementById(`showContacts`);
+
+if(clicked){
+showContacts.classList.add(`d-none`);
+clicked = false;
+}else{
+  showContacts.classList.remove(`d-none`);
+  clicked = true;
+}
+}
+
+function showCategories(){
+  let showCategories = document.getElementById(`showCategories`);
+
+if(clicked){
+showCategories.classList.add(`d-none`);
+clicked = false;
+}else{
+  showCategories.classList.remove(`d-none`);
+  clicked = true;
+}
 }
