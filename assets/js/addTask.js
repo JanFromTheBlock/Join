@@ -10,6 +10,18 @@ let tasks = [
     "description": "Make the product presentation to prospective buyers",
     "category": "Sales",
     "progress": "2",
+  },
+  {
+    "title": "Video cut",
+    "description": "Edit the new company video",
+    "category": "Media",
+    "progress": "3",
+  },
+  {
+    "title": "Social media strategy",
+    "description": "Develop an ad campaign for brand positioning",
+    "category": "Marketing",
+    "progress": "4",
   }
 ];
 

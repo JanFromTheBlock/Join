@@ -10,9 +10,9 @@ function addBoardRender() {
         taskBody.innerHTML += /*html*/`
                     
                     <div id="task" class="task-decoration">
-                        <div id="task-category">${tasks[0]['category']}</div>
-                        <div id="task-title">${tasks[0]['title']}</div>
-                        <div id="task-description">${tasks[0]['description']}</div>
+                        <div id="task-category">${tasks[id]['category']}</div>
+                        <div id="task-title">${tasks[id]['title']}</div>
+                        <div id="task-description">${tasks[id]['description']}</div>
                         <div id="task-footer">
                             <div id="contact-area">
                                 <span class="contacts">SM</span>
