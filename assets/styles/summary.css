@@ -4,6 +4,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 97px;
     height: calc(100vh - 97px);
     font-family: 'Open Sans';
     margin-left: 232px;
@@ -165,17 +166,18 @@
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
 }
 
-/* .sum-in-con:hover {
+ .sum-in-con:hover {
   border-radius: 0px 30px 30px 30px;
+  background-color: #005DFF;
 }
 
 .sum-in-con:hover .sum-in-upper-img{
-  width: 86px;
-  height: 86px;
+  width: 75px;
+  height: 75px;
 }
 
 .sum-in-con:hover .sum-in-upper{
-  color: #005DFF;
+  color: #FFFFFF;
 }
 
 .sum-in-con:hover .sum-in-upper-img-nr{
@@ -183,9 +185,14 @@
 }
 
 .sum-in-con:hover .sum-in-lower{
-  color: #005DFF;
+  color: #FFFFFF;
   font-size: 28px;
-} */
+}
+
+.sum-in-con:hover .circle {
+    width: 86px;
+    height: 86px;
+}
 
 .sum-in-upper {
   display: flex;
@@ -195,10 +202,10 @@
 }
 
 .circle {
-    width: 75px;
-    height: 74px;
+    width: 68px;
+    height: 68px;
     fill: none;
-    stroke: yellow;
+    stroke: white;
     stroke-width: 3px;
 }
 

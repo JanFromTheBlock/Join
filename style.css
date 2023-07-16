@@ -19,8 +19,13 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   background-color: #4589ff;
   padding: 20px 39px;
+  z-index: 3;
 }
 
 .header-img {
@@ -57,7 +62,8 @@ header {
   justify-content: space-between;
   position: fixed;
   width: 232px;
-  height: 932px;
+  height: calc(100% - 97px);
+  top: 97px;
   padding: 66px 20px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
   box-sizing: border-box;
@@ -78,6 +84,11 @@ header {
   width: 186px;
   padding: 8px 30px;
   gap: 8px;
+  cursor: pointer;
+}
+
+.topic:hover {
+  background-color: #E3EEFF;
 }
 
 .legal {
