@@ -45,12 +45,11 @@
 }
 
 .add-task-single-contact {
-  width: 440px;
+  width: 400px;
   height: 38px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 440px;
   height: 38px;
   padding-left: 24px;
 }
@@ -114,7 +113,7 @@ input[type="date"]::placeholder {
 }
 
 .add-task-single-priority{
-  width: 440px;
+  width: 400px;
   height: 38px;
   display: flex;
   align-items: center;
