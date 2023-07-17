@@ -4,24 +4,32 @@ let tasks = [
     "description": "Modify the contents of the main website ...",
     "category": "Design",
     "progress": "1",
+    "subtasks": 2,
+    "done-tasks": 0,
   },
   {
     "title": "Call potential clients",
     "description": "Make the product presentation to prospective buyers",
     "category": "Sales",
     "progress": "2",
+    "subtasks": 0,
+    "done-tasks": 0,
   },
   {
     "title": "Video cut",
     "description": "Edit the new company video",
     "category": "Media",
     "progress": "3",
+    "subtasks": 0,
+    "done-tasks": 0,
   },
   {
     "title": "Social media strategy",
     "description": "Develop an ad campaign for brand positioning",
     "category": "Marketing",
     "progress": "4",
+    "subtasks": 3,
+    "done-tasks": 3,
   }
 ];
 

@@ -58,7 +58,7 @@ function loadTasks() {
                         <div id="task-category">${tasks[id]['category']}</div>
                         <div id="task-title">${tasks[id]['title']}</div>
                         <div id="task-description">${tasks[id]['description']}</div>
-                        <div id="progress-bar"><div id="progress-bar-outside"><div id="progress-bar-inside"></div></div><span>1/4 Subtasks</span></div>
+                        <div class = "progress-bar d-none" id="progress-bar${id}"><div id="progress-bar-outside"><div class="progress-bar-inside" id="progress-bar-inside${id}"></div></div><span id = "subtask${id}"></span></div>
                         <div id="task-footer">
                             <div id="contact-area">
                                 <span class="contacts">SM</span>
@@ -70,6 +70,16 @@ function loadTasks() {
                         
                     </div>
         `
+        if (tasks[id]["subtasks"] > 0) {
+            let a = parseInt(tasks[id]["subtasks"])
+            let b = parseInt(tasks[id]["done-tasks"])
+            let percent = b/a*100
+            docID('progress-bar' + id).classList.remove('d-none')
+            docID('subtask' + id).innerHTML = /*html*/`
+                ${b}/${a} subtasks
+            `;
+            docID('progress-bar-inside' + id).style.width = `${percent}%`;
+        }
     }
 
 

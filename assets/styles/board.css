@@ -105,7 +105,7 @@
 #contact-area-img{
     height: 32px !important;
 }
-#progress-bar{
+.progress-bar{
     display: flex;
     font-size: 13px;
     color: #000000;
@@ -118,8 +118,8 @@
     border-radius: 2px;
     background-color: #F4F4F4;
 }
-#progress-bar-inside{
-    width: 25%;
+.progress-bar-inside{
+    width: 0%;
     height: 100%;
     background-color: #4589FF;
 }
