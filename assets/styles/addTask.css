@@ -24,7 +24,7 @@
 }
 
 .add-task-select-contact {
-  width: 422px;
+  width: 380px;
   height: 51px;
   border: 0px 0px 1px 0px;
   padding: 0px 21px;
@@ -49,7 +49,14 @@
   height: 38px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 440px;
+  height: 38px;
   padding-left: 24px;
+}
+
+.add-task-single-contact img{
+  margin-right: 20px;
 }
 
 .add-task-single-contact:hover {

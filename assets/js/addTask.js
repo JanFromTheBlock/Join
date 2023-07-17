@@ -25,16 +25,18 @@ let tasks = [
   }
 ];
 
-function addTaskRender() {
+
+
+function addTaskRender(i) {
   docID("addTask").innerHTML = /*html*/ `
     <div class="add-task">
         <form>
           <input id="inputFieldTitle" required class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
           <input onclick ="showContactList()" placeholder="Selected contacts to assign" class="add-task-select-contact cursor-pointer" id="selectContact">
           <div id="showContacts" class="d-none add-task-choose-contacts">
-              <span class="add-task-single-contact">You</span>
-              <span class="add-task-single-contact">Test</span>
-              <span class="add-task-single-contact">Invite new contact</span>
+              <span onclick="chooseContact()" class="add-task-single-contact">You <img id="chooseBoxContact${i}" src="./assets/img/logoChooseContact.png"></span>
+              <span onclick="chooseContact()" class="add-task-single-contact">Test <img id="chooseBoxContact${i}" src="./assets/img/logoChooseContact.png"></span>
+              <span onclick="addContact()" class="add-task-single-contact">Invite new contact <img src="./assets/img/logoContactBlue.png"></span>
           </div>
         
         </form>
@@ -219,4 +221,15 @@ clicked = false;
   showCategories.classList.remove(`d-none`);
   clicked = true;
 }
+}
+
+
+function chooseContact(i){
+let chooseBoxContact = document.getElementById(`chooseBoxContact${i}`);
+chooseBoxContact.src="./assets/img/checkButtonContact.png"
+}
+
+function addContact(){
+  showContacts.classList.add(`d-none`);
+  selectContact.placeholder = "Contact email";
 }
