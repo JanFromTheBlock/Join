@@ -55,7 +55,7 @@ function loadTasks() {
         taskBody.innerHTML += /*html*/`
                     
                     <div id="task" class="task-decoration">
-                        <div id="task-category">${tasks[id]['category']}</div>
+                        <div id="task-category${id}" class="task-category">${tasks[id]['category']}</div>
                         <div id="task-title">${tasks[id]['title']}</div>
                         <div id="task-description">${tasks[id]['description']}</div>
                         <div class = "progress-bar d-none" id="progress-bar${id}"><div id="progress-bar-outside"><div class="progress-bar-inside" id="progress-bar-inside${id}"></div></div><span id = "subtask${id}"></span></div>
@@ -65,7 +65,7 @@ function loadTasks() {
                                 <span class="contacts">MV</span>
                                 <span class="contacts">EF</span>
                             </div>
-                            <img id="contact-area-img" src="./assets/img/lowLogo.png">
+                            <img id="contact-area-img${id}" class = "contact-area-img" src="./assets/img/lowLogo.png">
                         </div>
                         
                     </div>
@@ -80,6 +80,12 @@ function loadTasks() {
             `;
             docID('progress-bar-inside' + id).style.width = `${percent}%`;
         }
+
+        let urgency = tasks[id]["urgency"];
+        docID('contact-area-img' + id).src = "./assets/img/" + urgency + "Logo.png";
+
+        let color = tasks[id]["category-color"];
+        docID('task-category' + id).style.backgroundColor = color;
     }
 
 

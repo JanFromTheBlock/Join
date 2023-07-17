@@ -53,8 +53,8 @@
     gap: 35px;
 }
 .task-body img{
-    height: 24px;
-    width: auto;
+    height: auto;
+    width: 24px;
 }
 .task-body-flex{
     display: flex;
@@ -72,13 +72,12 @@
     border-radius: 30px;
     box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
 }
-#task-category{
+.task-category{
     padding: 4px 25px;
     margin-right: auto;
     border-radius: 8px;
     color: white;
-    background-color: #FF7A00;
-}
+    }
 #task-title{
     color: #4589FF;
     font-weight: 700;
