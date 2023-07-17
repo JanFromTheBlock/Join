@@ -1,58 +1,64 @@
 let tasks = [
   {
-    "title": "Website redesign",
-    "description": "Modify the contents of the main website ...",
-    "category": "Design",
+    title: "Website redesign",
+    description: "Modify the contents of the main website ...",
+    category: "Design",
     "category-color": "#FF7A00",
-    "progress": "1",
-    "subtasks": 2,
+    progress: "1",
+    subtasks: 2,
     "done-tasks": 0,
-    "urgency": "low",
+    urgency: "low",
   },
   {
-    "title": "Call potential clients",
-    "description": "Make the product presentation to prospective buyers",
-    "category": "Sales",
+    title: "Call potential clients",
+    description: "Make the product presentation to prospective buyers",
+    category: "Sales",
     "category-color": "#FC71FF",
-    "progress": "2",
-    "subtasks": 0,
+    progress: "2",
+    subtasks: 0,
     "done-tasks": 0,
-    "urgency": "urgent",
+    urgency: "urgent",
   },
   {
-    "title": "Video cut",
-    "description": "Edit the new company video",
-    "category": "Media",
+    title: "Video cut",
+    description: "Edit the new company video",
+    category: "Media",
     "category-color": "#FFC701",
-    "progress": "3",
-    "subtasks": 0,
+    progress: "3",
+    subtasks: 0,
     "done-tasks": 0,
-    "urgency": "medium",
+    urgency: "medium",
   },
   {
-    "title": "Social media strategy",
-    "description": "Develop an ad campaign for brand positioning",
-    "category": "Marketing",
+    title: "Social media strategy",
+    description: "Develop an ad campaign for brand positioning",
+    category: "Marketing",
     "category-color": "#0038FF",
-    "progress": "4",
-    "subtasks": 3,
+    progress: "4",
+    subtasks: 3,
     "done-tasks": 3,
-    "urgency": "low",
-  }
+    urgency: "low",
+  },
 ];
-
-
 
 function addTaskRender(i) {
   docID("addTask").innerHTML = /*html*/ `
     <div class="add-task">
         <form>
           <input id="inputFieldTitle" required class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
-          <input onclick ="showContactList()" placeholder="Selected contacts to assign" class="add-task-select-contact cursor-pointer" id="selectContact">
+          <div class="add-task-select-contact-edit">
+             <input required onclick ="showContactList()" placeholder="Selected contacts to assign" class="add-task-select-contact cursor-pointer" id="selectContact" type="email"> 
+             <img id="contactSelectArrow" src="./assets/img/selectfieldArrow.png">
+             <div class="d-none" id="editContact">
+             <img class="cursor-pointer" src="./assets/img/logoHaken.png">
+             <img src="./assets/img/seperator.png">
+             <img class="cursor-pointer" onclick="cancelContact()" src="./assets/img/logoCancel.png">
+             </div>
+          </div>
           <div id="showContacts" class="d-none add-task-choose-contacts">
-              <span onclick="chooseContact()" class="add-task-single-contact">You <img id="chooseBoxContact${i}" src="./assets/img/logoChooseContact.png"></span>
-              <span onclick="chooseContact()" class="add-task-single-contact">Test <img id="chooseBoxContact${i}" src="./assets/img/logoChooseContact.png"></span>
-              <span onclick="addContact()" class="add-task-single-contact">Invite new contact <img src="./assets/img/logoContactBlue.png"></span>
+              <span onclick="chooseContact(1)" class="add-task-single-contact">You <img id="chooseBoxContact1" src="./assets/img/logoChooseContact.png"></span>
+              <span onclick="chooseContact(2)" class="add-task-single-contact">Test <img id="chooseBoxContact2" src="./assets/img/logoChooseContact.png"></span>
+              <span onclick="addContact()" class="add-task-single-contact-invite">Invite new contact <img src="./assets/img/logoContactBlue.png"></span>
           </div>
         
         </form>
@@ -69,8 +75,8 @@ function addTaskRender(i) {
                <h2>Category</h2>
                <input onclick="showCategories()" required class="add-task-select-contact cursor-pointer" id="selectCategory" placeholder="Select Task category">
                  <div id="showCategories" class="add-task-choose-priority d-none">
-                   <span class="add-task-single-priority">Sales</span>
-                   <span class="add-task-single-priority">Backoffice</span>
+                   <span onclick="selectCategory()" class="add-task-single-priority" value="Sales">Sales</span>
+                   <span class="add-task-single-priority" value="Backoffice">Backoffice</span>
                    <span class="add-task-single-priority">New category</span>
                  </div>
               
@@ -168,6 +174,7 @@ function newTask() {
   let date = document.getElementById(`inputDate`).value;
   let category = document.getElementById(`selectCategory`).value;
   let description = document.getElementById(`description`).value;
+  let contact = document.getElementById(`selectContact`).value;
 
   document.getElementById(`inputFieldTitle`).value = ``;
   document.getElementById(`description`).value = ``;
@@ -176,11 +183,15 @@ function newTask() {
     title: title,
     description: description,
     category: category,
+    "category-color": "#0038FF",
+    progress: "4",
+    subtasks: 3,
+    "done-tasks": 3,
+    urgency: "low",
   };
 
   tasks.push(task);
   console.log(tasks);
- 
 
   // zu TestZwecke
 
@@ -193,7 +204,7 @@ function newTask() {
   <div id="task-description">${description}</div>
   <div id="task-footer">
       <div id="contact-area">
-          <span class="contacts">SM</span>
+          <span class="contacts">${contact}</span>
           <span class="contacts">MV</span>
           <span class="contacts">EF</span>
       </div>
@@ -202,50 +213,58 @@ function newTask() {
   
 </div>
   `;
-  }
-
-
+}
 
 function clearTask(i) {
   tasks.splice(i, 1);
 
   console.log(tasks);
- 
 }
 
 let clicked = false;
 
-function showContactList(){
-let showContacts = document.getElementById(`showContacts`);
+function toggleVisibility(elementId) {
+  let element = document.getElementById(elementId);
 
-if(clicked){
-showContacts.classList.add(`d-none`);
-clicked = false;
-}else{
-  showContacts.classList.remove(`d-none`);
-  clicked = true;
-}
+  if (element.classList.contains('d-none')) {
+    element.classList.remove('d-none');
+  } else {
+    element.classList.add('d-none');
+  }
 }
 
-function showCategories(){
-  let showCategories = document.getElementById(`showCategories`);
-
-if(clicked){
-showCategories.classList.add(`d-none`);
-clicked = false;
-}else{
-  showCategories.classList.remove(`d-none`);
-  clicked = true;
+function showContactList() {
+  toggleVisibility('showContacts');
 }
+
+function showCategories() {
+  toggleVisibility('showCategories');
 }
 
 
-function chooseContact(i){
-let chooseBoxContact = document.getElementById(`chooseBoxContact${i}`);
-chooseBoxContact.src="./assets/img/checkButtonContact.png"
+
+function chooseContact(i) {
+  let chooseBoxContact = document.getElementById(`chooseBoxContact${i}`);
+
+  if (clicked) {
+    chooseBoxContact.src = "./assets/img/checkButtonContact.png";
+    clicked = false;
+  } else {
+    chooseBoxContact.src = "./assets/img/logoChooseContact.png";
+    clicked = true;
+  }
 }
 
-function addContact(){
+function addContact() {
+  let editContact = document.getElementById(`editContact`);
+
   showContacts.classList.add(`d-none`);
   selectContact.placeholder = "Contact email";
+
+  editContact.classList.remove(`d-none`);
+  contactSelectArrow.classList.add(`d-none`);
+}
+
+function cancelContact() {
+  selectContact.value = ``;
 }

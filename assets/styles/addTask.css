@@ -33,9 +33,16 @@
   outline: none;
   font-size: 19px;
   appearance: none;
-  background-image: url("../img/selectfieldArrow.png");
-  background-repeat: no-repeat;
-  background-position: right 21px center;
+}
+
+.add-task-select-contact-edit {
+  display: flex;
+  align-items: center;
+}
+
+.add-task-select-contact-edit img {
+  margin-left: -40px;
+  margin-right: 5px;
 }
 
 .add-task-choose-contacts {
@@ -54,11 +61,31 @@
   padding-left: 24px;
 }
 
-.add-task-single-contact img{
+.add-task-single-contact-invite {
+  width: 400px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 38px;
+  padding-left: 24px;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.add-task-single-contact img {
+  margin-right: 20px;
+}
+
+.add-task-single-contact-invite img {
   margin-right: 20px;
 }
 
 .add-task-single-contact:hover {
+  cursor: pointer;
+  background-color: #d2e3ff;
+}
+
+.add-task-single-contact-invite:hover {
   cursor: pointer;
   background-color: #d2e3ff;
 }
@@ -112,7 +139,7 @@ input[type="date"]::placeholder {
   font-size: 19px;
 }
 
-.add-task-single-priority{
+.add-task-single-priority {
   width: 400px;
   height: 38px;
   display: flex;
