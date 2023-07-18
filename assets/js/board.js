@@ -48,6 +48,7 @@ function loadTasks() {
     docID('task2').innerHTML = '';
     docID('task3').innerHTML = '';
     docID('task4').innerHTML = '';
+    k = 0;
     for (let id = 0; id < tasks.length; id++) {
         const task = tasks[id];
         let j = tasks[id]["progress"];
@@ -60,11 +61,7 @@ function loadTasks() {
                         <div id="task-description">${tasks[id]['description']}</div>
                         <div class = "progress-bar d-none" id="progress-bar${id}"><div id="progress-bar-outside"><div class="progress-bar-inside" id="progress-bar-inside${id}"></div></div><span id = "subtask${id}"></span></div>
                         <div id="task-footer">
-                            <div id="contact-area">
-                                <span class="contacts">SM</span>
-                                <span class="contacts">MV</span>
-                                <span class="contacts">EF</span>
-                            </div>
+                            <div id="contact-area${id}">                            </div>
                             <img id="contact-area-img${id}" class = "contact-area-img" src="./assets/img/lowLogo.png">
                         </div>
                         
@@ -73,7 +70,7 @@ function loadTasks() {
         if (tasks[id]["subtasks"] > 0) {
             let a = parseInt(tasks[id]["subtasks"])
             let b = parseInt(tasks[id]["done-tasks"])
-            let percent = b/a*100
+            let percent = b / a * 100
             docID('progress-bar' + id).classList.remove('d-none')
             docID('subtask' + id).innerHTML = /*html*/`
                 ${b}/${a} subtasks
@@ -86,6 +83,25 @@ function loadTasks() {
 
         let color = tasks[id]["category-color"];
         docID('task-category' + id).style.backgroundColor = color;
+
+        let contactArea = docID('contact-area' + id);
+        contactArea.innerHTML = ``
+        for (let i = 0; i < tasks[id]['contact-firstname'].length; i++) {
+            let firstName = tasks[id]['contact-firstname'][i];
+            let lastName = tasks[id]['contact-lastname'][i];
+            let Initial1 = firstName.charAt(0);
+            let Initial2 = lastName.charAt(0);
+            let initials = Initial1 + Initial2;
+            let initialsUpper = initials.toLocaleUpperCase();
+            let color = tasks[id]['contact-color'][i];
+            k++;
+            contactArea.innerHTML += /*html*/`
+            <span class="contacts" id = "contacts${k}"> ${initialsUpper}</span>
+        `
+            docID('contacts' + k).style.backgroundColor = color;
+        }
+        ;
+
     }
 
 

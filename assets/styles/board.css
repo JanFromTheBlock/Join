@@ -89,12 +89,12 @@
     color: white;
 }
 .contacts{
+    min-width: 10px;
     padding: 10px 8px;
     margin-right: -6px;
     border: 1px solid white;
     border-radius: 58px;
     font-size: 14px;
-    background-color: #0190E0;
 }
 #task-footer{
     display: flex;
