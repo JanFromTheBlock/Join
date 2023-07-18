@@ -1,38 +1,88 @@
 function SummaryRender() {
     docID('summary').innerHTML = /*html*/`
-        <div id="greeting" class="greeting">
-            <span id="greet-time">Good morning, </span>
-            <span id="greet-name">Sofia Müller</span>
+        <div class="frame-69">
+            <span id="greeting">Good morning,</span>
+            <span id="name">Sofia Müller</span>
         </div>
-        <div id="overview" class="overview">
-            <div id="sum-important" class="sum-important">
-                <div id="ov-urgent" class="ov-urgent">
-                    <div id="sum-urgent" class="sum-urgent">
-                        <div id="sum-urgent-symbol" class="sum-urgent-symbol">
-                            <img  src="./assets/img/sum_task.png">
-                            <span id="sum-task-nr">1</span>
+        <div id="frame-66">
+            <div id="frame-189">
+                <div id="urgency-summary">
+                    <div id="frame-187">
+                        <div id="frame-188">
+                            <div id="frame-63">
+                                <div id="icon-circle">
+                                    <div id="icon"></div>
+                                </div>
+                                <span id="frame-63-span">1</span>
+                            </div>
                         </div>
-                        <span class="sum-urgent-text">Task Urgent</span>
+                        <span id="frame-187-span">Tasks Urgent</span>
                     </div>
-                    <div class="ver-line"><svg xmlns="http://www.w3.org/2000/svg" fill="none"> <!--viewBox on hover change by js  -->
-                        <path/>
-                      </svg></div>
-                    <div id="sum-urgent-date" class="sum-urgent-date">
-                        <span id="sum-urgent-day">October 16, 2022</span>
-                        <span id="sum-urgent-text">Upcoming Deadline</span>
+                    <div id="ver-line">
+                        <svg viewBox="0 0 4 149" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 2L2.00001 147" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div id="frame-68">
+                        <span id="frame-68-date">October 16, 2022</span>
+                        <span id="frame-68-deadline">Upcoming Deadline</span>
                     </div>
                 </div>
-                <div id="ov-to-do" class="sum-out-con">
-                    <div class="sum-in-con light-blue">
-                        <div class="sum-in-upper">
-                            <img id="sum-in-upper-img" class="sum-in-upper-img">
-                            <span class="sum-in-upper-img-nr">1</span>
+                <div id="square-button">
+                    <div id="frame-61">
+                        <div id="frame-184">
+                            <div id="frame-184-icon"></div>
+                            <span id="frame-184-span">1</span>
                         </div>
-                        <span class="sum-in-lower">Task To-do</span>
+                        <span class="frame-61-span">Tasks To-do</span>
                     </div>
                 </div>
             </div>
-            <div id="sum-overview" class="sum-overview">
+            <div id="sum-overview">
+                <div class="square-button-V1">
+                    <div class="frame-61">
+                        <div class="frame-184">
+                            <div class="frame-184-icon task-do-to">
+                                <img src="./assets/img/test-ellipse 14.svg">
+                            </div>
+                            <span class="frame-184-span">5</span>
+                        </div>
+                        <span class="frame-61-span">Task in <br>Board</span>
+                    </div>
+                </div>
+                <div class="square-button-V1">
+                    <div class="frame-61">
+                        <div class="frame-184">
+                            <div class="frame-184-icon sum-progress">
+                                <img src="./assets/img/test-ellipse 14.svg">
+                            </div>
+                            <span class="frame-184-span">2</span>
+                        </div>
+                        <span class="frame-61-span">Task in <br>Progress</span>
+                    </div>
+                </div>
+                <div class="square-button-V1">
+                    <div class="frame-61">
+                        <div class="frame-184">
+                            <div class="frame-184-icon sum-awaiting">
+                                <img src="./assets/img/test-ellipse 14.svg">
+                            </div>
+                            <span class="frame-184-span">2</span>
+                        </div>
+                        <span class="frame-61-span">Awaiting Feedback</span>
+                    </div>
+                </div>
+                <div class="square-button-V1">
+                    <div class="frame-61">
+                        <div class="frame-184">
+                            <div class="frame-184-icon sum-done">
+                                <img src="./assets/img/test-ellipse 14.svg">
+                            </div>
+                            <span class="frame-184-span">1</span>
+                        </div>
+                        <span class="frame-61-span">Tasks <br>Done</span>
+                    </div>
+                </div>
             </div>
         </div>
     `
@@ -41,19 +91,32 @@ function SummaryRender() {
 function sumOverviewRender() {
     let lower = ["Task in Board", "Task in Progress", "Awaiting Feedback", "Tasks <br>Done"];
     let amount = [5, 2, 2, 1]
-    let img = ["./assets/img/sum_task_do_to.png", "./assets/img/sum_progress.png", "./assets/img/sum_awaiting.png", "./assets/img/sum_done.png"]
+    let img = ["task-do-to", "sum-progress", "sum-awaiting", "sum-done"]
     for (let i = 0; i < 4; i++) {
         docID('sum-overview').innerHTML += /*html*/`
-            <div class="sum-in-con">
-                <div class="sum-in-upper">
-                <svg class="circle">
-                    <circle cx="37.5" cy="37" r="35.5"/>
-                    <image id="sum-in-upper-img" class="sum-in-upper-img" href="${img[i]}">
-                </svg>
-                    <span class="sum-in-upper-img-nr">${amount[i]}</span>
+            <div class="square-button-V1">
+                <div class="frame-61">
+                    <div class="frame-184">
+                        <div class="frame-184-icon ${img[i]}">
+                            <img src="./assets/img/test-ellipse 14.svg">
+                        </div>
+                        <span class="frame-184-span">${amount[i]}</span>
+                    </div>
+                    <span class="frame-61-span">${lower[i]}</span>
                 </div>
-                <span class="sum-in-lower">${lower[i]}</span>
             </div>
         `        
     }
 }
+
+{/* <div class="square-button-V1">
+                    <div class="frame-61">
+                        <div class="frame-184">
+                            <div class="frame-184-icon ${img[i]}">
+                                <img src="./assets/img/test-ellipse 14.svg">
+                            </div>
+                            <span class="frame-184-span">${amount[i]}</span>
+                        </div>
+                        <span class="frame-61-span">${lower[i]}</span>
+                    </div>
+                </div> */}

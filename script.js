@@ -8,7 +8,7 @@ function summaryInit() {
     headerRender();
     navRender();
     SummaryRender();
-    sumOverviewRender();
+    // sumOverviewRender();
     
 }
 
