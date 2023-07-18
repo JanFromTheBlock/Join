@@ -56,17 +56,16 @@ let tasks = [
 let subtasks = [];
 let contact;
 
-function addTaskRender(selectedContact) {
-  contact = selectedContact;
+function addTaskRender() {
   docID("addTask").innerHTML = /*html*/ `
     <div class="add-task">
         <form>
-          <input id="inputFieldTitle" required class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
+          <input autocomplete="off" id="inputFieldTitle" required class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
           <div class="add-task-select-contact-edit">
-             <input required onclick ="showContactList()" placeholder="Selected contacts to assign" class="add-task-select-contact cursor-pointer" id="selectContact" type="email"> 
+             <input autocomplete="off" required onclick ="showContactList()" placeholder="Selected contacts to assign" class="add-task-select-contact cursor-pointer" id="selectContact" type="email"> 
              <img id="contactSelectArrow" src="./assets/img/selectfieldArrow.png">
              <div class="d-none" id="editContact">
-               <img onclick="showAddedContact(contact)" class="cursor-pointer" src="./assets/img/logoHaken.png">
+               <img onclick="showAddedContact()" class="cursor-pointer" src="./assets/img/logoHaken.png">
                <img src="./assets/img/seperator.png">
                <img class="cursor-pointer" onclick="cancelContact()" src="./assets/img/logoCancel.png">
              </div>
@@ -76,7 +75,7 @@ function addTaskRender(selectedContact) {
               <span onclick="chooseContact(2)" class="add-task-single-contact">Test <img id="chooseBoxContact2" src="./assets/img/logoChooseContact.png"></span>
               <span onclick="addContact()" class="add-task-single-contact-invite">Invite new contact <img src="./assets/img/logoContactBlue.png"></span>
           </div>
-          <div id="initialises" class="d-none add-task-initialises">${contact}</div>
+          <div class="add-task-initials-area" id="initials"></div>
         
         </form>
 
@@ -91,7 +90,7 @@ function addTaskRender(selectedContact) {
             <div class="add-task-due-date">
                <h2>Category</h2>
                <div class="add-task-select-contact-edit">
-                 <input onclick="showCategories()" required class="add-task-select-contact cursor-pointer" id="selectCategory" placeholder="Select Task category">
+                 <input autocomplete="off" onclick="showCategories()" required class="add-task-select-contact cursor-pointer" id="selectCategory" placeholder="Select Task category">
                  <img src="./assets/img/selectfieldArrow.png">
                </div>
                  <div id="showCategories" class="add-task-choose-priority d-none">
@@ -190,7 +189,6 @@ function changeColor(i) {
     mediumLogo.src = `./assets/img/mediumLogo.png`;
   }
 }
-
 
 function newTask() {
   let title = document.getElementById(`inputFieldTitle`).value;
@@ -298,15 +296,30 @@ function addContact() {
   contactSelectArrow.classList.add(`d-none`);
 }
 
-// delete Inputfield of contac email
+// delete Inputfield of contact email
 
 function cancelContact() {
   selectContact.value = ``;
-  initialises.classList.add(`d-none`);
+  initials.classList.add(`d-none`);
 }
 
-function showAddedContact(contact) {
-  let initialises = document.getElementById(`initialises`);
-  initialises.classList.remove(`d-none`);
+function showAddedContact() {
+  contact = document.getElementById(`selectContact`).value;
+  let initials = document.getElementById(`initials`);
+  initials.classList.remove(`d-none`);
 
+  getInitials(contact);
+}
+
+function getInitials(contact) {
+  // Teile den Namen in einzelne Wörter auf
+  let words = contact.split(' ');
+  // Erzeuge einen leeren String für die Initialen
+  let initialsOfName = '';
+  // Iteriere über die Wörter
+  for (let i = 0; i < words.length; i++) {
+    // Extrahiere den ersten Buchstaben des aktuellen Wortes und konvertiere ihn in Großbuchstaben
+    initialsOfName += words[i].charAt(0).toUpperCase();
+  }
+  initials.innerHTML += `<div class="add-task-initials">${initialsOfName}</div>`;
 }
