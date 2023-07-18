@@ -90,6 +90,19 @@
   background-color: #d2e3ff;
 }
 
+.add-task-initialises {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  border-radius: 58px;
+  height: 45px;
+  width: 45px;
+  background-color: #0190e0;
+  color: white;
+  font-size: 21px;
+}
+
 .add-task-due-date {
   width: 422px;
   border: none;

@@ -41,7 +41,11 @@ let tasks = [
   },
 ];
 
-function addTaskRender(i) {
+let subtasks = [];
+let contact;
+
+function addTaskRender(selectedContact) {
+  contact = selectedContact;
   docID("addTask").innerHTML = /*html*/ `
     <div class="add-task">
         <form>
@@ -50,9 +54,9 @@ function addTaskRender(i) {
              <input required onclick ="showContactList()" placeholder="Selected contacts to assign" class="add-task-select-contact cursor-pointer" id="selectContact" type="email"> 
              <img id="contactSelectArrow" src="./assets/img/selectfieldArrow.png">
              <div class="d-none" id="editContact">
-             <img class="cursor-pointer" src="./assets/img/logoHaken.png">
-             <img src="./assets/img/seperator.png">
-             <img class="cursor-pointer" onclick="cancelContact()" src="./assets/img/logoCancel.png">
+               <img onclick="showAddedContact(contact)" class="cursor-pointer" src="./assets/img/logoHaken.png">
+               <img src="./assets/img/seperator.png">
+               <img class="cursor-pointer" onclick="cancelContact()" src="./assets/img/logoCancel.png">
              </div>
           </div>
           <div id="showContacts" class="d-none add-task-choose-contacts">
@@ -60,6 +64,7 @@ function addTaskRender(i) {
               <span onclick="chooseContact(2)" class="add-task-single-contact">Test <img id="chooseBoxContact2" src="./assets/img/logoChooseContact.png"></span>
               <span onclick="addContact()" class="add-task-single-contact-invite">Invite new contact <img src="./assets/img/logoContactBlue.png"></span>
           </div>
+          <div id="initialises" class="d-none add-task-initialises">${contact}</div>
         
         </form>
 
@@ -73,7 +78,10 @@ function addTaskRender(i) {
         <form>
             <div class="add-task-due-date">
                <h2>Category</h2>
-               <input onclick="showCategories()" required class="add-task-select-contact cursor-pointer" id="selectCategory" placeholder="Select Task category">
+               <div class="add-task-select-contact-edit">
+                 <input onclick="showCategories()" required class="add-task-select-contact cursor-pointer" id="selectCategory" placeholder="Select Task category">
+                 <img src="./assets/img/selectfieldArrow.png">
+               </div>
                  <div id="showCategories" class="add-task-choose-priority d-none">
                    <span onclick="selectCategory()" class="add-task-single-priority" value="Sales">Sales</span>
                    <span class="add-task-single-priority" value="Backoffice">Backoffice</span>
@@ -123,6 +131,8 @@ function showSubtasks() {
 
   subtaskArea.classList.remove(`d-none`);
 
+  subtasks.push(inputSubtask);
+
   subtaskArea.innerHTML += `
   <div class="subTaskArea">
   <input class="cursor-pointer" type="checkbox">
@@ -169,15 +179,15 @@ function changeColor(i) {
   }
 }
 
+
 function newTask() {
   let title = document.getElementById(`inputFieldTitle`).value;
   let date = document.getElementById(`inputDate`).value;
   let category = document.getElementById(`selectCategory`).value;
   let description = document.getElementById(`description`).value;
-  let contact = document.getElementById(`selectContact`).value;
+  contact = document.getElementById(`selectContact`).value;
 
-  document.getElementById(`inputFieldTitle`).value = ``;
-  document.getElementById(`description`).value = ``;
+  clearTaskMask();
 
   let task = {
     title: title,
@@ -185,7 +195,7 @@ function newTask() {
     category: category,
     "category-color": "#0038FF",
     progress: "4",
-    subtasks: 3,
+    subtasks: subtasks.length,
     "done-tasks": 3,
     urgency: "low",
   };
@@ -215,33 +225,40 @@ function newTask() {
   `;
 }
 
+function clearTaskMask() {
+  document.getElementById(`inputFieldTitle`).value = ``;
+  document.getElementById(`description`).value = ``;
+  document.getElementById(`selectContact`).value = ``;
+  document.getElementById(`selectCategory`).value = ``;
+}
+
 function clearTask(i) {
   tasks.splice(i, 1);
 
   console.log(tasks);
 }
 
-let clicked = false;
-
 function toggleVisibility(elementId) {
   let element = document.getElementById(elementId);
 
-  if (element.classList.contains('d-none')) {
-    element.classList.remove('d-none');
+  if (element.classList.contains("d-none")) {
+    element.classList.remove("d-none");
   } else {
-    element.classList.add('d-none');
+    element.classList.add("d-none");
   }
 }
 
 function showContactList() {
-  toggleVisibility('showContacts');
+  toggleVisibility("showContacts");
+  selectContact.disabled = true;
+  selectContact.style.backgroundColor = "white";
 }
 
 function showCategories() {
-  toggleVisibility('showCategories');
+  toggleVisibility("showCategories");
 }
 
-
+let clicked = true;
 
 function chooseContact(i) {
   let chooseBoxContact = document.getElementById(`chooseBoxContact${i}`);
@@ -260,11 +277,24 @@ function addContact() {
 
   showContacts.classList.add(`d-none`);
   selectContact.placeholder = "Contact email";
-
+  selectContact.disabled = false;
+  selectContact.focus();
+ 
   editContact.classList.remove(`d-none`);
   contactSelectArrow.classList.add(`d-none`);
 }
 
 function cancelContact() {
   selectContact.value = ``;
+  initialises.classList.add(`d-none`);
+}
+
+function showAddedContact(contact){
+  
+  let initialises = document.getElementById(`initialises`);
+
+
+  initialises.classList.remove(`d-none`);
+  initialises.innerHTML +=  ` <div class="add-task-initialises">${contact}</div>`;
+
 }
