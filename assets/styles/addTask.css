@@ -94,11 +94,16 @@
   caret-color: transparent;
 }
 
-.add-task-initialises {
+.add-task-initials-area {
+  display: flex;
+}
+
+.add-task-initials {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 16px;
+  margin-right: 3px;
   border-radius: 58px;
   height: 45px;
   width: 45px;
