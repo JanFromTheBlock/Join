@@ -250,7 +250,7 @@ function toggleVisibility(elementId) {
 
 function showContactList() {
   toggleVisibility("showContacts");
-  selectContact.disabled = true;
+  selectContact.classList.add(`hide-cursor`);
   selectContact.style.backgroundColor = "white";
 }
 
@@ -272,17 +272,21 @@ function chooseContact(i) {
   }
 }
 
+// add new Contact
+
 function addContact() {
   let editContact = document.getElementById(`editContact`);
 
   showContacts.classList.add(`d-none`);
   selectContact.placeholder = "Contact email";
-  selectContact.disabled = false;
+ selectContact.classList.remove(`hide-cursor`);
   selectContact.focus();
  
   editContact.classList.remove(`d-none`);
   contactSelectArrow.classList.add(`d-none`);
 }
+
+// delete Inputfield of contac email
 
 function cancelContact() {
   selectContact.value = ``;
@@ -290,11 +294,7 @@ function cancelContact() {
 }
 
 function showAddedContact(contact){
-  
   let initialises = document.getElementById(`initialises`);
-
-
   initialises.classList.remove(`d-none`);
-  initialises.innerHTML +=  ` <div class="add-task-initialises">${contact}</div>`;
-
+ 
 }

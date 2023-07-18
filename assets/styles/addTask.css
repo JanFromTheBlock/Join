@@ -90,6 +90,10 @@
   background-color: #d2e3ff;
 }
 
+.hide-cursor {
+  caret-color: transparent;
+}
+
 .add-task-initialises {
   display: flex;
   align-items: center;
