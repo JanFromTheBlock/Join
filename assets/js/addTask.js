@@ -8,6 +8,9 @@ let tasks = [
     subtasks: 2,
     "done-tasks": 0,
     urgency: "low",
+    "contact-firstname": ['Anton', 'Anja',],
+    "contact-lastname": ['Mayer', 'Schulz',],
+    "contact-color":['#FF7A00', '#9327FF',]
   },
   {
     title: "Call potential clients",
@@ -18,6 +21,9 @@ let tasks = [
     subtasks: 0,
     "done-tasks": 0,
     urgency: "urgent",
+    "contact-firstname": ['Benedikt','David',],
+    "contact-lastname": ['Ziegler','Eisenberg',],
+    "contact-color":['#6E52FF', '#FC71FF',],
   },
   {
     title: "Video cut",
@@ -28,6 +34,9 @@ let tasks = [
     subtasks: 0,
     "done-tasks": 0,
     urgency: "medium",
+    "contact-firstname": ['Eva', 'Emmanuel'],
+    "contact-lastname": [ 'Fischer', 'Mauer'],
+    "contact-color":['#FFBB2B', '#6E52FF'],
   },
   {
     title: "Social media strategy",
@@ -38,6 +47,9 @@ let tasks = [
     subtasks: 3,
     "done-tasks": 3,
     urgency: "low",
+    "contact-firstname": ['Marcel', 'Tatjana'],
+    "contact-lastname": ['Bauer', 'Wolf'],
+    "contact-color":['#462F8A', '#FF4646'],
   },
 ];
 
