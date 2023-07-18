@@ -12,22 +12,22 @@ function headerRender() {
 function navRender() {
     docID('nav').innerHTML = /*html*/`
         <div class="menu">
-            <div class="topic">
+            <a href="./summary.html" class="topic">
                 <img src="./assets/img/Summary.png">
                 <span>Summary</span>
-            </div>
-            <div class="topic">
+            </a>
+            <a href="./board.html" class="topic">
                 <img src="./assets/img/Board.png">
                 <span>Board</span>
-            </div>
-            <div class="topic">
+            </a>
+            <a href="./addTask.html" class="topic">
                 <img src="./assets/img/add_task.png">
                 <span>Add Task</span>
-            </div>
-            <div class="topic">
+           </a>
+            <a href="./contacts.html"class="topic">
                 <img src="./assets/img/contact.png">
                 <span>Contacts</span>
-            </div>
+            </a>
         </div>
         <div class="legal">
             <div class="topic">
