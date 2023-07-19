@@ -51,6 +51,7 @@
     flex-direction: column;
     width: 25%;
     gap: 35px;
+    height: 400px;
 }
 .task-body img{
     height: auto;
