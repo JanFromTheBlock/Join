@@ -8,7 +8,7 @@ function addBoardRender() {
     board.innerHTML += /*html*/`
         <div id="board-input">
             <div id="find-task">
-                <input id="input" type="text" placeholder="Find Task">
+                <input id="input" type="text" placeholder="Find Task" onkeydown="filterTasks()">
                 <img id="img-search" src="./assets/img/search.png">
             </div>
             <button id="board-button">Add Task <span id="board-button-plus">+</span></button>
@@ -125,4 +125,40 @@ function renderUrgencySymbol(id) {
 function renderCategoryColor(id) {                  //die Hintergrundfarbe für die Task-Kategorie wird geladen und dem div gegeben
     let color = tasks[id]["category-color"];
     docID('task-category' + id).style.backgroundColor = color;
+}
+
+function filterTasks(){
+    let search = docID('input').value;
+    search = search.toLowerCase();
+    console.log(search);
+
+    emptyTaskDivs();
+    k = 0;
+    for (let id = 0; id < tasks.length; id++) {
+        let name = tasks[id]['title']; 
+        if(name.toLowerCase().includes(search)){
+            renderTaskBody(id);
+            renderSubtasks(id);
+            renderUrgencySymbol(id);
+            renderCategoryColor(id);
+    
+            let contactArea = docID('contact-area' + id);             
+            contactArea.innerHTML = ``
+            for (let i = 0; i < tasks[id]['contact-firstname'].length; i++) {  
+                let firstName = tasks[id]['contact-firstname'][i];   
+                let lastName = tasks[id]['contact-lastname'][i];     
+                let Initial1 = firstName.charAt(0);                 
+                let Initial2 = lastName.charAt(0);                 
+                let initials = Initial1 + Initial2;                        
+                let initialsUpper = initials.toLocaleUpperCase();   
+                let color = tasks[id]['contact-color'][i];           
+                k++;                                                 
+                contactArea.innerHTML += /*html*/`                  
+            <span class="contacts" id = "contacts${k}"> ${initialsUpper}</span>
+        `
+                docID('contacts' + k).style.backgroundColor = color;     //Farbe wird für Kontaksymbol geändert
+            }
+        }   
+    
+    }
 }
