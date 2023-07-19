@@ -1,3 +1,6 @@
+let taskTitles = ["1", "2", "3", "4"]
+let = currentDraggedElement;
+
 function addBoardRender() {
     let board = docID('board');
     board.innerHTML = '';
@@ -9,36 +12,22 @@ function addBoardRender() {
             </div>
             <button id="board-button">Add Task <span id="board-button-plus">+</span></button>
         </div>
-        <div id="task-area">
-            <div class="task-body">
-                <div class="task-body-flex">
-                    <span>To do</span>
-                    <img src="./assets/img/board_plus.png">
-                </div>
-                <div id="task1"></div>
-            </div>
-            <div class="task-body">
-                <div class="task-body-flex">
-                    <span>In progress</span>
-                    <img src="./assets/img/board_plus.png">
-                </div>
-                <div id="task2"></div>
-            </div>
-            <div class="task-body">
-                <div class="task-body-flex">
-                    <span>Await feedback</span>
-                    <img src="./assets/img/board_plus.png">
-                </div>
-                <div id="task3"></div>
-             </div>
-            <div class="task-body">
-                <div class="task-body-flex">
-                    <span>Done</span>
-                </div>
-                <div id="task4"></div>
-            </div>
-        </div>
+        <div id="task-area"></div>
     `
+    for (let index = 0; index < taskTitles.length; index++) {
+        const taskTitle = taskTitles[index];
+        let indexFinal = index +1
+        docID('task-area').innerHTML += /*html*/`
+            <div ondrop="moveTo('${taskTitle}')" ondragover="allowDrop(event)" class="task-body" id="task-body${index}">
+                <div class="task-body-flex">
+                    <span>${taskTitle}</span>
+                    <img src="./assets/img/board_plus.png">
+                </div>
+                <div id="tasks${indexFinal}"></div>
+            </div>
+        `
+        
+    }
 
     loadTasks();
 }
@@ -74,18 +63,19 @@ function loadTasks() {
 }
 
 function emptyTaskDivs() {
-    docID('task1').innerHTML = '';
-    docID('task2').innerHTML = '';
-    docID('task3').innerHTML = '';
-    docID('task4').innerHTML = '';
+    docID('tasks1').innerHTML = '';
+    docID('tasks2').innerHTML = '';
+    docID('tasks3').innerHTML = '';
+    docID('tasks4').innerHTML = '';
 }
 
 function renderTaskBody(id) {
     let j = tasks[id]["progress"];            // Variable um festzulegen, in welchem Task-Container die Aufgabe landet
-    let taskBody = docID('task' + j);         //// Anschließend wird Div-Struktur mit passenden ID's für die Task-Container gerendert
+    let taskBody = docID('tasks' + j); 
+    let l = tasks[id]['array-id'];        //// Anschließend wird Div-Struktur mit passenden ID's für die Task-Container gerendert
     taskBody.innerHTML += /*html*/`
                     
-    <div id="task" class="task-decoration">
+    <div draggable="true" ondragstart="startDragging(${l})" id="task${l}" class="task-decoration">
         <div id="task-category${id}" class="task-category">${tasks[id]['category']}</div>
         <div id="task-title">${tasks[id]['title']}</div>
         <div id="task-description">${tasks[id]['description']}</div>
@@ -98,6 +88,19 @@ function renderTaskBody(id) {
     </div>
 `
 }
+
+function startDragging(element){
+    currentDraggedElement = element - 1;
+
+}
+function allowDrop(ev) {
+    ev.preventDefault();
+  }
+
+  function moveTo(progress){
+    tasks[currentDraggedElement]['progress'] = progress;
+    addBoardRender();
+  }
 
 function renderSubtasks(id) {
     if (tasks[id]["subtasks"] > 0) {

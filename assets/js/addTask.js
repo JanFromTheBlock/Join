@@ -1,5 +1,6 @@
 let tasks = [
   {
+    "array-id": "1",
     title: "Website redesign",
     description: "Modify the contents of the main website ...",
     category: "Design",
@@ -13,11 +14,12 @@ let tasks = [
     "contact-color":['#FF7A00', '#9327FF',]
   },
   {
+    "array-id": "2",
     title: "Call potential clients",
     description: "Make the product presentation to prospective buyers",
     category: "Sales",
     "category-color": "#FC71FF",
-    progress: "2",
+    progress: "1",
     subtasks: 0,
     "done-tasks": 0,
     urgency: "urgent",
@@ -26,6 +28,7 @@ let tasks = [
     "contact-color":['#6E52FF', '#FC71FF',],
   },
   {
+    "array-id": "3",
     title: "Video cut",
     description: "Edit the new company video",
     category: "Media",
@@ -39,6 +42,7 @@ let tasks = [
     "contact-color":['#FFBB2B', '#6E52FF'],
   },
   {
+    "array-id": "4",
     title: "Social media strategy",
     description: "Develop an ad campaign for brand positioning",
     category: "Marketing",
