@@ -35,7 +35,7 @@ function navRender() {
                 <span>Legal notice</span>
             </div>
             <div class="topic">
-                <img src="">
+                <img src="./assets/img/legal.png">
                 <span>Private policy</span>
             </div>
         </div>

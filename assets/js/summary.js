@@ -31,65 +31,21 @@ function SummaryRender() {
                 <div id="square-button">
                     <div id="frame-61">
                         <div id="frame-184">
-                            <div id="frame-184-icon"></div>
+                            <div class="frame-184-icon task-do-to">
+                                <img src="./assets/img/ellipse 14.svg">
+                            </div>
                             <span id="frame-184-span">1</span>
                         </div>
                         <span class="frame-61-span">Tasks To-do</span>
                     </div>
                 </div>
             </div>
-            <div id="sum-overview">
-                <div class="square-button-V1">
-                    <div class="frame-61">
-                        <div class="frame-184">
-                            <div class="frame-184-icon task-do-to">
-                                <img src="./assets/img/ellipse 14.svg">
-                            </div>
-                            <span class="frame-184-span">5</span>
-                        </div>
-                        <span class="frame-61-span">Task in <br>Board</span>
-                    </div>
-                </div>
-                <div class="square-button-V1">
-                    <div class="frame-61">
-                        <div class="frame-184">
-                            <div class="frame-184-icon sum-progress">
-                                <img src="./assets/img/ellipse 14.svg">
-                            </div>
-                            <span class="frame-184-span">2</span>
-                        </div>
-                        <span class="frame-61-span">Task in <br>Progress</span>
-                    </div>
-                </div>
-                <div class="square-button-V1">
-                    <div class="frame-61">
-                        <div class="frame-184">
-                            <div class="frame-184-icon sum-awaiting">
-                                <img src="./assets/img/ellipse 14.svg">
-                            </div>
-                            <span class="frame-184-span">2</span>
-                        </div>
-                        <span class="frame-61-span">Awaiting Feedback</span>
-                    </div>
-                </div>
-                <div class="square-button-V1">
-                    <div class="frame-61">
-                        <div class="frame-184">
-                            <div class="frame-184-icon sum-done">
-                                <img src="./assets/img/ellipse 14.svg">
-                            </div>
-                            <span class="frame-184-span">1</span>
-                        </div>
-                        <span class="frame-61-span">Tasks <br>Done</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <div id="sum-overview"></div>
     `
 }
 
 function sumOverviewRender() {
-    let lower = ["Task in Board", "Task in Progress", "Awaiting Feedback", "Tasks <br>Done"];
+    let lower = ["Task in <br>Board", "Task in <br>Progress", "Awaiting <br>Feedback", "Tasks <br>Done"];
     let amount = [5, 2, 2, 1]
     let img = ["task-do-to", "sum-progress", "sum-awaiting", "sum-done"]
     for (let i = 0; i < 4; i++) {
