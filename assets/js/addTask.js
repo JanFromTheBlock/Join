@@ -111,7 +111,7 @@ function addTaskRender() {
             <button id="medium" onclick="changeColor('medium')" class="add-task-button-priority cursor-pointer">Medium <img id="mediumLogo" src="./assets/img/mediumLogo.png"></button>
             <button id="low" onclick="changeColor('low')" class="add-task-button-priority cursor-pointer">Low <img id="lowLogo" src="./assets/img/lowLogo.png"></button>
           </div>
-       <form>
+       <form class="add-task-description-form">
         <div class="add-task-description">
           <h2>Description</h2>
           <textarea required id="description" placeholder="Enter a Description" class="add-task-textarea cursor-pointer"></textarea>
@@ -136,6 +136,7 @@ function addTaskRender() {
 
         </div>
     </div>
+    <img id="taskAddedToBoard" class="task-added-to-board d-none" src="./assets/img/logoAddedToBoard.png">
     `;
 }
 
@@ -157,23 +158,20 @@ function showSubtasks() {
   `;
 }
 
-function changeColor(i) {
-  let urgent = document.getElementById("urgent");
-  let medium = document.getElementById("medium");
-  let low = document.getElementById("low");
+function changeColorUrgent(){
+  urgent.classList.add("change-color-urgent");
+  urgent.classList.add("clicked");
+  medium.classList.remove("change-color-medium");
+  medium.classList.remove("clicked");
+  low.classList.remove("clicked");
+  low.classList.remove("change-color-low");
+  urgentLogo.src = `./assets/img/urgentLogoWhite.png`;
+  lowLogo.src = `./assets/img/lowLogo.png`;
+  mediumLogo.src = `./assets/img/mediumLogo.png`;
+}
 
-  if (i === "urgent") {
-    urgent.classList.add("change-color-urgent");
-    urgent.classList.add("clicked");
-    medium.classList.remove("change-color-medium");
-    medium.classList.remove("clicked");
-    low.classList.remove("clicked");
-    low.classList.remove("change-color-low");
-    urgentLogo.src = `./assets/img/urgentLogoWhite.png`;
-    lowLogo.src = `./assets/img/lowLogo.png`;
-    mediumLogo.src = `./assets/img/mediumLogo.png`;
-  } else if (i === "medium") {
-    urgent.classList.remove("change-color-urgent");
+function changeColorMedium(){
+  urgent.classList.remove("change-color-urgent");
     medium.classList.add("clicked");
     low.classList.remove("clicked");
     urgent.classList.remove("clicked");
@@ -182,16 +180,31 @@ function changeColor(i) {
     lowLogo.src = `./assets/img/lowLogo.png`;
     urgentLogo.src = `./assets/img/urgentLogo.png`;
     mediumLogo.src = `./assets/img/mediumLogoWhite.png`;
+}
+
+function changeColorLow(){
+  urgent.classList.remove("change-color-urgent");
+  medium.classList.remove("change-color-medium");
+  low.classList.add("change-color-low");
+  medium.classList.remove("clicked");
+  urgent.classList.remove("clicked");
+  low.classList.add("clicked");
+  lowLogo.src = `./assets/img/lowLogoWhite.png`;
+  urgentLogo.src = `./assets/img/urgentLogo.png`;
+  mediumLogo.src = `./assets/img/mediumLogo.png`;
+}
+
+function changeColor(i) {
+  let urgent = document.getElementById("urgent");
+  let medium = document.getElementById("medium");
+  let low = document.getElementById("low");
+
+  if (i === "urgent") {
+   changeColorUrgent();
+  } else if (i === "medium") {
+    changeColorMedium()
   } else if (i === "low") {
-    urgent.classList.remove("change-color-urgent");
-    medium.classList.remove("change-color-medium");
-    low.classList.add("change-color-low");
-    medium.classList.remove("clicked");
-    urgent.classList.remove("clicked");
-    low.classList.add("clicked");
-    lowLogo.src = `./assets/img/lowLogoWhite.png`;
-    urgentLogo.src = `./assets/img/urgentLogo.png`;
-    mediumLogo.src = `./assets/img/mediumLogo.png`;
+    changeColorLow()
   }
 }
 
@@ -200,6 +213,9 @@ function newTask() {
   let date = document.getElementById(`inputDate`).value;
   let category = document.getElementById(`selectCategory`).value;
   let description = document.getElementById(`description`).value;
+  let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
+  
+  taskAddedToBoard.classList.remove(`d-none`);
   contact = document.getElementById(`selectContact`).value;
 
   clearTaskMask();
@@ -216,7 +232,7 @@ function newTask() {
   };
 
   tasks.push(task);
-  console.log(tasks);
+
 }
 
 function clearTaskMask() {
@@ -228,8 +244,6 @@ function clearTaskMask() {
 
 function clearTask(i) {
   tasks.splice(i, 1);
-
-  console.log(tasks);
 }
 
 function toggleVisibility(elementId) {
@@ -271,14 +285,15 @@ function chooseContact(i) {
 
 function addContact() {
   let editContact = document.getElementById(`editContact`);
-
+ 
   showContacts.classList.add(`d-none`);
   selectContact.placeholder = "Contact email";
   selectContact.classList.remove(`hide-cursor`);
   selectContact.focus();
-
+  
   editContact.classList.remove(`d-none`);
   contactSelectArrow.classList.add(`d-none`);
+  
 }
 
 function showAddedContact() {
@@ -321,7 +336,6 @@ function showAddedCategory() {
 
   if(!categories.includes(selectCategory)){
   categories.push(selectCategory);
-  console.log(categories);
   showCategories.innerHTML += ` <span class="add-task-single-priority">${selectCategory}</span>`;
   }else{
     alert(`Ist bereits vorhanden`);

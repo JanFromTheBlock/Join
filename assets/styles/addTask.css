@@ -192,6 +192,10 @@ input[type="date"]::placeholder {
   margin-top: 20px;
 }
 
+.add-task-description-form {
+  margin-top: 20px;
+}
+
 .add-task-textarea {
   width: 387px;
   height: 103px;
@@ -319,4 +323,10 @@ input[type="date"]::placeholder {
   margin-top: 100px;
   width: 208px;
   margin-left: 825px;
+}
+
+.task-added-to-board {
+  position: fixed;
+  margin-top: 425px;
+  margin-left: 40%;
 }
