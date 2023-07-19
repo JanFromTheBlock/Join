@@ -9,9 +9,9 @@ let tasks = [
     subtasks: 2,
     "done-tasks": 0,
     urgency: "low",
-    "contact-firstname": ['Anton', 'Anja',],
-    "contact-lastname": ['Mayer', 'Schulz',],
-    "contact-color":['#FF7A00', '#9327FF',]
+    "contact-firstname": ["Anton", "Anja"],
+    "contact-lastname": ["Mayer", "Schulz"],
+    "contact-color": ["#FF7A00", "#9327FF"],
   },
   {
     "array-id": "2",
@@ -23,9 +23,9 @@ let tasks = [
     subtasks: 0,
     "done-tasks": 0,
     urgency: "urgent",
-    "contact-firstname": ['Benedikt','David',],
-    "contact-lastname": ['Ziegler','Eisenberg',],
-    "contact-color":['#6E52FF', '#FC71FF',],
+    "contact-firstname": ["Benedikt", "David"],
+    "contact-lastname": ["Ziegler", "Eisenberg"],
+    "contact-color": ["#6E52FF", "#FC71FF"],
   },
   {
     "array-id": "3",
@@ -37,9 +37,9 @@ let tasks = [
     subtasks: 0,
     "done-tasks": 0,
     urgency: "medium",
-    "contact-firstname": ['Eva', 'Emmanuel'],
-    "contact-lastname": [ 'Fischer', 'Mauer'],
-    "contact-color":['#FFBB2B', '#6E52FF'],
+    "contact-firstname": ["Eva", "Emmanuel"],
+    "contact-lastname": ["Fischer", "Mauer"],
+    "contact-color": ["#FFBB2B", "#6E52FF"],
   },
   {
     "array-id": "4",
@@ -51,14 +51,15 @@ let tasks = [
     subtasks: 3,
     "done-tasks": 3,
     urgency: "low",
-    "contact-firstname": ['Marcel', 'Tatjana'],
-    "contact-lastname": ['Bauer', 'Wolf'],
-    "contact-color":['#462F8A', '#FF4646'],
+    "contact-firstname": ["Marcel", "Tatjana"],
+    "contact-lastname": ["Bauer", "Wolf"],
+    "contact-color": ["#462F8A", "#FF4646"],
   },
 ];
 
 let subtasks = [];
 let contact;
+let categories = [];
 
 function addTaskRender() {
   docID("addTask").innerHTML = /*html*/ `
@@ -95,12 +96,16 @@ function addTaskRender() {
                <h2>Category</h2>
                <div class="add-task-select-contact-edit">
                  <input autocomplete="off" onclick="showCategories()" required class="add-task-select-contact cursor-pointer" id="selectCategory" placeholder="Select Task category">
-                 <img src="./assets/img/selectfieldArrow.png">
+                 <img id="categorySelectArrow" src="./assets/img/selectfieldArrow.png">
+                 <div class="d-none" id="editCategory">
+                    <img onclick="showAddedCategory()" class="cursor-pointer" src="./assets/img/logoHaken.png">
+                    <img src="./assets/img/seperator.png">
+                    <img class="cursor-pointer" onclick="cancelCategory()" src="./assets/img/logoCancel.png">
+                 </div>
                </div>
                  <div id="showCategories" class="add-task-choose-priority d-none">
-                   <span onclick="selectCategory()" class="add-task-single-priority" value="Sales">Sales</span>
-                   <span class="add-task-single-priority" value="Backoffice">Backoffice</span>
-                   <span class="add-task-single-priority">New category</span>
+              
+                   <span onclick="newCategory()" class="add-task-single-priority">New category</span>
                  </div>
               
             </div>
@@ -110,7 +115,7 @@ function addTaskRender() {
             <button id="medium" onclick="changeColor('medium')" class="add-task-button-priority cursor-pointer">Medium <img id="mediumLogo" src="./assets/img/mediumLogo.png"></button>
             <button id="low" onclick="changeColor('low')" class="add-task-button-priority cursor-pointer">Low <img id="lowLogo" src="./assets/img/lowLogo.png"></button>
           </div>
-       <form>
+       <form class="add-task-description-form">
         <div class="add-task-description">
           <h2>Description</h2>
           <textarea required id="description" placeholder="Enter a Description" class="add-task-textarea cursor-pointer"></textarea>
@@ -135,6 +140,7 @@ function addTaskRender() {
 
         </div>
     </div>
+    <img id="taskAddedToBoard" class="task-added-to-board d-none" src="./assets/img/logoAddedToBoard.png">
     `;
 }
 
@@ -156,23 +162,20 @@ function showSubtasks() {
   `;
 }
 
-function changeColor(i) {
-  let urgent = document.getElementById("urgent");
-  let medium = document.getElementById("medium");
-  let low = document.getElementById("low");
+function changeColorUrgent(){
+  urgent.classList.add("change-color-urgent");
+  urgent.classList.add("clicked");
+  medium.classList.remove("change-color-medium");
+  medium.classList.remove("clicked");
+  low.classList.remove("clicked");
+  low.classList.remove("change-color-low");
+  urgentLogo.src = `./assets/img/urgentLogoWhite.png`;
+  lowLogo.src = `./assets/img/lowLogo.png`;
+  mediumLogo.src = `./assets/img/mediumLogo.png`;
+}
 
-  if (i === "urgent") {
-    urgent.classList.add("change-color-urgent");
-    urgent.classList.add("clicked");
-    medium.classList.remove("change-color-medium");
-    medium.classList.remove("clicked");
-    low.classList.remove("clicked");
-    low.classList.remove("change-color-low");
-    urgentLogo.src = `./assets/img/urgentLogoWhite.png`;
-    lowLogo.src = `./assets/img/lowLogo.png`;
-    mediumLogo.src = `./assets/img/mediumLogo.png`;
-  } else if (i === "medium") {
-    urgent.classList.remove("change-color-urgent");
+function changeColorMedium(){
+  urgent.classList.remove("change-color-urgent");
     medium.classList.add("clicked");
     low.classList.remove("clicked");
     urgent.classList.remove("clicked");
@@ -181,16 +184,31 @@ function changeColor(i) {
     lowLogo.src = `./assets/img/lowLogo.png`;
     urgentLogo.src = `./assets/img/urgentLogo.png`;
     mediumLogo.src = `./assets/img/mediumLogoWhite.png`;
+}
+
+function changeColorLow(){
+  urgent.classList.remove("change-color-urgent");
+  medium.classList.remove("change-color-medium");
+  low.classList.add("change-color-low");
+  medium.classList.remove("clicked");
+  urgent.classList.remove("clicked");
+  low.classList.add("clicked");
+  lowLogo.src = `./assets/img/lowLogoWhite.png`;
+  urgentLogo.src = `./assets/img/urgentLogo.png`;
+  mediumLogo.src = `./assets/img/mediumLogo.png`;
+}
+
+function changeColor(i) {
+  let urgent = document.getElementById("urgent");
+  let medium = document.getElementById("medium");
+  let low = document.getElementById("low");
+
+  if (i === "urgent") {
+   changeColorUrgent();
+  } else if (i === "medium") {
+    changeColorMedium()
   } else if (i === "low") {
-    urgent.classList.remove("change-color-urgent");
-    medium.classList.remove("change-color-medium");
-    low.classList.add("change-color-low");
-    medium.classList.remove("clicked");
-    urgent.classList.remove("clicked");
-    low.classList.add("clicked");
-    lowLogo.src = `./assets/img/lowLogoWhite.png`;
-    urgentLogo.src = `./assets/img/urgentLogo.png`;
-    mediumLogo.src = `./assets/img/mediumLogo.png`;
+    changeColorLow()
   }
 }
 
@@ -199,6 +217,9 @@ function newTask() {
   let date = document.getElementById(`inputDate`).value;
   let category = document.getElementById(`selectCategory`).value;
   let description = document.getElementById(`description`).value;
+  let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
+  
+  taskAddedToBoard.classList.remove(`d-none`);
   contact = document.getElementById(`selectContact`).value;
 
   clearTaskMask();
@@ -215,28 +236,7 @@ function newTask() {
   };
 
   tasks.push(task);
-  console.log(tasks);
 
-  // zu TestZwecke
-
-  let content = document.getElementById(`content`);
-
-  content.innerHTML += `
-  <div id="task">
-  <div id="task-category">${category}</div>
-  <div id="task-title">${title}</div>
-  <div id="task-description">${description}</div>
-  <div id="task-footer">
-      <div id="contact-area">
-          <span class="contacts">${contact}</span>
-          <span class="contacts">MV</span>
-          <span class="contacts">EF</span>
-      </div>
-      <img id="contact-area-img" src="./assets/img/lowLogo.png">
-  </div>
-  
-</div>
-  `;
 }
 
 function clearTaskMask() {
@@ -248,8 +248,6 @@ function clearTaskMask() {
 
 function clearTask(i) {
   tasks.splice(i, 1);
-
-  console.log(tasks);
 }
 
 function toggleVisibility(elementId) {
@@ -265,11 +263,12 @@ function toggleVisibility(elementId) {
 function showContactList() {
   toggleVisibility("showContacts");
   selectContact.classList.add(`hide-cursor`);
-  selectContact.style.backgroundColor = "white";
 }
 
 function showCategories() {
+  let selectCategory = document.getElementById(`selectCategory`);
   toggleVisibility("showCategories");
+  selectCategory.classList.add(`hide-cursor`);
 }
 
 let clicked = true;
@@ -290,21 +289,15 @@ function chooseContact(i) {
 
 function addContact() {
   let editContact = document.getElementById(`editContact`);
-
+ 
   showContacts.classList.add(`d-none`);
   selectContact.placeholder = "Contact email";
   selectContact.classList.remove(`hide-cursor`);
   selectContact.focus();
-
+  
   editContact.classList.remove(`d-none`);
   contactSelectArrow.classList.add(`d-none`);
-}
-
-// delete Inputfield of contact email
-
-function cancelContact() {
-  selectContact.value = ``;
-  initials.classList.add(`d-none`);
+  
 }
 
 function showAddedContact() {
@@ -317,13 +310,52 @@ function showAddedContact() {
 
 function getInitials(contact) {
   // Teile den Namen in einzelne Wörter auf
-  let words = contact.split(' ');
+  let words = contact.split(" ");
   // Erzeuge einen leeren String für die Initialen
-  let initialsOfName = '';
+  let initialsOfName = "";
   // Iteriere über die Wörter
   for (let i = 0; i < words.length; i++) {
     // Extrahiere den ersten Buchstaben des aktuellen Wortes und konvertiere ihn in Großbuchstaben
     initialsOfName += words[i].charAt(0).toUpperCase();
   }
   initials.innerHTML += `<div class="add-task-initials">${initialsOfName}</div>`;
+}
+
+function newCategory() {
+  let showCategories = document.getElementById(`showCategories`);
+  let editCategory = document.getElementById(`editCategory`);
+  let selectCategory = document.getElementById(`selectCategory`);
+
+  categorySelectArrow.classList.add(`d-none`);
+  editCategory.classList.remove(`d-none`);
+  showCategories.classList.add(`d-none`);
+  selectCategory.placeholder = "New category name";
+  selectCategory.classList.remove(`hide-cursor`);
+  selectCategory.focus();
+}
+
+function showAddedCategory() {
+  let selectCategory = document.getElementById(`selectCategory`).value;
+  let showCategories = document.getElementById(`showCategories`);
+
+  if(!categories.includes(selectCategory)){
+  categories.push(selectCategory);
+  showCategories.innerHTML += ` <span class="add-task-single-priority">${selectCategory}</span>`;
+  }else{
+    alert(`Ist bereits vorhanden`);
+  }
+}
+
+function cancelCategory() {
+  cancelInputs(`selectCategory`);
+}
+
+function cancelContact() {
+  cancelInputs(`selectContact`);
+}
+
+function cancelInputs(elementId) {
+  let element = document.getElementById(elementId);
+  element.value = ``;
+  initials.classList.add(`d-none`);
 }

@@ -124,5 +124,3 @@ function renderCategoryColor(id) {
     let color = tasks[id]["category-color"];
     docID('task-category' + id).style.backgroundColor = color;
 }
-
-
