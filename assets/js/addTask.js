@@ -322,7 +322,7 @@ function showAddedCategory() {
   if(!categories.includes(selectCategory)){
   categories.push(selectCategory);
   console.log(categories);
-  showCategories.innerHTML += ` <span class="add-task-single-priority">${categories}</span>`;
+  showCategories.innerHTML += ` <span class="add-task-single-priority">${selectCategory}</span>`;
   }else{
     alert(`Ist bereits vorhanden`);
   }
