@@ -27,7 +27,7 @@
 }
 
 #name {
-  color: var(--version-2-main-color, #4589FF);
+  color: #4589FF;
   font-family: 'Open Sans';
   font-size: 64px;
   font-style: normal;
@@ -72,7 +72,7 @@
   width: 688px;
   height: 207px;
   border-radius: 0px 30px 30px 30px;
-  margin-right: 0px;
+  margin-right: 2px;
   background: #FFFFFF;
 }
 
@@ -113,7 +113,7 @@
   height: 191px;
   border-radius: 30px;
   background: #005DFF;
-  margin-right: 16px;
+  margin-right: 18px;
 }
 
 #urgency-summary:active #frame-187-span {
@@ -232,7 +232,7 @@
 
 #frame-68-date {
   color: #FFFFFF;
-  font-family: Open Sans;
+  font-family: "Open Sans";
   font-size: 33px;
   font-style: normal;
   font-weight: 700;
@@ -241,7 +241,7 @@
 
 #frame-68-deadline {
   color: var(--white, #FFF);
-  font-family: Open Sans;
+  font-family: "Open Sans";
   font-size: 23px;
   font-style: normal;
   font-weight: 400;
@@ -289,8 +289,6 @@
 #square-button:active .frame-184-icon {
   width: 73px;
   height: 73px;
-  border: solid 3px #FFFFFF;
-  border-radius: 100%;
 }
 
 #square-button:active .frame-61-span{
@@ -303,11 +301,11 @@
   font-size: 48px;
 }
 
-#square-button-V1:hover .frame-184-icon img {
+#square-button:active .frame-184-icon img {
   display: block;
   position: absolute;
-  width: 77px;
-  height: 85px;
+  width: 66px;
+  height: 74px;
   left: 4px;
 }
 
@@ -330,9 +328,6 @@
   width: 76px;
   height: 76px;
   align-items: flex-start;
-  background: url('../img/sum_task_do_to.png');
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 #frame-184-span {
@@ -413,6 +408,12 @@
   background-size: cover;
 }
 
+.sum-board {
+  background: url('../img/sum_board.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .sum-progress {
   background: url('../img/sum_progress.png');
   background-repeat: no-repeat;
@@ -466,6 +467,11 @@
   font-size: 58px;
 }
 
+.square-button-V1:hover .sum-board {
+  width: 86px;
+  height: 86px;
+}
+
 .square-button-V1:hover .sum-progress {
   width: 86px;
   height: 86px;
@@ -516,6 +522,11 @@
 .square-button-V1:active .frame-184-span {
   color: #000000;
   font-size: 48px;
+}
+
+.square-button-V1:active .sum-board {
+  width: 76px;
+  height: 76px;
 }
 
 .square-button-V1:active .sum-progress {

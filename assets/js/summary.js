@@ -48,7 +48,7 @@ function SummaryRender() {
 function sumOverviewRender() {
     let lower = ["Task in <br>Board", "Task in <br>Progress", "Awaiting <br>Feedback", "Tasks <br>Done"];
     let amount = [5, 2, 2, 1]
-    let img = ["task-do-to", "sum-progress", "sum-awaiting", "sum-done"]
+    let img = ["sum-board", "sum-progress", "sum-awaiting", "sum-done"]
     for (let i = 0; i < 4; i++) {
         docID('sum-overview').innerHTML += /*html*/`
             <div class="square-button-V1">
