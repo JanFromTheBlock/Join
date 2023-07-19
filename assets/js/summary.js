@@ -41,6 +41,7 @@ function SummaryRender() {
                 </div>
             </div>
             <div id="sum-overview"></div>
+        </div>
     `
 }
 
@@ -64,15 +65,3 @@ function sumOverviewRender() {
         `        
     }
 }
-
-{/* <div class="square-button-V1">
-                    <div class="frame-61">
-                        <div class="frame-184">
-                            <div class="frame-184-icon ${img[i]}">
-                                <img src="./assets/img/ellipse 14.svg">
-                            </div>
-                            <span class="frame-184-span">${amount[i]}</span>
-                        </div>
-                        <span class="frame-61-span">${lower[i]}</span>
-                    </div>
-                </div> */}
