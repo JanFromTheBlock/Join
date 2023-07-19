@@ -75,6 +75,8 @@ header {
 .menu {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   gap: 15px;
 }
 
@@ -85,10 +87,28 @@ header {
   padding: 8px 30px;
   gap: 8px;
   cursor: pointer;
+  text-decoration: none;
+  color: #42526e;
+  box-sizing: border-box;
 }
 
 .topic:hover {
   background-color: #E3EEFF;
+}
+
+.topic img {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.topic span {
+  color: #42526E;
+  font-family: 'Open Sans';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
 }
 
 .legal {

@@ -94,11 +94,16 @@
   caret-color: transparent;
 }
 
-.add-task-initialises {
+.add-task-initials-area {
+  display: flex;
+}
+
+.add-task-initials {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 16px;
+  margin-right: 3px;
   border-radius: 58px;
   height: 45px;
   width: 45px;
@@ -184,6 +189,10 @@ input[type="date"]::placeholder {
 }
 
 .add-task-description {
+  margin-top: 20px;
+}
+
+.add-task-description-form {
   margin-top: 20px;
 }
 
@@ -314,4 +323,10 @@ input[type="date"]::placeholder {
   margin-top: 100px;
   width: 208px;
   margin-left: 825px;
+}
+
+.task-added-to-board {
+  position: fixed;
+  margin-top: 425px;
+  margin-left: 40%;
 }
