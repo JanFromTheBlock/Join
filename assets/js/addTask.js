@@ -200,39 +200,18 @@ function newTask() {
   clearTaskMask();
 
   let task = {
-    title: title,
-    description: description,
-    category: category,
+    "title": title,
+    "description": description,
+    "category": category,
     "category-color": "#0038FF",
-    progress: "4",
-    subtasks: subtasks.length,
+    "progress": "4",
+    "subtasks": subtasks.length,
     "done-tasks": 3,
-    urgency: "low",
+    "urgency": "low",
   };
 
   tasks.push(task);
   console.log(tasks);
-
-  // zu TestZwecke
-
-  let content = document.getElementById(`content`);
-
-  content.innerHTML += `
-  <div id="task">
-  <div id="task-category">${category}</div>
-  <div id="task-title">${title}</div>
-  <div id="task-description">${description}</div>
-  <div id="task-footer">
-      <div id="contact-area">
-          <span class="contacts">${contact}</span>
-          <span class="contacts">MV</span>
-          <span class="contacts">EF</span>
-      </div>
-      <img id="contact-area-img" src="./assets/img/lowLogo.png">
-  </div>
-  
-</div>
-  `;
 }
 
 function clearTaskMask() {
@@ -322,4 +301,11 @@ function getInitials(contact) {
     initialsOfName += words[i].charAt(0).toUpperCase();
   }
   initials.innerHTML += `<div class="add-task-initials">${initialsOfName}</div>`;
+}
+
+function selectCategory(){
+  let showCategories = document.getElementById(`showCategories`);
+  let selectCategory = document.getElementById(`selectCategory`);
+  showCategories.classList.add(`d-none`);
+  selectCategory.value= "Sales";
 }
