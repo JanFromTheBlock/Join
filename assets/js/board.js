@@ -8,7 +8,7 @@ function addBoardRender() {
     board.innerHTML += /*html*/`
         <div id="board-input">
             <div id="find-task">
-                <input id="input" type="text" placeholder="Find Task" onkeydown="filterTasks()">
+                <input id="input" type="text" placeholder="Find Task" onkeyup="filterTasks()">
                 <img id="img-search" src="./assets/img/search.png">
             </div>
             <button id="board-button">Add Task <span id="board-button-plus">+</span></button>
@@ -127,14 +127,13 @@ function renderCategoryColor(id) {                  //die Hintergrundfarbe für 
     docID('task-category' + id).style.backgroundColor = color;
 }
 
-function filterTasks(){
-    let search = docID('input').value;
-    search = search.toLowerCase();
-    console.log(search);
+function filterTasks(){                    //Die Tasks werden nach Namen gefiltert
+    let search = docID('input').value;     // Wert aus dem Inputfeld wird genommen
+    search = search.toLowerCase();         //Variable wird in kleine Buchstaben umgewandelt
 
-    emptyTaskDivs();
-    k = 0;
-    for (let id = 0; id < tasks.length; id++) {
+    emptyTaskDivs();                       //die Divs werden wieder geleert, um neu befüllt zu werden
+    k = 0;                                 // k muss auf 0 gesetzt werden, damit wieder bei 0 angefangen wird zu zhlen 
+    for (let id = 0; id < tasks.length; id++) {         //anschließend wird wieder neu gerendert mit der Bedingung das der Input-text in dem Namen der Taks vorkommt
         let name = tasks[id]['title']; 
         if(name.toLowerCase().includes(search)){
             renderTaskBody(id);
