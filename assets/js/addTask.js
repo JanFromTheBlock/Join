@@ -8,9 +8,9 @@ let tasks = [
     subtasks: 2,
     "done-tasks": 0,
     urgency: "low",
-    "contact-firstname": ['Anton', 'Anja',],
-    "contact-lastname": ['Mayer', 'Schulz',],
-    "contact-color":['#FF7A00', '#9327FF',]
+    "contact-firstname": ["Anton", "Anja"],
+    "contact-lastname": ["Mayer", "Schulz"],
+    "contact-color": ["#FF7A00", "#9327FF"],
   },
   {
     title: "Call potential clients",
@@ -21,9 +21,9 @@ let tasks = [
     subtasks: 0,
     "done-tasks": 0,
     urgency: "urgent",
-    "contact-firstname": ['Benedikt','David',],
-    "contact-lastname": ['Ziegler','Eisenberg',],
-    "contact-color":['#6E52FF', '#FC71FF',],
+    "contact-firstname": ["Benedikt", "David"],
+    "contact-lastname": ["Ziegler", "Eisenberg"],
+    "contact-color": ["#6E52FF", "#FC71FF"],
   },
   {
     title: "Video cut",
@@ -34,9 +34,9 @@ let tasks = [
     subtasks: 0,
     "done-tasks": 0,
     urgency: "medium",
-    "contact-firstname": ['Eva', 'Emmanuel'],
-    "contact-lastname": [ 'Fischer', 'Mauer'],
-    "contact-color":['#FFBB2B', '#6E52FF'],
+    "contact-firstname": ["Eva", "Emmanuel"],
+    "contact-lastname": ["Fischer", "Mauer"],
+    "contact-color": ["#FFBB2B", "#6E52FF"],
   },
   {
     title: "Social media strategy",
@@ -47,14 +47,15 @@ let tasks = [
     subtasks: 3,
     "done-tasks": 3,
     urgency: "low",
-    "contact-firstname": ['Marcel', 'Tatjana'],
-    "contact-lastname": ['Bauer', 'Wolf'],
-    "contact-color":['#462F8A', '#FF4646'],
+    "contact-firstname": ["Marcel", "Tatjana"],
+    "contact-lastname": ["Bauer", "Wolf"],
+    "contact-color": ["#462F8A", "#FF4646"],
   },
 ];
 
 let subtasks = [];
 let contact;
+let categories = [];
 
 function addTaskRender() {
   docID("addTask").innerHTML = /*html*/ `
@@ -91,12 +92,16 @@ function addTaskRender() {
                <h2>Category</h2>
                <div class="add-task-select-contact-edit">
                  <input autocomplete="off" onclick="showCategories()" required class="add-task-select-contact cursor-pointer" id="selectCategory" placeholder="Select Task category">
-                 <img src="./assets/img/selectfieldArrow.png">
+                 <img id="categorySelectArrow" src="./assets/img/selectfieldArrow.png">
+                 <div class="d-none" id="editCategory">
+                    <img onclick="showAddedCategory()" class="cursor-pointer" src="./assets/img/logoHaken.png">
+                    <img src="./assets/img/seperator.png">
+                    <img class="cursor-pointer" onclick="cancelCategory()" src="./assets/img/logoCancel.png">
+                 </div>
                </div>
                  <div id="showCategories" class="add-task-choose-priority d-none">
-                   <span onclick="selectCategory()" class="add-task-single-priority" value="Sales">Sales</span>
-                   <span class="add-task-single-priority" value="Backoffice">Backoffice</span>
-                   <span class="add-task-single-priority">New category</span>
+              
+                   <span onclick="newCategory()" class="add-task-single-priority">New category</span>
                  </div>
               
             </div>
@@ -200,14 +205,14 @@ function newTask() {
   clearTaskMask();
 
   let task = {
-    "title": title,
-    "description": description,
-    "category": category,
+    title: title,
+    description: description,
+    category: category,
     "category-color": "#0038FF",
-    "progress": "4",
-    "subtasks": subtasks.length,
+    progress: "4",
+    subtasks: subtasks.length,
     "done-tasks": 3,
-    "urgency": "low",
+    urgency: "low",
   };
 
   tasks.push(task);
@@ -240,11 +245,12 @@ function toggleVisibility(elementId) {
 function showContactList() {
   toggleVisibility("showContacts");
   selectContact.classList.add(`hide-cursor`);
-  selectContact.style.backgroundColor = "white";
 }
 
 function showCategories() {
+  let selectCategory = document.getElementById(`selectCategory`);
   toggleVisibility("showCategories");
+  selectCategory.classList.add(`hide-cursor`);
 }
 
 let clicked = true;
@@ -275,13 +281,6 @@ function addContact() {
   contactSelectArrow.classList.add(`d-none`);
 }
 
-// delete Inputfield of contact email
-
-function cancelContact() {
-  selectContact.value = ``;
-  initials.classList.add(`d-none`);
-}
-
 function showAddedContact() {
   contact = document.getElementById(`selectContact`).value;
   let initials = document.getElementById(`initials`);
@@ -292,9 +291,9 @@ function showAddedContact() {
 
 function getInitials(contact) {
   // Teile den Namen in einzelne Wörter auf
-  let words = contact.split(' ');
+  let words = contact.split(" ");
   // Erzeuge einen leeren String für die Initialen
-  let initialsOfName = '';
+  let initialsOfName = "";
   // Iteriere über die Wörter
   for (let i = 0; i < words.length; i++) {
     // Extrahiere den ersten Buchstaben des aktuellen Wortes und konvertiere ihn in Großbuchstaben
@@ -303,9 +302,42 @@ function getInitials(contact) {
   initials.innerHTML += `<div class="add-task-initials">${initialsOfName}</div>`;
 }
 
-function selectCategory(){
+function newCategory() {
   let showCategories = document.getElementById(`showCategories`);
+  let editCategory = document.getElementById(`editCategory`);
   let selectCategory = document.getElementById(`selectCategory`);
+
+  categorySelectArrow.classList.add(`d-none`);
+  editCategory.classList.remove(`d-none`);
   showCategories.classList.add(`d-none`);
-  selectCategory.value= "Sales";
+  selectCategory.placeholder = "New category name";
+  selectCategory.classList.remove(`hide-cursor`);
+  selectCategory.focus();
+}
+
+function showAddedCategory() {
+  let selectCategory = document.getElementById(`selectCategory`).value;
+  let showCategories = document.getElementById(`showCategories`);
+
+  if(!categories.includes(selectCategory)){
+  categories.push(selectCategory);
+  console.log(categories);
+  showCategories.innerHTML += ` <span class="add-task-single-priority">${categories}</span>`;
+  }else{
+    alert(`Ist bereits vorhanden`);
+  }
+}
+
+function cancelCategory() {
+  cancelInputs(`selectCategory`);
+}
+
+function cancelContact() {
+  cancelInputs(`selectContact`);
+}
+
+function cancelInputs(elementId) {
+  let element = document.getElementById(elementId);
+  element.value = ``;
+  initials.classList.add(`d-none`);
 }
