@@ -43,7 +43,7 @@ function SummaryRender() {
                     <div class="frame-61">
                         <div class="frame-184">
                             <div class="frame-184-icon task-do-to">
-                                <img src="./assets/img/test-ellipse 14.svg">
+                                <img src="./assets/img/ellipse 14.svg">
                             </div>
                             <span class="frame-184-span">5</span>
                         </div>
@@ -54,7 +54,7 @@ function SummaryRender() {
                     <div class="frame-61">
                         <div class="frame-184">
                             <div class="frame-184-icon sum-progress">
-                                <img src="./assets/img/test-ellipse 14.svg">
+                                <img src="./assets/img/ellipse 14.svg">
                             </div>
                             <span class="frame-184-span">2</span>
                         </div>
@@ -65,7 +65,7 @@ function SummaryRender() {
                     <div class="frame-61">
                         <div class="frame-184">
                             <div class="frame-184-icon sum-awaiting">
-                                <img src="./assets/img/test-ellipse 14.svg">
+                                <img src="./assets/img/ellipse 14.svg">
                             </div>
                             <span class="frame-184-span">2</span>
                         </div>
@@ -76,7 +76,7 @@ function SummaryRender() {
                     <div class="frame-61">
                         <div class="frame-184">
                             <div class="frame-184-icon sum-done">
-                                <img src="./assets/img/test-ellipse 14.svg">
+                                <img src="./assets/img/ellipse 14.svg">
                             </div>
                             <span class="frame-184-span">1</span>
                         </div>
@@ -98,7 +98,7 @@ function sumOverviewRender() {
                 <div class="frame-61">
                     <div class="frame-184">
                         <div class="frame-184-icon ${img[i]}">
-                            <img src="./assets/img/test-ellipse 14.svg">
+                            <img src="./assets/img/ellipse 14.svg">
                         </div>
                         <span class="frame-184-span">${amount[i]}</span>
                     </div>
@@ -113,7 +113,7 @@ function sumOverviewRender() {
                     <div class="frame-61">
                         <div class="frame-184">
                             <div class="frame-184-icon ${img[i]}">
-                                <img src="./assets/img/test-ellipse 14.svg">
+                                <img src="./assets/img/ellipse 14.svg">
                             </div>
                             <span class="frame-184-span">${amount[i]}</span>
                         </div>
