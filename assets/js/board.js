@@ -1,4 +1,5 @@
 let taskTitles = ["1", "2", "3", "4"]
+let taskNames = ["To do", "In progress", "Await feedback", "Done"]
 let = currentDraggedElement;
 
 function addBoardRender() {
@@ -16,11 +17,12 @@ function addBoardRender() {
     `
     for (let index = 0; index < taskTitles.length; index++) {
         const taskTitle = taskTitles[index];
+        const taskName = taskNames[index];
         let indexFinal = index +1
         docID('task-area').innerHTML += /*html*/`
             <div ondrop="moveTo('${taskTitle}')" ondragover="allowDrop(event)" class="task-body" id="task-body${index}">
                 <div class="task-body-flex">
-                    <span>${taskTitle}</span>
+                    <span>${taskName}</span>
                     <img src="./assets/img/board_plus.png">
                 </div>
                 <div id="tasks${indexFinal}"></div>
