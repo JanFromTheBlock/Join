@@ -61,7 +61,7 @@ let subtasks = [];
 let contact;
 let categories = [];
 
-function addTaskRender() {
+function addTaskRender(id) {
   docID("addTask").innerHTML = /*html*/ `
     <div class="add-task">
         <form>
@@ -97,17 +97,24 @@ function addTaskRender() {
                <div class="add-task-select-contact-edit">
                  <input autocomplete="off" onclick="showCategories()" required class="add-task-select-contact cursor-pointer" id="selectCategory" placeholder="Select Task category">
                  <img id="categorySelectArrow" src="./assets/img/selectfieldArrow.png">
-                 <div class="d-none" id="editCategory">
+                 <div class="add-task-placeholder-color-category">
+                   <img class="d-none" id="placeholderColorCategory" src="./assets/img/ellipseLightblue.png">
+                 </div>
+                 <div class="add-task-edit-category d-none" id="editCategory">
                     <img onclick="showAddedCategory()" class="cursor-pointer" src="./assets/img/logoHaken.png">
                     <img src="./assets/img/seperator.png">
                     <img class="cursor-pointer" onclick="cancelCategory()" src="./assets/img/logoCancel.png">
                  </div>
                </div>
                  <div id="showCategories" class="add-task-choose-priority d-none">
-              
-                   <span onclick="newCategory()" class="add-task-single-priority">New category</span>
+                 <span onclick="newCategory()" class="add-task-single-priority">New category</span></div>
+                 <div id="categoryColors" class="add-task-category-colors d-none">
+                     <img onclick="addColorToCategory(src)" id="lightBlue" src="./assets/img/ellipseLightblue.png">
+                     <img onclick="addColorToCategory(src)" id="red" src="./assets/img/ellipseRed.png">
+                     <img onclick="addColorToCategory(src)" id="green" src="./assets/img/ellipseGreen.png">
+                     <img onclick="addColorToCategory(src)" id="orange" src="./assets/img/ellipseOrange.png">
+                     <img onclick="addColorToCategory(src)" id="blue" src="./assets/img/ellipseBlue.png">
                  </div>
-              
             </div>
         </form>
           <div class="add-task-priority">
@@ -182,7 +189,7 @@ function changeColorUrgent(i) {
 function changeColorMedium(i) {
   let urgency = i;
   console.log(urgency);
-  tasks.push({'urgency': urgency});
+  tasks.push({ urgency: urgency });
 
   urgent.classList.remove("change-color-urgent");
   medium.classList.add("clicked");
@@ -198,7 +205,7 @@ function changeColorMedium(i) {
 function changeColorLow(i) {
   let urgency = i;
   console.log(urgency);
-  tasks.push({'urgency': urgency});
+  tasks.push({ urgency: urgency });
 
   urgent.classList.remove("change-color-urgent");
   medium.classList.remove("change-color-medium");
@@ -209,18 +216,17 @@ function changeColorLow(i) {
   lowLogo.src = `./assets/img/lowLogoWhite.png`;
   urgentLogo.src = `./assets/img/urgentLogo.png`;
   mediumLogo.src = `./assets/img/mediumLogo.png`;
-
 }
 
 function changeColor(i) {
   if (i === "urgent") {
     changeColorUrgent(i);
-    urgency = "Urgent"
+    urgency = "Urgent";
   } else if (i === "medium") {
     changeColorMedium(i);
-    urgency = "Medium"
+    urgency = "Medium";
   } else if (i === "low") {
-    urgency = "Low"
+    urgency = "Low";
     changeColorLow(i);
   }
 }
@@ -231,7 +237,7 @@ function newTask(urgency) {
   let category = document.getElementById(`selectCategory`).value;
   let description = document.getElementById(`description`).value;
   let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
- 
+
   taskAddedToBoard.classList.remove(`d-none`);
   setTimeout(() => {
     const taskAddedToBoard = document.getElementById("taskAddedToBoard");
@@ -254,7 +260,6 @@ function newTask(urgency) {
     urgency: urgency,
     date: date,
   };
-
 
   tasks.push(task);
 }
@@ -344,7 +349,9 @@ function newCategory() {
   let showCategories = document.getElementById(`showCategories`);
   let editCategory = document.getElementById(`editCategory`);
   let selectCategory = document.getElementById(`selectCategory`);
+  let categoryColors = document.getElementById(`categoryColors`);
 
+  categoryColors.classList.remove(`d-none`);
   categorySelectArrow.classList.add(`d-none`);
   editCategory.classList.remove(`d-none`);
   showCategories.classList.add(`d-none`);
@@ -359,7 +366,7 @@ function showAddedCategory() {
 
   if (!categories.includes(selectCategory)) {
     categories.push(selectCategory);
-    showCategories.innerHTML += ` <span class="add-task-single-priority">${selectCategory}</span>`;
+    showCategories.innerHTML += ` <span class="add-task-single-priority">${selectCategory} <img src="./assets/ellipseBlue.png" </span>`;
   } else {
     alert(`Ist bereits vorhanden`);
   }
@@ -367,6 +374,11 @@ function showAddedCategory() {
 
 function cancelCategory() {
   cancelInputs(`selectCategory`);
+  categoryColors.classList.add(`d-none`);
+  selectCategory.placeholder = "Select Task category";
+  editCategory.classList.add(`d-none`);
+  categorySelectArrow.classList.remove(`d-none`);
+  placeholderColorCategory.classList.add(`d-none`);
 }
 
 function cancelContact() {
@@ -377,4 +389,14 @@ function cancelInputs(elementId) {
   let element = document.getElementById(elementId);
   element.value = ``;
   initials.classList.add(`d-none`);
+}
+
+function addColorToCategory(id){
+  let colorOfCategory = id;
+
+  let  = placeholderColorCategory = document.getElementById(`placeholderColorCategory`);
+  placeholderColorCategory.src =`${colorOfCategory}`;
+  placeholderColorCategory.classList.remove(`d-none`);
+  console.log(id);
+
 }

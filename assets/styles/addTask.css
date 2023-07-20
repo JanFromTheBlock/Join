@@ -119,6 +119,9 @@
   margin-top: 10px;
 }
 
+.add-task-edit-category{
+  margin-left: 160px;
+}
 .add-task h2 {
   color: #42526e;
   font-size: 19px;
@@ -138,6 +141,20 @@
 
 input[type="date"]::placeholder {
   color: #d1d1d1;
+}
+
+.add-task-category-colors{
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 32px;
+}
+
+.add-task-category-colors img{
+  margin-right: 15px;
+}
+
+.add-task-placeholder-color-category{
+margin-left: -160px;
 }
 
 .add-task-due-date-input::-webkit-calendar-picker-indicator {
