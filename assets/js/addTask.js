@@ -111,9 +111,9 @@ function addTaskRender() {
             </div>
         </form>
           <div class="add-task-priority">
-            <button id="urgent" onclick="changeColor('urgent')" class="add-task-button-priority cursor-pointer">Urgent <img id="urgentLogo" src="./assets/img/urgentLogo.png"></button>
-            <button id="medium" onclick="changeColor('medium')" class="add-task-button-priority cursor-pointer">Medium <img id="mediumLogo" src="./assets/img/mediumLogo.png"></button>
-            <button id="low" onclick="changeColor('low')" class="add-task-button-priority cursor-pointer">Low <img id="lowLogo" src="./assets/img/lowLogo.png"></button>
+            <button id="urgent" onclick="changeColor(id)" class="add-task-button-priority cursor-pointer">Urgent <img id="urgentLogo" src="./assets/img/urgentLogo.png"></button>
+            <button id="medium" onclick="changeColor(id)" class="add-task-button-priority cursor-pointer">Medium <img id="mediumLogo" src="./assets/img/mediumLogo.png"></button>
+            <button id="low" onclick="changeColor(id)" class="add-task-button-priority cursor-pointer">Low <img id="lowLogo" src="./assets/img/lowLogo.png"></button>
           </div>
        <form class="add-task-description-form">
         <div class="add-task-description">
@@ -135,7 +135,7 @@ function addTaskRender() {
 
            <div class="add-task-button">
             <button onclick="clearTask()" class="add-task-button-clear cursor-pointer">Clear<img src="./assets/img/xClear.png"></button>  
-            <button onclick="newTask()" class="add-task-button-create cursor-pointer">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
+            <button onclick="newTask(urgency)" class="add-task-button-create cursor-pointer">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
           </div>
 
         </div>
@@ -162,7 +162,12 @@ function showSubtasks() {
   `;
 }
 
-function changeColorUrgent(){
+let urgency;
+
+function changeColorUrgent(i) {
+  let urgency = i;
+  console.log(urgency);
+
   urgent.classList.add("change-color-urgent");
   urgent.classList.add("clicked");
   medium.classList.remove("change-color-medium");
@@ -174,19 +179,27 @@ function changeColorUrgent(){
   mediumLogo.src = `./assets/img/mediumLogo.png`;
 }
 
-function changeColorMedium(){
+function changeColorMedium(i) {
+  let urgency = i;
+  console.log(urgency);
+  tasks.push({'urgency': urgency});
+
   urgent.classList.remove("change-color-urgent");
-    medium.classList.add("clicked");
-    low.classList.remove("clicked");
-    urgent.classList.remove("clicked");
-    medium.classList.add("change-color-medium");
-    low.classList.remove("change-color-low");
-    lowLogo.src = `./assets/img/lowLogo.png`;
-    urgentLogo.src = `./assets/img/urgentLogo.png`;
-    mediumLogo.src = `./assets/img/mediumLogoWhite.png`;
+  medium.classList.add("clicked");
+  low.classList.remove("clicked");
+  urgent.classList.remove("clicked");
+  medium.classList.add("change-color-medium");
+  low.classList.remove("change-color-low");
+  lowLogo.src = `./assets/img/lowLogo.png`;
+  urgentLogo.src = `./assets/img/urgentLogo.png`;
+  mediumLogo.src = `./assets/img/mediumLogoWhite.png`;
 }
 
-function changeColorLow(){
+function changeColorLow(i) {
+  let urgency = i;
+  console.log(urgency);
+  tasks.push({'urgency': urgency});
+
   urgent.classList.remove("change-color-urgent");
   medium.classList.remove("change-color-medium");
   low.classList.add("change-color-low");
@@ -196,47 +209,54 @@ function changeColorLow(){
   lowLogo.src = `./assets/img/lowLogoWhite.png`;
   urgentLogo.src = `./assets/img/urgentLogo.png`;
   mediumLogo.src = `./assets/img/mediumLogo.png`;
+
 }
 
 function changeColor(i) {
-  let urgent = document.getElementById("urgent");
-  let medium = document.getElementById("medium");
-  let low = document.getElementById("low");
-
   if (i === "urgent") {
-   changeColorUrgent();
+    changeColorUrgent(i);
+    urgency = "Urgent"
   } else if (i === "medium") {
-    changeColorMedium()
+    changeColorMedium(i);
+    urgency = "Medium"
   } else if (i === "low") {
-    changeColorLow()
+    urgency = "Low"
+    changeColorLow(i);
   }
 }
 
-function newTask() {
+function newTask(urgency) {
   let title = document.getElementById(`inputFieldTitle`).value;
   let date = document.getElementById(`inputDate`).value;
   let category = document.getElementById(`selectCategory`).value;
   let description = document.getElementById(`description`).value;
   let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
-  
+ 
   taskAddedToBoard.classList.remove(`d-none`);
+  setTimeout(() => {
+    const taskAddedToBoard = document.getElementById("taskAddedToBoard");
+    taskAddedToBoard.classList.add("d-none");
+  }, 1000);
   contact = document.getElementById(`selectContact`).value;
 
   clearTaskMask();
+
+  console.log(tasks);
 
   let task = {
     title: title,
     description: description,
     category: category,
     "category-color": "#0038FF",
-    progress: "4",
+    progress: "1",
     subtasks: subtasks.length,
-    "done-tasks": 3,
-    urgency: "low",
+    "done-tasks": 0,
+    urgency: urgency,
+    date: date,
   };
 
-  tasks.push(task);
 
+  tasks.push(task);
 }
 
 function clearTaskMask() {
@@ -289,15 +309,14 @@ function chooseContact(i) {
 
 function addContact() {
   let editContact = document.getElementById(`editContact`);
- 
+
   showContacts.classList.add(`d-none`);
   selectContact.placeholder = "Contact email";
   selectContact.classList.remove(`hide-cursor`);
   selectContact.focus();
-  
+
   editContact.classList.remove(`d-none`);
   contactSelectArrow.classList.add(`d-none`);
-  
 }
 
 function showAddedContact() {
@@ -338,10 +357,10 @@ function showAddedCategory() {
   let selectCategory = document.getElementById(`selectCategory`).value;
   let showCategories = document.getElementById(`showCategories`);
 
-  if(!categories.includes(selectCategory)){
-  categories.push(selectCategory);
-  showCategories.innerHTML += ` <span class="add-task-single-priority">${selectCategory}</span>`;
-  }else{
+  if (!categories.includes(selectCategory)) {
+    categories.push(selectCategory);
+    showCategories.innerHTML += ` <span class="add-task-single-priority">${selectCategory}</span>`;
+  } else {
     alert(`Ist bereits vorhanden`);
   }
 }
