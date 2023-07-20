@@ -360,13 +360,14 @@ function newCategory() {
   selectCategory.focus();
 }
 
-function showAddedCategory() {
+function showAddedCategory(id) {
+  let colorOfCategory = id;
   let selectCategory = document.getElementById(`selectCategory`).value;
   let showCategories = document.getElementById(`showCategories`);
 
   if (!categories.includes(selectCategory)) {
     categories.push(selectCategory);
-    showCategories.innerHTML += ` <span class="add-task-single-priority">${selectCategory} <img src="./assets/ellipseBlue.png" </span>`;
+    showCategories.innerHTML += ` <span class="add-task-single-priority">${selectCategory} <img src="${colorOfCategory}"</span>`;
   } else {
     alert(`Ist bereits vorhanden`);
   }
