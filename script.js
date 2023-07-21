@@ -8,6 +8,9 @@ function summaryInit() {
     headerRender();
     navRender();
     SummaryRender();
+    greetingNameRender();
+    sumBigBtn();
+    squareButtonRender();
     sumOverviewRender();
     
 }
