@@ -1,10 +1,17 @@
+let category = [
+  {
+    "name": "Design",
+    "color": "#FF7A00",
+  }
+]
+
 let tasks = [
   {
     "array-id": "1",
     title: "Website redesign",
     description: "Modify the contents of the main website ...",
-    category: "Design",
-    "category-color": "#FF7A00",
+    category: category[0]["name"],
+    "category-color": category[0]["color"],
     progress: "1",
     subtasks: 2,
     "done-tasks": 0,

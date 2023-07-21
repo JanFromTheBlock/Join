@@ -1,3 +1,8 @@
+/* generell class */
+.summary-link {
+  text-decoration: none;
+}
+
 /* the basic container */
 .summary {
     display: flex;

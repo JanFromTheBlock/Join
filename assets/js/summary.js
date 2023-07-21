@@ -3,16 +3,16 @@ function SummaryRender() {
         <div id="grtng-con"></div>
         <div id="summary-con">
             <div id="summary-con-upper">
-                <div id="urgency-summary">
-                    <div id="sum-urgent-square"></div>
-                    <div id="ver-line">
-                        <svg viewBox="0 0 4 149" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2 2L2.00001 147" stroke-width="3" stroke-linecap="round"/>
-                        </svg>
-                    </div>
-                    <div id="urgent-date-screen"></div>
-                </div>
-                <div id="square-button"></div>
+                    <a id="urgency-summary" class="summary-link" href="./board.html">
+                        <div id="sum-urgent-square"></div>
+                        <div id="ver-line">
+                            <svg viewBox="0 0 4 149" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 2L2.00001 147" stroke-width="3" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div id="urgent-date-screen"></div>
+                    </a>
+                    <a id="square-button" class="summary-link" href="./board.html"></a>
             </div>
             <div id="sum-overview"></div>
         </div>
@@ -85,17 +85,17 @@ function sumOverviewRender() {
     let img = ["sum-board", "sum-progress", "sum-awaiting", "sum-done"];
     for (let i = 0; i < 4; i++) {
         docID('sum-overview').innerHTML += /*html*/`
-            <div class="sum-board-btn">
-                <div class="sum-board-btn-in">
-                    <div class="board-btn-img">
-                        <div class="board-btn-img-icon ${img[i]}">
-                            <img src="./assets/img/ellipse 14.svg">
+                <a class="sum-board-btn summary-link" href="./board.html">
+                    <div class="sum-board-btn-in">
+                        <div class="board-btn-img">
+                            <div class="board-btn-img-icon ${img[i]}">
+                                <img src="./assets/img/ellipse 14.svg">
+                            </div>
+                            <span class="board-btn-img-span">${amount[i]}</span>
                         </div>
-                        <span class="board-btn-img-span">${amount[i]}</span>
+                        <span class="sum-board-btn-in-span">${lower[i]}</span>
                     </div>
-                    <span class="sum-board-btn-in-span">${lower[i]}</span>
-                </div>
-            </div>
+                </a>
         `        
     }
 }
