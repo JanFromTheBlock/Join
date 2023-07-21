@@ -18,7 +18,7 @@ function addBoardRender() {
     for (let index = 0; index < taskTitles.length; index++) {  //die 4 Task-areas werden gerendert (To dos, in Progress, ...)
         const taskTitle = taskTitles[index];  //Diese Variable bestimmt, wo das gedarggte Objekt hinverschoben werden soll
         const taskName = taskNames[index];    //Diese variable weißt den task-areas den dazugehörigen Titel zu
-        let indexFinal = index +1             // index muss um einen erhöht werden, da in diesem Fall bei den tasks bei 1 angefangen wurde zu zählen und nicht wie üblich bei 0
+        let indexFinal = index + 1             // index muss um einen erhöht werden, da in diesem Fall bei den tasks bei 1 angefangen wurde zu zählen und nicht wie üblich bei 0
         docID('task-area').innerHTML += /*html*/` 
             <div ondrop="moveTo('${taskTitle}')" ondragover="allowDrop(event)" class="task-body" id="task-body${index}">
                 <div class="task-body-flex">
@@ -28,7 +28,7 @@ function addBoardRender() {
                 <div id="tasks${indexFinal}"></div>
             </div>
         `
-        
+
     }
 
     loadTasks();
@@ -73,11 +73,11 @@ function emptyTaskDivs() {
 
 function renderTaskBody(id) {
     let j = tasks[id]["progress"];            // Variable um festzulegen, in welchem Task-Container die Aufgabe landet
-    let taskBody = docID('tasks' + j); 
+    let taskBody = docID('tasks' + j);
     let l = tasks[id]['array-id'];        //// Anschließend wird Div-Struktur mit passenden ID's für die Task-Container gerendert
     taskBody.innerHTML += /*html*/`
                     
-    <div draggable="true" ondragstart="startDragging(${l})" onclick="openWindow(event, ${l})" id="task${l}" class="task-decoration">
+    <div draggable="true" ondragstart="startDragging(${l})" onclick="openWindow(event, ${id})" id="task${l}" class="task-decoration">
         <div id="task-category${id}" class="task-category">${tasks[id]['category']}</div>
         <div id="task-title">${tasks[id]['title']}</div>
         <div id="task-description">${tasks[id]['description']}</div>
@@ -91,18 +91,18 @@ function renderTaskBody(id) {
 `                                    //Taskbody wurde gerendert und dabei wurde den Task-divs Drag-Funktionen zugeteilt, damit man in diesen Bereich draggen kann und Drag-Funktion gestartet werden kann
 }
 
-function startDragging(element){                          //Funktion um die id der gedraggten Task in der Variable zu speichern; muss auch um 1 gesenkt werden, da bei den ids bei 1 statt bei 0 angefangen wurde
+function startDragging(element) {                          //Funktion um die id der gedraggten Task in der Variable zu speichern; muss auch um 1 gesenkt werden, da bei den ids bei 1 statt bei 0 angefangen wurde
     currentDraggedElement = element - 1;
 
 }
 function allowDrop(ev) {                                //Funktion die dafür sorgt, dass Tasks gedroppt werden können in dem Bereich
     ev.preventDefault();
-  }
+}
 
-  function moveTo(progress){                           //Funktion bekommt als Parameter den Ort, wo die gedraggte Task gedropt werden soll
+function moveTo(progress) {                           //Funktion bekommt als Parameter den Ort, wo die gedraggte Task gedropt werden soll
     tasks[currentDraggedElement]['progress'] = progress;   // anschließend wird dies im array verändert an der entsprechenden Position
     addBoardRender();                                      // anschließend muss alles neu gerendert werden, damit die Änderungen geladen werden
-  }
+}
 
 function renderSubtasks(id) {                    //subtasks werden gerendert
     if (tasks[id]["subtasks"] > 0) {             // wenn die Anzahl an Subtasks größer 0 ist dann wird Funktion ausgeführt
@@ -127,50 +127,80 @@ function renderCategoryColor(id) {                  //die Hintergrundfarbe für 
     docID('task-category' + id).style.backgroundColor = color;
 }
 
-function filterTasks(){                    //Die Tasks werden nach Namen gefiltert
+function filterTasks() {                    //Die Tasks werden nach Namen gefiltert
     let search = docID('input').value;     // Wert aus dem Inputfeld wird genommen
     search = search.toLowerCase();         //Variable wird in kleine Buchstaben umgewandelt
 
     emptyTaskDivs();                       //die Divs werden wieder geleert, um neu befüllt zu werden
     k = 0;                                 // k muss auf 0 gesetzt werden, damit wieder bei 0 angefangen wird zu zhlen 
     for (let id = 0; id < tasks.length; id++) {         //anschließend wird wieder neu gerendert mit der Bedingung das der Input-text in dem Namen der Taks vorkommt
-        let name = tasks[id]['title']; 
-        if(name.toLowerCase().includes(search)){
+        let name = tasks[id]['title'];
+        if (name.toLowerCase().includes(search)) {
             renderTaskBody(id);
             renderSubtasks(id);
             renderUrgencySymbol(id);
             renderCategoryColor(id);
-    
-            let contactArea = docID('contact-area' + id);             
+
+            let contactArea = docID('contact-area' + id);
             contactArea.innerHTML = ``
-            for (let i = 0; i < tasks[id]['contact-firstname'].length; i++) {  
-                let firstName = tasks[id]['contact-firstname'][i];   
-                let lastName = tasks[id]['contact-lastname'][i];     
-                let Initial1 = firstName.charAt(0);                 
-                let Initial2 = lastName.charAt(0);                 
-                let initials = Initial1 + Initial2;                        
-                let initialsUpper = initials.toLocaleUpperCase();   
-                let color = tasks[id]['contact-color'][i];           
-                k++;                                                 
+            for (let i = 0; i < tasks[id]['contact-firstname'].length; i++) {
+                let firstName = tasks[id]['contact-firstname'][i];
+                let lastName = tasks[id]['contact-lastname'][i];
+                let Initial1 = firstName.charAt(0);
+                let Initial2 = lastName.charAt(0);
+                let initials = Initial1 + Initial2;
+                let initialsUpper = initials.toLocaleUpperCase();
+                let color = tasks[id]['contact-color'][i];
+                k++;
                 contactArea.innerHTML += /*html*/`                  
             <span class="contacts" id = "contacts${k}"> ${initialsUpper}</span>
         `
                 docID('contacts' + k).style.backgroundColor = color;     //Farbe wird für Kontaksymbol geändert
             }
-        }   
-    
+        }
+
     }
 }
 
-function openWindow(event, l){
+function openWindow(event, id) {
     docID('task-window').classList.remove('d-none');
     event.stopPropagation();
+    renderWindow(id);
 }
 
-function closeWindow(){
+function closeWindow() {
     docID('task-window').classList.add('d-none')
 }
 
-function doNotClose(event){
+function doNotClose(event) {
     event.stopPropagation();
+}
+
+function renderWindow(id) {
+    let taskWindow = docID('task-window');
+    let prioritySmall = tasks[id]['urgency']
+    let priority = prioritySmall.charAt(0).toUpperCase() + prioritySmall.slice(1);
+    taskWindow.innerHTML = '';
+    taskWindow.innerHTML = /*html*/`
+
+        <div>
+            <img src="./assets/img/close.png">
+            <div id="window-category" class="task-category">${tasks[id]['category']}</div>
+            <div id="window-title">${tasks[id]['title']}</div>
+            <div id="window-description">${tasks[id]['description']}</div>
+            <div id="date">Due date: <div></div></div>
+            <div>Priority: <div>${priority} <img id="window-contact-img" src="" alt=""></div></div>
+            <div id="window-contact-area">
+                <div>Assigned to:</div>
+            </div>
+
+        </div>
+    `
+    let color = tasks[id]["category-color"];
+    docID('window-category').style.backgroundColor = color;
+
+    let urgency = tasks[id]["urgency"];
+    docID('window-contact-img').src = "./assets/img/" + urgency + "Logo.png";
+
+   
 }
