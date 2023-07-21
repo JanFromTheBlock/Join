@@ -122,6 +122,7 @@
 .add-task-edit-category{
   margin-left: 160px;
 }
+
 .add-task h2 {
   color: #42526e;
   font-size: 19px;
@@ -184,6 +185,10 @@ margin-left: -160px;
   display: flex;
   align-items: center;
   padding-left: 24px;
+}
+
+.add-task-single-priority img{
+  margin-left: 12px;
 }
 
 .add-task-single-priority:hover {

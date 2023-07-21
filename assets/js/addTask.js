@@ -101,13 +101,14 @@ function addTaskRender(id) {
                    <img class="d-none" id="placeholderColorCategory" src="./assets/img/ellipseLightblue.png">
                  </div>
                  <div class="add-task-edit-category d-none" id="editCategory">
-                    <img onclick="showAddedCategory()" class="cursor-pointer" src="./assets/img/logoHaken.png">
+                    <img onclick="showAddedCategory(placeholderColorCategory)" class="cursor-pointer" src="./assets/img/logoHaken.png">
                     <img src="./assets/img/seperator.png">
                     <img class="cursor-pointer" onclick="cancelCategory()" src="./assets/img/logoCancel.png">
                  </div>
                </div>
                  <div id="showCategories" class="add-task-choose-priority d-none">
-                 <span onclick="newCategory()" class="add-task-single-priority">New category</span></div>
+                   <span onclick="newCategory()" class="add-task-single-priority">New category</span>
+                </div>
                  <div id="categoryColors" class="add-task-category-colors d-none">
                      <img onclick="addColorToCategory(src)" id="lightBlue" src="./assets/img/ellipseLightblue.png">
                      <img onclick="addColorToCategory(src)" id="red" src="./assets/img/ellipseRed.png">
@@ -115,7 +116,7 @@ function addTaskRender(id) {
                      <img onclick="addColorToCategory(src)" id="orange" src="./assets/img/ellipseOrange.png">
                      <img onclick="addColorToCategory(src)" id="blue" src="./assets/img/ellipseBlue.png">
                  </div>
-            </div>
+              </div>
         </form>
           <div class="add-task-priority">
             <button id="urgent" onclick="changeColor(id)" class="add-task-button-priority cursor-pointer">Urgent <img id="urgentLogo" src="./assets/img/urgentLogo.png"></button>
@@ -359,15 +360,17 @@ function newCategory() {
   selectCategory.classList.remove(`hide-cursor`);
   selectCategory.focus();
 }
+let savedCategory;
 
-function showAddedCategory(id) {
-  let colorOfCategory = id;
+function showAddedCategory(placeholderColorCategory) {
+  let colorOfCategory = placeholderColorCategory.src; 
   let selectCategory = document.getElementById(`selectCategory`).value;
   let showCategories = document.getElementById(`showCategories`);
+  showCategories.classList.remove(`d-none`);
 
   if (!categories.includes(selectCategory)) {
     categories.push(selectCategory);
-    showCategories.innerHTML += ` <span class="add-task-single-priority">${selectCategory} <img src="${colorOfCategory}"</span>`;
+    showCategories.innerHTML += ` <span id="savedCategory" onclick="chooseCategory(${savedCategory})" class="add-task-single-priority">${selectCategory}<img src="${colorOfCategory}"</span>`;
   } else {
     alert(`Ist bereits vorhanden`);
   }
@@ -380,6 +383,7 @@ function cancelCategory() {
   editCategory.classList.add(`d-none`);
   categorySelectArrow.classList.remove(`d-none`);
   placeholderColorCategory.classList.add(`d-none`);
+
 }
 
 function cancelContact() {
@@ -398,6 +402,13 @@ function addColorToCategory(id){
   let  = placeholderColorCategory = document.getElementById(`placeholderColorCategory`);
   placeholderColorCategory.src =`${colorOfCategory}`;
   placeholderColorCategory.classList.remove(`d-none`);
-  console.log(id);
+}
 
+function chooseCategory(){
+  let savedCategory = document.getElementById(`savedCategory`).innerHTML;
+  let showCategories = document.getElementById(`showCategories`);
+  let selectCategory = document.getElementById(`selectCategory`);
+  selectCategory = savedCategory;
+  savedCategory.innerHTML = ``;
+  showCategories.classList.add(`d-none`);
 }
