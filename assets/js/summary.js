@@ -81,7 +81,7 @@ function squareButtonRender() {
 
 function sumOverviewRender() {
     let lower = ["Task in <br>Board", "Task in <br>Progress", "Awaiting <br>Feedback", "Tasks <br>Done"];
-    let amount = [5, 2, 2, 1];
+    let amount = [tasks.length, sumAmout("2"), sumAmout("3"), sumAmout("4")];
     let img = ["sum-board", "sum-progress", "sum-awaiting", "sum-done"];
     for (let i = 0; i < 4; i++) {
         docID('sum-overview').innerHTML += /*html*/`
@@ -98,4 +98,15 @@ function sumOverviewRender() {
             </div>
         `        
     }
+}
+
+
+function sumAmout(position){
+    count = 0;
+    for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i]['progress'] == position) {
+            count++
+        }
+    }
+    return count
 }
