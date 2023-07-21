@@ -77,7 +77,7 @@ function renderTaskBody(id) {
     let l = tasks[id]['array-id'];        //// Anschließend wird Div-Struktur mit passenden ID's für die Task-Container gerendert
     taskBody.innerHTML += /*html*/`
                     
-    <div draggable="true" ondragstart="startDragging(${l})" id="task${l}" class="task-decoration">
+    <div draggable="true" ondragstart="startDragging(${l})" onclick="openWindow(event, ${l})" id="task${l}" class="task-decoration">
         <div id="task-category${id}" class="task-category">${tasks[id]['category']}</div>
         <div id="task-title">${tasks[id]['title']}</div>
         <div id="task-description">${tasks[id]['description']}</div>
@@ -160,4 +160,17 @@ function filterTasks(){                    //Die Tasks werden nach Namen gefilte
         }   
     
     }
+}
+
+function openWindow(event, l){
+    docID('task-window').classList.remove('d-none');
+    event.stopPropagation();
+}
+
+function closeWindow(){
+    docID('task-window').classList.add('d-none')
+}
+
+function doNotClose(event){
+    event.stopPropagation();
 }
