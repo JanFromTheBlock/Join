@@ -19,18 +19,14 @@
 
 #greeting {
   color: #2A3647;
-  font-family: 'Open Sans';
   font-size: 48px;
-  font-style: normal;
   font-weight: 400;
   line-height: 120%;
 }
 
 #name {
   color: #4589FF;
-  font-family: 'Open Sans';
   font-size: 64px;
-  font-style: normal;
   font-weight: 700;
   line-height: 120%;
 }
@@ -81,10 +77,9 @@
   font-size: 28px;
 }
 
-#urgency-summary:hover #frame-63-span {
+#urgency-summary:hover #sum-urgent-con-in-span {
   color: #4589FF;
   font-size: 58px;
-  font-style: normal;
   font-weight: 700;
   line-height: 120%;
 }
@@ -122,7 +117,7 @@
 
 }
 
-#urgency-summary:active #frame-63-span {
+#urgency-summary:active #sum-urgent-con-in-span {
   color: #FFFFFF;
   font-size: 48px;
 }
@@ -156,21 +151,19 @@
 
 #sum-urgent-square-span {
   color: #FFFFFF;
-  font-family: 'Open Sans';
   font-size: 23px;
-  font-style: normal;
   font-weight: 400;
   line-height: 120%;
 }
 
-#frame-188 {
+#sum-urgent-con {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
 }
 
-#frame-63 {
+#sum-urgent-con-in {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -197,11 +190,9 @@
   background-size: contain;
 }
 
-#frame-63-span {
+#sum-urgent-con-in-span {
   color: #FFFFFF;
-  font-family: 'Open Sans';
   font-size: 48px;
-  font-style: normal;
   font-weight: 700;
   line-height: 120%;
 }
@@ -222,7 +213,6 @@
   stroke-width: 3;
 }
 
-
 #urgent-date-screen {
   display: flex;
   flex-direction: column;
@@ -232,18 +222,14 @@
 
 #urgent-date-screen-date {
   color: #FFFFFF;
-  font-family: "Open Sans";
   font-size: 33px;
-  font-style: normal;
   font-weight: 700;
   line-height: 120%;
 }
 
 #urgent-date-screen-deadline {
-  color: var(--white, #FFF);
-  font-family: "Open Sans";
+  color: #FFFFFF;
   font-size: 23px;
-  font-style: normal;
   font-weight: 400;
   line-height: 120%;
 }
@@ -333,9 +319,7 @@
 #board-btn-img-span {
   color: #000000;
   text-align: center;
-  font-family: 'Open Sans';
   font-size: 48px;
-  font-style: normal;
   font-weight: 700;
   line-height: 120%;
 }
@@ -343,9 +327,7 @@
 .sum-board-btn-in-span {
   color: #4589FF;
   text-align: center;
-  font-family: 'Open Sans';
   font-size: 23px;
-  font-style: normal;
   font-weight: 400;
   line-height: 120%;
 }
@@ -435,9 +417,7 @@
 .board-btn-img-span {
   color: #000000;
   text-align: center;
-  font-family: 'Open Sans';
   font-size: 48px;
-  font-style: normal;
   font-weight: 700;
   line-height: 120%;
 }

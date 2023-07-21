@@ -40,12 +40,12 @@ function sumBigBtn() {
 function urgentSquareButton() {
     let urgentNr = 1;
     docID('sum-urgent-square').innerHTML = /*html*/`
-        <div id="frame-188">
-            <div id="frame-63">
+        <div id="sum-urgent-con">
+            <div id="sum-urgent-con-in">
                 <div id="icon-circle">
                     <div id="icon"></div>
                 </div>
-                <span id="frame-63-span">${urgentNr}</span>
+                <span id="sum-urgent-con-in-span">${urgentNr}</span>
             </div>
         </div>
         <span id="sum-urgent-square-span">Tasks Urgent</span>
