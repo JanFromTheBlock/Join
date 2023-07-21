@@ -21,7 +21,7 @@ function SummaryRender() {
 
 
 function greetingNameRender() {
-    let greeting = "Good morning";
+    let greeting = sumGreeting();
     let name = "Sofia Müller";
 
     docID("grtng-con").innerHTML = /*html*/`
@@ -109,4 +109,23 @@ function sumAmout(position){
         }
     }
     return count
+}
+
+function sumGreeting() {
+    date = new Date;
+    hour = date.getHours();
+    if(hour<5 || hour>21) {
+        return "happy night"
+    } else if (hour < 10) {
+        return "good morning"
+    } else if (hour < 14) {
+        return "happy day"
+    } else if (hour < 18) {
+        return "good afternoon"
+    } else if (hour < 22){
+        return "good evening"
+    }
+
+
+    console.log(hour);
 }
