@@ -1,17 +1,33 @@
-let category = [
+let categories = [
   {
-    "name": "Design",
-    "color": "#FF7A00",
-  }
-]
+    name: "Design",
+    color: "#FF7A00",
+  },
+  {
+    name: "Sales",
+    color: "#FC71FF",
+  },
+  {
+    name: "Backoffice",
+    color: "#1FD7C1",
+  },
+  {
+    name: "Media",
+    color: "#FFC701",
+  },
+  {
+    name: "Marketing",
+    color: "#0038FF",
+  },
+];
 
 let tasks = [
   {
     "array-id": "1",
     title: "Website redesign",
     description: "Modify the contents of the main website ...",
-    category: category[0]["name"],
-    "category-color": category[0]["color"],
+    category: categories[0]["name"],
+    "category-color": categories[0]["color"],
     progress: "1",
     subtasks: 2,
     "done-tasks": 0,
@@ -66,7 +82,6 @@ let tasks = [
 
 let subtasks = [];
 let contact;
-let categories = [];
 
 function addTaskRender(id) {
   docID("addTask").innerHTML = /*html*/ `
@@ -102,13 +117,15 @@ function addTaskRender(id) {
             <div class="add-task-due-date">
                <h2>Category</h2>
                <div class="add-task-select-contact-edit">
-                 <input autocomplete="off" onclick="showCategories()" required class="add-task-select-contact cursor-pointer" id="selectCategory" placeholder="Select Task category">
+               <div>
+                <input autocomplete="off" onclick="showCategories()" required class="add-task-select-contact cursor-pointer" id="selectCategory" placeholder="Select Task category">
+               </div>  
                  <img id="categorySelectArrow" src="./assets/img/selectfieldArrow.png">
                  <div class="add-task-placeholder-color-category">
                    <img class="d-none" id="placeholderColorCategory" src="./assets/img/ellipseLightblue.png">
                  </div>
                  <div class="add-task-edit-category d-none" id="editCategory">
-                    <img onclick="showAddedCategory(placeholderColorCategory)" class="cursor-pointer" src="./assets/img/logoHaken.png">
+                    <img onclick="pushCategoryToArray(placeholderColorCategory)" class="cursor-pointer" src="./assets/img/logoHaken.png">
                     <img src="./assets/img/seperator.png">
                     <img class="cursor-pointer" onclick="cancelCategory()" src="./assets/img/logoCancel.png">
                  </div>
@@ -270,6 +287,8 @@ function newTask(urgency) {
   };
 
   tasks.push(task);
+
+  console.log(tasks);
 }
 
 function clearTaskMask() {
@@ -367,19 +386,36 @@ function newCategory() {
   selectCategory.classList.remove(`hide-cursor`);
   selectCategory.focus();
 }
+
 let savedCategory;
 
-function showAddedCategory(placeholderColorCategory) {
-  let colorOfCategory = placeholderColorCategory.src; 
+function pushCategoryToArray() {
   let selectCategory = document.getElementById(`selectCategory`).value;
   let showCategories = document.getElementById(`showCategories`);
   showCategories.classList.remove(`d-none`);
 
+  let category = {
+    name: selectCategory,
+    color: "#FF7A00",
+  };
+
   if (!categories.includes(selectCategory)) {
-    categories.push(selectCategory);
-    showCategories.innerHTML += ` <span id="savedCategory" onclick="chooseCategory(${savedCategory})" class="add-task-single-priority">${selectCategory}<img src="${colorOfCategory}"</span>`;
+    categories.push(category);
+    showAddedCategory();
   } else {
     alert(`Ist bereits vorhanden`);
+  }
+}
+
+function showAddedCategory() {
+  let showCategories = document.getElementById(`showCategories`);
+  let colorOfCategory = placeholderColorCategory.src;
+
+  for (let i = 0; i < categories.length; i++) {
+    const category = categories[i];
+
+    showCategories.innerHTML += /*html*/ `<span id="savedCategory${i}" onclick="chooseCategory(${i})" class="add-task-single-priority">
+    ${category[`name`]}<img src=${colorOfCategory}></span>`;
   }
 }
 
@@ -390,7 +426,6 @@ function cancelCategory() {
   editCategory.classList.add(`d-none`);
   categorySelectArrow.classList.remove(`d-none`);
   placeholderColorCategory.classList.add(`d-none`);
-
 }
 
 function cancelContact() {
@@ -403,19 +438,31 @@ function cancelInputs(elementId) {
   initials.classList.add(`d-none`);
 }
 
-function addColorToCategory(id){
+function addColorToCategory(id) {
   let colorOfCategory = id;
 
-  let  = placeholderColorCategory = document.getElementById(`placeholderColorCategory`);
-  placeholderColorCategory.src =`${colorOfCategory}`;
+  placeholderColorCategory = document.getElementById(
+    `placeholderColorCategory`
+  );
+  placeholderColorCategory.src = `${colorOfCategory}`;
   placeholderColorCategory.classList.remove(`d-none`);
 }
 
-function chooseCategory(){
-  let savedCategory = document.getElementById(`savedCategory`).innerHTML;
+function chooseCategory(i) {
+  let savedCategory = document.getElementById(`savedCategory${i}`);
   let showCategories = document.getElementById(`showCategories`);
   let selectCategory = document.getElementById(`selectCategory`);
-  selectCategory = savedCategory;
+
+  // Zugriff auf das <img>-Element innerhalb des savedCategory-Containers
+  let savedCategoryImg = savedCategory.querySelector("img");
+
+  // Ersetze das src-Attribut des placeholderColorCategory-Bildes mit dem des savedCategory-Bildes
+  let placeholderColorCategory = document.getElementById("placeholderColorCategory");
+  placeholderColorCategory.src = savedCategoryImg.src;
+
+  // Setze den Wert des selectCategory-Eingabefeldes auf den Text der ausgewählten Kategorie
+  selectCategory.value = savedCategory.textContent;
+  placeholderColorCategory.classList.remove(`d-none`);
   savedCategory.innerHTML = ``;
   showCategories.classList.add(`d-none`);
 }
