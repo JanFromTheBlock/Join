@@ -33,8 +33,6 @@ function greetingNameRender() {
         <span id="name">${user}</span>
     `
     }
-
-    
 }
 
 
