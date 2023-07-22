@@ -4,7 +4,13 @@ function headerRender() {
         <div class="header-data">
             <span>Kanban Project Management Tool</span>
             <img class="header-help" src="./assets/img/help.png">
-            <img class="header-user" src="./assets/img/example-user.png">
+            <!-- <img class="header-user" src="./assets/img/example-user.png"> -->
+            <div id="header-user-con">
+                <div id="header-user-ellipse">
+                    <div id="header-user-name"> SM
+                    </div>
+                </div>
+            </div>
         </div>
     `
 }
