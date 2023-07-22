@@ -9,6 +9,7 @@ function docID (id){
 function summaryInit() {
     headerRender();
     navRender();
+    activeSite("menu-summary");
     SummaryRender();
     greetingNameRender();
     sumBigBtn();
@@ -26,11 +27,13 @@ function taskInit() {
 function addTaskInit(){
     headerRender();
     navRender();
+    activeSite("menu-add");
     addTaskRender();
 }
 
 function addBoardInit(){
     headerRender();
     navRender();
+    activeSite("menu-board");
     addBoardRender();
 }

@@ -1,3 +1,5 @@
+let menuId = ["menu-summary", "menu-board", "menu-add", "menu-contacts"];
+
 function headerRender() {
     docID('header').innerHTML =/*html*/`
         <img class="header-img" src="./assets/img/logo624.png">
@@ -17,24 +19,7 @@ function headerRender() {
 
 function navRender() {
     docID('nav').innerHTML = /*html*/`
-        <div class="menu">
-            <a href="./summary.html" class="topic">
-                <img src="./assets/img/Summary.png">
-                <span>Summary</span>
-            </a>
-            <a href="./board.html" class="topic">
-                <img src="./assets/img/Board.png">
-                <span>Board</span>
-            </a>
-            <a href="./addTask.html" class="topic">
-                <img src="./assets/img/add_task.png">
-                <span>Add Task</span>
-           </a>
-            <a href="./contacts.html"class="topic">
-                <img src="./assets/img/contact.png">
-                <span>Contacts</span>
-            </a>
-        </div>
+        <div id="menu" class="menu"></div>
         <div class="legal">
             <div class="topic">
                 <img src="./assets/img/legal.png">
@@ -46,5 +31,32 @@ function navRender() {
             </div>
         </div>
     `
+    menuRender();
 }
 
+function menuRender() {
+    docID("menu").innerHTML = "";
+    let urls = ["./summary.html", "./board.html", "./addTask.html", "./contacts.html"];
+    let names =  ["Summary", "Board", "Add Task", "Contacts"];
+    let img = ["Summary", "Board", "add_task", "contact" ]
+
+    for (let i = 0; i < menuId.length; i++) {
+        docID("menu").innerHTML += /*html*/`
+            <a id="${menuId[i]}" href="${urls[i]}" class="topic">
+                <img src="./assets/img/${img[i]}.png">
+                <span>${names[i]}</span>
+            </a>
+        ` 
+    }
+}
+
+
+function activeSite(id) {
+    for (let i = 0; i < menuId.length; i++) {
+        if (menuId[i] == id) {
+            docID(menuId[i]).classList.add("topic-active");
+        }else {
+            docID(menuId[i]).classList.remove("topic-active");
+        }
+    }
+}

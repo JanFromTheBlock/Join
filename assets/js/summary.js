@@ -130,7 +130,5 @@ function sumGreeting() {
     } else if (hour < 22){
         return "good evening"
     }
-
-
-    console.log(hour);
 }
+

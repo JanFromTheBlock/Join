@@ -135,6 +135,10 @@ header {
   line-height: 120%;
 }
 
+.topic-active {
+  background-color: #D2E3FF;
+}
+
 .legal {
   display: flex;
   flex-direction: column;
