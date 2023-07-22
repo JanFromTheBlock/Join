@@ -163,3 +163,55 @@ body{
 #window-contacts0{
     background-color: #000000;
 }
+#task-window-inside{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+#close-img{
+    width: 18px;
+    height: auto;
+    margin-left: 100%;
+    padding: 4px;
+    border-radius: 10px;
+}
+#close-img:hover{
+    cursor: pointer;
+    background-color: #E3EEFF;
+}
+#window-title{
+    font-size: 61px;
+    font-weight: 700;
+}
+#window-description{
+    font-size: 21px;
+    font-weight: 400;
+}
+#date{
+    font-size: 21px;
+    font-weight: 700;
+}
+#window-priority{
+    display: flex;
+    font-size: 21px;
+    font-weight: 700;
+    gap: 25px;
+    align-items: center;
+}
+#window-priority-inside{
+    font-size: 19px;
+    font-weight: 400;
+    gap: 10px;
+    display: flex;
+    border-radius: 10px;
+    padding: 4px 18px;
+    align-items: center;
+}
+#window-contact-img{
+    width: 17px;
+    height: 12px;
+}
+#window-contact-area{
+    font-size: 21px;
+    font-weight: 700;
+}

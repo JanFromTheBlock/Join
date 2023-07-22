@@ -184,15 +184,18 @@ function renderWindow(id) {
     taskWindow.innerHTML = /*html*/`
 
         <div>
-            <img src="./assets/img/close.png">
+            <img id="close-img" onclick="closeWindow()" src="./assets/img/close.png">
+            <div id="task-window-inside">
             <div id="window-category" class="task-category">${tasks[id]['category']}</div>
             <div id="window-title">${tasks[id]['title']}</div>
             <div id="window-description">${tasks[id]['description']}</div>
             <div id="date">Due date: <div></div></div>
-            <div>Priority: <div>${priority} <img id="window-contact-img" src="" alt=""></div></div>
+            <div id="window-priority">Priority: <div id="window-priority-inside">${priority} <img id="window-contact-img" src="" alt=""></div></div>
             <div id="window-contact-area">
                 <div>Assigned to:</div>
             </div>
+            </div>
+           
 
         </div>
     `
@@ -202,5 +205,15 @@ function renderWindow(id) {
     let urgency = tasks[id]["urgency"];
     docID('window-contact-img').src = "./assets/img/" + urgency + "Logo.png";
 
-   
+    if (tasks[id]["urgency"] === "low") {
+        docID('window-priority-inside').style.backgroundColor = '#CBFFC2';
+    }
+    if (tasks[id]["urgency"] === "medium") {
+        docID('window-priority-inside').style.backgroundColor = '#FFEBB9';
+    }
+    if (tasks[id]["urgency"] === "urgent") {
+        docID('window-priority-inside').style.backgroundColor = '#FFD2D2';
+    }
+
+
 }
