@@ -1,4 +1,6 @@
 let JOIN_TOKEN = "70GV5W9B4NZ1VPZ59PLLC3EMQFF9KJPKXOADX7OT";
+let user = "Sofia Müller"
+
 
 function docID (id){
     return document.getElementById(id);

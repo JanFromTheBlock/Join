@@ -22,12 +22,19 @@ function SummaryRender() {
 
 function greetingNameRender() {
     let greeting = sumGreeting();
-    let name = "Sofia Müller";
-
-    docID("grtng-con").innerHTML = /*html*/`
-        <span id="greeting">${greeting},</span>
-        <span id="name">${name}</span>
+    if (user == "Guest") {
+        docID("grtng-con").innerHTML = /*html*/`
+        <span id="guest-name">${greeting}</span>    
+        `
+    } else {
+        greeting += ",";
+        docID("grtng-con").innerHTML = /*html*/`
+        <span id="greeting">${greeting}</span>
+        <span id="name">${user}</span>
     `
+    }
+
+    
 }
 
 
@@ -38,7 +45,7 @@ function sumBigBtn() {
 
 
 function urgentSquareButton() {
-    let urgentNr = 1;
+    let urgentNr = sumAmout("urgent", "urgency");
     docID('sum-urgent-square').innerHTML = /*html*/`
         <div id="sum-urgent-con">
             <div id="sum-urgent-con-in">
@@ -64,7 +71,7 @@ function urgentDateScreenRender() {
 
 
 function squareButtonRender() {
-    let todonr = 1;
+    let todonr = sumAmout("1", "progress");
     docID('square-button').innerHTML = /*html*/`
         <div id="sum-board-btn-in">
             <div id="board-btn-img">
@@ -81,7 +88,7 @@ function squareButtonRender() {
 
 function sumOverviewRender() {
     let lower = ["Task in <br>Board", "Task in <br>Progress", "Awaiting <br>Feedback", "Tasks <br>Done"];
-    let amount = [tasks.length, sumAmout("2"), sumAmout("3"), sumAmout("4")];
+    let amount = [tasks.length, sumAmout("2", "progress"), sumAmout("3", "progress"), sumAmout("4", "progress")];
     let img = ["sum-board", "sum-progress", "sum-awaiting", "sum-done"];
     for (let i = 0; i < 4; i++) {
         docID('sum-overview').innerHTML += /*html*/`
@@ -101,10 +108,10 @@ function sumOverviewRender() {
 }
 
 
-function sumAmout(position){
+function sumAmout(position, id){
     count = 0;
     for (let i = 0; i < tasks.length; i++) {
-        if (tasks[i]['progress'] == position) {
+        if (tasks[i][id] == position) {
             count++
         }
     }
