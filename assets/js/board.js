@@ -180,6 +180,7 @@ function renderWindow(id) {
     let taskWindow = docID('task-window');
     let prioritySmall = tasks[id]['urgency']
     let priority = prioritySmall.charAt(0).toUpperCase() + prioritySmall.slice(1);
+    let dueDate = tasks[id]['date']
     taskWindow.innerHTML = '';
     taskWindow.innerHTML = /*html*/`
 
@@ -190,7 +191,7 @@ function renderWindow(id) {
                 <div id="window-title">${tasks[id]['title']}</div>
                 <div id="window-description">${tasks[id]['description']}</div>
                 <div id="date">Due date: 
-                    <div></div>
+                    <div id="date-inside">${dueDate}</div>
                 </div>
                 <div id="window-priority">Priority: 
                     <div id="window-priority-inside">${priority} <img id="window-contact-img" src="" alt=""></div>
@@ -199,7 +200,7 @@ function renderWindow(id) {
                     <div>Assigned to:</div>
                 </div>
             </div>
-            <div id="contact-buttons"><img src="./assets/img/delete.png"> <img src="./assets/img/edit.png"></div>
+            <div id="contact-buttons"><img onclick="deleteTask(${id})" src="./assets/img/delete.png"> <img src="./assets/img/edit.png"></div>
            
 
         </div>
@@ -244,5 +245,12 @@ function renderWindow(id) {
         docID('initials' + contactID).style.backgroundColor = color;
     }
 
+
+}
+
+function deleteTask(id){
+    tasks.splice(id, 1);
+    addBoardRender();
+    closeWindow();
 
 }

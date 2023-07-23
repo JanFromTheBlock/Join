@@ -1,5 +1,5 @@
 body{
-    height: 700px;
+    height: 1000vh;
 }
 #board{
     margin-left: 232px;
@@ -190,6 +190,8 @@ body{
 #date{
     font-size: 21px;
     font-weight: 700;
+    display: flex;
+    gap: 25px;
 }
 #window-priority{
     display: flex;
@@ -245,4 +247,7 @@ body{
 #contact-buttons img{
     width: 57px;
     height: auto;
+}
+#date-inside{
+    font-weight: 400;
 }
