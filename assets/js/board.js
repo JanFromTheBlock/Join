@@ -34,7 +34,7 @@ function addBoardRender() {
     loadTasks();
 }
 
-function loadTasks() {
+function loadTasks(id) {
     emptyTaskDivs();
     let k = 0;         //fortlaufende Variable definiert für die contact-divs
     for (let id = 0; id < tasks.length; id++) {   //For-Schleife zum Beladen der 4 Task-Container
@@ -134,7 +134,7 @@ function filterTasks() {                    //Die Tasks werden nach Namen gefilt
     emptyTaskDivs();                       //die Divs werden wieder geleert, um neu befüllt zu werden
     k = 0;                                 // k muss auf 0 gesetzt werden, damit wieder bei 0 angefangen wird zu zhlen 
     for (let id = 0; id < tasks.length; id++) {         //anschließend wird wieder neu gerendert mit der Bedingung das der Input-text in dem Namen der Taks vorkommt
-        let name = tasks[id]['title'];
+        let name = tasks[id][title];
         if (name.toLowerCase().includes(search)) {
             renderTaskBody(id);
             renderSubtasks(id);
@@ -163,24 +163,33 @@ function filterTasks() {                    //Die Tasks werden nach Namen gefilt
 }
 
 function openWindow(event, id) {
-    docID('task-window').classList.remove('d-none');
-    event.stopPropagation();
-    renderWindow(id);
+    docID('task-window').classList.remove('d-none');  //dem Div wird die d-none-Klasse genommen. und das Window wird sichtbar
+    event.stopPropagation();                          // Funktion sorgt dafür, dass das Window nicht geschlossen wird, wenn man auf den onclick-Button drückt
+    renderWindow(id);                                 // das Window wird mit seinen Inhalten gerendert
 }
 
 function closeWindow() {
-    docID('task-window').classList.add('d-none')
+    docID('task-window').classList.add('d-none')    //das window wird geschlossen, indem dem div die d-none-Klasse wieder hinzugefügt wird
 }
 
-function doNotClose(event) {
+function doNotClose(event) {                        //die divs, die diese Funktion auslösen, schließen nicht das window beim onclick
     event.stopPropagation();
 }
 
-function renderWindow(id) {
-    let taskWindow = docID('task-window');
-    let prioritySmall = tasks[id]['urgency']
-    let priority = prioritySmall.charAt(0).toUpperCase() + prioritySmall.slice(1);
-    let dueDate = tasks[id]['date']
+function renderWindow(id) {                     //das Window wird gerendert
+    renderStructureOfTheWindow(id);
+    addColorOfTheCategory(id);
+    renderPriorityToTheWindow(id);
+    renderContactsToWindow(id);
+}
+
+
+    
+function renderStructureOfTheWindow(id){
+    let taskWindow = docID('task-window');      //div in die der HTML-Code gerendert wird, wird als Variable definiert
+    let prioritySmall = tasks[id]['urgency']    //die Priorität aus dem array wird als Variable definiert
+    let priority = prioritySmall.charAt(0).toUpperCase() + prioritySmall.slice(1);  //die Priorität soll einen großen Anfangsbuchstaben haben
+    let dueDate = tasks[id]['date']             // Das Datum aus dem Array wir als Variable definiert
     taskWindow.innerHTML = '';
     taskWindow.innerHTML = /*html*/`
 
@@ -205,12 +214,20 @@ function renderWindow(id) {
 
         </div>
     `
+}
+function addColorOfTheCategory(id){
     let color = tasks[id]["category-color"];
     docID('window-category').style.backgroundColor = color;
-
+}
+function renderPriorityToTheWindow(id){
+    addUrgencyImage(id);
+    addUrgencyColor(id);
+}
+function addUrgencyImage(id){
     let urgency = tasks[id]["urgency"];
     docID('window-contact-img').src = "./assets/img/" + urgency + "Logo.png";
-
+}
+function addUrgencyColor(id){
     if (tasks[id]["urgency"] === "low") {
         docID('window-priority-inside').style.backgroundColor = '#CBFFC2';
     }
@@ -220,7 +237,8 @@ function renderWindow(id) {
     if (tasks[id]["urgency"] === "urgent") {
         docID('window-priority-inside').style.backgroundColor = '#FFD2D2';
     }
-
+}
+function renderContactsToWindow(id){
     let windowContactArea = docID('window-contact-area');
     for (let contactID = 0; contactID < tasks[id]['contact-firstname'].length; contactID++) {
 
@@ -244,13 +262,12 @@ function renderWindow(id) {
         `
         docID('initials' + contactID).style.backgroundColor = color;
     }
-
-
 }
 
-function deleteTask(id){
-    tasks.splice(id, 1);
-    addBoardRender();
-    closeWindow();
+
+function deleteTask(id){  //Löschen der ausgewählten Aufgabe
+    tasks.splice(id, 1);  //aus dem array wird die Aufgabe an der Stelle id gelöscht
+    addBoardRender();     //anschließend wird das Board neu gerendert ohne das gelöschte Element
+    closeWindow();        //dann wird das Fenster wieder geschlossen
 
 }
