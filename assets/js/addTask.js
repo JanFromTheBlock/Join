@@ -28,7 +28,6 @@ let tasks = [
     description: "Modify the contents of the main website ...",
     category: categories[0]["name"],
     "category-color": categories[0]["color"],
-    date: "2023-07-12",
     progress: "1",
     subtasks: 2,
     "done-tasks": 0,
@@ -43,7 +42,6 @@ let tasks = [
     description: "Make the product presentation to prospective buyers",
     category: "Sales",
     "category-color": "#FC71FF",
-    date: "2023-07-12",
     progress: "1",
     subtasks: 0,
     "done-tasks": 0,
@@ -58,7 +56,6 @@ let tasks = [
     description: "Edit the new company video",
     category: "Media",
     "category-color": "#FFC701",
-    date: "2023-07-12",
     progress: "3",
     subtasks: 0,
     "done-tasks": 0,
@@ -73,7 +70,6 @@ let tasks = [
     description: "Develop an ad campaign for brand positioning",
     category: "Marketing",
     "category-color": "#0038FF",
-    date: "2023-07-12",
     progress: "4",
     subtasks: 3,
     "done-tasks": 3,
@@ -86,6 +82,7 @@ let tasks = [
 
 let subtasks = [];
 let contact;
+let urgency;
 
 function addTaskRender(id) {
   docID("addTask").innerHTML = /*html*/ `
@@ -121,9 +118,7 @@ function addTaskRender(id) {
             <div class="add-task-due-date">
                <h2>Category</h2>
                <div class="add-task-select-contact-edit">
-               <div>
-                <input autocomplete="off" onclick="showCategories()" required class="add-task-select-contact cursor-pointer" id="selectCategory" placeholder="Select Task category">
-               </div>  
+                 <input autocomplete="off" onclick="showCategories()" required class="add-task-select-contact cursor-pointer" id="selectCategory" placeholder="Select Task category">
                  <img id="categorySelectArrow" src="./assets/img/selectfieldArrow.png">
                  <div class="add-task-placeholder-color-category">
                    <img class="d-none" id="placeholderColorCategory" src="./assets/img/ellipseLightblue.png">
@@ -159,6 +154,8 @@ function addTaskRender(id) {
         </form>
         
         <div class="subtask">
+
+        <div id="test"></div>
           <div>
               <h2>Subtasks</h2>
              <div>
@@ -198,13 +195,8 @@ function showSubtasks() {
   `;
 }
 
-let urgency;
-
-function changeColorUrgent(i) {
-  let urgency = i;
-  console.log(urgentLogo.src);
-  tasks.push({ urgency: urgentLogo.src });
-
+function changeColorUrgent(id) {
+  let urgency = id;
   urgent.classList.add("change-color-urgent");
   urgent.classList.add("clicked");
   medium.classList.remove("change-color-medium");
@@ -216,11 +208,8 @@ function changeColorUrgent(i) {
   mediumLogo.src = `./assets/img/mediumLogo.png`;
 }
 
-function changeColorMedium(i) {
-  let urgency = i;
-  console.log(urgency);
-  tasks.push({ urgency: urgency });
-
+function changeColorMedium(id) {
+  let urgency = id;
   urgent.classList.remove("change-color-urgent");
   medium.classList.add("clicked");
   low.classList.remove("clicked");
@@ -232,11 +221,8 @@ function changeColorMedium(i) {
   mediumLogo.src = `./assets/img/mediumLogoWhite.png`;
 }
 
-function changeColorLow(i) {
-  let urgency = i;
-  console.log(urgency);
-  tasks.push({ urgency: urgency });
-
+function changeColorLow(id) {
+  let urgency = id;
   urgent.classList.remove("change-color-urgent");
   medium.classList.remove("change-color-medium");
   low.classList.add("change-color-low");
@@ -248,18 +234,20 @@ function changeColorLow(i) {
   mediumLogo.src = `./assets/img/mediumLogo.png`;
 }
 
+
 function changeColor(i) {
   if (i === "urgent") {
     changeColorUrgent(i);
-    urgency = "Urgent";
+    urgency = "./assets/img/urgentLogo.png"; 
   } else if (i === "medium") {
     changeColorMedium(i);
-    urgency = "Medium";
+    urgency = "./assets/img/mediumLogo.png"; 
   } else if (i === "low") {
-    urgency = "Low";
+    urgency = "./assets/img/lowLogo.png"; 
     changeColorLow(i);
   }
 }
+
 
 function newTask() {
   let title = document.getElementById(`inputFieldTitle`).value;
@@ -267,17 +255,18 @@ function newTask() {
   let category = document.getElementById(`selectCategory`).value;
   let description = document.getElementById(`description`).value;
   let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
-
+  let contact = document.getElementById(`selectContact`);
+  
   taskAddedToBoard.classList.remove(`d-none`);
   setTimeout(() => {
-    const taskAddedToBoard = document.getElementById("taskAddedToBoard");
-    taskAddedToBoard.classList.add("d-none");
+    let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
+    taskAddedToBoard.classList.add(`d-none`);
   }, 1000);
   contact = document.getElementById(`selectContact`).value;
-
+  let partOfContact = contact.split(" ");
+  let firstName = partOfContact[0];
+  let lastName = partOfContact[1];
   clearTaskMask();
-
-  console.log(tasks);
 
   let task = {
     title: title,
@@ -289,6 +278,9 @@ function newTask() {
     "done-tasks": 0,
     urgency: urgency,
     date: date,
+    "contact-firstname": [firstName],
+    "contact-lastname": [lastName],
+    "contact-color": ["#462F8A", "#FF4646"],
   };
 
   tasks.push(task);
@@ -301,6 +293,7 @@ function clearTaskMask() {
   document.getElementById(`description`).value = ``;
   document.getElementById(`selectContact`).value = ``;
   document.getElementById(`selectCategory`).value = ``;
+  document.getElementById(`placeholderColorCategory`).classList.add(`d-none`);
 }
 
 function clearTask(i) {
@@ -468,6 +461,6 @@ function chooseCategory(i) {
   // Setze den Wert des selectCategory-Eingabefeldes auf den Text der ausgewählten Kategorie
   selectCategory.value = savedCategory.textContent;
   placeholderColorCategory.classList.remove(`d-none`);
-  savedCategory.innerHTML = ``;
+  selectCategory.style.paddingLeft = "0";
   showCategories.classList.add(`d-none`);
 }
