@@ -186,15 +186,20 @@ function renderWindow(id) {
         <div>
             <img id="close-img" onclick="closeWindow()" src="./assets/img/close.png">
             <div id="task-window-inside">
-            <div id="window-category" class="task-category">${tasks[id]['category']}</div>
-            <div id="window-title">${tasks[id]['title']}</div>
-            <div id="window-description">${tasks[id]['description']}</div>
-            <div id="date">Due date: <div></div></div>
-            <div id="window-priority">Priority: <div id="window-priority-inside">${priority} <img id="window-contact-img" src="" alt=""></div></div>
-            <div id="window-contact-area">
-                <div>Assigned to:</div>
+                <div id="window-category" class="task-category">${tasks[id]['category']}</div>
+                <div id="window-title">${tasks[id]['title']}</div>
+                <div id="window-description">${tasks[id]['description']}</div>
+                <div id="date">Due date: 
+                    <div></div>
+                </div>
+                <div id="window-priority">Priority: 
+                    <div id="window-priority-inside">${priority} <img id="window-contact-img" src="" alt=""></div>
+                </div>
+                <div id="window-contact-area">
+                    <div>Assigned to:</div>
+                </div>
             </div>
-            </div>
+            <div id="contact-buttons"><img src="./assets/img/delete.png"> <img src="./assets/img/edit.png"></div>
            
 
         </div>
@@ -213,6 +218,30 @@ function renderWindow(id) {
     }
     if (tasks[id]["urgency"] === "urgent") {
         docID('window-priority-inside').style.backgroundColor = '#FFD2D2';
+    }
+
+    let windowContactArea = docID('window-contact-area');
+    for (let contactID = 0; contactID < tasks[id]['contact-firstname'].length; contactID++) {
+
+        let firstName = tasks[id]['contact-firstname'][contactID];
+        let lastName = tasks[id]['contact-lastname'][contactID];
+        let Initial1 = firstName.charAt(0);
+        let Initial2 = lastName.charAt(0);
+        let initials = Initial1 + Initial2;
+        let initialsUpper = initials.toLocaleUpperCase();
+        let color = tasks[id]['contact-color'][contactID];
+
+        windowContactArea.innerHTML += /*html*/`
+            <div id="window-contact-area-inside">
+                <div class="initials" id="initials${contactID}">${initialsUpper}</div>
+                <div class = "name-contact">
+                    <div>${firstName}</div>
+                    <div>${lastName}</div>
+                </div>
+            </div>
+            
+        `
+        docID('initials' + contactID).style.backgroundColor = color;
     }
 
 
