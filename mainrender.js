@@ -1,6 +1,7 @@
 let menuId = ["menu-summary", "menu-board", "menu-add", "menu-contacts"];
 
 function headerRender() {
+    let userIni = "SM"
     docID('header').innerHTML =/*html*/`
         <img class="header-img" src="./assets/img/logo624.png">
         <div class="header-data">
@@ -9,7 +10,7 @@ function headerRender() {
             <!-- <img class="header-user" src="./assets/img/example-user.png"> -->
             <div id="header-user-con">
                 <div id="header-user-ellipse">
-                    <div id="header-user-name"> SM
+                    <div id="header-user-name"> ${userIni}
                     </div>
                 </div>
             </div>

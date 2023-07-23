@@ -59,7 +59,7 @@ header {
   align-items: center;
   width: 49px;
   height: 49px;
-  background-image: url("./assets/img/test-ellipse 3.svg");
+  background-image: url("./assets/img/ellipse 3.svg");
   background-size: 49px 49px;
 }
 
@@ -146,5 +146,27 @@ header {
   padding-top: 300px;
 }
 
+/* start page */
 
+#start-con {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: #4589FF;
+  box-sizing: border-box;
+}
+
+#animation-con {
+  width: 265px;
+  height: 323.099px;
+  flex-shrink: 0;
+  background-image: url(./assets/img/logo624.png);
+}
+
+#brand-con {
+  width: 265px;
+  height: 323.099px;
+  flex-shrink: 0;
+}
 
