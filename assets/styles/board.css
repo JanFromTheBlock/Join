@@ -1,5 +1,5 @@
 body{
-    height: 700px;
+    height: 1000vh;
 }
 #board{
     margin-left: 232px;
@@ -121,6 +121,7 @@ body{
     border: 1px solid white;
     border-radius: 58px;
     font-size: 14px;
+    color: white;
 }
 #task-footer{
     display: flex;
@@ -153,7 +154,6 @@ body{
     top: 110px;
     left: 400px;
     width: 620px;
-    height: 720px;
     padding: 50px;
     z-index: 2;
     background-color: white;
@@ -190,6 +190,8 @@ body{
 #date{
     font-size: 21px;
     font-weight: 700;
+    display: flex;
+    gap: 25px;
 }
 #window-priority{
     display: flex;
@@ -212,6 +214,40 @@ body{
     height: 12px;
 }
 #window-contact-area{
+    display: flex;
     font-size: 21px;
     font-weight: 700;
+    gap: 25px;
+    flex-direction: column;
+}
+.initials{
+    color: white;
+    padding: 10px 8px;
+    width: min-content;
+    border-radius: 58px;
+    font-size: 16px;
+    font-weight: 400;
+    border: 2px solid white;
+}
+.name-contact{
+    display: flex;
+    font-size: 21px;
+    font-weight: 400;
+    gap: 8px;
+}
+#window-contact-area-inside{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+#contact-buttons{
+    display: flex;
+    justify-content: flex-end;
+}
+#contact-buttons img{
+    width: 57px;
+    height: auto;
+}
+#date-inside{
+    font-weight: 400;
 }
