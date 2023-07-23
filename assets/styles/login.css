@@ -1,0 +1,36 @@
+#login-con {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 100vh;
+    background: #4589FF;
+    animation-name: colorChange;
+    animation-duration: 300ms;
+    animation-delay: 200ms;
+    animation-fill-mode: forwards;
+}
+
+#login-img {
+    position: absolute;
+    width: 265px;
+    height: 323px;
+    animation-name: imgVanish;
+    animation-duration: 300ms;
+    animation-delay: 200ms;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes colorChange {
+    100% {
+        background-color: white;
+    }
+}
+
+@keyframes imgVanish {
+
+    100% {
+        transform: translate(-50%, -50%) scale(0);
+    }
+}
