@@ -97,7 +97,7 @@ function addTaskRender(id) {
                <img class="cursor-pointer" onclick="cancelContact()" src="./assets/img/logoCancel.png">
              </div>
           </div>
-          <div id="showContacts" class="d-none add-task-choose-contacts">
+          <div id="showContacts" class="add-task-hide-contacts add-task-choose-contacts">
               <span onclick="chooseContact(1)" class="add-task-single-contact">You <img id="chooseBoxContact1" src="./assets/img/logoChooseContact.png"></span>
               <span onclick="chooseContact(2)" class="add-task-single-contact">Test <img id="chooseBoxContact2" src="./assets/img/logoChooseContact.png"></span>
               <span onclick="addContact()" class="add-task-single-contact-invite">Invite new contact <img src="./assets/img/logoContactBlue.png"></span>
@@ -130,7 +130,7 @@ function addTaskRender(id) {
                     <img class="cursor-pointer" onclick="cancelCategory()" src="./assets/img/logoCancel.png">
                  </div>
                </div>
-                 <div id="showCategories" class="add-task-choose-priority d-none">
+                 <div id="showCategories" class="add-task-hide-contacts add-task-choose-contacts">
                    <span onclick="newCategory()" class="add-task-single-priority">New category</span>
                 </div>
                  <div id="categoryColors" class="add-task-category-colors d-none">
@@ -305,10 +305,10 @@ function clearTask(i) {
 function toggleVisibility(elementId) {
   let element = document.getElementById(elementId);
 
-  if (element.classList.contains("d-none")) {
-    element.classList.remove("d-none");
+  if (element.classList.contains("add-task-hide-contacts")) {
+    element.classList.remove("add-task-hide-contacts");
   } else {
-    element.classList.add("d-none");
+    element.classList.add("add-task-hide-contacts");
   }
 }
 

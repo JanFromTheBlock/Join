@@ -49,6 +49,19 @@
   display: flex;
   flex-direction: column;
   font-size: 19px;
+  opacity: 1;
+  max-height: 1000px; /* oder eine geeignete Höhe, die größer als die Höhe der Kontaktliste ist */
+  overflow: hidden;
+  transition: max-height 300ms
+}
+
+.add-task-hide-contacts{
+  display: flex;
+  flex-direction: column;
+  font-size: 19px;
+  max-height: 0;
+  overflow: hidden;
+
 }
 
 .add-task-single-contact {
