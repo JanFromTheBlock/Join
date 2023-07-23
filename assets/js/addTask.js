@@ -198,7 +198,8 @@ let urgency;
 
 function changeColorUrgent(i) {
   let urgency = i;
-  console.log(urgency);
+  console.log(urgentLogo.src);
+  tasks.push({ urgency: urgentLogo.src });
 
   urgent.classList.add("change-color-urgent");
   urgent.classList.add("clicked");
@@ -256,7 +257,7 @@ function changeColor(i) {
   }
 }
 
-function newTask(urgency) {
+function newTask() {
   let title = document.getElementById(`inputFieldTitle`).value;
   let date = document.getElementById(`inputDate`).value;
   let category = document.getElementById(`selectCategory`).value;
