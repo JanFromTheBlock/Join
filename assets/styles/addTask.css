@@ -133,7 +133,7 @@
 }
 
 .add-task-edit-category{
-  margin-left: 160px;
+  margin-left: 240px
 }
 
 .add-task h2 {
@@ -168,7 +168,7 @@ input[type="date"]::placeholder {
 }
 
 .add-task-placeholder-color-category{
-margin-left: -160px;
+  margin-left: -230px;
 }
 
 .add-task-due-date-input::-webkit-calendar-picker-indicator {

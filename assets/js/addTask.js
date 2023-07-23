@@ -195,8 +195,7 @@ function showSubtasks() {
   `;
 }
 
-function changeColorUrgent(id) {
-  let urgency = id;
+function changeColorUrgent() {
   urgent.classList.add("change-color-urgent");
   urgent.classList.add("clicked");
   medium.classList.remove("change-color-medium");
@@ -208,8 +207,7 @@ function changeColorUrgent(id) {
   mediumLogo.src = `./assets/img/mediumLogo.png`;
 }
 
-function changeColorMedium(id) {
-  let urgency = id;
+function changeColorMedium() {
   urgent.classList.remove("change-color-urgent");
   medium.classList.add("clicked");
   low.classList.remove("clicked");
@@ -221,8 +219,7 @@ function changeColorMedium(id) {
   mediumLogo.src = `./assets/img/mediumLogoWhite.png`;
 }
 
-function changeColorLow(id) {
-  let urgency = id;
+function changeColorLow() {
   urgent.classList.remove("change-color-urgent");
   medium.classList.remove("change-color-medium");
   low.classList.add("change-color-low");
@@ -248,27 +245,8 @@ function changeColor(i) {
   }
 }
 
-
-function newTask() {
-  let title = document.getElementById(`inputFieldTitle`).value;
-  let date = document.getElementById(`inputDate`).value;
-  let category = document.getElementById(`selectCategory`).value;
-  let description = document.getElementById(`description`).value;
-  let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
-  let contact = document.getElementById(`selectContact`);
-  
-  taskAddedToBoard.classList.remove(`d-none`);
-  setTimeout(() => {
-    let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
-    taskAddedToBoard.classList.add(`d-none`);
-  }, 1000);
-  contact = document.getElementById(`selectContact`).value;
-  let partOfContact = contact.split(" ");
-  let firstName = partOfContact[0];
-  let lastName = partOfContact[1];
-  clearTaskMask();
-
-  let task = {
+function createJsonTask(title, description, category, subtasks, urgency, date, firstName, lastName){
+  return {
     title: title,
     description: description,
     category: category,
@@ -278,15 +256,37 @@ function newTask() {
     "done-tasks": 0,
     urgency: urgency,
     date: date,
-    "contact-firstname": [firstName],
-    "contact-lastname": [lastName],
+    "contact-firstname": firstName,
+    "contact-lastname": lastName,
     "contact-color": ["#462F8A", "#FF4646"],
   };
+}
 
+function newTask() {
+  let title = document.getElementById(`inputFieldTitle`).value;
+  let date = document.getElementById(`inputDate`).value;
+  let category = document.getElementById(`selectCategory`).value;
+  let description = document.getElementById(`description`).value;
+  let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
+ 
+  taskAddedToBoard.classList.remove(`d-none`);
+
+  setTimeout(() => {
+    let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
+    taskAddedToBoard.classList.add(`d-none`);
+  }, 1000);
+
+  let contact = document.getElementById(`selectContact`).value;
+  let partOfContact = contact.split(" ");
+  let firstName = partOfContact[0];
+  let lastName = partOfContact[1];
+
+  clearTaskMask();
+  let task = createJsonTask(title, description, category, subtasks, urgency, date, firstName, lastName);
   tasks.push(task);
-
   console.log(tasks);
 }
+
 
 function clearTaskMask() {
   document.getElementById(`inputFieldTitle`).value = ``;
