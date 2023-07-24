@@ -84,7 +84,7 @@ function renderTaskBody(id) {
         <div id="task-description">${tasks[id]['description']}</div>
         <div class = "progress-bar d-none" id="progress-bar${id}"><div id="progress-bar-outside"><div class="progress-bar-inside" id="progress-bar-inside${id}"></div></div><span id = "subtask${id}"></span></div>
         <div id="task-footer">
-            <div id="contact-area${id}"></div>
+            <div class="contact-area" id="contact-area${id}"></div>
             <img id="contact-area-img${id}" class = "contact-area-img" src="./assets/img/lowLogo.png">
         </div>
         
@@ -209,7 +209,7 @@ function renderStructureOfTheWindow(id){
     let prioritySmall = tasks[id]['urgency']    //die Priorität aus dem array wird als Variable definiert
     let priority = prioritySmall.charAt(0).toUpperCase() + prioritySmall.slice(1);  //die Priorität soll einen großen Anfangsbuchstaben haben
     let dueDate = tasks[id]['date']             // Das Datum aus dem Array wir als Variable definiert
-    taskWindow.innerHTML = '';
+    taskWindow.innerHTML = '';                  //Die div wird geleert und anschließend das Gerüst des HTML-Codes für das Window gerendert
     taskWindow.innerHTML = /*html*/`
 
         <div>
@@ -234,7 +234,7 @@ function renderStructureOfTheWindow(id){
         </div>
     `
 }
-function addColorOfTheCategory(id){
+function addColorOfTheCategory(id){   //Hintergrundfarbe der Kategorie wird angepasst
     let color = tasks[id]["category-color"];
     docID('window-category').style.backgroundColor = color;
 }
@@ -242,11 +242,11 @@ function renderPriorityToTheWindow(id){
     addUrgencyImage(id);
     addUrgencyColor(id);
 }
-function addUrgencyImage(id){
+function addUrgencyImage(id){  //die Urgency de Tasks wird aus dem Array gelesen und in die src für das dazugehörige Img eingefügt, damit das entsprechende Bild angezeigt wird
     let urgency = tasks[id]["urgency"];
     docID('window-contact-img').src = "./assets/img/" + urgency + "Logo.png";
 }
-function addUrgencyColor(id){
+function addUrgencyColor(id){   //Mit if-Abfragen wird abgefragt, welches der drei möglichen Prioritäten in dem array an Stelle id stehen. Je nachdem wird dann die dazugehörige Hintergrundfarbe dargstellt
     if (tasks[id]["urgency"] === "low") {
         docID('window-priority-inside').style.backgroundColor = '#CBFFC2';
     }
