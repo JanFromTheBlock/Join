@@ -265,6 +265,9 @@ body{
 #delete-button:hover{
     cursor: pointer;
     background-color: #005DFF;
+    width: 23px;
+    height: 26px;
+    padding: 14px 16px;
 }
 #edit-button:hover{
     cursor: pointer;

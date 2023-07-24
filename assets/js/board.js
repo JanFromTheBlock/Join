@@ -231,7 +231,7 @@ function renderStructureOfTheWindow(id) {
                     <div>Assigned to:</div>
                 </div>
             </div>
-            <div id="contact-buttons"><img id="delete-button" onclick="deleteTask(${id})" src="./assets/img/delete.png"> <img id="edit-button" src="./assets/img/edit.png"></div>
+            <div id="contact-buttons"><img onmouseover="changeDeleteImage(true)" onmouseout="changeDeleteImage(false)" id="delete-button" onclick="deleteTask(${id})" src="./assets/img/delete.png"> <img id="edit-button" src="./assets/img/edit.png"></div>
            
 
         </div>
@@ -293,3 +293,11 @@ function deleteTask(id) {  //Löschen der ausgewählten Aufgabe
     closeWindow();        //dann wird das Fenster wieder geschlossen
 
 }
+function changeDeleteImage(isHovering) {
+    const deleteButton = document.getElementById('delete-button');
+    if (isHovering) {
+      deleteButton.src = './assets/img/delete_hover.png';
+    } else {
+      deleteButton.src = './assets/img/delete.png';
+    }
+  }
