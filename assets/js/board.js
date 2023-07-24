@@ -9,7 +9,10 @@ function addBoardRender() {
         <div id="board-input">
             <div id="find-task">
                 <input id="input" type="text" placeholder="Find Task" onkeyup="filterTasks(); handleKeyPress(event)">
-                <img id="img-search" onclick="handleImgClick()" src="./assets/img/search.png">
+                <div>
+                    <img id="img-search" onclick="handleImgClick()" src="./assets/img/search.png">
+                </div>
+                
             </div>
             <button id="board-button">Add Task <span id="board-button-plus">+</span></button>
         </div>
@@ -28,10 +31,10 @@ function addBoardRender() {
                 <div id="tasks${indexFinal}"></div>
             </div>
         `
-        
+
     }
     docID('task-img3').classList.add('d-none');     //bei task-img3 soll das + Symbol nicht angezeigt werden, daher wird die Klasse d-none hinzugefügt
-    
+
     loadTasks();
 }
 
@@ -183,7 +186,7 @@ function handleImgClick() {
 function openWindow(event, id) {
     docID('task-window').classList.remove('d-none');  //dem Div wird die d-none-Klasse genommen. und das Window wird sichtbar
     event.stopPropagation();                          // Funktion sorgt dafür, dass das Window nicht geschlossen wird, wenn man auf den onclick-Button drückt
-    window.scrollTo(0,0)                              // wenn Fenster geöffnet wird, wird nach oben gescrollt
+    window.scrollTo(0, 0)                              // wenn Fenster geöffnet wird, wird nach oben gescrollt
     renderWindow(id);                                 // das Window wird mit seinen Inhalten gerendert
 }
 
@@ -203,8 +206,8 @@ function renderWindow(id) {                     //das Window wird gerendert
 }
 
 
-    
-function renderStructureOfTheWindow(id){
+
+function renderStructureOfTheWindow(id) {
     let taskWindow = docID('task-window');      //div in die der HTML-Code gerendert wird, wird als Variable definiert
     let prioritySmall = tasks[id]['urgency']    //die Priorität aus dem array wird als Variable definiert
     let priority = prioritySmall.charAt(0).toUpperCase() + prioritySmall.slice(1);  //die Priorität soll einen großen Anfangsbuchstaben haben
@@ -234,19 +237,19 @@ function renderStructureOfTheWindow(id){
         </div>
     `
 }
-function addColorOfTheCategory(id){   //Hintergrundfarbe der Kategorie wird angepasst
+function addColorOfTheCategory(id) {   //Hintergrundfarbe der Kategorie wird angepasst
     let color = tasks[id]["category-color"];
     docID('window-category').style.backgroundColor = color;
 }
-function renderPriorityToTheWindow(id){
+function renderPriorityToTheWindow(id) {
     addUrgencyImage(id);
     addUrgencyColor(id);
 }
-function addUrgencyImage(id){  //die Urgency de Tasks wird aus dem Array gelesen und in die src für das dazugehörige Img eingefügt, damit das entsprechende Bild angezeigt wird
+function addUrgencyImage(id) {  //die Urgency de Tasks wird aus dem Array gelesen und in die src für das dazugehörige Img eingefügt, damit das entsprechende Bild angezeigt wird
     let urgency = tasks[id]["urgency"];
     docID('window-contact-img').src = "./assets/img/" + urgency + "Logo.png";
 }
-function addUrgencyColor(id){   //Mit if-Abfragen wird abgefragt, welches der drei möglichen Prioritäten in dem array an Stelle id stehen. Je nachdem wird dann die dazugehörige Hintergrundfarbe dargstellt
+function addUrgencyColor(id) {   //Mit if-Abfragen wird abgefragt, welches der drei möglichen Prioritäten in dem array an Stelle id stehen. Je nachdem wird dann die dazugehörige Hintergrundfarbe dargstellt
     if (tasks[id]["urgency"] === "low") {
         docID('window-priority-inside').style.backgroundColor = '#CBFFC2';
     }
@@ -257,7 +260,7 @@ function addUrgencyColor(id){   //Mit if-Abfragen wird abgefragt, welches der dr
         docID('window-priority-inside').style.backgroundColor = '#FFD2D2';
     }
 }
-function renderContactsToWindow(id){
+function renderContactsToWindow(id) {
     let windowContactArea = docID('window-contact-area');
     for (let contactID = 0; contactID < tasks[id]['contact-firstname'].length; contactID++) {
 
@@ -284,7 +287,7 @@ function renderContactsToWindow(id){
 }
 
 
-function deleteTask(id){  //Löschen der ausgewählten Aufgabe
+function deleteTask(id) {  //Löschen der ausgewählten Aufgabe
     tasks.splice(id, 1);  //aus dem array wird die Aufgabe an der Stelle id gelöscht
     addBoardRender();     //anschließend wird das Board neu gerendert ohne das gelöschte Element
     closeWindow();        //dann wird das Fenster wieder geschlossen
