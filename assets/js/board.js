@@ -8,8 +8,8 @@ function addBoardRender() {
     board.innerHTML += /*html*/`
         <div id="board-input">
             <div id="find-task">
-                <input id="input" type="text" placeholder="Find Task" onkeyup="filterTasks()">
-                <img id="img-search" src="./assets/img/search.png">
+                <input id="input" type="text" placeholder="Find Task" onkeyup="filterTasks(); handleKeyPress(event)">
+                <img id="img-search" onclick="handleImgClick()" src="./assets/img/search.png">
             </div>
             <button id="board-button">Add Task <span id="board-button-plus">+</span></button>
         </div>
@@ -23,14 +23,15 @@ function addBoardRender() {
             <div ondrop="moveTo('${taskTitle}')" ondragover="allowDrop(event)" class="task-body" id="task-body${index}">
                 <div class="task-body-flex">
                     <span>${taskName}</span>
-                    <img src="./assets/img/board_plus.png">
+                    <img id="task-img${index}" src="./assets/img/board_plus.png">
                 </div>
                 <div id="tasks${indexFinal}"></div>
             </div>
         `
-
+        
     }
-
+    docID('task-img3').classList.add('d-none');     //bei task-img3 soll das + Symbol nicht angezeigt werden, daher wird die Klasse d-none hinzugefügt
+    
     loadTasks();
 }
 
@@ -134,7 +135,7 @@ function filterTasks() {                    //Die Tasks werden nach Namen gefilt
     emptyTaskDivs();                       //die Divs werden wieder geleert, um neu befüllt zu werden
     k = 0;                                 // k muss auf 0 gesetzt werden, damit wieder bei 0 angefangen wird zu zhlen 
     for (let id = 0; id < tasks.length; id++) {         //anschließend wird wieder neu gerendert mit der Bedingung das der Input-text in dem Namen der Taks vorkommt
-        let name = tasks[id][title];
+        let name = tasks[id]["title"];
         if (name.toLowerCase().includes(search)) {
             renderTaskBody(id);
             renderSubtasks(id);
@@ -162,9 +163,27 @@ function filterTasks() {                    //Die Tasks werden nach Namen gefilt
     }
 }
 
+function clearInput() {
+    docID('input').value = ''; // Setze den Wert des Input-Feldes auf leer
+}
+
+// Event-Handler für das Tastaturereignis (Enter-Taste)
+function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+        clearInput();
+        // Hier kannst du die Funktion aufrufen, die deine divs nach dem Text filtert
+    }
+}
+// Event-Handler für das Klickeignis auf das Bild
+function handleImgClick() {
+    clearInput();
+    // Hier kannst du die Funktion aufrufen, die deine divs nach dem Text filtert
+}
+
 function openWindow(event, id) {
     docID('task-window').classList.remove('d-none');  //dem Div wird die d-none-Klasse genommen. und das Window wird sichtbar
     event.stopPropagation();                          // Funktion sorgt dafür, dass das Window nicht geschlossen wird, wenn man auf den onclick-Button drückt
+    window.scrollTo(0,0)                              // wenn Fenster geöffnet wird, wird nach oben gescrollt
     renderWindow(id);                                 // das Window wird mit seinen Inhalten gerendert
 }
 
@@ -209,7 +228,7 @@ function renderStructureOfTheWindow(id){
                     <div>Assigned to:</div>
                 </div>
             </div>
-            <div id="contact-buttons"><img onclick="deleteTask(${id})" src="./assets/img/delete.png"> <img src="./assets/img/edit.png"></div>
+            <div id="contact-buttons"><img id="delete-button" onclick="deleteTask(${id})" src="./assets/img/delete.png"> <img id="edit-button" src="./assets/img/edit.png"></div>
            
 
         </div>
