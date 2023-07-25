@@ -1,9 +1,23 @@
 .impressum{
     margin-left: 320px;
     margin-top: 172px;
+    margin-right: 88px;
+}
+#impressum-title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 h1{
     font-size: 61px;
     font-weight: 700;
     color: #4589FF;
+}
+#back-arrow{
+    padding: 4px;
+    border-radius: 10px;
+}
+#back-arrow:hover{
+    cursor: pointer;
+    background-color: #E3EEFF;
 }
