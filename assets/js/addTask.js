@@ -83,6 +83,8 @@ let tasks = [
 let subtasks = [];
 let contact;
 let urgency;
+let categoryColor;
+
 
 function addTaskRender(id) {
   docID("addTask").innerHTML = /*html*/ `
@@ -118,7 +120,7 @@ function addTaskRender(id) {
             <div class="add-task-due-date">
                <h2>Category</h2>
                <div class="add-task-select-contact-edit">
-                 <input autocomplete="off" onclick="showCategories()" required class="add-task-select-contact cursor-pointer" id="selectCategory" placeholder="Select Task category">
+                 <input autocomplete="off" onclick="showCategories()" oninput="markColor()" required class="add-task-select-contact cursor-pointer" id="selectCategory" placeholder="Select Task category">
                  <img id="categorySelectArrow" src="./assets/img/selectfieldArrow.png">
                  <div class="add-task-placeholder-color-category">
                    <img class="d-none" id="placeholderColorCategory" src="./assets/img/ellipseLightblue.png">
@@ -137,6 +139,7 @@ function addTaskRender(id) {
                      <img onclick="addColorToCategory(src)" id="red" src="./assets/img/ellipseRed.png">
                      <img onclick="addColorToCategory(src)" id="green" src="./assets/img/ellipseGreen.png">
                      <img onclick="addColorToCategory(src)" id="orange" src="./assets/img/ellipseOrange.png">
+                     <img onclick="addColorToCategory(src)" id="rosa" src="./assets/img/ellipseRosa.png">
                      <img onclick="addColorToCategory(src)" id="blue" src="./assets/img/ellipseBlue.png">
                  </div>
               </div>
@@ -245,12 +248,12 @@ function changeColor(i) {
   }
 }
 
-function createJsonTask(title, description, category, subtasks, urgency, date, firstName, lastName){
+function createJsonTask(title, description, category, subtasks, urgency, date, firstName, lastName, categoryColor){
   return {
     title: title,
     description: description,
     category: category,
-    "category-color": "#0038FF",
+    "category-color": categoryColor,
     progress: "1",
     subtasks: subtasks.length,
     "done-tasks": 0,
@@ -268,7 +271,6 @@ function newTask() {
   let category = document.getElementById(`selectCategory`).value;
   let description = document.getElementById(`description`).value;
   let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
- 
   taskAddedToBoard.classList.remove(`d-none`);
 
   setTimeout(() => {
@@ -282,7 +284,7 @@ function newTask() {
   let lastName = partOfContact[1];
 
   clearTaskMask();
-  let task = createJsonTask(title, description, category, subtasks, urgency, date, firstName, lastName);
+  let task = createJsonTask(title, description, category, subtasks, urgency, date, firstName, lastName, categoryColor);
   tasks.push(task);
   console.log(tasks);
 }
@@ -387,14 +389,14 @@ function newCategory() {
 
 let savedCategory;
 
-function pushCategoryToArray() {
+function pushCategoryToArray(categoryColor) {
   let selectCategory = document.getElementById(`selectCategory`).value;
   let showCategories = document.getElementById(`showCategories`);
   showCategories.classList.remove(`d-none`);
 
   let category = {
     name: selectCategory,
-    color: "#FF7A00",
+    color: categoryColor,
   };
 
   if (!categories.includes(selectCategory)) {
@@ -439,11 +441,24 @@ function cancelInputs(elementId) {
 function addColorToCategory(id) {
   let colorOfCategory = id;
 
-  placeholderColorCategory = document.getElementById(
-    `placeholderColorCategory`
-  );
+  placeholderColorCategory = document.getElementById(`placeholderColorCategory`);
   placeholderColorCategory.src = `${colorOfCategory}`;
   placeholderColorCategory.classList.remove(`d-none`);
+  if(id == "http://127.0.0.1:5500/assets/img/ellipseGreen.png"){
+    categoryColor = "#2AD300";
+  }else if(id == "http://127.0.0.1:5500/assets/img/ellipseOrange.png"){
+    categoryColor = "#FF7A00";
+  }else if(id == "http://127.0.0.1:5500/assets/img/ellipselightBlue.png"){
+    categoryColor = "#1FD7C1";
+  }else if(id == "http://127.0.0.1:5500/assets/img/ellipsered.png"){
+    categoryColor = "#FF0000";
+  }else if(id == "http://127.0.0.1:5500/assets/img/ellipseblue.png"){
+    categoryColor = "#0038FF";
+  }else if(id == "http://127.0.0.1:5500/assets/img/ellipseRosa.png"){
+    categoryColor = "#E200BE";
+  }
+  pushCategoryToArray(categoryColor);
+  console.log(categoryColor);
 }
 
 function chooseCategory(i) {
@@ -463,4 +478,17 @@ function chooseCategory(i) {
   placeholderColorCategory.classList.remove(`d-none`);
   selectCategory.style.paddingLeft = "0";
   showCategories.classList.add(`d-none`);
+}
+
+function markColor(){
+  let selectCategory = document.getElementById("selectCategory").value;
+  
+  if(selectCategory.includes("Sales")){
+    document.getElementById("rosa").style.boxShadow = "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
+    categories.push("#2AD300");
+  }else if(selectCategory.includes("Backoffice")){
+    document.getElementById("blue").style.boxShadow = "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
+  }else if(selectCategory.includes("Design")){
+    document.getElementById("orange").style.boxShadow = "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
+}
 }
