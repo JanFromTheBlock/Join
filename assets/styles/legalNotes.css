@@ -1,9 +1,9 @@
-.impressum{
+.legal-notice{
     margin-left: 320px;
     margin-top: 172px;
     margin-right: 88px;
 }
-#impressum-title{
+.legal-notice-title{
     display: flex;
     align-items: center;
     justify-content: space-between;
