@@ -1,24 +1,24 @@
 let categories = [
   {
     name: "Design",
-    color: "#FF7A00",
+    color: "./assets/img/ellipseOrange.png",
   },
   {
     name: "Sales",
-    color: "#FC71FF",
+    color: "./assets/img/ellipseRosa.png",
   },
   {
     name: "Backoffice",
-    color: "#1FD7C1",
+    color: "./assets/img/ellipseLightblue.png",
   },
   {
     name: "Media",
-    color: "#FFC701",
+    color: "./assets/img/ellipseBlue.png",
   },
   {
     name: "Marketing",
-    color: "#0038FF",
-  },
+    color: "./assets/img/ellipsegreen.png"
+  }
 ];
 
 let tasks = [
@@ -123,10 +123,10 @@ function addTaskRender(id) {
                  <input autocomplete="off" onclick="showCategories()" oninput="markColor()" required class="add-task-select-contact cursor-pointer" id="selectCategory" placeholder="Select Task category">
                  <img id="categorySelectArrow" src="./assets/img/selectfieldArrow.png">
                  <div class="add-task-placeholder-color-category">
-                   <img class="d-none" id="placeholderColorCategory" src="./assets/img/ellipseLightblue.png">
+                   <img class="d-none" id="placeholderColorCategory" src="${categories[`color`]}">
                  </div>
                  <div class="add-task-edit-category d-none" id="editCategory">
-                    <img onclick="pushCategoryToArray(placeholderColorCategory)" class="cursor-pointer" src="./assets/img/logoHaken.png">
+                    <img onclick="finishPushCategoryToArray()" class="cursor-pointer" src="./assets/img/logoHaken.png">
                     <img src="./assets/img/seperator.png">
                     <img class="cursor-pointer" onclick="cancelCategory()" src="./assets/img/logoCancel.png">
                  </div>
@@ -176,20 +176,17 @@ function addTaskRender(id) {
 
         </div>
     </div>
-    <img id="taskAddedToBoard" class="task-added-to-board d-none" src="./assets/img/logoAddedToBoard.png">
+    <img id="taskAddedToBoard" class="task-added-to-board-hide" src="./assets/img/logoAddedToBoard.png">
     `;
 }
 
 function showSubtasks() {
   let subtaskArea = document.getElementById(`subTaskArea`);
   let inputSubtask = document.getElementById(`inputSubtask`).value;
-
+  
   document.getElementById(`inputSubtask`).value = ``;
-
   subtaskArea.classList.remove(`d-none`);
-
   subtasks.push(inputSubtask);
-
   subtaskArea.innerHTML += `
   <div class="subTaskArea">
   <input class="cursor-pointer" type="checkbox">
@@ -271,12 +268,12 @@ function newTask() {
   let category = document.getElementById(`selectCategory`).value;
   let description = document.getElementById(`description`).value;
   let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
-  taskAddedToBoard.classList.remove(`d-none`);
-
+  taskAddedToBoard.classList.remove(`task-added-to-board-hide`);
+  taskAddedToBoard.classList.add(`task-added-to-board`);
+  
   setTimeout(() => {
-    let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
-    taskAddedToBoard.classList.add(`d-none`);
-  }, 1000);
+    taskAddedToBoard.classList.add(`task-added-to-board-hide`);
+  }, 2000);
 
   let contact = document.getElementById(`selectContact`).value;
   let partOfContact = contact.split(" ");
@@ -317,10 +314,16 @@ function showContactList() {
   selectContact.classList.add(`hide-cursor`);
 }
 
+let isShowAddedCategoryCalled = false;
+
 function showCategories() {
   let selectCategory = document.getElementById(`selectCategory`);
   toggleVisibility("showCategories");
   selectCategory.classList.add(`hide-cursor`);
+  if (!isShowAddedCategoryCalled) {  // zeigt die gespeicherten Categories nur einmal an auch bei mehrmaligem klicken
+    showAddedCategory(); // zeigt die gespeicherten Catagories an
+    isShowAddedCategoryCalled = true;
+  }
 }
 
 let clicked = true;
@@ -355,7 +358,6 @@ function showAddedContact() {
   contact = document.getElementById(`selectContact`).value;
   let initials = document.getElementById(`initials`);
   initials.classList.remove(`d-none`);
-
   getInitials(contact);
 }
 
@@ -377,7 +379,6 @@ function newCategory() {
   let editCategory = document.getElementById(`editCategory`);
   let selectCategory = document.getElementById(`selectCategory`);
   let categoryColors = document.getElementById(`categoryColors`);
-
   categoryColors.classList.remove(`d-none`);
   categorySelectArrow.classList.add(`d-none`);
   editCategory.classList.remove(`d-none`);
@@ -391,20 +392,20 @@ let savedCategory;
 
 function pushCategoryToArray(categoryColor) {
   let selectCategory = document.getElementById(`selectCategory`).value;
-  let showCategories = document.getElementById(`showCategories`);
-  showCategories.classList.remove(`d-none`);
-
   let category = {
     name: selectCategory,
-    color: categoryColor,
+    color: categoryColor
   };
 
   if (!categories.includes(selectCategory)) {
     categories.push(category);
-    showAddedCategory();
   } else {
     alert(`Ist bereits vorhanden`);
   }
+}
+
+function finishPushCategoryToArray(){
+  categoryColors.classList.add(`d-none`);
 }
 
 function showAddedCategory() {
@@ -413,9 +414,9 @@ function showAddedCategory() {
 
   for (let i = 0; i < categories.length; i++) {
     const category = categories[i];
-
+    
     showCategories.innerHTML += /*html*/ `<span id="savedCategory${i}" onclick="chooseCategory(${i})" class="add-task-single-priority">
-    ${category[`name`]}<img src=${colorOfCategory}></span>`;
+    ${category[`name`]}<img src=${category['color']}></span>`;
   }
 }
 
@@ -440,19 +441,21 @@ function cancelInputs(elementId) {
 
 function addColorToCategory(id) {
   let colorOfCategory = id;
-
+  
   placeholderColorCategory = document.getElementById(`placeholderColorCategory`);
   placeholderColorCategory.src = `${colorOfCategory}`;
   placeholderColorCategory.classList.remove(`d-none`);
+
+
   if(id == "http://127.0.0.1:5500/assets/img/ellipseGreen.png"){
     categoryColor = "#2AD300";
   }else if(id == "http://127.0.0.1:5500/assets/img/ellipseOrange.png"){
     categoryColor = "#FF7A00";
-  }else if(id == "http://127.0.0.1:5500/assets/img/ellipselightBlue.png"){
+  }else if(id == "http://127.0.0.1:5500/assets/img/ellipseLightblue.png"){
     categoryColor = "#1FD7C1";
-  }else if(id == "http://127.0.0.1:5500/assets/img/ellipsered.png"){
+  }else if(id == "http://127.0.0.1:5500/assets/img/ellipseRed.png"){
     categoryColor = "#FF0000";
-  }else if(id == "http://127.0.0.1:5500/assets/img/ellipseblue.png"){
+  }else if(id == "http://127.0.0.1:5500/assets/img/ellipseBlue.png"){
     categoryColor = "#0038FF";
   }else if(id == "http://127.0.0.1:5500/assets/img/ellipseRosa.png"){
     categoryColor = "#E200BE";
@@ -465,14 +468,13 @@ function chooseCategory(i) {
   let savedCategory = document.getElementById(`savedCategory${i}`);
   let showCategories = document.getElementById(`showCategories`);
   let selectCategory = document.getElementById(`selectCategory`);
-
+  
   // Zugriff auf das <img>-Element innerhalb des savedCategory-Containers
   let savedCategoryImg = savedCategory.querySelector("img");
-
   // Ersetze das src-Attribut des placeholderColorCategory-Bildes mit dem des savedCategory-Bildes
   let placeholderColorCategory = document.getElementById("placeholderColorCategory");
   placeholderColorCategory.src = savedCategoryImg.src;
-
+ 
   // Setze den Wert des selectCategory-Eingabefeldes auf den Text der ausgewählten Kategorie
   selectCategory.value = savedCategory.textContent;
   placeholderColorCategory.classList.remove(`d-none`);
@@ -487,8 +489,12 @@ function markColor(){
     document.getElementById("rosa").style.boxShadow = "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
     categories.push("#2AD300");
   }else if(selectCategory.includes("Backoffice")){
-    document.getElementById("blue").style.boxShadow = "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
+    document.getElementById("lightBlue").style.boxShadow = "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
   }else if(selectCategory.includes("Design")){
     document.getElementById("orange").style.boxShadow = "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
+  }else if(selectCategory.includes("Marketing")){
+  document.getElementById("green").style.boxShadow = "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
+}else if(selectCategory.includes("Media")){
+  document.getElementById("blue").style.boxShadow = "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
 }
 }

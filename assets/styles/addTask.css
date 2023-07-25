@@ -161,7 +161,7 @@ input[type="date"]::placeholder {
 #lightBlue {
   height: 20px;
   width: 20px;
-  background-color: lightblue;
+  background-color: #1FD7C1;
   border-radius: 46px;
   border: 2px solid white;
   margin-right: 15px;
@@ -418,6 +418,13 @@ input[type="date"]::placeholder {
 
 .task-added-to-board {
   position: fixed;
-  margin-top: 425px;
+  margin-top: 450px;
   margin-left: 40%;
+  transition: margin-top 300ms;
+}
+
+.task-added-to-board-hide{
+  margin-top: 1500px;
+  margin-left: 40%;
+  overflow: hidden;
 }
