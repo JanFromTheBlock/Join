@@ -37,3 +37,9 @@ function addBoardInit(){
     activeSite("menu-board");
     addBoardRender();
 }
+
+function legalNotesInit(){
+    headerRender();
+    navRender();
+    hideElements();
+}
