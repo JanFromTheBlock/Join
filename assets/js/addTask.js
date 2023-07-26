@@ -90,9 +90,6 @@ let contact;
 let urgency;
 let categoryColor;
 
-
-
-
 function showSubtasks() {
   let subtaskArea = document.getElementById(`subTaskArea`);
   let inputSubtask = document.getElementById(`inputSubtask`).value;
@@ -143,7 +140,6 @@ function changeColorLow() {
   urgentLogo.src = `./assets/img/urgentLogo.png`;
   mediumLogo.src = `./assets/img/mediumLogo.png`;
 }
-
 
 function changeColor(i) {
   if (i === "urgent") {
@@ -274,6 +270,8 @@ function showAddedContact() {
   getInitials(contact);
 }
 
+// Initialien generieren
+
 function getInitials(contact) {
   // Teile den Namen in einzelne Wörter auf
   let words = contact.split(" ");
@@ -353,7 +351,6 @@ function cancelInputs(elementId) {
 
 function addColorToCategory(id) {
   let colorOfCategory = id;
-  
   placeholderColorCategory = document.getElementById(`placeholderColorCategory`);
   placeholderColorCategory.src = `${colorOfCategory}`;
   placeholderColorCategory.classList.remove(`d-none`);
@@ -372,7 +369,6 @@ function addColorToCategory(id) {
     categoryColor = "#E200BE";
   }
   pushCategoryToArray(categoryColor);
-  console.log(categoryColor);
 }
 
 function chooseCategory(i) {
@@ -380,13 +376,11 @@ function chooseCategory(i) {
   let showCategories = document.getElementById(`showCategories`);
   let selectCategory = document.getElementById(`selectCategory`);
   let categoryImg = categories[i][`img`];
- 
   // Zugriff auf das <img>-Element innerhalb des savedCategory-Containers
   let savedCategoryImg = savedCategory.querySelector("img");
   // Ersetze das src-Attribut des placeholderColorCategory-Bildes mit dem des savedCategory-Bildes
   let placeholderColorCategory = document.getElementById("placeholderColorCategory");
   placeholderColorCategory.src = savedCategoryImg.src;
- 
   // Setze den Wert des selectCategory-Eingabefeldes auf den Text der ausgewählten Kategorie
   selectCategory.value = savedCategory.textContent;
   placeholderColorCategory.classList.remove(`d-none`);
