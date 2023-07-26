@@ -9,7 +9,7 @@ function addBoardRender() {
         <div id="board-input">
             <div id="find-task">
                 <input id="input" type="text" placeholder="Find Task" onkeyup="filterTasks(); handleKeyPress(event)">
-                <div>
+                <div id="img-search-margin">
                     <img id="img-search" onclick="handleImgClick()" src="./assets/img/search.png">
                 </div>
                 
