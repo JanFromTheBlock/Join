@@ -1,5 +1,6 @@
 #login-con {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
@@ -43,6 +44,20 @@
 }
 
 #login-signup-con button {
+    display: flex;
+    padding: 10px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #4589FF;
+    font-size: 23px;
+    line-height: 120%;
+    color: #FFFFFF;
+}
+
+#login-signup-con button:hover {
     display: flex;
     padding: 10px 16px;
     justify-content: center;
@@ -109,13 +124,14 @@
     font-size: 19px;
     line-height: 120%;
     border: none;
+    outline: none;
 }
 
 #forget-con {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 58px;
+    gap: 53px;
 }
 
 #rem-checkbox {
@@ -128,6 +144,14 @@
 #rem-checkbox input{
     width: 24px;
     height: 24px;
+    color: #005DFF;
+    accent-color: #FFFFFF;
+    border-color: #005DFF;
+    stroke: #005DFF;
+}
+
+#rem-checkbox input:checked {
+    border-color: solid 1px #005DFF;
 }
 
 #rem-checkbox span {
@@ -136,18 +160,24 @@
     font-family: 'Open Sans';
 }
 
+
 #forgot-link {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-}
-
-#forgot-link span{
+    text-decoration: none;
     color: #005DFF;
     font-size: 16px;
     line-height: 120%;
+    margin-left: 10px;
 }
+
+#forgot-link:hover {
+    font-weight: 600;
+    text-decoration: underline;
+    margin-left: 1px;
+}
+
 
 #login-btn-con {
     display: flex;
@@ -167,6 +197,12 @@
     color: #FFFFFF;
     font-size: 23px;
     line-height: 120%;
+    border: none;
+}
+
+#login-btn:hover {
+    background: #005DFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 #login-guest {
@@ -183,7 +219,35 @@
     line-height: 120%;
 }
 
+#login-guest:hover {
+    border: 2px solid #4589FF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    color: #4589FF;
+    padding: 9px 34px;
+}
 
+#login-legal {
+    position: absolute;
+    width: 240px;
+    height: 35px;
+    flex-shrink: 0;
+    bottom: 42px;
+}
+
+#login-legal a {
+    display: inline-flex;
+    padding: 8px;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    line-height: 120%;
+    text-decoration: none;
+    color: black;
+}
+
+#login-legal a:hover {
+    color: #005DFF;
+}
 
 @keyframes colorChange {
     100% {
