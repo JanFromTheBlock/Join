@@ -146,7 +146,7 @@ function addTaskRender(id) {
                </div>
   
              <div class="add-task-button">
-              <button onclick="clearTask()" class="add-task-button-clear cursor-pointer">Clear<img src="./assets/img/xClear.png"></button>  
+              <button onclick="clearTask()" class="add-task-button-clear cursor-pointer">Clear x</button>  
               <button onclick="newTask(urgency)" class="add-task-button-create cursor-pointer">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
             </div>
   

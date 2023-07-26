@@ -375,6 +375,11 @@ input[type="date"]::placeholder {
   height: 61px;
 }
 
+.add-task-button-clear:hover{
+  box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.3);
+  border: 2px solid #4589FF;
+}
+
 .add-task-button-create {
   background-color: #4589ff;
   color: white;
