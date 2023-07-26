@@ -167,6 +167,10 @@ input[type="date"]::placeholder {
   margin-right: 15px;
 }
 
+#lightBlue:hover{
+  cursor: pointer;
+}
+
 #red {
   height: 20px;
   width: 20px;

@@ -111,12 +111,12 @@ function addTaskRender(id) {
                      <span onclick="newCategory()" class="add-task-single-priority">New category</span>
                   </div>
                    <div id="categoryColors" class="add-task-category-colors d-none">
-                       <img onclick="addColorToCategory(src)" id="lightBlue" src="./assets/img/ellipseLightblue.png">
-                       <img onclick="addColorToCategory(src)" id="red" src="./assets/img/ellipseRed.png">
-                       <img onclick="addColorToCategory(src)" id="green" src="./assets/img/ellipseGreen.png">
-                       <img onclick="addColorToCategory(src)" id="orange" src="./assets/img/ellipseOrange.png">
-                       <img onclick="addColorToCategory(src)" id="rosa" src="./assets/img/ellipseRosa.png">
-                       <img onclick="addColorToCategory(src)" id="blue" src="./assets/img/ellipseBlue.png">
+                       <img class="cursor-pointer" onclick="addColorToCategory(src)" id="lightBlue" src="./assets/img/ellipseLightblue.png">
+                       <img class="cursor-pointer" onclick="addColorToCategory(src)" id="red" src="./assets/img/ellipseRed.png">
+                       <img class="cursor-pointer" onclick="addColorToCategory(src)" id="green" src="./assets/img/ellipseGreen.png">
+                       <img class="cursor-pointer" onclick="addColorToCategory(src)" id="orange" src="./assets/img/ellipseOrange.png">
+                       <img class="cursor-pointer" onclick="addColorToCategory(src)" id="rosa" src="./assets/img/ellipseRosa.png">
+                       <img class="cursor-pointer" onclick="addColorToCategory(src)" id="blue" src="./assets/img/ellipseBlue.png">
                    </div>
                 </div>
           </form>
