@@ -89,3 +89,9 @@
 #accept-checkbox span:hover ~ #accept-me + label  {
     background-image: url('../img/blue-checkbox-hover.svg');
 }
+
+#loss-span {
+    font-size: 23px;
+    line-height: 120%;
+    font-family: 'Open Sans';
+}
