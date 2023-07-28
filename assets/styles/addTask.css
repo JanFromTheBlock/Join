@@ -432,9 +432,9 @@ input[type="date"]::placeholder {
 .task-added-to-board-hide{
   margin-top: 1500px;
   margin-left: 40%;
-  overflow: hidden;
 }
 
+/* AddTask hinzufügen zu Board*/
 
 .add-task-to-board{
   position: relative;
@@ -448,11 +448,13 @@ input[type="date"]::placeholder {
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
   box-shadow: -2px 2px 7px -6px;
-  transition: margin-left 300ms;
+ 
 }
 
 .add-task-to-board-hide{
   margin-left: 3000px;
+  overflow: hidden;
+  transition: margin-left 300ms;
 }
 
 .add-task-h2{

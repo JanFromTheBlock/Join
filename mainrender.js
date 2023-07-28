@@ -157,11 +157,10 @@ function addTaskRender(id) {
   }
 
   function renderAddTaskToBoard(){
-    let addTask = document.getElementById(`renderAddTask`);
+    let addTask = document.getElementById(`renderAddTaskToBoard`);
     addTask.innerHTML += /*html*/ `
   
- 
-    <div class="add-task add-task-to-board">
+    <div id="addTaskToBoardUnderDiv" class="add-task add-task-to-board add-task-to-board-hide d-none">
         <form>
         <h2 class="add-task-h2">Add Task</h2>
           <input autocomplete="off" id="inputFieldTitle" required class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
@@ -248,9 +247,5 @@ function addTaskRender(id) {
           </div>
 
         </div>
-    </div>
-    <img id="taskAddedToBoard" class="task-added-to-board-hide" src="./assets/img/logoAddedToBoard.png">
-
-    `;
- 
+    </div>`;
   }

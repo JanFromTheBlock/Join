@@ -305,13 +305,13 @@ function changeDeleteImage(isHovering) {
 // öffnet AddTask
 
  function openAddTask(){
-    let addTask = document.getElementById(`renderAddTask`);
+    let addTask = document.getElementById(`addTaskToBoardUnderDiv`);
     let backgroundBoard = document.getElementById(`board`);
     let backgroundNav = document.getElementById(`nav`);
     let backgroundHeader = document.getElementById(`header`);
+    addTask.classList.add(`add-task-to-board`);
     addTask.classList.remove(`add-task-to-board-hide`);
-
-    addTask.classList.remove(`add-task-to-board-hide`);
+    addTask.classList.remove(`d-none`);
     backgroundBoard.style.opacity = "0.4";
     backgroundNav.style.opacity = "0.4";
     backgroundHeader.style.opacity = "0.4";
