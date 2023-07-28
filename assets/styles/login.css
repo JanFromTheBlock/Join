@@ -22,7 +22,7 @@
     animation-fill-mode: forwards;
 }
 
-#login-brand {
+.login-brand {
     position: absolute;
     top: 80px;
     left: 77px;
@@ -45,6 +45,10 @@
 
 #login-signup-con button {
     padding: 10px 16px;
+}
+
+#login-signup-con a {
+    text-decoration: none;
 }
 
 #login-form {

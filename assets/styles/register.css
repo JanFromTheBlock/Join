@@ -1,0 +1,91 @@
+#signup-con {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 100vh;
+    background: #4589FF;
+}
+
+#signup-brand {
+    width: 101px;
+    height: 122px;
+}
+
+#signup-form {
+    display: inline-flex;
+    padding: 48px 80px;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+    border-radius: 30px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+}
+
+#signup-headline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+#signup-headline span{
+    color: #000000;
+    text-align: center;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+#accept-checkbox {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+#accept-me {
+    display: none;
+}
+
+#accept-me + label {
+    width: 24px;
+    height: 24px;
+    background-image: url('../img/blue-checkbox.svg');
+}
+
+#accept-me:hover + label{
+    background-image: url('../img/blue-checkbox-hover.svg');
+}
+
+#accept-me:checked + label {
+    background-image: url('../img/blue-checkbox-checked.svg');
+}
+
+#accept-me:checked:hover + label {
+    background-image: url('../img/blue-checkbox-checked-hover.svg');
+}
+
+#accept-checkbox span{
+    margin-left: 8px;
+}
+
+#accept-checkbox a {
+    color: #005DFF;
+    text-decoration: none;
+    margin-left: 8px;
+    margin-right: 4px;
+}
+
+#accept-checkbox a:hover {
+    font-weight: 600;
+    text-decoration-line: underline;
+    margin-left: 3px;
+}
+
+#accept-checkbox span:hover ~ #accept-me + label  {
+    background-image: url('../img/blue-checkbox-hover.svg');
+}

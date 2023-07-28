@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./assets/styles/register.css">
+    <link rel="stylesheet" href="./assets/styles/login.css">
+    <script src="./assets/js/signup.js"></script>
+</head>
+
+<body>
+    <div id="signup-con">
+        <img id='signup-brand' class="login-brand" src="./assets/img/logo624.png">
+        <form id="signup-form" onsubmit="return checkForm(this);">
+            <div id="signup-headline">
+                <span>Sign up</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="154" height="4" viewBox="0 0 154 4" fill="none">
+                    <path d="M152 2L2 2" stroke="#4589FF" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div id="signup-user">
+                <div id="signup-name" class="epass">
+                    <input type="name" required placeholder="Name">
+                    <img src="./assets/img/person-icon.svg">
+                </div>
+                <div id="signup-email" class="epass">
+                    <input type="email" required placeholder="Email">
+                    <img src="./assets/img/mail-icon.svg">
+                </div>
+                <div id="signup-pass" class="epass">
+                    <input type="password" required placeholder="Password">
+                    <img src="./assets/img/lock-icon.svg">
+                </div>
+                <div id="signup-pass-confirm" class="epass">
+                    <input id="signup-pass" type="password" required placeholder="Confirm Password">
+                    <img src="./assets/img/lock-icon.svg">
+                </div>
+            </div>
+            <div id="accept-con">
+                <div id="accept-checkbox">
+                    <span>I accept the <a href="./privatePolicy.html">Private Policy</a></span>
+                    <input type="checkbox" id="accept-me" required name="policy">
+                    <label for="accept-me"></label>
+                </div>
+            </div>
+            <button class="login-btn">Sign up</button>
+        </form>
+    </div>
+</body>
+
+</html>
