@@ -160,7 +160,7 @@ function addTaskRender(id) {
     let addTask = document.getElementById(`renderAddTaskToBoard`);
     addTask.innerHTML += /*html*/ `
   
-    <div id="addTaskToBoardUnderDiv" class="add-task add-task-to-board add-task-to-board-hide d-none">
+    <div id="addTaskToBoardUnderDiv" class="add-task add-task-to-board add-task-to-board-hide">
         <form>
         <h2 class="add-task-h2-big">Add Task</h2>
           <input autocomplete="off" id="inputFieldTitle" required class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">

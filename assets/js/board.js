@@ -309,9 +309,8 @@ function changeDeleteImage(isHovering) {
     let backgroundBoard = document.getElementById(`board`);
     let backgroundNav = document.getElementById(`nav`);
     let backgroundHeader = document.getElementById(`header`);
-    addTask.classList.add(`add-task-to-board`);
     addTask.classList.remove(`add-task-to-board-hide`);
-    addTask.classList.remove(`d-none`);
+    addTask.classList.add(`add-task-to-board`);
     backgroundBoard.style.opacity = "0.4";
     backgroundNav.style.opacity = "0.4";
     backgroundHeader.style.opacity = "0.4";

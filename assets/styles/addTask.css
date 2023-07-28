@@ -448,13 +448,12 @@ input[type="date"]::placeholder {
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
   box-shadow: -2px 2px 7px -6px;
- 
+  transition: margin-left 300ms;
 }
 
 .add-task-to-board-hide{
   margin-left: 3000px;
   overflow: hidden;
-  transition: margin-left 300ms;
 }
 
 .add-task-h2-big{
@@ -472,4 +471,8 @@ input[type="date"]::placeholder {
   margin-bottom: 20px;
   margin-left: -471px;
   margin-top: 24px;
+}
+
+.overflow-hidden{
+  overflow: hidden;
 }
