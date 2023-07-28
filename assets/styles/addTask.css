@@ -457,8 +457,8 @@ input[type="date"]::placeholder {
   transition: margin-left 300ms;
 }
 
-.add-task-h2{
-  font-size: 48px;
+.add-task-h2-big{
+  font-size: 48px!important;
 }
 
 .add-task-button-create-board{

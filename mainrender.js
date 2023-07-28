@@ -162,7 +162,7 @@ function addTaskRender(id) {
   
     <div id="addTaskToBoardUnderDiv" class="add-task add-task-to-board add-task-to-board-hide d-none">
         <form>
-        <h2 class="add-task-h2">Add Task</h2>
+        <h2 class="add-task-h2-big">Add Task</h2>
           <input autocomplete="off" id="inputFieldTitle" required class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
           <div class="add-task-select-contact-edit">
              <input autocomplete="off" required onclick ="showContactList()" placeholder="Selected contacts to assign" class="add-task-select-contact cursor-pointer" id="selectContact" type="email"> 
