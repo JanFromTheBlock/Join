@@ -434,3 +434,40 @@ input[type="date"]::placeholder {
   margin-left: 40%;
   overflow: hidden;
 }
+
+
+.add-task-to-board{
+  position: relative;
+  background-color: white;
+  margin-left: 180px;
+  margin-top: -817px;
+  padding-top: 20px;
+  padding-left: 16px;
+  width: 440px;
+  z-index: 3;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  box-shadow: -2px 2px 7px -6px;
+  transition: margin-left 300ms;
+}
+
+.add-task-to-board-hide{
+  margin-left: 3000px;
+}
+
+.add-task-h2{
+  font-size: 48px;
+}
+
+.add-task-button-create-board{
+  background-color: #4589ff;
+  color: white;
+  border-radius: 10px;
+  border: 1px solid;
+  font-size: 23px;
+  width: 180px;
+  height: 61px;
+  margin-bottom: 20px;
+  margin-left: -471px;
+  margin-top: 24px;
+}

@@ -14,7 +14,7 @@ function addBoardRender() {
                 </div>
                 
             </div>
-            <button id="board-button">Add Task <span id="board-button-plus">+</span></button>
+            <button onclick="openAddTask()" id="board-button">Add Task <span id="board-button-plus">+</span></button>
         </div>
         <div id="task-area"></div>
     `
@@ -301,3 +301,18 @@ function changeDeleteImage(isHovering) {
       deleteButton.src = './assets/img/delete.png';
     }
   }
+
+// öffnet AddTask
+
+ function openAddTask(){
+    let addTask = document.getElementById(`renderAddTask`);
+    let backgroundBoard = document.getElementById(`board`);
+    let backgroundNav = document.getElementById(`nav`);
+    let backgroundHeader = document.getElementById(`header`);
+    addTask.classList.remove(`add-task-to-board-hide`);
+
+    addTask.classList.remove(`add-task-to-board-hide`);
+    backgroundBoard.style.opacity = "0.4";
+    backgroundNav.style.opacity = "0.4";
+    backgroundHeader.style.opacity = "0.4";
+ }

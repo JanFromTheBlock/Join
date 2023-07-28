@@ -192,6 +192,7 @@ function newTask() {
   clearTaskMask();
   let task = createJsonTask(title, description, category, subtasks, urgency, date, firstName, lastName, categoryColor);
   tasks.push(task);
+  console.log(tasks);
 }
 
 function clearTaskMask() {

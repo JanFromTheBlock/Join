@@ -36,6 +36,7 @@ function addBoardInit(){
     navRender();
     activeSite("menu-board");
     addBoardRender();
+    renderAddTaskToBoard();
 }
 
 function legalNotesInit(){
