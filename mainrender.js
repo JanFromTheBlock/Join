@@ -247,5 +247,7 @@ function addTaskRender(id) {
           </div>
 
         </div>
-    </div>`;
+    </div>
+    <img id="taskAddedToBoard" class="task-added-to-board-hide" src="./assets/img/logoAddedToBoard.png">
+    `;
   }

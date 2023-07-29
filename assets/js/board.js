@@ -316,5 +316,4 @@ function changeDeleteImage(isHovering) {
     backgroundBoard.style.opacity = "0.4";
     backgroundNav.style.opacity = "0.4";
     backgroundHeader.style.opacity = "0.4";
-
  }
