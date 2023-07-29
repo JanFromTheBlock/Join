@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="./assets/styles/register.css">
     <link rel="stylesheet" href="./assets/styles/login.css">
     <script src="./assets/js/signup.js"></script>
+    <script src="script.js"></script>
 </head>
 
 <body>
     <div id="signup-con">
         <img id='signup-brand' class="login-brand" src="./assets/img/logo624.png">
-        <form id="signup-form" onsubmit="newUser()">
+        <form id="signup-form" onsubmit="newUser(); return false">
             <div id="signup-headline">
                 <span>Sign up</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="154" height="4" viewBox="0 0 154 4" fill="none">
@@ -22,20 +23,20 @@
                 </svg>
             </div>
             <div id="signup-user">
-                <div id="signup-name" class="epass">
-                    <input type="name" required placeholder="Name">
+                <div class="epass">
+                    <input id="signup-name" type="name" required placeholder="Name">
                     <img src="./assets/img/person-icon.svg">
                 </div>
-                <div id="signup-email" class="epass">
-                    <input type="email" required placeholder="Email">
+                <div class="epass">
+                    <input id="signup-email" type="email" required placeholder="Email">
                     <img src="./assets/img/mail-icon.svg">
                 </div>
-                <div id="signup-pass" class="epass">
-                    <input type="password" required placeholder="Password">
+                <div class="epass">
+                    <input id="signup-pass" type="password" required placeholder="Password">
                     <img src="./assets/img/lock-icon.svg">
                 </div>
                 <div id="signup-pass-confirm" class="epass">
-                    <input id="signup-pass" type="password" required placeholder="Confirm Password">
+                    <input id="signup-pass-con" type="password" required placeholder="Confirm Password">
                     <img src="./assets/img/lock-icon.svg">
                 </div>
             </div>

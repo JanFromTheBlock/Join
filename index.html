@@ -13,7 +13,7 @@
     <div id="login-con">
         <img id="login-img" src="./assets/img/logo624.png">
         <img class="login-brand" src="./assets/img/logo624-blue.svg">
-        <form id="login-form" onsubmit="login()">
+        <form id="login-form" onsubmit="login(); return false">
             <div id="login-headline">
                 <span>Log in</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="154" height="4" viewBox="0 0 154 4" fill="none">
@@ -22,11 +22,12 @@
             </div>
             <div id="login-user" class="login-user">
                 <div id="login-email" class="epass">
-                    <input type="email" required placeholder="Email">
+                    <input id="email-input" type="email" required placeholder="Email">
                     <img src="./assets/img/mail-icon.svg">
                 </div>
                 <div id="login-pass" class="epass">
-                    <input type="password" required placeholder="Password">
+                    <input id="pass-input" type="password" required placeholder="Password">
+                    <span id="pass-input-span"></span>
                     <img src="./assets/img/lock-icon.svg">
                 </div>
             </div>
@@ -52,5 +53,14 @@
             <a href="./legalNotes.html">Legal Notice</a>
         </div>
     </div>
+    <div id="msgBox"></div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const msg = urlParams.get('msg');
+
+        if(msg){
+            docID('msgBox').innerHTML = msg;
+        }
+    </script>
 </body>
 </html>
