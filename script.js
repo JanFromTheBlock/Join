@@ -66,3 +66,9 @@ function legalNotesInit(){
     navRender();
     hideElements();
 }
+
+function contactsInit(){
+    headerRender();
+    navRender();
+    activeSite("menu-contacts");
+}
