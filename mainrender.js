@@ -1,8 +1,8 @@
 let menuId = ["menu-summary", "menu-board", "menu-add", "menu-contacts"];
 
 function headerRender() {
-    let userIni = "SM"
-    docID('header').innerHTML =/*html*/`
+  let userIni = "SM"
+  docID('header').innerHTML =/*html*/`
         <img class="header-img" src="./assets/img/logo624.png">
         <div class="header-data">
             <span>Kanban Project Management Tool</span>
@@ -19,51 +19,51 @@ function headerRender() {
 }
 
 function navRender() {
-    docID('nav').innerHTML = /*html*/`
+  docID('nav').innerHTML = /*html*/`
         <div id="menu" class="menu"></div>
         <div class="legal">
-            <div class="topic">
+            <a href = "./legalNotes.html" class="topic" id = "legal-notice" onclick = "openLegalNotice()">
                 <img src="./assets/img/legal.png">
                 <span>Legal notice</span>
-            </div>
-            <div class="topic">
+            </a>
+            <a href = "./privatePolicy.html" class="topic" id = "private-policy" onclick = "openPrivatePolicy()">
                 <img src="./assets/img/legal.png">
                 <span>Private policy</span>
-            </div>
+            </a>
         </div>
     `
-    menuRender();
+  menuRender();
 }
 
 function menuRender() {
-    docID("menu").innerHTML = "";
-    let urls = ["./summary.html", "./board.html", "./addTask.html", "./contacts.html"];
-    let names =  ["Summary", "Board", "Add Task", "Contacts"];
-    let img = ["Summary", "Board", "add_task", "contact" ]
+  docID("menu").innerHTML = "";
+  let urls = ["./summary.html", "./board.html", "./addTask.html", "./contacts.html"];
+  let names = ["Summary", "Board", "Add Task", "Contacts"];
+  let img = ["Summary", "Board", "add_task", "contact"]
 
-    for (let i = 0; i < menuId.length; i++) {
-        docID("menu").innerHTML += /*html*/`
+  for (let i = 0; i < menuId.length; i++) {
+    docID("menu").innerHTML += /*html*/`
             <a id="${menuId[i]}" href="${urls[i]}" class="topic">
                 <img src="./assets/img/${img[i]}.png">
                 <span>${names[i]}</span>
             </a>
-        ` 
-    }
+        `
+  }
 }
 
 
 function activeSite(id) {
-    for (let i = 0; i < menuId.length; i++) {
-        if (menuId[i] == id) {
-            docID(menuId[i]).classList.add("topic-active");
-        }else {
-            docID(menuId[i]).classList.remove("topic-active");
-        }
+  for (let i = 0; i < menuId.length; i++) {
+    if (menuId[i] == id) {
+      docID(menuId[i]).classList.add("topic-active");
+    } else {
+      docID(menuId[i]).classList.remove("topic-active");
     }
+  }
 }
 
 function addTaskRender(id) {
-    docID("addTask").innerHTML = /*html*/ `
+  docID("addTask").innerHTML = /*html*/ `
       <div class="add-task">
           <form>
             <input autocomplete="off" id="inputFieldTitle" required class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
@@ -154,11 +154,11 @@ function addTaskRender(id) {
       </div>
       <img id="taskAddedToBoard" class="task-added-to-board-hide" src="./assets/img/logoAddedToBoard.png">
       `;
-  }
+}
 
-  function renderAddTaskToBoard(){
-    let addTask = document.getElementById(`renderAddTaskToBoard`);
-    addTask.innerHTML += /*html*/ `
+function renderAddTaskToBoard() {
+  let addTask = document.getElementById(`renderAddTaskToBoard`);
+  addTask.innerHTML += /*html*/ `
   
     <div id="addTaskToBoardUnderDiv" class="add-task add-task-to-board add-task-to-board-hide">
         <form>
@@ -250,4 +250,4 @@ function addTaskRender(id) {
     </div>
     <img id="taskAddedToBoard" class="task-added-to-board-hide" src="./assets/img/logoAddedToBoard.png">
     `;
-  }
+}
