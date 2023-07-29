@@ -66,15 +66,18 @@ function addTaskRender(id) {
   docID("addTask").innerHTML = /*html*/ `
       <div class="add-task">
           <form>
-            <input autocomplete="off" id="inputFieldTitle" required class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
+            <input required autocomplete="off" id="inputFieldTitle" class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
+          </form>
             <div class="add-task-select-contact-edit">
-               <input autocomplete="off" required onclick ="showContactList()" placeholder="Selected contacts to assign" class="add-task-select-contact cursor-pointer" id="selectContact" type="email"> 
-               <img id="contactSelectArrow" src="./assets/img/selectfieldArrow.png">
-               <div class="d-none" id="editContact">
+              <form onclick ="showContactList()">
+                 <input autocomplete="off" required placeholder="Selected contacts to assign" class="add-task-select-contact cursor-pointer" id="selectContact" type="email"> 
+                 <img id="contactSelectArrow" src="./assets/img/selectfieldArrow.png">
+              </form>
+              <div class="d-none" id="editContact">
                  <img onclick="showAddedContact()" class="cursor-pointer" src="./assets/img/logoHaken.png">
                  <img src="./assets/img/seperator.png">
                  <img class="cursor-pointer" onclick="cancelContact()" src="./assets/img/logoCancel.png">
-               </div>
+              </div>
             </div>
             <div id="showContacts" class="add-task-hide-contacts add-task-choose-contacts">
                 <span onclick="chooseContact(1)" class="add-task-single-contact">You <img id="chooseBoxContact1" src="./assets/img/logoChooseContact.png"></span>
@@ -83,12 +86,12 @@ function addTaskRender(id) {
             </div>
             <div class="add-task-initials-area" id="initials"></div>
           
-          </form>
+          
   
           <form>
             <div class="add-task-due-date">
                <h2>Due Date</h2>
-               <input id="inputDate" class="add-task-due-date-input cursor-pointer cursor-pointer" id="dueDate" type="date">
+               <input id="inputDate" required class="add-task-due-date-input cursor-pointer cursor-pointer" id="dueDate" type="date">
             </div>
           </form>
   
