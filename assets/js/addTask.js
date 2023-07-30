@@ -27,62 +27,7 @@ let categories = [
 ];
 
 let tasks = [
-  {
-    "array-id": "1",
-    title: "Website redesign",
-    description: "Modify the contents of the main website ...",
-    category: categories[0]["name"],
-    "category-color": categories[0]["color"],
-    progress: "1",
-    subtasks: 2,
-    "done-tasks": 0,
-    urgency: "low",
-    "contact-firstname": ["Anton", "Anja"],
-    "contact-lastname": ["Mayer", "Schulz"],
-    "contact-color": ["#FF7A00", "#9327FF"],
-  },
-  {
-    "array-id": "2",
-    title: "Call potential clients",
-    description: "Make the product presentation to prospective buyers",
-    category: "Sales",
-    "category-color": "#FC71FF",
-    progress: "1",
-    subtasks: 0,
-    "done-tasks": 0,
-    urgency: "urgent",
-    "contact-firstname": ["Benedikt", "David"],
-    "contact-lastname": ["Ziegler", "Eisenberg"],
-    "contact-color": ["#6E52FF", "#FC71FF"],
-  },
-  {
-    "array-id": "3",
-    title: "Video cut",
-    description: "Edit the new company video",
-    category: "Media",
-    "category-color": "#FFC701",
-    progress: "3",
-    subtasks: 0,
-    "done-tasks": 0,
-    urgency: "medium",
-    "contact-firstname": ["Eva", "Emmanuel"],
-    "contact-lastname": ["Fischer", "Mauer"],
-    "contact-color": ["#FFBB2B", "#6E52FF"],
-  },
-  {
-    "array-id": "4",
-    title: "Social media strategy",
-    description: "Develop an ad campaign for brand positioning",
-    category: "Marketing",
-    "category-color": "#0038FF",
-    progress: "4",
-    subtasks: 3,
-    "done-tasks": 3,
-    urgency: "low",
-    "contact-firstname": ["Marcel", "Tatjana"],
-    "contact-lastname": ["Bauer", "Wolf"],
-    "contact-color": ["#462F8A", "#FF4646"],
-  },
+ 
 ];
 
 let subtasks = [];
@@ -193,6 +138,7 @@ function newTask() {
   let task = createJsonTask(title, description, category, subtasks, urgency, date, firstName, lastName, categoryColor);
   tasks.push(task);
   console.log(tasks);
+  setElement('tasks', tasks);
 }
 
 function clearTaskMask() {
