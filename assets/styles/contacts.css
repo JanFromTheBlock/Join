@@ -21,6 +21,10 @@
     font-size: 23px;
     color: white;
 }
+#add-contact:hover{
+    background-color: #005DFF;
+    cursor: pointer;
+}
 #contact-list-inside{
     padding: 32px 24px 16px 24px;
     position: fixed;
@@ -49,6 +53,10 @@
     padding: 15px 24px 15px 24px;
     border-radius: 10px;
 }
+.contact:hover{
+    background-color: #D2E3FF;
+    cursor: pointer;
+}
 #contact-sign{
     background-color: #FF7a00;
     border-radius: 45px;
@@ -62,4 +70,82 @@
     gap: 5px;
     display: flex;
     flex-direction: column;
+}
+#contacts-outside{
+    display: flex;
+}
+#contact-display{
+    margin-top: 168px;
+    margin-left: 62px;
+}
+#contact-header{
+    display: flex;
+    align-items: center;
+    gap: 54px;
+}
+#contact-icon{
+    font-size: 47px;
+    font-weight: 500;
+    color: white;
+    border-radius: 70px;
+    background-color: #FF7a00;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#contact-display-name{
+    font-size: 47px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+#contact-imgs{
+    display: flex;
+    gap: 16px;
+    font-size: 16px;
+    font-weight: 400;
+    align-items: center;
+}
+.contact-img{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.contact-img:hover{
+    color: #005DFF;
+    font-weight: 700;
+    cursor: pointer;
+    margin-right: -2.8px;
+}
+#contact-information{
+    margin: 21px 0;
+    font-size: 23px;
+    font-weight: 700;
+}
+#contact-mail-phone{
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+#contact-mail{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 16px;
+}
+#contact-phone{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 16px;
+}
+#contact-mail-title{
+    font-weight: 700;
+}
+#contact-phone-title{
+    font-weight: 700;
+}
+#contact-mail-adress{
+    color: #005DFF;
 }
