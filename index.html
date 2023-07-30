@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./assets/styles/login.css">
+    <link rel="stylesheet" href="./assets/fontello-3fb530b7/css/fontello-codes.css">
+    <link rel="stylesheet" href="./assets/fontello-3fb530b7/css/fontello.css">
     <script src="script.js"></script>
     <script src="./assets/js/login.js"></script>
     <title>Join-624</title>
@@ -26,7 +28,7 @@
                     <img src="./assets/img/mail-icon.svg">
                 </div>
                 <div id="login-pass" class="epass">
-                    <input id="pass-input" type="password" required placeholder="Password">
+                    <input id="pass-input" class="icon-star-1" type="password" required placeholder="Password" onfocusin="passChange()" onfocusout="passOutChange()">
                     <span id="pass-input-span"></span>
                     <img src="./assets/img/lock-icon.svg">
                 </div>
