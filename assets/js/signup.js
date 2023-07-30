@@ -1,17 +1,21 @@
 async function newUser() {
-    users = await getUser('users');
+    let getdata = await getElement('users');
+    users = JSON.parse(getdata.replace(/'/g, "\""))
     let newName = docID('signup-name').value;
     let newEmail = docID('signup-email').value;
     let newPass = docID('signup-pass').value;
-
-    console.log(users);
-    console.log(newName);
-    console.log(newEmail);
-    console.log(newPass);
-
     let newUser = {'name': newName, 'email':newEmail, 'pass': newPass, 'tel': ""};
-    console.log(newUser);
-    users.append(newUser);
-    console.log(users);
+    users.push(newUser);
+    setElement('users', users);
+    transition();
 }
 
+function transition() {
+    docID('signup-success-con').classList.remove('d-none');
+    setTimeout(openIndex, 2000);
+}
+
+
+function openIndex() {
+    window.open('../../index.html', "_self");
+}
