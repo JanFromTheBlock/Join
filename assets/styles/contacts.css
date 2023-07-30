@@ -31,7 +31,6 @@
     top: 97px;
 }
 #contact-column{
-    gap: 10px;
     display: flex;
     flex-direction: column;
     width: 356px;
@@ -71,12 +70,17 @@
     display: flex;
     flex-direction: column;
 }
+#mail{
+    color: #005DFF;
+}
 #contacts-outside{
     display: flex;
 }
 #contact-display{
     margin-top: 168px;
     margin-left: 62px;
+    position: fixed;
+    left: 688px;
 }
 #contact-header{
     display: flex;
