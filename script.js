@@ -57,7 +57,7 @@ function addBoardInit(){
     headerRender();
     navRender();
     activeSite("menu-board");
-    getElement('tasks');
+    tasks = getElement('tasks');
     addBoardRender();
     renderAddTaskToBoard();
 }
