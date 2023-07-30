@@ -9,12 +9,12 @@ let start = [{
 let users;
 let user = "Sofia Müller"
 
-async function setUser(key, value) {
+async function setElement(key, value) {
     const payload = {key, value, token: JOIN_TOKEN};
     return await fetch(JOIN_URL, {method: 'POST', body: JSON.stringify(payload)});
 }
 
-async function getUser(key) {
+async function getElement(key) {
     const url = `${JOIN_URL}?key=${key}&token=${JOIN_TOKEN}`;
     return await fetch(url).then(res => res.json()).then(res => {
         // Verbesserter code
