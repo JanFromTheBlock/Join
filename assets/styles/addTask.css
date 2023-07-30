@@ -27,7 +27,8 @@
   width: 380px;
   height: 51px;
   border: 0px 0px 1px 0px;
-  padding: 0px 21px;
+  padding-right: 40px;
+  padding-left: 0px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.16) !important;
   border: none;
   outline: none;
@@ -439,7 +440,7 @@ input[type="date"]::placeholder {
 .add-task-to-board{
   position: relative;
   background-color: white;
-  margin-left: 180px;
+  margin-left: 0;
   margin-top: -817px;
   padding-top: 20px;
   padding-left: 16px;

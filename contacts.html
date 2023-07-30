@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./assets/styles/contacts.css">
+    <script src="script.js"></script>
+    <script src="mainrender.js"></script>
+    <script src="./assets/js/contacts.js"></script>
+    <script src="./assets/js/addTask.js"></script>
+</head>
+<body onload="contactsInit()">
+    <header id="header"></header>
+    <nav id="nav" class="nav"></nav>
+    <div id="contact-list">
+        <div id="contact-list-inside">
+            <div>
+                <button id="add-contact">Add new contact <img src="./assets/img/person_add.png"></button>
+            </div>
+        </div>
+        <div id="contact-column">
+            <div id="letter-headline">A</div>
+            <div id="line"></div>
+            <div class="contact">
+                <div id="contact-sign">AM</div>
+                <div id="contact-data">
+                    <div id="name">Anton Mayer</div>
+                    <div id="mail">antonm@gmail.com</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="contact-display"></div>
+</body>
+</html>
