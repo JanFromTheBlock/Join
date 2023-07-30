@@ -6,7 +6,7 @@ async function newUser() {
     let newPass = docID('signup-pass').value;
     let newUser = {'name': newName, 'email':newEmail, 'pass': newPass, 'tel': ""};
     users.push(newUser);
-    setElement('users', users);
+    // setElement('users', users);
     transition();
 }
 

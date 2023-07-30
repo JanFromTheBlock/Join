@@ -41,32 +41,26 @@
 
 #accept-checkbox {
     display: flex;
-    flex-direction: row-reverse;
     justify-content: center;
     align-items: center;
     gap: 4px;
 }
 
 #accept-me {
-    display: none;
+    content: url('../img/blue-checkbox.svg');
+    appearance: none;
 }
 
-#accept-me + label {
-    width: 24px;
-    height: 24px;
-    background-image: url('../img/blue-checkbox.svg');
+#accept-me:hover{
+    content: url('../img/blue-checkbox-hover.svg');
 }
 
-#accept-me:hover + label{
-    background-image: url('../img/blue-checkbox-hover.svg');
+#accept-me:checked{
+    content: url('../img/blue-checkbox-checked.svg');
 }
 
-#accept-me:checked + label {
-    background-image: url('../img/blue-checkbox-checked.svg');
-}
-
-#accept-me:checked:hover + label {
-    background-image: url('../img/blue-checkbox-checked-hover.svg');
+#accept-me:checked:hover {
+    content: url('../img/blue-checkbox-checked-hover.svg');
 }
 
 #accept-checkbox span{
