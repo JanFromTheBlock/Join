@@ -72,4 +72,5 @@ function contactsInit(){
     headerRender();
     navRender();
     activeSite("menu-contacts");
+    renderContacts();
 }
