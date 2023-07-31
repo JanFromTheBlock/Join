@@ -2,6 +2,10 @@
     border-bottom: 1px solid #005DFF !important;
 }
 
+input[type="password"] {
+    font-family: 'fontello';
+}
+
 #login-con {
     display: flex;
     flex-direction: column;
@@ -217,7 +221,6 @@
     border: 2px solid #4589FF;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     color: #4589FF;
-    padding: 9px 34px;
 }
 
 .login-legal {
@@ -228,7 +231,7 @@
     bottom: 42px;
 }
 
-#login-legal a {
+.login-legal a {
     display: inline-flex;
     padding: 8px;
     align-items: center;
@@ -271,11 +274,28 @@
     padding: 48px 80px;
     flex-direction: column;
     align-items: center;
+    position: relative;
     gap: 35px;
     border-radius: 30px;
     background: #FFFFFF;
     box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
 }
+
+#back-arrow {
+    position: absolute;
+    top: 66px;
+    left: 50px;
+    cursor: pointer;
+}
+
+#headline-arrow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+
 
 #signup-headline {
     display: flex;

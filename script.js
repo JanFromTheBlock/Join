@@ -7,7 +7,7 @@ let start = [{
     "tel": "+49 1111 111 11 1"
 }]
 let users;
-let user = "Sofia Müller"
+let user = "Guest"
 
 async function setElement(key, value) {
     const payload = {key, value, token: JOIN_TOKEN};
