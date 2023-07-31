@@ -107,4 +107,5 @@ function renderContactDisplay(elementJSON) {
             </div>
         </div>
     `;
+    docID('contact-icon').style.backgroundColor = color;
 }
