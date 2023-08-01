@@ -310,9 +310,13 @@ function changeDeleteImage(isHovering) {
     let backgroundNav = document.getElementById(`nav`);
     let backgroundHeader = document.getElementById(`header`);
     let boardBody = document.getElementById(`boardBody`);
+    let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
+  
+    addTaskButtonToBoard.classList.remove(`d-none`);
     boardBody.classList.remove(`overflow-hidden`);
     addTask.classList.remove(`add-task-to-board-hide`);
     addTask.classList.add(`add-task-to-board`);
+    addTask.style.right = "0"
     backgroundBoard.style.opacity = "0.4";
     backgroundNav.style.opacity = "0.4";
     backgroundHeader.style.opacity = "0.4";

@@ -163,7 +163,7 @@ function renderAddTaskToBoard() {
   let addTask = document.getElementById(`renderAddTaskToBoard`);
   addTask.innerHTML += /*html*/ `
   
-    <div id="addTaskToBoardUnderDiv" class="add-task add-task-to-board add-task-to-board-hide">
+    <div id="addTaskToBoardUnderDiv" class="add-task-to-board add-task-to-board-hide">
         <form>
         <h2 class="add-task-h2-big">Add Task</h2>
           <input autocomplete="off" id="inputFieldTitle" required class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
@@ -244,13 +244,12 @@ function renderAddTaskToBoard() {
 
                 <div id="subTaskArea" class="d-none"></div>
              </div>
-
-           <div class="add-task-button">
-            <button onclick="newTask(urgency)" class="add-task-button-create-board cursor-pointer">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
-          </div>
-
+        </div>
+        <div class="add-task-button-to-board">
+            <button id="addTaskButtonToBoard" onclick="newTask(urgency)" class=" d-none add-task-button-create-board cursor-pointer">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
         </div>
     </div>
-    <img id="taskAddedToBoard" class="task-added-to-board-hide" src="./assets/img/logoAddedToBoard.png">
-    `;
+    <img id="taskAddedToBoard" class=" d-none task-added-to-board-hide" src="./assets/img/logoAddedToBoard.png">
+    
+   `;
 }

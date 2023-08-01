@@ -437,12 +437,9 @@ input[type="date"]::placeholder {
 
 /* AddTask hinzufügen zu Board*/
 
+
 .add-task-to-board{
-  position: relative;
   background-color: white;
-  margin-left: 0;
-  margin-top: -817px;
-  padding-top: 20px;
   padding-left: 16px;
   width: 440px;
   z-index: 3;
@@ -450,6 +447,10 @@ input[type="date"]::placeholder {
   border-bottom-left-radius: 25px;
   box-shadow: -2px 2px 7px -6px;
   transition: margin-left 300ms;
+  position: absolute;
+  flex-direction: column;
+  height: 1024px;
+  top: 0;
 }
 
 .add-task-to-board-hide{
@@ -459,6 +460,7 @@ input[type="date"]::placeholder {
 
 .add-task-h2-big{
   font-size: 48px!important;
+  margin-left: 22px;
 }
 
 .add-task-button-create-board{
@@ -472,9 +474,15 @@ input[type="date"]::placeholder {
   margin-bottom: 20px;
   margin-left: -471px;
   margin-top: 24px;
- 
+}
+
+.add-task-button-to-board{
+  right: -274px;
+  top: 87%;
+  position: fixed;
 }
 
 .overflow-hidden{
   overflow: hidden;
 }
+
