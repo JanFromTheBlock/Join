@@ -39,7 +39,6 @@ function showSubtasks() {
   let subtaskArea = document.getElementById(`subTaskArea`);
   let inputSubtask = document.getElementById(`inputSubtask`).value;
   
-  document.getElementById(`inputSubtask`).value = ``;
   subtaskArea.classList.remove(`d-none`);
   subtasks.push(inputSubtask);
   subtaskArea.innerHTML += `
@@ -125,10 +124,11 @@ function newTask() {
   taskAddedToBoard.classList.remove(`d-none`);
   taskAddedToBoard.classList.remove(`task-added-to-board-hide`);
   taskAddedToBoard.classList.add(`task-added-to-board`);
+  document.getElementById(`inputSubtask`).value = ``;
   
   setTimeout(() => {
     taskAddedToBoard.classList.add(`task-added-to-board-hide`);
-  }, 2000);
+  }, 3000);
 
   let contact = document.getElementById(`selectContact`).value;
   let partOfContact = contact.split(" ");

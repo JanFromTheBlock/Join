@@ -26,7 +26,7 @@ function addBoardRender() {
             <div ondrop="moveTo('${taskTitle}')" ondragover="allowDrop(event)" class="task-body" id="task-body${index}">
                 <div class="task-body-flex">
                     <span>${taskName}</span>
-                    <img id="task-img${index}" src="./assets/img/board_plus.png">
+                    <img  onclick="openAddTask()" id="task-img${index}" src="./assets/img/board_plus.png">
                 </div>
                 <div id="tasks${indexFinal}"></div>
             </div>
@@ -311,7 +311,7 @@ function changeDeleteImage(isHovering) {
     let backgroundHeader = document.getElementById(`header`);
     let boardBody = document.getElementById(`boardBody`);
     let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
-  
+    
     addTaskButtonToBoard.classList.remove(`d-none`);
     boardBody.classList.remove(`overflow-hidden`);
     addTask.classList.remove(`add-task-to-board-hide`);
