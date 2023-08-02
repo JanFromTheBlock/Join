@@ -2,8 +2,12 @@
     border-bottom: 1px solid #005DFF !important;
 }
 
-input[type="password"] {
-    font-family: 'fontello';
+/* input[type="password"] */
+
+.password {
+    font-family: 'aste';
+    font-size: 12px!important;
+    line-height: 190%!important;
 }
 
 #login-con {

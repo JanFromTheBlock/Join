@@ -28,8 +28,8 @@
                     <img src="./assets/img/mail-icon.svg">
                 </div>
                 <div id="login-pass" class="epass">
-                    <input id="pass-input" type="password" required placeholder="Password" onfocusin="passChange()" onfocusout="passOutChange()">
-                    <img src="./assets/img/lock-icon.svg">
+                    <input id="pass-input"  type="password" required placeholder="Password" onfocusin="passChange('login-pass', 'pass-img')" onfocusout="passOutChange('pass-input', 'login-pass', 'pass-img')" oninput="passAsterik('pass-input')">
+                    <img id="pass-img" src="./assets/img/lock-icon.svg" onclick="passVisibility('pass-input', 'pass-img')">
                 </div>
             </div>
             <div id="forget-con">
