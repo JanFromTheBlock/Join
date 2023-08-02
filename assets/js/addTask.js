@@ -39,7 +39,6 @@ function showSubtasks() {
   let subtaskArea = document.getElementById(`subTaskArea`);
   let inputSubtask = document.getElementById(`inputSubtask`).value;
   
-  document.getElementById(`inputSubtask`).value = ``;
   subtaskArea.classList.remove(`d-none`);
   subtasks.push(inputSubtask);
   subtaskArea.innerHTML += `
@@ -122,16 +121,18 @@ function newTask() {
   let category = document.getElementById(`selectCategory`).value;
   let description = document.getElementById(`description`).value;
   let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
-  taskAddedToBoard.classList.remove(`d-none`);
   taskAddedToBoard.classList.remove(`task-added-to-board-hide`);
   taskAddedToBoard.classList.add(`task-added-to-board`);
-  
+  taskAddedToBoard.classList.remove(`d-none`);
+
   setTimeout(() => {
     taskAddedToBoard.classList.add(`task-added-to-board-hide`);
   }, 2000);
+  
+  document.getElementById(`inputSubtask`).value = ``;
 
   let contact = document.getElementById(`selectContact`).value;
-  let partOfContact = contact.split(" ");
+  let partOfContact = contact.split(" "); // separiert Vor und Nachnamen
   let firstName = partOfContact[0];
   let lastName = partOfContact[1];
 
