@@ -8,7 +8,6 @@ function hideElements(){
     docID('legal-notice').classList.add("topic-active");
 }
 function leavePage(){
-    window.location = './summary.html';
     document.getElementById('menu-summary').classList.remove('d-none');
     document.getElementById('menu-board').classList.remove('d-none');
     document.getElementById('menu-add').classList.remove('d-none');
