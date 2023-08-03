@@ -323,6 +323,8 @@ function changeDeleteImage(isHovering) {
     backgroundHeader.style.opacity = "0.4";
  }
 
+// schließt AddTask
+
  function closeAddTaskToBoard(){
     let addTask = document.getElementById(`addTaskToBoardUnderDiv`);
     let backgroundBoard = document.getElementById(`board`);
