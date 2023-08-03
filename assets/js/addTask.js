@@ -26,9 +26,7 @@ let categories = [
   }
 ];
 
-let tasks = [
- 
-];
+let tasks = [];
 
 let subtasks = [];
 let contact;

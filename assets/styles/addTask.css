@@ -136,7 +136,7 @@
   margin-left: 240px;
 }
 
-.add-task h2 {
+.add-task-due-date h2 {
   color: #42526e;
   font-size: 19px;
   font-weight: 700;
@@ -492,5 +492,16 @@ input[type="date"]::placeholder {
 
 .overflow-hidden{
   overflow: hidden;
+}
+
+.add-task-to-board-close-button{
+  margin-left: 395px;
+  margin-top: 16px;
+  position: fixed;
+}
+
+.add-task-to-board-close-button:hover{
+  cursor: pointer;
+  background-color: rga#647188;
 }
 

@@ -68,7 +68,7 @@ function activeSite(id) {
 
 function addTaskRender(id) {
 docID("addTask").innerHTML = /*html*/ `
-  <form onsubmit="newTask(urgency)">
+  <form >
      <div class="add-task">
             <input required autocomplete="off" id="inputFieldTitle" class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
         
@@ -126,7 +126,7 @@ docID("addTask").innerHTML = /*html*/ `
               <button id="low" onclick="changeColor(id)" class="add-task-button-priority cursor-pointer">Low <img id="lowLogo" src="./assets/img/lowLogo.png"></button>
             </div>
            
-              <div class="add-task-description">
+              <div class="add-task-due-date">
                 <h2>Description</h2>
                 <textarea required id="description" placeholder="Enter a Description" class="add-task-textarea cursor-pointer"></textarea>
               </div>
@@ -135,7 +135,7 @@ docID("addTask").innerHTML = /*html*/ `
            <div class="subtask">
   
             <div id="test"></div>
-            <div>
+            <div class="add-task-due-date">
                 <h2>Subtasks</h2>
                <div>
                   <input id="inputSubtask" required class="add-task-subtask cursor-pointer" placeholder="Add new subtask" type="text">
@@ -147,7 +147,7 @@ docID("addTask").innerHTML = /*html*/ `
   
               <div class="add-task-button">
                 <button onclick="clearTask()" class="add-task-button-clear cursor-pointer">Clear x</button>  
-                <button class="add-task-button-create cursor-pointer">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
+                <button onclick="newTask(urgency)" class="add-task-button-create cursor-pointer">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
              </div>
            </div>
          </div>
@@ -159,9 +159,9 @@ docID("addTask").innerHTML = /*html*/ `
 function renderAddTaskToBoard() {
   let addTask = document.getElementById(`renderAddTaskToBoard`);
   addTask.innerHTML += /*html*/ `
-  
+    
     <div id="addTaskToBoardUnderDiv" class="add-task-to-board add-task-to-board-hide">
-        <form>
+    <img onclick="closeAddTaskToBoard()" class="add-task-to-board-close-button" src="./assets/img/close.png">
         <h2 class="add-task-h2-big">Add Task</h2>
           <input autocomplete="off" id="inputFieldTitle" required class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
           <div class="add-task-select-contact-edit">
@@ -180,16 +180,14 @@ function renderAddTaskToBoard() {
           </div>
           <div class="add-task-initials-area" id="initials"></div>
         
-        </form>
+      
 
-        <form>
+     
           <div class="add-task-due-date">
              <h2>Due Date</h2>
              <input id="inputDate" class="add-task-due-date-input cursor-pointer cursor-pointer" id="dueDate" type="date">
           </div>
-        </form>
-
-        <form>
+      
             <div class="add-task-due-date">
                <h2>Category</h2>
                <div class="add-task-select-contact-edit">
@@ -218,14 +216,14 @@ function renderAddTaskToBoard() {
                      <img class="cursor-pointer" onclick="addColorToCategory(src)" id="blue" src="./assets/img/ellipseBlue.png">
                  </div>
               </div>
-        </form>
+      
           <div class="add-task-priority">
             <button id="urgent" onclick="changeColor(id)" class="add-task-button-priority cursor-pointer">Urgent <img id="urgentLogo" src="./assets/img/urgentLogo.png"></button>
             <button id="medium" onclick="changeColor(id)" class="add-task-button-priority cursor-pointer">Medium <img id="mediumLogo" src="./assets/img/mediumLogo.png"></button>
             <button id="low" onclick="changeColor(id)" class="add-task-button-priority cursor-pointer">Low <img id="lowLogo" src="./assets/img/lowLogo.png"></button>
           </div>
        <form class="add-task-description-form">
-        <div class="add-task-description">
+        <div class=" add-task-due-date">
           <h2>Description</h2>
           <textarea required id="description" placeholder="Enter a Description" class="add-task-textarea cursor-pointer"></textarea>
         </div>
@@ -234,7 +232,7 @@ function renderAddTaskToBoard() {
         <div class="subtask">
 
         <div id="test"></div>
-          <div>
+          <div class="add-task-due-date">
               <h2>Subtasks</h2>
              <div>
                 <input id="inputSubtask" required class="add-task-subtask cursor-pointer" placeholder="Add new subtask" type="text">
@@ -248,7 +246,6 @@ function renderAddTaskToBoard() {
             <button id="addTaskButtonToBoard" onclick="newTask(urgency)" class="d-none add-task-button-create-board cursor-pointer">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
         </div>
     </div>
-    <img id="taskAddedToBoard" class=" d-none task-added-to-board-hide" src="./assets/img/logoAddedToBoard.png">
-    
+    <img id="taskAddedToBoard" class="task-added-to-board-hide d-none" src="./assets/img/logoAddedToBoard.png">
    `;
 }

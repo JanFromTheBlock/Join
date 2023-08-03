@@ -53,11 +53,11 @@ function addTaskInit(){
     addTaskRender();
 }
 
-async function addBoardInit(){
+function addBoardInit(){
     headerRender();
     navRender();
     activeSite("menu-board");
-    tasks = await getElement('tasks');
+    tasks = getElement('tasks');
     addBoardRender();
     renderAddTaskToBoard();
 }
