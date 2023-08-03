@@ -442,10 +442,6 @@ input[type="date"]::placeholder {
   top: -40px;
 }
 
-.board{
-  position: fixed;
-}
-
 .add-task-to-board{
   background-color: white;
   padding-left: 16px;
