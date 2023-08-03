@@ -36,13 +36,14 @@
                     <img src="./assets/img/mail-icon.svg">
                 </div>
                 <div id="sigup-pass-con" class="epass">
-                    <input id="signup-pass" type="password" required placeholder="Password" onfocusin="passChange('sigup-pass-con','signup-pass-img')" onfocusout="passOutChange('signup-pass', 'sigup-pass-con','signup-pass-img')" oninput="passAsterik('signup-pass')">
+                    <input id="signup-pass" type="password" required placeholder="Password" onfocusin="passChange('sigup-pass-con','signup-pass-img', 'not-match-span', 'signup-pass-confirm')" onfocusout="passOutChange('signup-pass', 'sigup-pass-con','signup-pass-img')" oninput="passAsterik('signup-pass')">
                     <img id="signup-pass-img" src="./assets/img/lock-icon.svg" onclick="passVisibility('signup-pass', 'signup-pass-img' )">
                 </div>
                 <div id="signup-pass-confirm" class="epass">
                     <input id="signup-pass-input" type="password" required placeholder="Confirm Password" onfocusin="passChange('signup-pass-confirm', 'signup-pass-con-img')" onfocusout="passOutChange('signup-pass-input', 'signup-pass-confirm', 'signup-pass-con-img' )" oninput="passAsterik('signup-pass-input')">
                     <img id="signup-pass-con-img" src="./assets/img/lock-icon.svg" onclick="passVisibility('signup-pass-input', 'signup-pass-con-img' )">
                 </div>
+                <div class="not-match-con"><span id="not-match-span" class="d-none">Your Passwords don't match. Try again.</span></div>
             </div>
             <div id="accept-con">
                 <div id="accept-checkbox">

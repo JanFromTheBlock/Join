@@ -1,6 +1,9 @@
-function passChange(login, img) {
+function passChange(login, img, span, other) {
+    docID(login).classList.remove('red-line');
     docID(login).classList.add('blue-line');
     docID(img).src = "./assets/img/visibility_off.svg";
+    docID(other).classList.remove('red-line');
+    docID(span).classList.add('d-none');
 }
 
 function passAsterik(input) {
@@ -33,3 +36,4 @@ function passVisibility(input, img) {
         docID(input).type = "password";
     }
 }
+

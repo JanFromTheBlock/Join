@@ -4,10 +4,22 @@ async function newUser() {
     let newName = docID('signup-name').value;
     let newEmail = docID('signup-email').value;
     let newPass = docID('signup-pass').value;
+    let confirmPass = docID('signup-pass-input').value;
+    if (newPass != confirmPass) {
+        notMatchPass('signup-pass-confirm', 'sigup-pass-con', 'not-match-span');
+        return;
+    }
     let newUser = {'name': newName, 'email':newEmail, 'pass': newPass, 'tel': ""};
     users.push(newUser);
     // setElement('users', users);
     transition();
+}
+
+function notMatchPass(login, other, span) {
+    docID(login).classList.add('red-line');
+    docID(login).classList.remove('blue-line');
+    docID(other).classList.remove('blue-line');
+    docID(span).classList.remove('d-none');
 }
 
 function transition() {

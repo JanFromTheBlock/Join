@@ -2,6 +2,10 @@
     border-bottom: 1px solid #005DFF !important;
 }
 
+.red-line {
+    border-bottom: 1px solid #FF8190 !important;
+}
+
 /* input[type="password"] */
 
 .password {
@@ -396,6 +400,13 @@
     color:#FFFFFF
 }
 
+.not-match-con{
+    display: flex;
+    height: 25px;
+    align-items: center;
+    color: #FF8190;
+    width: 450px;
+}
 
 
 @keyframes colorChange {
