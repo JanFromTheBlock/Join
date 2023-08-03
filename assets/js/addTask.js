@@ -136,6 +136,7 @@ function newTask() {
 
   clearTaskMask();
   let task = createJsonTask(title, description, category, subtasks, urgency, date, firstName, lastName, categoryColor);
+  getElement('tasks');
   tasks.push(task);
   console.log(tasks);
   setElement('tasks', tasks);
