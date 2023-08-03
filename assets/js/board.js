@@ -337,7 +337,7 @@ function changeDeleteImage(isHovering) {
     boardBody.classList.add(`overflow-hidden`);
     addTask.classList.add(`add-task-to-board-hide`);
     addTask.classList.remove(`add-task-to-board`);
-    renderAddTaskToBoard.style.right = "3000px";
+    renderAddTaskToBoard.style.right = "2000px";
     backgroundBoard.style.opacity = "1";
     backgroundNav.style.opacity = "1";
     backgroundHeader.style.opacity = "1";

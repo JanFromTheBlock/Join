@@ -439,13 +439,13 @@ input[type="date"]::placeholder {
 
 .render-add-task-to-board{
   position: absolute;
-  right: 0;
   top: -40px;
 }
 
 .board{
   position: fixed;
 }
+
 .add-task-to-board{
   background-color: white;
   padding-left: 16px;
@@ -454,15 +454,16 @@ input[type="date"]::placeholder {
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
   box-shadow: -2px 2px 7px -6px;
-  transition: margin-left 300ms;
+  transition: right 225ms;
   position: absolute;
   flex-direction: column;
   height: 1024px;
   top: 40px;
+
 }
 
 .add-task-to-board-hide{
-  margin-left: 3000px;
+  right: -2000px;
   overflow: hidden;
 }
 
