@@ -1,6 +1,6 @@
 let taskTitles = ["1", "2", "3", "4"]  //Array, um Drag und Drop Zielarea festzulegen
 let taskNames = ["To do", "In progress", "Await feedback", "Done"]  //Array, um beim Rendern der Rask-areas die Titel zu vergeben
-let = currentDraggedElement;                           // In dieser Variable wird die id der gedraggten Task gespeichert
+let currentDraggedElement;                           // In dieser Variable wird die id der gedraggten Task gespeichert
 
 function addBoardRender() {
     let board = docID('board');  //Suchbereich und Add Task Button werden gerendert
