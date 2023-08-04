@@ -56,12 +56,3 @@ async function login() {
     }
 }
 
-function localUsersave(user) {
-    let initials = user.match(/[A-Z]/g).join('').slice(0,2)
-    localStorage.setItem('activeuser', user);
-    localStorage.setItem('activshort', initials)
-}
-
-function localUserload() {
-    
-}
