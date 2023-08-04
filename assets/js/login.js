@@ -2,8 +2,12 @@ function passChange(login, img, span, other) {
     docID(login).classList.remove('red-line');
     docID(login).classList.add('blue-line');
     docID(img).src = "./assets/img/visibility_off.svg";
-    docID(other).classList.remove('red-line');
-    docID(span).classList.add('d-none');
+    if(other){
+        docID(other).classList.remove('red-line');
+    }
+    if(span) {
+        docID(span).classList.add('d-none');
+    }
 }
 
 function passAsterik(input) {
@@ -37,3 +41,27 @@ function passVisibility(input, img) {
     }
 }
 
+async function login() {
+    let getdata = await getElement('users');
+    let data = JSON.parse(getdata);
+    for (let i = 0; i < data.length; i++) {
+        if (data[i]['email'] == docID('email-input').value)
+            console.log('user correct');
+            if (data[i]['pass'] == docID('pass-input').value) {
+                console.log('password correct');
+            }
+        if (i == data.length - 1) {
+            console.log('email or password incorrect');
+        }
+    }
+}
+
+function localUsersave(user) {
+    let initials = user.match(/[A-Z]/g).join('').slice(0,2)
+    localStorage.setItem('activeuser', user);
+    localStorage.setItem('activshort', initials)
+}
+
+function localUserload() {
+    
+}

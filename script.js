@@ -7,7 +7,8 @@ let start = [{
     "tel": "+49 1111 111 11 1"
 }]
 let users;
-let user = "Guest"
+let user = "Guest";
+let userInitial;  
 
 async function setElement(key, value) {
     const payload = {key, value, token: JOIN_TOKEN};
@@ -76,4 +77,17 @@ function contactsInit(){
     navRender();
     activeSite("menu-contacts");
     renderContacts();
+}
+
+// save the active user in local storage
+function localUsersave(name) {
+    let initials = name.match(/[A-Z]/g).join('').slice(0,2)
+    localStorage.setItem('activeuser', name);
+    localStorage.setItem('activshort', initials)
+}
+
+// load the active user in local storage
+function localUserload() {
+    user = localStorage.getItem('activeuser');
+    userInitial = localStorage.getItem('activeshort');
 }
