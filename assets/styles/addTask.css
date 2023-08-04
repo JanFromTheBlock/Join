@@ -17,6 +17,7 @@
   outline: none;
   border: none;
   font-size: 40px;
+ 
 }
 
 .add-task-title::placeholder {
@@ -126,10 +127,10 @@
 }
 
 .add-task-due-date {
-  width: 422px;
+  width: 420px;
   border: none;
   outline: none;
-  margin-top: 10px;
+  margin-top: 0;
 }
 
 .add-task-edit-category {
@@ -140,7 +141,6 @@
   color: #42526e;
   font-size: 19px;
   font-weight: 700;
-  margin-top: 31px;
   margin-bottom: 15px;
 }
 
@@ -240,8 +240,8 @@ input[type="date"]::placeholder {
   justify-content: center;
   width: 422px;
   margin-top: 10px;
-  margin-bottom: -20px;
   gap: 10px;
+  margin-bottom: 16px;
 }
 
 .add-task-choose-priority {
@@ -450,7 +450,7 @@ input[type="date"]::placeholder {
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
   box-shadow: -2px 2px 7px -6px;
-  transition: right 225ms;
+  transition: right 225ms ease-in-out;
   position: absolute;
   flex-direction: column;
   height: 1024px;
@@ -459,7 +459,7 @@ input[type="date"]::placeholder {
 }
 
 .add-task-to-board-hide{
-  right: -2000px;
+  right: -2500px;
   overflow: hidden;
 }
 
@@ -495,10 +495,23 @@ input[type="date"]::placeholder {
   margin-left: 395px;
   margin-top: 16px;
   position: fixed;
+  border-radius: 45px;
 }
 
 .add-task-to-board-close-button:hover{
   cursor: pointer;
-  background-color: rga#647188;
+  background-color:#dde0e5;
+}
+
+.add-task-to-board-title{
+  background-color: white;
+  position: fixed;
+  z-index: 999;
+  width: 422px;
+  
+}
+
+.padding-top{
+padding-top: 120px;
 }
 
