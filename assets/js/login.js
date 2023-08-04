@@ -16,8 +16,8 @@ function passAsterik(input) {
 
 
 function passOutChange(input, pass, img) {
+    docID(pass).classList.remove('blue-line');
     if(docID(input).value.length == 0) {
-        docID(pass).classList.remove('blue-line');
         docID(img).src = "./assets/img/lock-icon.svg";
         docID(input).classList.remove('password');
     }
