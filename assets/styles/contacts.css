@@ -174,18 +174,80 @@
     flex-direction: column;
     background-color: #005DFF;
     border-radius: 30px 0px 0px 0px;
-    gap: 12px;
-    padding: 91px 46px;
+    gap: 35px;
+    padding: 24px 24px 91px 24px;
 }
 #add-contact-back-arrow{
     display: flex;
     justify-content: flex-end;
 }
-#add-contact-icon{
+#add-contact-logo{
     width: 55px;
     height: auto;
 }
 #add-contact-center{
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+#add-contact-title{
+    font-size: 48px;
+    font-weight: 700;
+    color: white;
+}
+#add-contact-subtitle{
+    font-size: 27px;
+    font-weight: 400;
+    color: white;
+}
+#add-contact-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 72px 81px 151px 81px;
+    gap: 32px;
+}
+#add-contact-icon{
+    width: 120px;
+}
+.input-outside{
+    color: #D1D1D1;
+    border-bottom: 1px solid #D1D1D1;
+    width: 380px;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 21px;
+}
+.input{
+    border-width: 0;
+    outline: none;
+}
+#contact-cancel{
+    background-color: white;
+    border: 1px solid #647188;
+    color: #647188;
+    border-radius: 10px;
+    padding: 16px 10px;
+    font-size: 23px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+#contact-create{
+    background-color: #4589FF;
+    border: 1px solid #4589FF;
+    color: white;
+    border-radius: 10px;
+    padding: 16px 10px;
+    font-size: 23px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+#contact-buttons{
+    display: flex;
+    gap: 25px;
     justify-content: center;
+    margin-top: 32px;
 }
