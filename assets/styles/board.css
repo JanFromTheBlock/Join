@@ -1,5 +1,8 @@
 #board{
     margin-left: 232px;
+}
+
+.position-fixed{
     position: fixed;
 }
 

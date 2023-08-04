@@ -310,11 +310,14 @@ function changeDeleteImage(isHovering) {
     let backgroundNav = document.getElementById(`nav`);
     let backgroundHeader = document.getElementById(`header`);
     let boardBody = document.getElementById(`boardBody`);
+    let board = document.getElementById(`board`);
     let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
     let renderAddTaskToBoard = document.getElementById(`renderAddTaskToBoard`);
+
     renderAddTaskToBoard.style.right = "0";
     addTaskButtonToBoard.classList.remove(`d-none`);
     boardBody.classList.remove(`overflow-hidden`);
+    board.classList.add(`position-fixed`);
     addTask.classList.remove(`add-task-to-board-hide`);
     addTask.classList.add(`add-task-to-board`);
     addTask.style.right = "0"
@@ -341,4 +344,5 @@ function changeDeleteImage(isHovering) {
     backgroundBoard.style.opacity = "1";
     backgroundNav.style.opacity = "1";
     backgroundHeader.style.opacity = "1";
+    board.classList.remove(`position-fixed`);
  }
