@@ -49,6 +49,7 @@ async function login() {
             console.log('user correct');
             if (data[i]['pass'] == docID('pass-input').value) {
                 console.log('password correct');
+                localUsersave(data[i]['name']);
             }
         if (i == data.length - 1) {
             console.log('email or password incorrect');

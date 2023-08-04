@@ -91,3 +91,14 @@ function localUserload() {
     user = localStorage.getItem('activeuser');
     userInitial = localStorage.getItem('activeshort');
 }
+
+function SessionUsersave(name) {
+    let initials = name.match(/[A-Z]/g).join('').slice(0,2)
+    sessionStorage.setItem('activeuser', name);
+    sessionStorage.setItem('activshort', initials)
+}
+
+function localUserload() {
+    user = sessionStorage.getItem('activeuser');
+    userInitial = sessionStorage.getItem('activeshort');
+}
