@@ -151,3 +151,41 @@
 #contact-mail-adress{
     color: #005DFF;
 }
+#background-add-contact{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.4);
+    z-index: 100;
+}
+#add-contact-mask{
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: 0;
+    width: 584px;
+    height: 100%;
+    background-color: white;
+    border-radius: 30px 0px 30px 30px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
+}
+#add-contact-header{
+    display: flex;
+    flex-direction: column;
+    background-color: #005DFF;
+    border-radius: 30px 0px 0px 0px;
+    gap: 12px;
+    padding: 91px 46px;
+}
+#add-contact-back-arrow{
+    display: flex;
+    justify-content: flex-end;
+}
+#add-contact-icon{
+    width: 55px;
+    height: auto;
+}
+#add-contact-center{
+    display: flex;
+    justify-content: center;
+}
