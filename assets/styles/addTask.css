@@ -437,11 +437,6 @@ input[type="date"]::placeholder {
 
 /* AddTask hinzufügen zu Board*/
 
-.render-add-task-to-board{
-  position: absolute;
-  top: -40px;
-}
-
 .add-task-to-board{
   background-color: white;
   padding-left: 16px;
@@ -454,13 +449,14 @@ input[type="date"]::placeholder {
   position: absolute;
   flex-direction: column;
   height: 1024px;
-  top: 40px;
-
+  top: 0;
+  right: 0;
 }
 
 .add-task-to-board-hide{
   right: -2500px;
   overflow: hidden;
+  transition: right 225ms ease-in-out;
 }
 
 .add-task-h2-big{

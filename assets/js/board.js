@@ -312,15 +312,10 @@ function changeDeleteImage(isHovering) {
     let boardBody = document.getElementById(`boardBody`);
     let board = document.getElementById(`board`);
     let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
-    let renderAddTaskToBoard = document.getElementById(`renderAddTaskToBoard`);
-
-    renderAddTaskToBoard.style.right = "0";
+    addTask.classList.remove(`add-task-to-board-hide`);
     addTaskButtonToBoard.classList.remove(`d-none`);
     boardBody.classList.remove(`overflow-hidden`);
     board.classList.add(`position-fixed`);
-    addTask.classList.remove(`add-task-to-board-hide`);
-    addTask.classList.add(`add-task-to-board`);
-    addTask.style.right = "0"
     backgroundBoard.style.opacity = "0.4";
     backgroundNav.style.opacity = "0.4";
     backgroundHeader.style.opacity = "0.4";
@@ -335,14 +330,12 @@ function changeDeleteImage(isHovering) {
     let backgroundHeader = document.getElementById(`header`);
     let boardBody = document.getElementById(`boardBody`);
     let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
-    let renderAddTaskToBoard = document.getElementById(`renderAddTaskToBoard`);
     addTaskButtonToBoard.classList.add(`d-none`);
+    board.classList.remove(`position-fixed`);
     boardBody.classList.add(`overflow-hidden`);
     addTask.classList.add(`add-task-to-board-hide`);
-    addTask.classList.remove(`add-task-to-board`);
-    renderAddTaskToBoard.style.right = "2000px";
+    
     backgroundBoard.style.opacity = "1";
     backgroundNav.style.opacity = "1";
     backgroundHeader.style.opacity = "1";
-    board.classList.remove(`position-fixed`);
  }
