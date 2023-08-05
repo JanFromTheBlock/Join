@@ -6,8 +6,6 @@
     border-bottom: 1px solid #FF8190 !important;
 }
 
-/* input[type="password"] */
-
 .password {
     font-family: 'aste';
     font-size: 12px!important;
@@ -135,28 +133,6 @@
     justify-content: center;
     align-items: center;
     gap: 4px;
-}
-
-#Remember-me {
-    display: none;
-}
-
-#Remember-me + label {
-    width: 24px;
-    height: 24px;
-    background-image: url('../img/blue-checkbox.svg')
-}
-
-#Remember-me:hover + label{
-    background-image: url('../img/blue-checkbox-hover.svg');
-}
-
-#Remember-me:checked + label {
-    background-image: url('../img/blue-checkbox-checked.svg');
-}
-
-#Remember-me:checked:hover + label {
-    background-image: url('../img/blue-checkbox-checked-hover.svg');
 }
 
 #rem-checkbox span {

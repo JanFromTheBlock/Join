@@ -46,10 +46,17 @@ async function login() {
     let data = JSON.parse(getdata);
     for (let i = 0; i < data.length; i++) {
         if (data[i]['email'] == docID('email-input').value)
-            console.log('user correct');
             if (data[i]['pass'] == docID('pass-input').value) {
-                console.log('password correct');
-                localUsersave(data[i]['name']);
+                if (docID('accept-me').checked == true) {
+                    localUsersave(data[i]['name']);
+                    window.location.href = './summary.html';
+                    return
+                } else {
+                    sessionUsersave(data[i]['name']);
+                    window.location.href = './summary.html';
+                    return
+                }
+                
             }
         if (i == data.length - 1) {
             console.log('email or password incorrect');
