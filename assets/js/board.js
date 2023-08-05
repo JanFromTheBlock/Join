@@ -304,11 +304,11 @@ function changeDeleteImage(isHovering) {
 
 // öffnet AddTask
 
+let isAddingTask = false; // Verfolgt den Zustand, ob die Animation gerade geöffnet wird
+
  function openAddTask(){
+    if (isAddingTask) return;
     let addTask = document.getElementById(`addTaskToBoardUnderDiv`);
-    let backgroundBoard = document.getElementById(`board`);
-    let backgroundNav = document.getElementById(`nav`);
-    let backgroundHeader = document.getElementById(`header`);
     let boardBody = document.getElementById(`boardBody`);
     let board = document.getElementById(`board`);
     let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
@@ -316,11 +316,25 @@ function changeDeleteImage(isHovering) {
     addTaskButtonToBoard.classList.remove(`d-none`);
     boardBody.classList.remove(`overflow-hidden`);
     board.classList.add(`position-fixed`);
-    backgroundBoard.style.opacity = "0.4";
-    backgroundNav.style.opacity = "0.4";
-    backgroundHeader.style.opacity = "0.4";
- }
-
+    setTimeOutOpacity();
+    }
+  
+function setTimeOutOpacity(){
+    let addTask = document.getElementById(`addTaskToBoardUnderDiv`);
+    let backgroundBoard = document.getElementById(`board`);
+    let backgroundNav = document.getElementById(`nav`);
+    let backgroundHeader = document.getElementById(`header`);
+    addTask.addEventListener('transitionend', function handleTransitionEnd(event) {
+        if (event.propertyName === 'right' && isAddingTask) {
+          setTimeout(() => {
+            backgroundBoard.style.opacity = "0.4";
+            backgroundNav.style.opacity = "0.4";
+            backgroundHeader.style.opacity = "0.4";
+          }, 80);
+        }
+      });
+      isAddingTask = true;
+}
 // schließt AddTask
 
  function closeAddTaskToBoard(){
@@ -334,7 +348,7 @@ function changeDeleteImage(isHovering) {
     board.classList.remove(`position-fixed`);
     boardBody.classList.add(`overflow-hidden`);
     addTask.classList.add(`add-task-to-board-hide`);
-    
+    isAddingTask = false;  // Setze den Status auf false, um das erneute Öffnen zu ermöglichen, wenn die Animation geschlossen ist
     backgroundBoard.style.opacity = "1";
     backgroundNav.style.opacity = "1";
     backgroundHeader.style.opacity = "1";

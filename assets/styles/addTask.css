@@ -445,18 +445,19 @@ input[type="date"]::placeholder {
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
   box-shadow: -2px 2px 7px -6px;
-  transition: right 225ms ease-in-out;
   position: absolute;
   flex-direction: column;
   height: 1024px;
   top: 0;
   right: 0;
+  opacity: 1;
+  transition: right 325ms ease-out, opacity 3250ms ease-out;
 }
 
 .add-task-to-board-hide{
-  right: -2500px;
+  right: -1200px;
   overflow: hidden;
-  transition: right 225ms ease-in-out;
+  transition: right 325ms ease-in-out;
 }
 
 .add-task-h2-big{
