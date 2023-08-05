@@ -433,6 +433,7 @@ input[type="date"]::placeholder {
 .task-added-to-board-hide{
   margin-top: 1500px;
   margin-left: 40%;
+  transition: margin-top 300ms;
 }
 
 /* AddTask hinzufügen zu Board*/
