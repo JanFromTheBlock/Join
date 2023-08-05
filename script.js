@@ -8,7 +8,7 @@ let start = [{
 }]
 let users;
 let user = "Guest";
-let userInitial;  
+let userInitial = "G";  
 
 async function setElement(key, value) {
     const payload = {key, value, token: JOIN_TOKEN};
@@ -29,7 +29,24 @@ function docID (id){
     return document.getElementById(id);
 }
 
+function activeUser() {
+    if(localStorage.getItem('activshort') === null) {
+        if(sessionStorage.getItem('activshort') === null) {
+          user = "Guest";
+          userInitial = "G";
+        }
+        else {
+          userInitial = sessionStorage.getItem('activshort');
+          user = sessionStorage.getItem('activeuser');
+        }
+      }else {
+        userInitial = localStorage.getItem('activshort');
+        user = localStorage.getItem('activeuser');
+      }
+}
+
 function summaryInit() {
+    activeUser();
     headerRender();
     navRender();
     activeSite("menu-summary");
@@ -48,6 +65,7 @@ function taskInit() {
 }
 
 async function addTaskInit(){
+    activeUser();
     headerRender();
     navRender();
     activeSite("menu-add");
@@ -57,6 +75,7 @@ async function addTaskInit(){
 }
 
 async function addBoardInit(){
+    activeUser();
     headerRender();
     navRender();
     activeSite("menu-board");
@@ -73,6 +92,7 @@ function legalNotesInit(){
 }
 
 function contactsInit(){
+    activeUser();
     headerRender();
     navRender();
     activeSite("menu-contacts");
