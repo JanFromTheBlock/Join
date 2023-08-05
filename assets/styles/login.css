@@ -12,6 +12,22 @@
     line-height: 190%!important;
 }
 
+#start-con {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #4589FF;
+    animation-name: colorChange;
+    animation-duration: 500ms;
+    animation-delay: 300ms;
+    animation-fill-mode: forwards;
+    z-index: 3;
+}
+
+
 #login-con {
     display: flex;
     flex-direction: column;
@@ -19,20 +35,19 @@
     align-items: center;
     position: relative;
     height: 100vh;
-    background: #4589FF;
-    animation-name: colorChange;
-    animation-duration: 300ms;
-    animation-delay: 200ms;
-    animation-fill-mode: forwards;
+    background: white;
 }
 
 #login-img {
     position: absolute;
+    top: 50%;
+    left: 50%;
     width: 265px;
     height: 323px;
+    transform: translateX(-50%) translateY(-50%);
     animation-name: imgVanish;
-    animation-duration: 300ms;
-    animation-delay: 200ms;
+    animation-duration: 500ms;
+    animation-delay: 300ms;
     animation-fill-mode: forwards;
 }
 
@@ -387,14 +402,19 @@
 
 @keyframes colorChange {
     100% {
-        background-color: white;
+        background-color: none;
+        z-index: 0; 
+        display: none;
     }
 }
 
 @keyframes imgVanish {
-
     100% {
-        transform: translate(-50%, -50%) scale(0);
+        top: 80px;
+        left: 77px;
+        height: 101px;
+        width: 122px;
+        opacity: 0.2;
         /* kleines symbol auch gleich anlegen und einfach nach 50% einblenden */
     }
 }
