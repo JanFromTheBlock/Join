@@ -128,12 +128,10 @@ function newTask() {
   }, 2000);
   
   document.getElementById(`inputSubtask`).value = ``;
-
   let contact = document.getElementById(`selectContact`).value;
   let partOfContact = contact.split(" "); // separiert Vor und Nachnamen
-  let firstName = partOfContact[0];
-  let lastName = partOfContact[1];
-
+  let firstName = partOfContact[0]; // speicert Vorname
+  let lastName = partOfContact[1]; // speichert Nachname
   clearTaskMask();
   let task = createJsonTask(title, description, category, subtasks, urgency, date, firstName, lastName, categoryColor);
   getElement('tasks');

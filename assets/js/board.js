@@ -312,13 +312,19 @@ function changeDeleteImage(isHovering) {
     let boardBody = document.getElementById(`boardBody`);
     let board = document.getElementById(`board`);
     let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
-    addTask.classList.remove(`add-task-to-board-hide`);
-    addTaskButtonToBoard.classList.remove(`d-none`);
+    addTask.classList.remove(`d-none`);
+     setTimeout(() => {
+        addTaskButtonToBoard.classList.remove(`d-none`);
+        addTask.classList.remove(`add-task-to-board-hide`);
+      }, 100);
     boardBody.classList.remove(`overflow-hidden`);
     board.classList.add(`position-fixed`);
-    backgroundBoard.style.opacity = "0.4";
-    backgroundNav.style.opacity = "0.4";
-    backgroundHeader.style.opacity = "0.4";
+    backgroundBoard.classList.add(`decrease-opacity`);
+    backgroundHeader.classList.add(`decrease-opacity`);
+    backgroundNav.classList.add(`decrease-opacity`);
+    backgroundBoard.classList.remove(`full-opacity`);
+    backgroundHeader.classList.remove(`full-opacity`);
+    backgroundNav.classList.remove(`full-opacity`);
  }
 
 // schließt AddTask
@@ -328,12 +334,17 @@ function changeDeleteImage(isHovering) {
     let backgroundBoard = document.getElementById(`board`);
     let backgroundNav = document.getElementById(`nav`);
     let backgroundHeader = document.getElementById(`header`);
-    let boardBody = document.getElementById(`boardBody`);
     let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
     addTaskButtonToBoard.classList.add(`d-none`);
     board.classList.remove(`position-fixed`);
     addTask.classList.add(`add-task-to-board-hide`);
-    backgroundBoard.style.opacity = "1";
-    backgroundNav.style.opacity = "1";
-    backgroundHeader.style.opacity = "1";
+    setTimeout(() => {
+        addTask.classList.add(`d-none`);
+      }, 325);
+    backgroundBoard.classList.add(`full-opacity`);
+    backgroundHeader.classList.add(`full-opacity`);
+    backgroundNav.classList.add(`full-opacity`);
+    backgroundBoard.classList.remove(`decrease-opacity`);
+    backgroundHeader.classList.remove(`decrease-opacity`);
+    backgroundNav.classList.remove(`decrease-opacity`);
  }

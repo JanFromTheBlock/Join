@@ -242,7 +242,8 @@ function renderAddTaskToBoard() {
         <div class="add-task-button-to-board">
             <button id="addTaskButtonToBoard" onclick="newTask(urgency)" class="d-none add-task-button-create-board cursor-pointer">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
         </div>
+        <img id="taskAddedToBoard" class="task-added-to-board-hide d-none" src="./assets/img/logoAddedToBoard.png">
     </div>
-    <img id="taskAddedToBoard" class="task-added-to-board-hide d-none" src="./assets/img/logoAddedToBoard.png">
+    
    `;
 }

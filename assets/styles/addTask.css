@@ -428,10 +428,11 @@ input[type="date"]::placeholder {
   margin-top: 450px;
   margin-left: 40%;
   transition: margin-top 300ms;
+  z-index: 9999;
 }
 
 .task-added-to-board-hide{
-  margin-top: 1500px;
+  margin-top: 1000px;
   margin-left: 40%;
   transition: margin-top 300ms;
 }
@@ -451,14 +452,13 @@ input[type="date"]::placeholder {
   height: 1024px;
   top: 0;
   right: 0;
-  opacity: 1;
-  transition: right 325ms ease-out, opacity 3250ms ease-out;
+  transition: right 225ms ease-out;
 }
 
 .add-task-to-board-hide{
   right: -1200px;
   overflow: hidden;
-  transition: right 325ms ease-in-out;
+  transition: right 825ms ease-out;
 }
 
 .add-task-h2-big{
@@ -476,7 +476,7 @@ input[type="date"]::placeholder {
   height: 61px;
   margin-bottom: 20px;
   margin-left: -471px;
-  margin-top: 24px;
+  margin-top: 10px;
 }
 
 .add-task-button-to-board{
@@ -510,6 +510,15 @@ input[type="date"]::placeholder {
 }
 
 .padding-top{
-padding-top: 120px;
+  padding-top: 120px;
 }
 
+.decrease-opacity{
+  opacity: 0.4;
+  transition: opacity 325ms ease-out; 
+}
+
+.full-opacity{
+  opacity: 1;
+  transition: opacity 325ms ease-out; 
+}
