@@ -119,12 +119,13 @@ function newTask() {
   let category = document.getElementById(`selectCategory`).value;
   let description = document.getElementById(`description`).value;
   let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
+  taskAddedToBoard.classList.remove(`d-none`);
   taskAddedToBoard.classList.remove(`task-added-to-board-hide`);
   taskAddedToBoard.classList.add(`task-added-to-board`);
-  taskAddedToBoard.classList.remove(`d-none`);
-
+ 
   setTimeout(() => {
     taskAddedToBoard.classList.add(`task-added-to-board-hide`);
+    closeAddTaskToBoard();
   }, 2000);
   
   document.getElementById(`inputSubtask`).value = ``;
@@ -138,10 +139,7 @@ function newTask() {
   tasks.push(task);
   console.log(tasks);
   setElement('tasks', tasks);
-  setTimeout(() => {
-    closeAddTaskToBoard();
-  }, 2000);
- 
+  addBoardInit();
 }
 
 function clearTaskMask() {

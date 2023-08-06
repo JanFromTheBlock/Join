@@ -452,11 +452,11 @@ input[type="date"]::placeholder {
   height: 1024px;
   top: 0;
   right: 0;
-  transition: right 225ms ease-out;
+  transition: right 325ms ease-out;
 }
 
 .add-task-to-board-hide{
-  right: -1200px;
+  right: -1000px;
   overflow: hidden;
   transition: right 825ms ease-out;
 }

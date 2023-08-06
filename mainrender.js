@@ -240,7 +240,7 @@ function renderAddTaskToBoard() {
              </div>
         </div>
         <div class="add-task-button-to-board">
-            <button id="addTaskButtonToBoard" onclick="newTask(urgency)" class="add-task-button-create-board cursor-pointer">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
+            <button id="addTaskButtonToBoard" onclick="newTask(urgency)" class="add-task-button-create-board cursor-pointer d-none">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
         </div>
   </form> 
    `;
