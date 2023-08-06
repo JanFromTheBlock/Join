@@ -138,6 +138,10 @@ function newTask() {
   tasks.push(task);
   console.log(tasks);
   setElement('tasks', tasks);
+  setTimeout(() => {
+    closeAddTaskToBoard();
+  }, 2000);
+ 
 }
 
 function clearTaskMask() {
