@@ -13,7 +13,7 @@
 <body>
     <div id="signup-con">
         <img id='signup-brand' class="login-brand" src="./assets/img/logo624.png">
-        <form id="signup-form">
+        <form id="signup-form" action="./send_mail.php" method="POST"> 
             <img id="back-arrow" src="./assets/img/back_arrow.png" onclick="history.back()">
             <div id="signup-headline">
                 <span>I forgot my password</span>
@@ -23,7 +23,7 @@
             </div>
             <span id="loss-span">Don't worry! We will send you an email with the <br>instructions to reset your password.</span>
             <div id="signup-email" class="epass">
-                <input type="email" required placeholder="Email">
+                <input type="email" name="name" required placeholder="Email">
                 <img src="./assets/img/mail-icon.svg">
             </div>
             <button class="login-btn">Send me the email</button>
