@@ -64,3 +64,15 @@ async function login() {
     }
 }
 
+function successCheck() {
+    let variable = new URLSearchParams(window.location.search).get('key');
+    console.log('function started')
+    if (variable == 'success') {
+        docID('signup-success-con').classList.remove('d-none');
+        setTimeout(setTimeout(sendIndex, 3000))
+    }
+}
+
+function sendIndex() {
+    window.location.href = './index.html'
+}

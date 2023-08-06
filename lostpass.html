@@ -8,12 +8,14 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./assets/styles/register.css">
     <link rel="stylesheet" href="./assets/styles/login.css">
+    <script src="script.js"></script>
+    <script src="./assets/js/login.js"></script>
 </head>
 
-<body>
+<body onload="successCheck()">
     <div id="signup-con">
         <img id='signup-brand' class="login-brand" src="./assets/img/logo624.png">
-        <form id="signup-form" action="./send_mail.php" method="POST"> 
+        <form id="signup-form" action="http://gruppe-624.developerakademie.net/send_mail.php" method="POST"> 
             <img id="back-arrow" src="./assets/img/back_arrow.png" onclick="history.back()">
             <div id="signup-headline">
                 <span>I forgot my password</span>
@@ -23,12 +25,16 @@
             </div>
             <span id="loss-span">Don't worry! We will send you an email with the <br>instructions to reset your password.</span>
             <div id="signup-email" class="epass">
-                <input type="email" name="name" required placeholder="Email">
+                <input type="email" name="mail" required placeholder="Email">
                 <img src="./assets/img/mail-icon.svg">
             </div>
             <button class="login-btn">Send me the email</button>
         </form>
+        <div id="signup-success-con" class="blur-bg d-none">
+            <div id="signup-success">You Signed Up successfully</div>
     </div>
+    </div>
+    
 </body>
 
 </html>
