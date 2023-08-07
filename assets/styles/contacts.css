@@ -251,3 +251,15 @@
     justify-content: center;
     margin-top: 32px;
 }
+.input-outside:hover{
+    cursor: pointer;
+}
+#contact-cancel:hover{
+    cursor: pointer;
+}
+#contact-create:hover{
+    cursor: pointer;
+}
+.input:hover{
+    cursor: pointer;
+}

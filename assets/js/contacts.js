@@ -1,35 +1,4 @@
-let contacts = {
-    "A": [
-        {
-            name: "Anton Mayer",
-            mail: "antonm@gmail.com",
-            phone: "+49 1111 111 11 1",
-            color: "orange"
-        },
-        {
-            name: "Anton Mayer",
-            mail: "antonm@gmail.com",
-            phone: "+49 1111 111 11 1",
-            color: "orange"
-        }
-    ],
-    "B": [
-        {
-            name: "Bnton Mayer",
-            mail: "antonm@gmail.com",
-            phone: "+49 1111 111 11 1",
-            color: "orange"
-        }
-    ],
-    "F": [
-        {
-            name: "Fnton Mayer",
-            mail: "antonm@gmail.com",
-            phone: "+49 1111 111 11 1",
-            color: "orange"
-        }
-    ]
-}
+
 
 function renderContacts() {
     let contactColumn = docID('contact-column');
@@ -109,3 +78,46 @@ function renderContactDisplay(elementJSON) {
     `;
     docID('contact-icon').style.backgroundColor = color;
 }
+
+function addNewContact(){
+    docID('background-add-contact').classList.remove('d-none')
+}
+
+function cancelNewContact(){
+    docID('background-add-contact').classList.add('d-none')
+}
+
+//Array für Kontakte erstellen in die später die einzelnen Kontakte reingeschoben werden können
+let contacts = [];
+setElement('contacts', contacts);
+
+//JSON-Vorlage wird erstellt. Dort wwird der erstellte Contact eingefügt und anschließend in das array gepushed und remote gespeichert
+function createJsonContact(name, mail, phone, color,){
+    return {
+      name: name,
+      mail: mail,
+      phone: phone,
+      color: color,
+    };
+    
+}
+
+//Neuen Kontakt erstellen. Die Infos werden aus dem Formular gezogen und anschließend in das JSON-Gerüst gepackt. 
+
+function newContact() {
+    let name = document.getElementById(`contact-name`).value;
+    let mail = document.getElementById(`contact-mail`).value;
+    let phone = document.getElementById(`contact-phone`).value;
+
+    //Zudem muss die Animation/Transition des Input-Bereichs geregelt werden
+// Auch Die Animation "Contact succesfully created" muss angezeigt werden
+// Anschließend müssen alle Input Felder wieder geleert werden
+
+   
+    let contact = createJsonContact(name, mail, phone);
+    
+    contacts.push(contact);
+    console.log(contacts);
+    setElement('contacts', contacts);
+    getElement('contacts');
+  }

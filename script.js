@@ -91,11 +91,13 @@ function legalNotesInit(){
     hideElements();
 }
 
-function contactsInit(){
+async function contactsInit(){
     activeUser();
     headerRender();
     navRender();
     activeSite("menu-contacts");
+    getdataContacts = await getElement('contacts');
+    contacts = JSON.parse(getdataContacts);  
     renderContacts();
 }
 
