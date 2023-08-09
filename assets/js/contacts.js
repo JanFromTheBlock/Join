@@ -104,7 +104,7 @@ function createJsonContact(name, mail, phone, color,){
 
 //Neuen Kontakt erstellen. Die Infos werden aus dem Formular gezogen und anschließend in das JSON-Gerüst gepackt. 
 
-function newContact() {
+async function newContact() {
     let name = document.getElementById(`contact-name`).value;
     let mail = document.getElementById(`contact-mail`).value;
     let phone = document.getElementById(`contact-phone`).value;
@@ -118,6 +118,5 @@ function newContact() {
     
     contacts.push(contact);
     console.log(contacts);
-    setElement('contacts', contacts);
-    getElement('contacts');
+    await setElement('contacts', contacts);
   }

@@ -15,7 +15,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $headers = "From:  noreply@developerakademie.com";
         $message = "Lieber User, \n \n du bekommst diese Mail weil du den Passwort-Reset angefordert hast. Folge diesem Link, der führt dich auf die Seite zum Reseten des Passworts: \n https://gruppe-624.developerakademie.net/resetpass.html?mail=$mailAddress";
 
-        mail($mailAddress, $subject, $message, $headers);
+        for$result = mail($mailAddress, $subject, $message, $headers);
         header("Location: " . $redirect); 
 
         break;

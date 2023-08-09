@@ -25,6 +25,7 @@ async function getElement(key) {
     });;
 }
 
+
 function docID (id){
     return document.getElementById(id);
 }

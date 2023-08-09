@@ -76,3 +76,37 @@ function successCheck() {
 function sendIndex() {
     window.location.href = './index.html'
 }
+
+async function onSubmitRQPassword(event) {
+    if(checkmail()) {
+        event.preventDefault();
+        let formData = new FormData(event.target);
+        await action(formData);
+    }else {
+        console.log('Maiaddy nicht vorhanden'); 
+    }
+}
+
+async function action(formData) {
+    const input = 'https://gruppe-624.developerakademie.net/send_mail.php';
+    const requestInit = { method: 'post', body: formData };
+    return await fetch(input, requestInit);
+}
+
+async function checkmail() {
+    let array = await getElement('users');
+    mailUsers = JSON.parse(array);
+    for (let i = 0; i < mailUsers.length; i++) {
+        if(mailUsers[i]['mail'] === docID('lost-mail').value) {
+            return true;
+        }
+        
+    }
+    return false;
+}
+
+async function realMail() {
+    let variable = new URLSearchParams(window.location.search).get('mail');
+    if 
+
+}
