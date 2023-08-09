@@ -89,7 +89,6 @@ function cancelNewContact(){
 
 //Array für Kontakte erstellen in die später die einzelnen Kontakte reingeschoben werden können
 let contacts = [];
-setElement('contacts', contacts);
 
 //JSON-Vorlage wird erstellt. Dort wwird der erstellte Contact eingefügt und anschließend in das array gepushed und remote gespeichert
 function createJsonContact(name, mail, phone, color,){
