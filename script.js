@@ -96,8 +96,30 @@ async function contactsInit(){
     headerRender();
     navRender();
     activeSite("menu-contacts");
-    getdataContacts = await getElement('contacts');
-    contacts = JSON.parse(getdataContacts);  
+    try {
+        const getdataContacts = await getElement('contacts');
+        const savedContacts = JSON.parse(getdataContacts);
+
+        // Überprüfen, ob es gespeicherte Kontakte gibt
+        if (Array.isArray(savedContacts)) {
+            // Hier gehen wir davon aus, dass die Kontakte flach gespeichert werden
+            // Wir setzen sie hier in die ursprüngliche Struktur zurück
+            for (const contact of savedContacts) {
+                if (contact.name && contact.mail && contact.phone) {
+                    const firstLetter = contact.name.charAt(0).toUpperCase();
+                    if (!contacts[firstLetter]) {
+                        contacts[firstLetter] = [];
+                    }
+                    contacts[firstLetter].push(contact);
+                }
+            }
+        }
+
+        console.log('contacts:', contacts);
+
+    } catch (error) {
+        console.error('Error initializing contacts:', error);
+    }  
     renderContacts();
 }
 

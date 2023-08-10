@@ -37,6 +37,12 @@ function renderContacts() {
     // Durchlaufe alle Buchstaben in contacts
     for (let index in contacts) {
         const element = contacts[index];
+
+          // Prüfe, ob das Array für den aktuellen Buchstaben leer ist
+          if (element.length === 0) {
+            continue; // Überspringe leere Buchstaben
+        }
+
         contactColumn.innerHTML += /*html*/`
             <div id="letter-headline">${index}</div>
             <div id="line"></div>
@@ -161,4 +167,31 @@ async function newContact() {
     } else {
         console.log('Name, E-Mail und Telefonnummer sind erforderlich.');
     }
+}
+
+async function loadRemoteContacts(){
+    try {
+        const getdataContacts = await getElement('contacts');
+        const savedContacts = JSON.parse(getdataContacts);
+
+        // Überprüfen, ob es gespeicherte Kontakte gibt
+        if (Array.isArray(savedContacts)) {
+            // Hier gehen wir davon aus, dass die Kontakte flach gespeichert werden
+            // Wir setzen sie hier in die ursprüngliche Struktur zurück
+            for (const contact of savedContacts) {
+                if (contact.name && contact.mail && contact.phone) {
+                    const firstLetter = contact.name.charAt(0).toUpperCase();
+                    if (!contacts[firstLetter]) {
+                        contacts[firstLetter] = [];
+                    }
+                    contacts[firstLetter].push(contact);
+                }
+            }
+        }
+
+        console.log('contacts:', contacts);
+
+    } catch (error) {
+        console.error('Error initializing contacts:', error);
+    }  
 }
