@@ -79,7 +79,8 @@ async function addBoardInit(){
     headerRender();
     navRender();
     activeSite("menu-board");
-    
+    getdata = await getElement('tasks'); //diese beiden Zeilen sind hinderlich um addTask im Board zu öffnen
+    tasks = JSON.parse(getdata);  //diese beiden Zeilen sind hinderlich um addTask im Board zu öffnen
     addBoardRender();
     renderAddTaskToBoard();
 }
