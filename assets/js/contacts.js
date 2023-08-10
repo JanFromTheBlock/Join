@@ -164,6 +164,7 @@ async function newContact() {
         console.log('flatContacts:', flatContacts); // Überprüfen, ob der flache Kontakt-Array richtig erstellt wird
 
         await setElement('contacts', flatContacts);
+        contactsInit();
     } else {
         console.log('Name, E-Mail und Telefonnummer sind erforderlich.');
     }
