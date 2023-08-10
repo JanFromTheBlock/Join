@@ -158,7 +158,7 @@ docID("addTask").innerHTML = /*html*/ `
 function renderAddTaskToBoard() {
   let addTask = document.getElementById(`renderAddTaskToBoard`);
   addTask.innerHTML += /*html*/ `
-   <form>
+   <form onsubmit="newTask(urgency) return false">
     <div id="addTaskToBoardUnderDiv" class="add-task-to-board add-task-to-board-hide d-none">
       <div class="add-task-to-board-title">
           <img onclick="closeAddTaskToBoard()" class="add-task-to-board-close-button" src="./assets/img/close.png">
@@ -240,7 +240,7 @@ function renderAddTaskToBoard() {
              </div>
         </div>
         <div class="add-task-button-to-board">
-            <button id="addTaskButtonToBoard" onclick="newTask(urgency)" class="add-task-button-create-board cursor-pointer d-none">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
+            <button id="addTaskButtonToBoard" class="add-task-button-create-board cursor-pointer d-none">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
         </div>
   </form> 
    `;

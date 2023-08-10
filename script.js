@@ -25,7 +25,6 @@ async function getElement(key) {
     });;
 }
 
-
 function docID (id){
     return document.getElementById(id);
 }
@@ -91,13 +90,11 @@ function legalNotesInit(){
     hideElements();
 }
 
-async function contactsInit(){
+function contactsInit(){
     activeUser();
     headerRender();
     navRender();
     activeSite("menu-contacts");
-    getdataContacts = await getElement('contacts');
-    contacts = JSON.parse(getdataContacts);  
     renderContacts();
 }
 
