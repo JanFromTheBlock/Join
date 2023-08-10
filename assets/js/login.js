@@ -108,5 +108,23 @@ async function checkmail() {
 
 async function realMail() {
     let variable = new URLSearchParams(window.location.search).get('mail');
-    return
+    if (variable === null) {
+        window.location.href = './index.html';
+    }
+    else if (checkreset(variable)) {  //checkreset(variable)
+        return
+    }else {
+        window.location.href = './index.html';
+    }
+}
+
+async function checkreset(variable) {
+    let array = await getElement('users');
+    mailUsers = JSON.parse(array);
+    for (let i = 0; i < mailUsers.length; i++) {
+        if(mailUsers[i]['mail'] === variable) {
+            return true;
+        }
+    }
+    return false;
 }
