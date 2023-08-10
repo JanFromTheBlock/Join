@@ -65,8 +65,8 @@ header {
 
 #header-user-name {
   display: flex;
-  width: 17px;
-  height: 17px;
+  width: 18px;
+  height: 17.98px;
   padding: 10px;
   justify-content: center;
   align-items: center;
@@ -75,7 +75,10 @@ header {
   background-color: #FFFFFF;
   font-weight: bold;
   color: #4589FF;
-  /* font-size: 24px;  for one letter*/
+}
+
+.one-letter {
+  font-size: 24px!important;
 }
 
 /* navigation */
