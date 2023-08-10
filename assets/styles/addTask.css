@@ -431,6 +431,14 @@ input[type="date"]::placeholder {
   z-index: 9999;
 }
 
+.task-added-to-board-board {
+  transition: margin-top 300ms;
+  z-index: 9999;
+  margin-left: 40%;
+  margin-top: -240px;
+  position: fixed;
+}
+
 .task-added-to-board-hide{
   margin-top: 1000px;
   margin-left: 40%;
@@ -449,10 +457,11 @@ input[type="date"]::placeholder {
   box-shadow: -2px 2px 7px -6px;
   position: absolute;
   flex-direction: column;
-  height: 1024px;
   top: 0;
   right: 0;
   transition: right 325ms ease-out;
+  height: 100vh;
+  overflow-y: scroll;
 }
 
 .add-task-to-board-hide{
@@ -506,7 +515,6 @@ input[type="date"]::placeholder {
   position: fixed;
   z-index: 999;
   width: 422px;
-  
 }
 
 .padding-top{
@@ -521,4 +529,8 @@ input[type="date"]::placeholder {
 .full-opacity{
   opacity: 1;
   transition: opacity 325ms ease-out; 
+}
+
+.overflowY{
+overflow-y: hidden;
 }

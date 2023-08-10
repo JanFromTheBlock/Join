@@ -122,9 +122,10 @@ function newTask() {
   taskAddedToBoard.classList.remove(`d-none`);
   taskAddedToBoard.classList.remove(`task-added-to-board-hide`);
   taskAddedToBoard.classList.add(`task-added-to-board`);
- 
+  
   setTimeout(() => {
     taskAddedToBoard.classList.add(`task-added-to-board-hide`);
+   
     closeAddTaskToBoard();
   }, 2000);
   

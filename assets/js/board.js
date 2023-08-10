@@ -318,7 +318,7 @@ function changeDeleteImage(isHovering) {
         addTask.classList.remove(`add-task-to-board-hide`);
       }, 100);
     boardBody.classList.remove(`overflow-hidden`);
-    board.classList.add(`position-fixed`);
+    board.classList.add(`overflowY`);
     backgroundBoard.classList.add(`decrease-opacity`);
     backgroundHeader.classList.add(`decrease-opacity`);
     backgroundNav.classList.add(`decrease-opacity`);
@@ -336,7 +336,7 @@ function changeDeleteImage(isHovering) {
     let backgroundHeader = document.getElementById(`header`);
     let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
     addTaskButtonToBoard.classList.add(`d-none`);
-    board.classList.remove(`position-fixed`);
+    board.classList.remove(`overflowY`);
     addTask.classList.add(`add-task-to-board-hide`);
     setTimeout(() => {
         addTask.classList.add(`d-none`);
