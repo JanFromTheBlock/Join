@@ -6,7 +6,6 @@ function headerRender() {
         <div class="header-data">
             <span>Kanban Project Management Tool</span>
             <img class="header-help" id="header-help" src="./assets/img/help.png">
-            <!-- <img class="header-user" src="./assets/img/example-user.png"> -->
             <div id="header-user-con">
                 <div id="header-user-ellipse">
                     <div id="header-user-name"> ${userInitial}
@@ -15,7 +14,15 @@ function headerRender() {
             </div>
         </div>
     `;
+  oneLetter();
 }
+
+function oneLetter() {
+  if(userInitial.length == 1) {
+    docID('header-user-name').classList.add('one-letter');
+  }
+}
+
 
 function navRender() {
   docID("nav").innerHTML = /*html*/ `
