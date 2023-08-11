@@ -21,10 +21,11 @@ h2{
 #back-arrow{
     padding: 4px;
     border-radius: 10px;
-}
-#back-arrow:hover{
     cursor: pointer;
-    background-color: #E3EEFF;
+}
+
+#back-arrow:hover{
+    filter: #005DFF;
 }
 
 #help-con {
@@ -63,5 +64,9 @@ h2{
 .help-how span {
     font-size: 19px;
     font-weight: bold;
+    color: #4589FF;
+}
+
+.blue-Join {
     color: #4589FF;
 }
