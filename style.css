@@ -45,6 +45,7 @@ header {
 .header-help {
   width: 31px;
   height: 31px;
+  cursor: pointer;
 }
 
 #header-user-con {

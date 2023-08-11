@@ -99,6 +99,12 @@ function contactsInit(){
     renderContacts();
 }
 
+function helpInit() {
+    activeUser();
+    headerRender();
+    navRender();
+}
+
 // save the active user in local storage
 function localUsersave(name) {
     let initials = name.match(/[A-Z]/g).join('').slice(0,2)

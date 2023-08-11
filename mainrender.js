@@ -5,7 +5,7 @@ function headerRender() {
         <img class="header-img" src="./assets/img/logo624.png">
         <div class="header-data">
             <span>Kanban Project Management Tool</span>
-            <img class="header-help" id="header-help" src="./assets/img/help.png">
+            <a href="./help.html"><img class="header-help" id="header-help" src="./assets/img/help.png"></a>
             <div id="header-user-con">
                 <div id="header-user-ellipse">
                     <div id="header-user-name"> ${userInitial}
