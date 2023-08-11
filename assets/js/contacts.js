@@ -28,10 +28,11 @@ let contacts = {
     "Z":[],
 };
 
+let NumberofContacts;
 
 function renderContacts() {
     let contactColumn = docID('contact-column');
-    let NumberofContacts = 0;
+    NumberofContacts = 0;
     contactColumn.innerHTML = '';
 
 
@@ -94,7 +95,7 @@ function renderContactDisplay(elementJSON) {
                 <div id="contact-display-name">${name}</div>
                 <div id="contact-imgs">
                     <div class="contact-img"><img src="./assets/img/edit_contact.png">Edit</div>
-                    <div class="contact-img"><img src="./assets/img/delete_contact.png">Delete</div>
+                    <div onclick="deleteContact(${NumberofContacts})" class="contact-img"><img src="./assets/img/delete_contact.png">Delete</div>
                 </div>
             </div>
         </div>
@@ -129,11 +130,13 @@ function cancelNewContact(){
 //JSON-Vorlage wird erstellt. Dort wwird der erstellte Contact eingefügt und anschließend in das array gepushed und remote gespeichert
 function createJsonContact(name, mail, phone){
     const color = 'orange';
+    contactId = NumberofContacts + 1;
     return {
       name: name,
       mail: mail,
       phone: phone,
       color: color,
+      contactId: contactId
     };
     
 }
@@ -198,4 +201,25 @@ async function loadRemoteContacts(){
     } catch (error) {
         console.error('Error initializing contacts:', error);
     }  
+}
+
+function deleteContact(contactId) {
+    // Durchlaufe alle Buchstaben im Kontaktdaten-Objekt
+    for (const letter in contacts) {
+        if (contacts.hasOwnProperty(letter)) {
+            const contactArray = contacts[letter];
+            
+            // Durchlaufe die Kontakte im aktuellen Buchstaben-Array
+            for (let i = 0; i < contactArray.length; i++) {
+                if (contactArray[i].contactId === contactId) {
+                    // Entferne den Kontakt aus dem Array
+                    contactArray.splice(i, 1);
+                    renderContacts(); // Aktualisiere die Anzeige
+                    console.log('Contact deleted with contactId:', contactId);
+                    return; // Beende die Funktion, da der Kontakt gefunden und gelöscht wurde
+                }
+            }
+        }
+    }
+    console.log('Contact not found with contactId:', contactId);
 }
