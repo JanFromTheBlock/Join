@@ -125,7 +125,7 @@ function newTask() {
 
   setTimeout(() => {
     taskAddedToBoard.classList.add(`task-added-to-board-hide`);
-    window.location.href = "./board.html";
+   
     closeAddTaskToBoard();
   }, 2000);
   

@@ -488,6 +488,15 @@ input[type="date"]::placeholder {
   margin-top: 10px;
 }
 
+.add-task-button-create-board:hover {
+  border: 1px solid rga#647188;
+  background-color: #005dff;
+}
+
+.add-task-button-img{
+  margin-left: 5px;
+}
+
 .add-task-button-to-board{
   right: -274px;
   top: 87%;
