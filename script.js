@@ -100,6 +100,9 @@ async function contactsInit(){
         const getdataContacts = await getElement('contacts');
         const savedContacts = JSON.parse(getdataContacts);
 
+          // Zurücksetzen des contacts-Objekts, bevor die gespeicherten Kontakte hinzugefügt werden
+          contacts = {};
+
         // Überprüfen, ob es gespeicherte Kontakte gibt
         if (Array.isArray(savedContacts)) {
             // Hier gehen wir davon aus, dass die Kontakte flach gespeichert werden

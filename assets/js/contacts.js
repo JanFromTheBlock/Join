@@ -28,6 +28,7 @@ let contacts = {
     "Z":[],
 };
 
+
 function renderContacts() {
     let contactColumn = docID('contact-column');
     let NumberofContacts = 0;
@@ -126,7 +127,8 @@ function cancelNewContact(){
 
 
 //JSON-Vorlage wird erstellt. Dort wwird der erstellte Contact eingefügt und anschließend in das array gepushed und remote gespeichert
-function createJsonContact(name, mail, phone, color){
+function createJsonContact(name, mail, phone){
+    const color = 'orange';
     return {
       name: name,
       mail: mail,
@@ -154,9 +156,10 @@ async function newContact() {
 
         contacts[firstLetter].push(contact); // Hier wird der Kontakt dem entsprechenden Array im contacts-Objekt hinzugefügt
 
-        // Flache Liste von Kontakten erstellen
+        // Flache Liste nur mit neuem Kontakt erstellen
         let flatContacts = [];
-        for (let letter in contacts) {
+
+         for (let letter in contacts) {
             flatContacts = flatContacts.concat(contacts[letter]);
         }
 
