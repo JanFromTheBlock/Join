@@ -157,7 +157,7 @@ docID("addTask").innerHTML = /*html*/ `
              </div>
            </div>
          </div>
-         <img id="taskAddedToBoard" class="task-added-to-board-hide d-none" src="./assets/img/logoAddedToBoard.png">
+         <img id="taskAddedToBoard" class="task-added-to-board-hide task-added-to-board" src="./assets/img/logoAddedToBoard.png">
   </form> 
       `;
 }
@@ -165,7 +165,8 @@ docID("addTask").innerHTML = /*html*/ `
 function renderAddTaskToBoard() {
   let addTask = document.getElementById(`renderAddTaskToBoard`);
   addTask.innerHTML += /*html*/ `
-   <form onsubmit="newTask(urgency) return false">
+  
+   <form>
     <div id="addTaskToBoardUnderDiv" class="add-task-to-board add-task-to-board-hide d-none">
       <div class="add-task-to-board-title">
           <img onclick="closeAddTaskToBoard()" class="add-task-to-board-close-button" src="./assets/img/close.png">
@@ -246,8 +247,8 @@ function renderAddTaskToBoard() {
                 <div id="subTaskArea" class="d-none"></div>
              </div>
         </div>
-        <div class="add-task-button-to-board">
-            <button id="addTaskButtonToBoard" class="add-task-button-create-board cursor-pointer d-none">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
+        <div onclick="newTask(urgency)" class="add-task-button-to-board">
+            <button id="addTaskButtonToBoard" class="add-task-button-create-board cursor-pointer">Add Task<img class="add-task-button-img" src="./assets/img/hakenCreateTask.png"></button>
         </div>
   </form> 
    `;

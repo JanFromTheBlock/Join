@@ -79,8 +79,8 @@ async function addBoardInit(){
     headerRender();
     navRender();
     activeSite("menu-board");
-    getdata = await getElement('tasks'); //diese beiden Zeilen sind hinderlich um addTask im Board zu öffnen
-    tasks = JSON.parse(getdata);  //diese beiden Zeilen sind hinderlich um addTask im Board zu öffnen
+    getdata = await getElement('tasks'); 
+    tasks = JSON.parse(getdata);  
     addBoardRender();
     renderAddTaskToBoard();
 }
@@ -91,11 +91,35 @@ function legalNotesInit(){
     hideElements();
 }
 
-function contactsInit(){
+async function contactsInit(){
     activeUser();
     headerRender();
     navRender();
     activeSite("menu-contacts");
+    try {
+        const getdataContacts = await getElement('contacts');
+        const savedContacts = JSON.parse(getdataContacts);
+
+        // Überprüfen, ob es gespeicherte Kontakte gibt
+        if (Array.isArray(savedContacts)) {
+            // Hier gehen wir davon aus, dass die Kontakte flach gespeichert werden
+            // Wir setzen sie hier in die ursprüngliche Struktur zurück
+            for (const contact of savedContacts) {
+                if (contact.name && contact.mail && contact.phone) {
+                    const firstLetter = contact.name.charAt(0).toUpperCase();
+                    if (!contacts[firstLetter]) {
+                        contacts[firstLetter] = [];
+                    }
+                    contacts[firstLetter].push(contact);
+                }
+            }
+        }
+
+        console.log('contacts:', contacts);
+
+    } catch (error) {
+        console.error('Error initializing contacts:', error);
+    }  
     renderContacts();
 }
 
