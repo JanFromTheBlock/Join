@@ -1,13 +1,48 @@
-
+//Array für Kontakte erstellen in die später die einzelnen Kontakte reingeschoben werden können
+let contacts = {
+    "A":[],
+    "B":[],
+    "C":[],
+    "D":[],
+    "E":[],
+    "F":[],
+    "G":[],
+    "H":[],
+    "I":[],
+    "J":[],
+    "K":[],
+    "L":[],
+    "M":[],
+    "N":[],
+    "O":[],
+    "P":[],
+    "Q":[],
+    "R":[],
+    "S":[],
+    "T":[],
+    "U":[],
+    "V":[],
+    "W":[],
+    "X":[],
+    "Y":[],
+    "Z":[],
+};
 
 function renderContacts() {
     let contactColumn = docID('contact-column');
     let NumberofContacts = 0;
     contactColumn.innerHTML = '';
 
+
     // Durchlaufe alle Buchstaben in contacts
     for (let index in contacts) {
         const element = contacts[index];
+
+          // Prüfe, ob das Array für den aktuellen Buchstaben leer ist
+          if (element.length === 0) {
+            continue; // Überspringe leere Buchstaben
+        }
+
         contactColumn.innerHTML += /*html*/`
             <div id="letter-headline">${index}</div>
             <div id="line"></div>
@@ -87,11 +122,11 @@ function cancelNewContact(){
     docID('background-add-contact').classList.add('d-none')
 }
 
-//Array für Kontakte erstellen in die später die einzelnen Kontakte reingeschoben werden können
-let contacts = [];
+
+
 
 //JSON-Vorlage wird erstellt. Dort wwird der erstellte Contact eingefügt und anschließend in das array gepushed und remote gespeichert
-function createJsonContact(name, mail, phone, color,){
+function createJsonContact(name, mail, phone, color){
     return {
       name: name,
       mail: mail,
@@ -108,14 +143,56 @@ async function newContact() {
     let mail = document.getElementById(`contact-mail`).value;
     let phone = document.getElementById(`contact-phone`).value;
 
-    //Zudem muss die Animation/Transition des Input-Bereichs geregelt werden
-// Auch Die Animation "Contact succesfully created" muss angezeigt werden
-// Anschließend müssen alle Input Felder wieder geleert werden
+    if (name && mail && phone) {
+        let firstLetter = name.charAt(0).toUpperCase(); // Ersten Buchstaben in Großbuchstaben umwandeln
+        let contact = createJsonContact(name, mail, phone);
 
-   
-    let contact = createJsonContact(name, mail, phone);
-    
-    contacts.push(contact);
-    console.log(contacts);
-    await setElement('contacts', contacts);
-  }
+        // Überprüfen, ob das Array für den Anfangsbuchstaben bereits existiert
+        if (!contacts[firstLetter]) {
+            contacts[firstLetter] = []; // Erstellen eines leeren Arrays, falls es nicht existiert
+        }
+
+        contacts[firstLetter].push(contact); // Hier wird der Kontakt dem entsprechenden Array im contacts-Objekt hinzugefügt
+
+        // Flache Liste von Kontakten erstellen
+        let flatContacts = [];
+        for (let letter in contacts) {
+            flatContacts = flatContacts.concat(contacts[letter]);
+        }
+
+        console.log('contacts:', contacts); // Überprüfen, ob das contacts-Objekt richtig aktualisiert wird
+        console.log('flatContacts:', flatContacts); // Überprüfen, ob der flache Kontakt-Array richtig erstellt wird
+
+        await setElement('contacts', flatContacts);
+        contactsInit();
+    } else {
+        console.log('Name, E-Mail und Telefonnummer sind erforderlich.');
+    }
+}
+
+async function loadRemoteContacts(){
+    try {
+        const getdataContacts = await getElement('contacts');
+        const savedContacts = JSON.parse(getdataContacts);
+
+        // Überprüfen, ob es gespeicherte Kontakte gibt
+        if (Array.isArray(savedContacts)) {
+            // Hier gehen wir davon aus, dass die Kontakte flach gespeichert werden
+            // Wir setzen sie hier in die ursprüngliche Struktur zurück
+            for (const contact of savedContacts) {
+                if (contact.name && contact.mail && contact.phone) {
+                    const firstLetter = contact.name.charAt(0).toUpperCase();
+                    if (!contacts[firstLetter]) {
+                        contacts[firstLetter] = [];
+                    }
+                    contacts[firstLetter].push(contact);
+                }
+            }
+        }
+
+        console.log('contacts:', contacts);
+
+    } catch (error) {
+        console.error('Error initializing contacts:', error);
+    }  
+}

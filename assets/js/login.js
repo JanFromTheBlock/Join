@@ -81,6 +81,7 @@ async function onSubmitRQPassword(event) {
     if(checkmail()) {
         event.preventDefault();
         let formData = new FormData(event.target);
+        console.log(formData);
         await action(formData);
     }else {
         console.log('Maiaddy nicht vorhanden'); 
@@ -89,7 +90,7 @@ async function onSubmitRQPassword(event) {
 
 async function action(formData) {
     const input = 'https://gruppe-624.developerakademie.net/send_mail.php';
-    const requestInit = { method: 'post', body: formData };
+    const requestInit = { method: 'POST', mode: 'no-cors', body: formData };
     return await fetch(input, requestInit);
 }
 
@@ -107,6 +108,23 @@ async function checkmail() {
 
 async function realMail() {
     let variable = new URLSearchParams(window.location.search).get('mail');
-    if 
+    if (variable === null) {
+        window.location.href = './index.html';
+    }
+    else if (checkreset(variable)) {  //checkreset(variable)
+        return
+    }else {
+        window.location.href = './index.html';
+    }
+}
 
+async function checkreset(variable) {
+    let array = await getElement('users');
+    mailUsers = JSON.parse(array);
+    for (let i = 0; i < mailUsers.length; i++) {
+        if(mailUsers[i]['mail'] === variable) {
+            return true;
+        }
+    }
+    return false;
 }
