@@ -125,7 +125,7 @@ function newTask() {
 
   setTimeout(() => {
     taskAddedToBoard.classList.add(`task-added-to-board-hide`);
-   
+    window.location.href = "./board.html"; // springt nachdem AddTask gerendert wurde auf die BoardSeite
     closeAddTaskToBoard();
   }, 2000);
   
