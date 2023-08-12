@@ -302,7 +302,7 @@ function addColorToCategory(id) {
   placeholderColorCategory.src = `${colorOfCategory}`;
   placeholderColorCategory.classList.remove(`d-none`);
 
-  if(id === "http://127.0.0.1:5500/assets/img/ellipseGreen.png" || id === "./assets/img/ellipseGreen.png"){
+  if(id === "http://127.0.0.1:5500/assets/img/ellipsegreen.png" || id === "./assets/img/ellipsegreen.png"){
     categoryColor = "#2AD300";
   }else if(id === "http://127.0.0.1:5500/assets/img/ellipseOrange.png" || id === "./assets/img/ellipseOrange.png"){
     categoryColor = "#FF7A00";
