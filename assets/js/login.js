@@ -88,7 +88,7 @@ async function onSubmitRQPassword(event) {
         docID('signup-success-con').classList.remove('d-none');
         setTimeout(sendIndex, 2000);
     }else {
-        console.log('Maiaddy nicht vorhanden'); 
+        console.log('Mailaddy nicht vorhanden'); 
     }
 }
 
