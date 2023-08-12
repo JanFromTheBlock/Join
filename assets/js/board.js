@@ -79,6 +79,7 @@ function renderTaskBody(id) {
     let j = tasks[id]["progress"];            // Variable um festzulegen, in welchem Task-Container die Aufgabe landet
     let taskBody = docID('tasks' + j);
     let l = tasks[id]['array-id'];        //// Anschließend wird Div-Struktur mit passenden ID's für die Task-Container gerendert
+    let prioritySmall = tasks[id]['urgency']
     taskBody.innerHTML += /*html*/`
                     
     <div draggable="true" ondragstart="startDragging(${l})" onclick="openWindow(event, ${id})" id="task${l}" class="task-decoration">
@@ -88,7 +89,7 @@ function renderTaskBody(id) {
         <div class = "progress-bar d-none" id="progress-bar${id}"><div id="progress-bar-outside"><div class="progress-bar-inside" id="progress-bar-inside${id}"></div></div><span id = "subtask${id}"></span></div>
         <div id="task-footer">
             <div class="contact-area" id="contact-area${id}"></div>
-            <img id="contact-area-img${id}" class = "contact-area-img" src="./assets/img/lowLogo.png">
+            <img id="contact-area-img${id}" class = "contact-area-img" src="${prioritySmall}">
         </div>
         
     </div>
@@ -123,7 +124,7 @@ function renderSubtasks(id) {                    //subtasks werden gerendert
 
 function renderUrgencySymbol(id) {
     let urgency = tasks[id]["urgency"];
-    docID('contact-area-img' + id).src = "./assets/img/" + urgency + "Logo.png";  //je nachdem welche urgency besteht, wird ein anderes Bild gerendert
+    docID('contact-area-img' + id).src = urgency;  //je nachdem welche urgency besteht, wird ein anderes Bild gerendert
 }
 
 function renderCategoryColor(id) {                  //die Hintergrundfarbe für die Task-Kategorie wird geladen und dem div gegeben
@@ -225,7 +226,7 @@ function renderStructureOfTheWindow(id) {
                     <div id="date-inside">${dueDate}</div>
                 </div>
                 <div id="window-priority">Priority: 
-                    <div id="window-priority-inside">${priority} <img id="window-contact-img" src="" alt=""></div>
+                    <div id="window-priority-inside"> <img id="window-contact-img" src="${priority}"></div>
                 </div>
                 <div id="window-contact-area">
                     <div>Assigned to:</div>
@@ -247,7 +248,7 @@ function renderPriorityToTheWindow(id) {
 }
 function addUrgencyImage(id) {  //die Urgency de Tasks wird aus dem Array gelesen und in die src für das dazugehörige Img eingefügt, damit das entsprechende Bild angezeigt wird
     let urgency = tasks[id]["urgency"];
-    docID('window-contact-img').src = "./assets/img/" + urgency + "Logo.png";
+    docID('window-contact-img').src = urgency;
 }
 function addUrgencyColor(id) {   //Mit if-Abfragen wird abgefragt, welches der drei möglichen Prioritäten in dem array an Stelle id stehen. Je nachdem wird dann die dazugehörige Hintergrundfarbe dargstellt
     if (tasks[id]["urgency"] === "low") {

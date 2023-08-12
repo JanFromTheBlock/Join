@@ -47,6 +47,8 @@ function showSubtasks() {
   `;
 }
 
+//Onclick auf PriorityButtons
+
 function changeColorUrgent() {
   urgent.classList.add("change-color-urgent");
   urgent.classList.add("clicked");
@@ -94,6 +96,7 @@ function changeColor(i) {
     urgency = "./assets/img/lowLogo.png"; 
     changeColorLow(i);
   }
+  console.log(i, urgency);
 }
 
 function createJsonTask(title, description, category, subtasks, urgency, date, firstName, lastName, categoryColor){
