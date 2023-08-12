@@ -1,119 +1,40 @@
+/* generell Classes */
+
+/* background-color page blue */
+.bg-blue{
+    background-color: #4589FF;
+}
+
+/* background-color strong blue */
+.bg-white{
+    background-color: #FFFFFF;
+}
+
+/* focus line for password divs */
 .blue-line {
     border-bottom: 1px solid #005DFF !important;
 }
 
+/* red line for password divs */
 .red-line {
     border-bottom: 1px solid #FF8190 !important;
 }
 
+/* the asteriks for the password-inputs */
 .password {
     font-family: 'aste'!important;
     font-size: 12px!important;
     line-height: 190%!important;
 }
 
-#start-con {
-    display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #4589FF;
-    animation-name: colorChange;
-    animation-duration: 500ms;
-    animation-delay: 300ms;
-    animation-fill-mode: forwards;
-    z-index: 3;
-}
-
-
-#login-con {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    height: 100vh;
-    background: white;
-}
-
-#login-img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 265px;
-    height: 323px;
-    transform: translateX(-50%) translateY(-50%);
-    animation-name: imgVanish;
-    animation-duration: 500ms;
-    animation-delay: 300ms;
-    animation-fill-mode: forwards;
-}
-
+/* logo on all pages in login section */
 .login-brand {
     position: absolute;
     top: 80px;
     left: 77px;
 }
 
-#login-signup-con {
-    display: inline-flex;
-    align-items: center;
-    position: absolute;
-    top: 67px;
-    right: 86px;
-    gap: 35px;
-}
-
-#login-signup-con span {
-    color: #000;
-    font-size: 23px;
-    line-height: 120%;
-}
-
-#login-signup-con button {
-    padding: 10px 16px;
-}
-
-#login-signup-con a {
-    text-decoration: none;
-}
-
-#login-form {
-    display: inline-flex;
-    padding: 48px 115px;
-    flex-direction: column;
-    align-items: center;
-    gap: 39px;
-    border-radius: 30px;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
-}
-
-#login-headline {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-}
-
-#login-headline span{
-    color: #000000;
-    text-align: center;
-    font-size: 48px;
-    font-weight: 700;
-    line-height: 120%;
-}
-
-.login-user {
-    display: flex;
-    height: 152px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 32px;
-}
-
+/* container für die form inputs*/
 .epass {
     display: flex;
     width: 422px;
@@ -124,6 +45,7 @@
     background: #FFFFFF;
 }
 
+/* the inputs for the forms */
 .epass input {
     display: flex;
     width: 380px;
@@ -136,6 +58,150 @@
     outline: none;
 }
 
+/* container for the legal policy links login and sign up page*/
+.login-legal {
+    position: absolute;
+    width: 240px;
+    height: 35px;
+    flex-shrink: 0;
+    bottom: 42px;
+}
+
+/* the links for legal policy login and sign up page*/
+.login-legal a {
+    display: inline-flex;
+    padding: 8px;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    line-height: 120%;
+    text-decoration: none;
+}
+
+/* hover effect for the links for legal policy login and sign up page */
+.login-legal a:hover {
+    color: #005DFF;
+}
+
+/* page container for all login section*/
+.login-con {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    height: 100vh;
+}
+
+/* size of the Join image in white  all login-section*/
+.signup-brand {
+    width: 101px;
+    height: 122px;
+}
+
+/* the form for all login sectors*/
+.general-form {
+    display: inline-flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 30px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Login page */
+
+/* start animation bg */
+#start-con {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #4589FF;
+    animation-name: colorChange;
+    z-index: 3;
+}
+
+/* start animation img */
+#login-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 265px;
+    height: 323px;
+    transform: translateX(-50%) translateY(-50%);
+    animation-name: imgVanish;
+}
+
+/* start animation parameter */
+.start-animation {
+    animation-duration: 500ms;
+    animation-delay: 300ms;
+    animation-fill-mode: forwards;
+}
+
+/* container for signup button on login-in page */
+#login-signup-con {
+    display: inline-flex;
+    align-items: center;
+    position: absolute;
+    top: 67px;
+    right: 86px;
+    gap: 35px;
+}
+
+/* text for signup button on login-in page */
+#login-signup-con span {
+    color: #000;
+    font-size: 23px;
+    line-height: 120%;
+}
+
+/* the signup button on login-in page */
+#login-signup-con button {
+    padding: 10px 16px;
+}
+
+/* the textdecoration for signup button on login-in page */
+#login-signup-con a {
+    text-decoration: none;
+}
+
+/* spefic paarameter for log in form */
+.login-form {
+    padding: 48px 115px;
+    gap: 39px;
+}
+
+/* the headline container of login. */
+#login-headline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+/* the headline text */
+#login-headline span{
+    color: #000000;
+    text-align: center;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+/* the login-input container */
+.login-user {
+    display: flex;
+    height: 152px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+}
+
+/* container for Remember me and forgot pass link */
 #forget-con {
     display: flex;
     justify-content: center;
@@ -143,6 +209,7 @@
     gap: 53px;
 }
 
+/* container for the checkbox on login-page */
 #rem-checkbox {
     display: flex;
     justify-content: center;
@@ -150,13 +217,14 @@
     gap: 4px;
 }
 
+/* text for the checkbox */
 #rem-checkbox span {
     font-size: 16px;
     line-height: 120%;
     font-family: 'Open Sans';
 }
 
-
+/* link for forgot password */
 #forgot-link {
     display: flex;
     justify-content: center;
@@ -168,13 +236,14 @@
     margin-left: 10px;
 }
 
+/* the hover effect  */
 #forgot-link:hover {
     font-weight: 600;
     text-decoration: underline;
     margin-left: 1px;
 }
 
-
+/* container of the login buttons */
 #login-btn-con {
     display: flex;
     justify-content: center;
@@ -182,11 +251,12 @@
     gap: 35px;
 }
 
+/* the login button.  */
 .login-btn {
     display: flex;
-    padding: 10px 35px;
     justify-content: center;
     align-items: center;
+    padding: 10px 35px;
     gap: 10px;
     border-radius: 8px;
     background: #4589FF;
@@ -196,16 +266,18 @@
     border: none;
 }
 
+/* login button hovver effect */
 .login-btn:hover {
     background: #005DFF;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
+/* the link designed like a button */
 #login-guest {
     display: flex;
-    padding: 10px 35px;
     justify-content: center;
     align-items: center;
+    padding: 10px 35px;
     gap: 10px;
     border-radius: 8px;
     border: 1px solid #647188;
@@ -216,84 +288,34 @@
     text-decoration: none;
 }
 
+/* hover effect for the link designed like a Button */
 #login-guest:hover {
     border: 2px solid #4589FF;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     color: #4589FF;
 }
 
-.login-legal {
-    position: absolute;
-    width: 240px;
-    height: 35px;
-    flex-shrink: 0;
-    bottom: 42px;
-}
-
-.login-legal a {
-    display: inline-flex;
-    padding: 8px;
-    align-items: center;
-    gap: 8px;
-    font-size: 16px;
-    line-height: 120%;
-    text-decoration: none;
-}
-
+/* color for legal links login-page */
 .login-legal-link {
     color: black;
 }
 
-.signup-legal-link {
-    color: #FFFFFF;
-}
+/* signup-page */
 
-.login-legal a:hover {
-    color: #005DFF;
-}
-
-
-#signup-con {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+/* spefic paarameter for log in form in blue bg */
+.sigup-form {
     position: relative;
-    height: 100vh;
-    background: #4589FF;
-}
-
-#signup-brand {
-    width: 101px;
-    height: 122px;
-}
-
-#signup-form {
-    display: inline-flex;
     padding: 48px 80px;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
     gap: 35px;
-    border-radius: 30px;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
 }
 
+/* link back to the prevouis page */
 #back-arrow {
     position: absolute;
     top: 66px;
     left: 50px;
     cursor: pointer;
 }
-
-#headline-arrow {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
 
 
 #signup-headline {
@@ -309,6 +331,11 @@
     font-size: 48px;
     font-weight: 700;
     line-height: 120%;
+}
+
+/* color for legal links signup-page */
+.signup-legal-link {
+    color: #FFFFFF;
 }
 
 #accept-checkbox {
