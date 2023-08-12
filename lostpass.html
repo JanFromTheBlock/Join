@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>lost Password</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="./assets/styles/register.css">
     <link rel="stylesheet" href="./assets/styles/login.css">
     <script src="script.js"></script>
     <script src="./assets/js/login.js"></script>
@@ -15,7 +14,7 @@
 <body onload="successCheck()">
     <div id="signup-con">
         <img id='signup-brand' class="login-brand" src="./assets/img/logo624.png">
-        <form id="signup-form" onsubmit="onSubmitRQPassword(event)"> 
+        <form id="signup-form" onsubmit="onSubmitRQPassword(event); return false"> 
             <img id="back-arrow" src="./assets/img/back_arrow.png" onclick="history.back()">
             <div id="signup-headline">
                 <span>I forgot my password</span>
@@ -24,10 +23,14 @@
                 </svg>
             </div>
             <span id="loss-span">Don't worry! We will send you an email with the <br>instructions to reset your password.</span>
-            <div id="signup-email" class="epass">
-                <input id="lost-mail" type="email" name="mail" required placeholder="Email">
-                <img src="./assets/img/mail-icon.svg">
+            <div>
+                <div id="signup-email" class="epass">
+                    <input id="lost-mail" type="email" name="mail" required placeholder="Email" onfocus="resetRed()">
+                    <img src="./assets/img/mail-icon.svg">
+                </div>
+                <div class="not-match-con"><span id="not-match-span" class="d-none">the mail doesn't exist</span></div>
             </div>
+            
             <button class="login-btn">Send me the email</button>
         </form>
         <div id="signup-success-con" class="blur-bg d-none">

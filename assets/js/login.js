@@ -80,17 +80,20 @@ function sendIndex() {
 }
 
 async function onSubmitRQPassword(event) {
-    if(checkmail()) {
+    if(await checkmail()) {
         event.preventDefault();
         let formData = new FormData(event.target);
         console.log(formData);
         await action(formData);
         docID('signup-success-con').classList.remove('d-none');
         setTimeout(sendIndex, 2000);
-    }else {
-        console.log('Mailaddy nicht vorhanden'); 
+    } else{
+        docID('not-match-span').classList.remove('d-none');
+        docID('signup-email').classList.add('red-line');
     }
 }
+
+
 
 async function action(formData) {
     const input = 'https://gruppe-624.developerakademie.net/send_mail.php';
@@ -107,7 +110,13 @@ async function checkmail() {
         }
         
     }
+    console.log("No match found.");
     return false;
+}
+
+function resetRed(){
+    docID('not-match-span').classList.add('d-none');
+    docID('signup-email').classList.remove('red-line');
 }
 
 async function realMail() {
