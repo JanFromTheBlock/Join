@@ -88,8 +88,7 @@ async function onSubmitRQPassword(event) {
         docID('signup-success-con').classList.remove('d-none');
         setTimeout(sendIndex, 2000);
     } else{
-        docID('not-match-span').classList.remove('d-none');
-        docID('signup-email').classList.add('red-line');
+        resetRed();
     }
 }
 
