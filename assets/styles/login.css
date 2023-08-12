@@ -7,7 +7,7 @@
 }
 
 .password {
-    font-family: 'aste';
+    font-family: 'aste'!important;
     font-size: 12px!important;
     line-height: 190%!important;
 }

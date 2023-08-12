@@ -1,7 +1,9 @@
 function passChange(login, img, span, other) {
     docID(login).classList.remove('red-line');
     docID(login).classList.add('blue-line');
-    docID(img).src = "./assets/img/visibility_off.svg";
+    if(docID(img).src != "http://" + window.location.host + "/assets/img/visibility.svg"){
+        docID(img).src = "./assets/img/visibility_off.svg";
+    }
     if(other){
         docID(other).classList.remove('red-line');
     }
@@ -10,8 +12,8 @@ function passChange(login, img, span, other) {
     }
 }
 
-function passAsterik(input) {
-    if (docID(input).value.length > 0) {
+function passAsterik(input, img) {
+    if (docID(input).value.length > 0 && docID(img).src != "http://" + window.location.host + "/assets/img/visibility.svg") {
         docID(input).classList.add('password');
     } else {
         docID(input).classList.remove('password');
@@ -83,6 +85,8 @@ async function onSubmitRQPassword(event) {
         let formData = new FormData(event.target);
         console.log(formData);
         await action(formData);
+        docID('signup-success-con').classList.remove('d-none');
+        setTimeout(sendIndex, 2000);
     }else {
         console.log('Maiaddy nicht vorhanden'); 
     }
@@ -127,4 +131,26 @@ async function checkreset(variable) {
         }
     }
     return false;
+}
+
+async function passReset() {
+    let getdata = await getElement('users');
+    let current = JSON.parse(getdata);
+    if(docID('pass1').value != docID('pass2').value) {
+        docID('not-match-span').classList.remove('d-none');
+        docID('signup-pass2').classList.add('red-line');
+        return
+    }
+    let variable = new URLSearchParams(window.location.search).get('mail');
+    for (let i = 0; i < current.length; i++) {
+        if (current[i]['email'] == variable) {
+            current[i]['pass'] = docID('pass1').value;
+            await setElement('users', current);
+            console.log(current);
+            console.log('passwort updated');
+            docID('signup-success-con').classList.remove('d-none');
+            setTimeout(setTimeout(sendIndex, 3000))
+        }
+    }
+
 }

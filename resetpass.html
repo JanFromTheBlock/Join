@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reset your password</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="./assets/styles/register.css">
     <link rel="stylesheet" href="./assets/styles/login.css">
+    <link rel="stylesheet" href="./assets/fontello-16a74537/css/aste.css">
+    <link rel="stylesheet" href="./assets/fontello-420fc6fa/css/aste.css">
     <script src="script.js"></script>
     <script src="./assets/js/login.js"></script>
 </head>
@@ -15,7 +16,7 @@
 <body onload="realMail()">
     <div id="signup-con">
         <img id='signup-brand' class="login-brand" src="./assets/img/logo624.png">
-        <form id="signup-form">
+        <form id="signup-form" onsubmit="passReset(); return false">
             <div id="signup-headline">
                 <span>Reset your password</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="154" height="4" viewBox="0 0 154 4" fill="none">
@@ -23,14 +24,23 @@
                 </svg>
             </div>
             <span id="loss-span">Change your account password here</span>
-            <div id="signup-pass" class="epass">
-                <input type="password" required placeholder="New password">
-            </div>
-            <div id="signup-pass" class="epass">
-                <input type="password" required placeholder="Confirm password">
-            </div>
+            <div>
+                <div id="signup-pass1" class="epass">
+                    <input id="pass1" type="password" required placeholder="New password" onfocusin="passChange('signup-pass1', 'signup-pass-img', 'not-match-span', 'signup-pass2')" onfocusout="passOutChange('pass1', 'signup-pass1','signup-pass-img')" oninput="passAsterik('pass1', 'signup-pass-img')">
+                    <img id="signup-pass-img" src="./assets/img/lock-icon.svg" onclick="passVisibility('pass1', 'signup-pass-img' )" >
+                </div>
+                <div id="signup-pass2" class="epass">
+                    <input id="pass2" type="password" required placeholder="Confirm password" onfocusin="passChange('signup-pass2', 'signup-pass-con-img')" onfocusout="passOutChange('pass2', 'signup-pass2', 'signup-pass-con-img' )" oninput="passAsterik('pass2', 'signup-pass-con-img')">
+                    <img id="signup-pass-con-img" src="./assets/img/lock-icon.svg" onclick="passVisibility('pass2', 'signup-pass-con-img' )">
+                </div>
+                <div class="not-match-con"><span id="not-match-span" class="d-none">Your Passwords don't match. Try again.</span></div>
+                </div>
+                
             <button class="login-btn">Continue</button>
         </form>
+        <div id="signup-success-con" class="blur-bg d-none">
+            <div id="signup-success">You reset your password</div>
+        </div>
     </div>
 </body>
 
