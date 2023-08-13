@@ -109,6 +109,65 @@
     box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
 }
 
+/* the headline container of all pages in login section. */
+.login-headline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+/* the headline text for all pages in login section.*/
+.login-headline span{
+    color: #000000;
+    text-align: center;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+/* introduction text of the form element*/
+.loss-span {
+    font-size: 23px;
+    line-height: 120%;
+}
+
+
+/* the blur bg for succes plates  */
+.blur-bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255, 0.5);
+    z-index: 3;
+}
+
+/* the success plate */
+.signup-success {
+    display: flex;
+    width: 326px;
+    height: 74px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    background: #4589FF;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
+    font-size: 23px;
+    line-height: 120%;
+    color:#FFFFFF;
+}
+
+/* error text für password segment */
+.not-match-con{
+    display: flex;
+    height: 25px;
+    align-items: center;
+    color: #FF8190;
+    width: 450px;
+}
 
 /* Login page */
 
@@ -173,23 +232,6 @@
 .login-form {
     padding: 48px 115px;
     gap: 39px;
-}
-
-/* the headline container of login. */
-#login-headline {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-}
-
-/* the headline text */
-#login-headline span{
-    color: #000000;
-    text-align: center;
-    font-size: 48px;
-    font-weight: 700;
-    line-height: 120%;
 }
 
 /* the login-input container */
@@ -317,117 +359,14 @@
     cursor: pointer;
 }
 
-
-#signup-headline {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-}
-
-#signup-headline span{
-    color: #000000;
-    text-align: center;
-    font-size: 48px;
-    font-weight: 700;
-    line-height: 120%;
-}
-
 /* color for legal links signup-page */
 .signup-legal-link {
     color: #FFFFFF;
 }
 
-#accept-checkbox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 4px;
-}
+/* animations */
 
-#accept-me {
-    content: url('../img/blue-checkbox.svg');
-    appearance: none;
-}
-
-#accept-me:hover{
-    content: url('../img/blue-checkbox-hover.svg');
-}
-
-#accept-me:checked{
-    content: url('../img/blue-checkbox-checked.svg');
-}
-
-#accept-me:checked:hover {
-    content: url('../img/blue-checkbox-checked-hover.svg');
-}
-
-#accept-checkbox span{
-    margin-left: 8px;
-}
-
-#accept-checkbox a {
-    color: #005DFF;
-    text-decoration: none;
-    margin-left: 8px;
-    margin-right: 4px;
-}
-
-#accept-checkbox a:hover {
-    font-weight: 600;
-    text-decoration-line: underline;
-    margin-left: 3px;
-}
-
-#accept-checkbox span:hover ~ #accept-me + label  {
-    background-image: url('../img/blue-checkbox-hover.svg');
-}
-
-#loss-span {
-    font-size: 23px;
-    line-height: 120%;
-    font-family: 'Open Sans';
-}
-
-.blur-bg {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(255, 255, 255, 0.5);
-    z-index: 3;
-
-}
-
-#signup-success {
-    display: flex;
-    width: 326px;
-    height: 74px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 20px;
-    background: #4589FF;
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
-    font-size: 23px;
-    line-height: 120%;
-    color:#FFFFFF;
-}
-
-#signup-legal {
-    color:#FFFFFF
-}
-
-.not-match-con{
-    display: flex;
-    height: 25px;
-    align-items: center;
-    color: #FF8190;
-    width: 450px;
-}
-
-
+/* blue bg vanish*/
 @keyframes colorChange {
     100% {
         background-color: none;
@@ -436,6 +375,7 @@
     }
 }
 
+/* image move to the left-top corner */
 @keyframes imgVanish {
     100% {
         top: 80px;

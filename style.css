@@ -13,6 +13,55 @@ body {
   cursor: pointer;
 }
 
+/* checkbox basic*/
+.accept-checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+/* checkbox the image */
+.accept-me {
+  content: url('../img/blue-checkbox.svg');
+  appearance: none;
+}
+
+/* checkbox picture on hover */
+.accept-me:hover{
+  content: url('../img/blue-checkbox-hover.svg');
+}
+
+/* checkbox picture when checked */
+.accept-me:checked{
+  content: url('../img/blue-checkbox-checked.svg');
+}
+
+/* checkbox picture on hover while checked */
+.accept-me:checked:hover {
+  content: url('../img/blue-checkbox-checked-hover.svg');
+}
+
+/* the text for the checkbox */
+.accept-checkbox span{
+  margin-left: 8px;
+}
+
+/* the link in the checkbox segment */
+.accept-checkbox a {
+  color: #005DFF;
+  text-decoration: none;
+  margin-left: 8px;
+  margin-right: 4px;
+}
+
+/* the link in the checkbox segment on hover effect */
+.accept-checkbox a:hover {
+  font-weight: 600;
+  text-decoration-line: underline;
+  margin-left: 3px;
+}
+
 /* header */
 
 header {
