@@ -74,7 +74,7 @@ function activeSite(id) {
 
 function addTaskRender(id) {
 docID("addTask").innerHTML = /*html*/ `
-  <form >
+  <form onsubmit="newTask(urgency); return false;">
      <div class="add-task">
             <input required autocomplete="off" id="inputFieldTitle" class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
         
@@ -199,9 +199,7 @@ function renderAddTaskToBoard() {
                  <input autocomplete="off" onclick="showCategories()" oninput="markColor()" required class="add-task-select-contact cursor-pointer" id="selectCategory" placeholder="Select Task category">
                  <img id="categorySelectArrow" src="./assets/img/selectfieldArrow.png">
                  <div class="add-task-placeholder-color-category">
-                   <img class="d-none" id="placeholderColorCategory" src="${
-                     categories[`color`]
-                   }">
+                   <img class="d-none" id="placeholderColorCategory" src="${categories[`color`]}">
                  </div>
                  <div class="add-task-edit-category d-none" id="editCategory">
                     <img onclick="finishPushCategoryToArray()" class="cursor-pointer" src="./assets/img/logoHaken.png">
@@ -239,16 +237,16 @@ function renderAddTaskToBoard() {
         <div id="test"></div>
           <div class="add-task-due-date">
               <h2>Subtasks</h2>
-             <div>
+              <div>
                 <input id="inputSubtask" required class="add-task-subtask cursor-pointer" placeholder="Add new subtask" type="text">
                 <img onclick="showSubtasks()" class="add-task-plus-button cursor-pointer" src="./assets/img/subtaskPlus.png">
               </div>
 
-                <div id="subTaskArea" class="d-none"></div>
+              <div id="subTaskArea" class="d-none"></div>
              </div>
         </div>
-        <div onclick="newTask(urgency)" class="add-task-button-to-board">
-            <button id="addTaskButtonToBoard" class="add-task-button-create-board cursor-pointer">Add Task<img class="add-task-button-img" src="./assets/img/hakenCreateTask.png"></button>
+        <div class="add-task-button-to-board">
+            <button onclick="newTask(urgency)" id="addTaskButtonToBoard" class="add-task-button-create-board cursor-pointer">Add Task<img class="add-task-button-img" src="./assets/img/hakenCreateTask.png"></button>
         </div>
   </form> 
    `;

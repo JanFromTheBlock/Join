@@ -89,7 +89,7 @@ function renderTaskBody(id) {
         <div class = "progress-bar d-none" id="progress-bar${id}"><div id="progress-bar-outside"><div class="progress-bar-inside" id="progress-bar-inside${id}"></div></div><span id = "subtask${id}"></span></div>
         <div id="task-footer">
             <div class="contact-area" id="contact-area${id}"></div>
-            <img id="contact-area-img${id}" class = "contact-area-img" src="${prioritySmall}">
+            <img id="contact-area-img${id}" class= "contact-area-img" src="${prioritySmall}">
         </div>
         
     </div>
@@ -306,17 +306,17 @@ function changeDeleteImage(isHovering) {
 // öffnet AddTask
 
  function openAddTask(){
-    let addTask = document.getElementById(`addTaskToBoardUnderDiv`);
+    let addTaskUnder = document.getElementById(`addTaskToBoardUnderDiv`);
     let backgroundBoard = document.getElementById(`board`);
     let backgroundNav = document.getElementById(`nav`);
     let backgroundHeader = document.getElementById(`header`);
     let boardBody = document.getElementById(`boardBody`);
     let board = document.getElementById(`board`);
     let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
-    addTask.classList.remove(`d-none`);
+    addTaskUnder.classList.remove(`d-none`);
      setTimeout(() => {
         addTaskButtonToBoard.classList.remove(`d-none`);
-        addTask.classList.remove(`add-task-to-board-hide`);
+        addTaskUnder.classList.remove(`add-task-to-board-hide`);
       }, 100);
     boardBody.classList.remove(`overflow-hidden`);
     board.classList.add(`overflowY`);

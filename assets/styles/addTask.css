@@ -314,6 +314,10 @@ input[type="date"]::placeholder {
   font-size: 19px;
 }
 
+.subTaskArea{
+  margin-bottom: 34px;
+}
+
 .add-task-plus-button {
   margin-left: -50px;
 }
@@ -498,7 +502,7 @@ input[type="date"]::placeholder {
 }
 
 .add-task-button-to-board{
-  right: -274px;
+  right: -210px;
   top: 87%;
   position: fixed;
 }
