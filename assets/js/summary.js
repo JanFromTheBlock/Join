@@ -1,25 +1,3 @@
-function SummaryRender() {
-    docID('summary').innerHTML = /*html*/`
-        <div id="grtng-con"></div>
-        <div id="summary-con">
-            <div id="summary-con-upper">
-                    <a id="urgency-summary" class="summary-link" href="./board.html">
-                        <div id="sum-urgent-square"></div>
-                        <div id="ver-line">
-                            <svg viewBox="0 0 4 149" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2 2L2.00001 147" stroke-width="3" stroke-linecap="round"/>
-                            </svg>
-                        </div>
-                        <div id="urgent-date-screen"></div>
-                    </a>
-                    <a id="square-button" class="summary-link" href="./board.html"></a>
-            </div>
-            <div id="sum-overview"></div>
-        </div>
-    `
-}
-
-
 function greetingNameRender() {
     let greeting = sumGreeting();
     if (user == "Guest") {
@@ -45,9 +23,9 @@ function sumBigBtn() {
 function urgentSquareButton() {
     let urgentNr = sumAmout("urgent", "urgency");
     docID('sum-urgent-square').innerHTML = /*html*/`
-        <div id="sum-urgent-con">
+        <div id="sum-urgent-con" class="flex-center">
             <div id="sum-urgent-con-in">
-                <div id="icon-circle">
+                <div id="icon-circle" class="flex-center">
                     <div id="icon"></div>
                 </div>
                 <span id="sum-urgent-con-in-span">${urgentNr}</span>
@@ -71,7 +49,7 @@ function urgentDateScreenRender() {
 function squareButtonRender() {
     let todonr = sumAmout("1", "progress");
     docID('square-button').innerHTML = /*html*/`
-        <div id="sum-board-btn-in">
+        <div class="flex-center sum-board-btn-in">
             <div id="board-btn-img">
                 <div class="board-btn-img-icon task-do-to">
                     <img src="./assets/img/ellipse 14.svg">
@@ -91,7 +69,7 @@ function sumOverviewRender() {
     for (let i = 0; i < 4; i++) {
         docID('sum-overview').innerHTML += /*html*/`
                 <a class="sum-board-btn summary-link" href="./board.html">
-                    <div class="sum-board-btn-in">
+                    <div class="flex-center sum-board-btn-in">
                         <div class="board-btn-img">
                             <div class="board-btn-img-icon ${img[i]}">
                                 <img src="./assets/img/ellipse 14.svg">

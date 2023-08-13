@@ -310,6 +310,7 @@
     border: 2px solid #4589FF;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     color: #4589FF;
+    padding: 9px 34px;
 }
 
 /* color for legal links login-page */
@@ -320,7 +321,7 @@
 /* signup-page */
 
 /* spefic paarameter for log in form in blue bg */
-.sigup-form {
+.signup-form {
     position: relative;
     padding: 48px 80px;
     gap: 35px;

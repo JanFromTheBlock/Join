@@ -50,7 +50,6 @@ function summaryInit() {
     headerRender();
     navRender();
     activeSite("menu-summary");
-    SummaryRender();
     greetingNameRender();
     sumBigBtn();
     squareButtonRender();
