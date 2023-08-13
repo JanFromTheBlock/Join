@@ -13,6 +13,12 @@ body {
   cursor: pointer;
 }
 
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* checkbox basic*/
 .accept-checkbox {
   display: flex;

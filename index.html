@@ -16,7 +16,7 @@
     <div id="start-con" class="start-animation">
         <img id="login-img" class="start-animation" src="./assets/img/logo624.png">
     </div>
-    <div id="login-con" class="login-con bg-white">
+    <div id="login-con" class="flex-center login-con bg-white">
         <img class="login-brand" src="./assets/img/logo624-blue.svg">
         <form id="login-form" class="general-form login-form" onsubmit="login(); return false">
             <div class="login-headline">
@@ -35,16 +35,16 @@
                     <img id="pass-img" src="./assets/img/lock-icon.svg" onclick="passVisibility('pass-input', 'pass-img')">
                 </div>
             </div>
-            <div id="forget-con">
-                <div id="rem-checkbox">
+            <div id="forget-con" class="flex-center">
+                <div id="rem-checkbox" class="flex-center">
                     <input type="checkbox" class="accept-me">
                     <span>Remember me</span>
                 </div>
-                <a id="forgot-link" href="./lostpass.html"><span>I forgot my password</span></a>
+                <a id="forgot-link" class="flex-center" href="./lostpass.html"><span>I forgot my password</span></a>
             </div>
             <div id="login-btn-con">
-                <button type="submit" class="login-btn">Log in</button>
-                <a id="login-guest" href="./summary.html" onclick="guestLogin()">Guest log in</a>
+                <button type="submit" class="flex-center login-btn">Log in</button>
+                <a id="login-guest" class="flex-center" href="./summary.html" onclick="guestLogin()">Guest log in</a>
             </div>
         </form>
         <div id="login-signup-con">

@@ -37,25 +37,25 @@
 /* container für die form inputs*/
 .epass {
     display: flex;
+    align-items: center;
     width: 422px;
     padding: 12px 21px;
-    align-items: center;
-    gap: 10px;
     border-bottom: 1px solid #D1D1D1;
+    gap: 10px;
     background: #FFFFFF;
 }
 
 /* the inputs for the forms */
 .epass input {
     display: flex;
-    width: 380px;
     justify-content: space-between;
     align-items: center;
+    width: 380px;
+    border: none;
+    outline: none;
     flex-shrink: 0;
     font-size: 19px;
     line-height: 120%;
-    border: none;
-    outline: none;
 }
 
 /* container for the legal policy links login and sign up page*/
@@ -70,8 +70,8 @@
 /* the links for legal policy login and sign up page*/
 .login-legal a {
     display: inline-flex;
-    padding: 8px;
     align-items: center;
+    padding: 8px;
     gap: 8px;
     font-size: 16px;
     line-height: 120%;
@@ -85,9 +85,6 @@
 
 /* page container for all login section*/
 .login-con {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
     position: relative;
     height: 100vh;
@@ -135,9 +132,6 @@
 
 /* the blur bg for succes plates  */
 .blur-bg {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: fixed;
     width: 100%;
     height: 100%;
@@ -147,11 +141,8 @@
 
 /* the success plate */
 .signup-success {
-    display: flex;
     width: 326px;
     height: 74px;
-    justify-content: center;
-    align-items: center;
     border-radius: 20px;
     background: #4589FF;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
@@ -163,8 +154,8 @@
 /* error text für password segment */
 .not-match-con{
     display: flex;
-    height: 25px;
     align-items: center;
+    height: 25px;
     color: #FF8190;
     width: 450px;
 }
@@ -237,25 +228,19 @@
 /* the login-input container */
 .login-user {
     display: flex;
-    height: 152px;
     flex-direction: column;
     align-items: flex-start;
+    height: 152px;
     gap: 32px;
 }
 
 /* container for Remember me and forgot pass link */
 #forget-con {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 53px;
 }
 
 /* container for the checkbox on login-page */
 #rem-checkbox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 4px;
 }
 
@@ -263,19 +248,15 @@
 #rem-checkbox span {
     font-size: 16px;
     line-height: 120%;
-    font-family: 'Open Sans';
 }
 
 /* link for forgot password */
 #forgot-link {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-left: 10px;
     text-decoration: none;
     color: #005DFF;
     font-size: 16px;
     line-height: 120%;
-    margin-left: 10px;
 }
 
 /* the hover effect  */
@@ -295,17 +276,14 @@
 
 /* the login button.  */
 .login-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 10px 35px;
-    gap: 10px;
     border-radius: 8px;
+    border: none;
+    gap: 10px;
     background: #4589FF;
     color: #FFFFFF;
     font-size: 23px;
     line-height: 120%;
-    border: none;
 }
 
 /* login button hovver effect */
@@ -316,9 +294,6 @@
 
 /* the link designed like a button */
 #login-guest {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 10px 35px;
     gap: 10px;
     border-radius: 8px;
