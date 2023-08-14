@@ -12,18 +12,21 @@
     gap: 83px;
 }
 
+/* the container of the greetig for the user */
 #grtng-con {
   display: inline-flex;
   align-items: center;
   gap: 22px;
 }
 
+/* the daytime greeting if there is an loged in user */
 #greeting {
   color: #2A3647;
   font-size: 48px;
   line-height: 120%;
 }
 
+/* the name of the logged in User in the greeting */
 #name {
   color: #4589FF;
   font-size: 64px;
@@ -31,13 +34,14 @@
   line-height: 120%;
 }
 
+/* the daytime greeting if no user is logged in. */
 #guest-name {
   color: #2A3647;
   font-size: 64px;
   font-weight: 700;
   line-height: 120%;
 }
-
+/* the conatiner for the dashboard */
 #summary-con {
   display: flex;
   width: 912px;
@@ -47,6 +51,7 @@
   gap: 32px;
 }
 
+/* the container for the upper dashboard */
 #summary-con-upper {
   display: flex;
   width: 912px;
@@ -55,6 +60,7 @@
   align-items: flex-start;
 }
 
+/* the big urgent-card on the upper dashboard */
 #urgency-summary {
   width: 672px;
   height: 191px;
@@ -70,6 +76,7 @@
   transition: ease-in-out 100ms;
 }
 
+/* the big urgent-card on the upper dashboard on hover effect */
 #urgency-summary:hover {
   width: 688px;
   height: 207px;
@@ -79,11 +86,13 @@
   transition: ease-in-out 100ms;
 }
 
+/* the hover effect from big urgent-Card on the span Tasks urgent */
 #urgency-summary:hover #sum-urgent-square-span {
   color: #4589FF;
   font-size: 28px;
 }
 
+/* the hover effect from big urgent-Card on the number of the urgent tasks  */
 #urgency-summary:hover #sum-urgent-con-in-span {
   color: #4589FF;
   font-size: 58px;
@@ -91,25 +100,30 @@
   line-height: 120%;
 }
 
+/* the hover effect from big urgent-Card on the icon of the urgent tasks  */
 #urgency-summary:hover #icon {
   width: 86px;
   height: 86px;
 }
 
+/* the hover effect from big urgent-Card on the container of the urgent date */
 #urgency-summary:hover #urgent-date-screen-date {
   color: #4589FF;
   font-size: 43px;
 }
 
+/* the hover effect from big urgent-Card on text Upcoming Deadline */
 #urgency-summary:hover #urgent-date-screen-deadline {
   color: #4589FF;
   font-size: 28px;
 }
 
+/* the hover effect from big urgent-Card on the vertical line */
 #urgency-summary:hover svg path {
   stroke: #005DFF;
 }
 
+/* the big urgent-card on the upper dashboard while clicking on it - active effect */
 #urgency-summary:active {
   width: 672px;
   height: 191px;
@@ -118,57 +132,68 @@
   margin-right: 19px;
 }
 
+/* the active effect from big urgent-Card on the span Tasks urgent */
 #urgency-summary:active #sum-urgent-square-span {
   color: #FFFFFF;
   font-size: 23px;
 
 }
 
+/* the active effect from big urgent-Card on the number of the urgent tasks  */
 #urgency-summary:active #sum-urgent-con-in-span {
   color: #FFFFFF;
   font-size: 48px;
 }
 
+/* the active effect from big urgent-Card on the icon of the urgent tasks  */
 #urgency-summary:active #icon {
   width: 72px;
   height: 72px;
 }
 
+/* the active effect from big urgent-Card on the vertical line */
 #urgency-summary:active svg path {
   stroke: #FFFFFF;
 }
 
+/* the active effect from big urgent-Card on the container of the urgent date */
 #urgency-summary:active #urgent-date-screen-date {
   color: #FFFFFF;
   font-size: 33px;
 }
 
+/* the active effect from big urgent-Card on text Upcoming Deadline */
 #urgency-summary:active #urgent-date-screen-deadline {
   color: #FFFFFF;
   font-size: 23px;
 }
 
+/* dashcard for Tasks Urgent */
 #sum-urgent-square {
   flex-direction: column;
   gap: 9px;
 }
 
+/* the text of the Tasks Urgent dashcard */
 #sum-urgent-square-span {
   font-size: 23px;
   font-weight: 400;
   line-height: 120%;
 }
 
+/* dashcard Tasks Urgent Container */
 #sum-urgent-con {
   gap: 20px;
 }
 
+/* dashcard Tasks Urgent Icon Container */
 #sum-urgent-con-in {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
+/* the circle around the icon of Tasks Urgent Icon */
 #icon-circle {
   width: 76px;
   height: 76px;
@@ -177,6 +202,7 @@
   background-position: center;
 }
 
+/* the Tasks Urgent Icon */
 #icon {
   display: flex;
   width: 72px;
@@ -187,23 +213,27 @@
   background-size: contain;
 }
 
+/* the number of the Tasks Urgent */
 #sum-urgent-con-in-span {
   font-size: 48px;
   font-weight: 700;
   line-height: 120%;
 }
 
+/* the vertical line container */
 #ver-line {
   width: 0px;
   height: 145px;
   flex-shrink: 0;
 }
 
+/* the vertical line SVG */
 #ver-line svg{
   width: 4px;
   height: 149px;
 }
 
+/* the vertical line path for the stroke */
 #ver-line svg path{
   stroke: white;
   stroke-width: 3;
@@ -505,4 +535,11 @@
 
 .sum-board-btn:active .board-btn-img-icon img{
   display: none;
+}
+
+@media screen and (max-width: 1200px) {
+  /* for now the greeting set on display none. To work out the responsive. After that it gets animaton for disappear */
+  #grtng-con {
+    display: none;
+  }
 }
