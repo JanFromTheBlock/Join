@@ -1,31 +1,31 @@
 //Array für Kontakte erstellen in die später die einzelnen Kontakte reingeschoben werden können
 let contacts = {
-    "A":[],
-    "B":[],
-    "C":[],
-    "D":[],
-    "E":[],
-    "F":[],
-    "G":[],
-    "H":[],
-    "I":[],
-    "J":[],
-    "K":[],
-    "L":[],
-    "M":[],
-    "N":[],
-    "O":[],
-    "P":[],
-    "Q":[],
-    "R":[],
-    "S":[],
-    "T":[],
-    "U":[],
-    "V":[],
-    "W":[],
-    "X":[],
-    "Y":[],
-    "Z":[],
+    "A": [],
+    "B": [],
+    "C": [],
+    "D": [],
+    "E": [],
+    "F": [],
+    "G": [],
+    "H": [],
+    "I": [],
+    "J": [],
+    "K": [],
+    "L": [],
+    "M": [],
+    "N": [],
+    "O": [],
+    "P": [],
+    "Q": [],
+    "R": [],
+    "S": [],
+    "T": [],
+    "U": [],
+    "V": [],
+    "W": [],
+    "X": [],
+    "Y": [],
+    "Z": [],
 };
 
 let NumberofContacts;
@@ -40,8 +40,8 @@ function renderContacts() {
     for (let index in contacts) {
         const element = contacts[index];
 
-          // Prüfe, ob das Array für den aktuellen Buchstaben leer ist
-          if (element.length === 0) {
+        // Prüfe, ob das Array für den aktuellen Buchstaben leer ist
+        if (element.length === 0) {
             continue; // Überspringe leere Buchstaben
         }
 
@@ -117,11 +117,11 @@ function renderContactDisplay(elementJSON) {
     docID('contact-icon').style.backgroundColor = color;
 }
 
-function addNewContact(){
+function addNewContact() {
     docID('background-add-contact').classList.remove('d-none')
 }
 
-function cancelNewContact(){
+function cancelNewContact() {
     docID('background-add-contact').classList.add('d-none')
 }
 
@@ -129,17 +129,17 @@ function cancelNewContact(){
 
 
 //JSON-Vorlage wird erstellt. Dort wwird der erstellte Contact eingefügt und anschließend in das array gepushed und remote gespeichert
-function createJsonContact(name, mail, phone){
+function createJsonContact(name, mail, phone) {
     const color = 'orange';
     contactId = NumberofContacts + 1;
     return {
-      name: name,
-      mail: mail,
-      phone: phone,
-      color: color,
-      contactId: contactId
+        name: name,
+        mail: mail,
+        phone: phone,
+        color: color,
+        contactId: contactId
     };
-    
+
 }
 
 //Neuen Kontakt erstellen. Die Infos werden aus dem Formular gezogen und anschließend in das JSON-Gerüst gepackt. 
@@ -163,7 +163,7 @@ async function newContact() {
         // Flache Liste nur mit neuem Kontakt erstellen
         let flatContacts = [];
 
-         for (let letter in contacts) {
+        for (let letter in contacts) {
             flatContacts = flatContacts.concat(contacts[letter]);
         }
 
@@ -172,6 +172,10 @@ async function newContact() {
 
         await setElement('contacts', flatContacts);
         contactsInit();
+        docID('background-add-contact').classList.add('d-none');
+        document.getElementById(`contact-name`).value = '';
+        document.getElementById(`contact-mail`).value = '';
+        document.getElementById(`contact-phone`).value = '';
     } else {
         console.log('Name, E-Mail und Telefonnummer sind erforderlich.');
     }
@@ -183,7 +187,7 @@ async function deleteContact(contactId) {
     for (const letter in contacts) {
         if (contacts.hasOwnProperty(letter)) {
             const contactArray = contacts[letter];
-            
+
             // Durchlaufe die Kontakte im aktuellen Buchstaben-Array
             for (let i = 0; i < contactArray.length; i++) {
                 if (contactArray[i].contactId === contactId) {
@@ -192,6 +196,9 @@ async function deleteContact(contactId) {
                     await setElement('contacts', contacts);
                     renderContacts(); // Aktualisiere die Anzeige
                     console.log('Contact deleted with contactId:', contactId);
+                    let contactDisplay = docID('contact-display');
+                    contactDisplay.classList.remove('d-none');
+                    contactDisplay.innerHTML = '';
                     return; // Beende die Funktion, da der Kontakt gefunden und gelöscht wurde
                 }
             }
