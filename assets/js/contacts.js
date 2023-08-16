@@ -86,6 +86,7 @@ function renderContactDisplay(elementJSON) {
     let mail = element.mail;
     let color = element.color;
     let phone = element.phone;
+    let contactId = element.contactId;
     contactDisplay.classList.remove('d-none');
     contactDisplay.innerHTML = '';
     contactDisplay.innerHTML += /*html*/`
@@ -95,7 +96,7 @@ function renderContactDisplay(elementJSON) {
                 <div id="contact-display-name">${name}</div>
                 <div id="contact-imgs">
                     <div class="contact-img"><img src="./assets/img/edit_contact.png">Edit</div>
-                    <div onclick="deleteContact(${NumberofContacts})" class="contact-img"><img src="./assets/img/delete_contact.png">Delete</div>
+                    <div onclick="deleteContact(${contactId})" class="contact-img"><img src="./assets/img/delete_contact.png">Delete</div>
                 </div>
             </div>
         </div>
@@ -176,34 +177,8 @@ async function newContact() {
     }
 }
 
-async function loadRemoteContacts(){
-    try {
-        const getdataContacts = await getElement('contacts');
-        const savedContacts = JSON.parse(getdataContacts);
 
-        // Überprüfen, ob es gespeicherte Kontakte gibt
-        if (Array.isArray(savedContacts)) {
-            // Hier gehen wir davon aus, dass die Kontakte flach gespeichert werden
-            // Wir setzen sie hier in die ursprüngliche Struktur zurück
-            for (const contact of savedContacts) {
-                if (contact.name && contact.mail && contact.phone) {
-                    const firstLetter = contact.name.charAt(0).toUpperCase();
-                    if (!contacts[firstLetter]) {
-                        contacts[firstLetter] = [];
-                    }
-                    contacts[firstLetter].push(contact);
-                }
-            }
-        }
-
-        console.log('contacts:', contacts);
-
-    } catch (error) {
-        console.error('Error initializing contacts:', error);
-    }  
-}
-
-function deleteContact(contactId) {
+async function deleteContact(contactId) {
     // Durchlaufe alle Buchstaben im Kontaktdaten-Objekt
     for (const letter in contacts) {
         if (contacts.hasOwnProperty(letter)) {
@@ -214,6 +189,7 @@ function deleteContact(contactId) {
                 if (contactArray[i].contactId === contactId) {
                     // Entferne den Kontakt aus dem Array
                     contactArray.splice(i, 1);
+                    await setElement('contacts', contacts);
                     renderContacts(); // Aktualisiere die Anzeige
                     console.log('Contact deleted with contactId:', contactId);
                     return; // Beende die Funktion, da der Kontakt gefunden und gelöscht wurde
