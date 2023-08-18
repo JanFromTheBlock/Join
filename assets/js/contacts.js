@@ -119,10 +119,27 @@ function renderContactDisplay(elementJSON) {
 
 function addNewContact() {
     docID('background-add-contact').classList.remove('d-none')
+
+    let addTaskUnder = document.getElementById(`add-contact-mask`);
+    addTaskUnder.classList.remove(`d-none`);
+    setTimeout(() => {
+        addTaskUnder.classList.remove(`open-add-contact-hide`);
+    }, 100);
+
 }
 
 function cancelNewContact() {
     docID('background-add-contact').classList.add('d-none')
+
+    let addTask = document.getElementById(`add-contact-mask`);
+    addTask.classList.add(`open-add-contact-hide`);
+    setTimeout(() => {
+        addTask.classList.add(`d-none`);
+    }, 325);
+    document.getElementById(`contact-name`).value = '';
+    document.getElementById(`contact-mail`).value = '';
+    document.getElementById(`contact-phone`).value = '';
+
 }
 
 
