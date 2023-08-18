@@ -187,7 +187,8 @@ async function newContact() {
         console.log('contacts:', contacts); // Überprüfen, ob das contacts-Objekt richtig aktualisiert wird
         console.log('flatContacts:', flatContacts); // Überprüfen, ob der flache Kontakt-Array richtig erstellt wird
 
-        await setElement('contacts', flatContacts);
+        orderContacts();
+        await setElement('contacts', contacts);
         contactsInit();
         docID('background-add-contact').classList.add('d-none');
         document.getElementById(`contact-name`).value = '';
@@ -204,6 +205,27 @@ async function newContact() {
     } else {
         console.log('Name, E-Mail und Telefonnummer sind erforderlich.');
     }
+}
+function orderContacts() {
+    // Stelle sicher, dass die globale Variable 'contacts' definiert ist
+    if (typeof contacts === 'undefined') {
+        console.error("Die Variable 'contacts' ist nicht definiert.");
+        return;
+    }
+
+    // Sortiere die Kontakte nach ihren Schlüsseln (Buchstaben)
+    const sortedContacts = {};
+    const sortedKeys = Object.keys(contacts).sort();
+
+    sortedKeys.forEach(key => {
+        sortedContacts[key] = contacts[key].sort((a, b) => {
+            return a.name.localeCompare(b.name); // Sortiere nach Namen
+        });
+    });
+
+    // Aktualisiere die globale Variable 'contacts' mit den sortierten Kontakten
+    Object.assign(contacts, sortedContacts);
+    contacts = sortedContacts;
 }
 
 
