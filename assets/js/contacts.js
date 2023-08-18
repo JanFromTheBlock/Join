@@ -253,3 +253,12 @@ async function deleteContact(contactId) {
     }
     console.log('Contact not found with contactId:', contactId);
 }
+
+function changeBorderColor(input) {
+    var inputOutside = input.parentNode;
+    inputOutside.style.borderBottomColor = "#4086FF";
+}
+function resetBorderColor(input) {
+    var inputOutside = input.parentNode;
+    inputOutside.style.borderBottomColor = "#D1D1D1";
+}
