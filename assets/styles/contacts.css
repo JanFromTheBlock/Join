@@ -263,3 +263,24 @@
 .input:hover{
     cursor: pointer;
 }
+.contact-added-succesfully {
+    position: fixed;
+    margin-top: 450px;
+    margin-left: 40%;
+    transition: margin-top 300ms;
+    z-index: 9999;
+  }
+  
+  .contact-added-succesfully-succesfully {
+    transition: margin-top 300ms;
+    z-index: 9999;
+    margin-left: 40%;
+    margin-top: -240px;
+    position: fixed;
+  }
+  
+  .contact-added-succesfully-hide{
+    margin-top: 1000px;
+    margin-left: 40%;
+    transition: margin-top 300ms;
+  }

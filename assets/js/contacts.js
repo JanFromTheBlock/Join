@@ -176,6 +176,14 @@ async function newContact() {
         document.getElementById(`contact-name`).value = '';
         document.getElementById(`contact-mail`).value = '';
         document.getElementById(`contact-phone`).value = '';
+
+        let addedContactSuccesfully = document.getElementById(`contact-added-succesfully-animation`);
+        addedContactSuccesfully.classList.remove(`contact-added-succesfully-hide`);
+        addedContactSuccesfully.classList.add(`contact-added-succesfully`);
+
+        setTimeout(() => {
+            addedContactSuccesfully.classList.add(`contact-added-succesfully-hide`);
+        }, 2000);
     } else {
         console.log('Name, E-Mail und Telefonnummer sind erforderlich.');
     }
