@@ -29,6 +29,8 @@ let contacts = {
 };
 
 let NumberofContacts;
+const colors = ['#FF7A00', '#9327FF', '#6E52FF', '#FC71FF', '#FFBB2B', '#1FD7C1', '#462F8A', '#FF4646'];
+let colorIndex = 0;
 
 function renderContacts() {
     let contactColumn = docID('contact-column');
@@ -155,7 +157,8 @@ function cancelNewContact() {
 
 //JSON-Vorlage wird erstellt. Dort wwird der erstellte Contact eingefügt und anschließend in das array gepushed und remote gespeichert
 function createJsonContact(name, mail, phone) {
-    const color = 'orange';
+    const color = colors[colorIndex];
+    colorIndex = (colorIndex + 1) % colors.length; // Um den Index im Bereich der Farben zu halten
     contactId = NumberofContacts + 1;
     return {
         name: name,
