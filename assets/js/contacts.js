@@ -57,8 +57,15 @@ function renderContacts() {
         for (let id = 0; id < element.length; id++) {
             NumberofContacts++;
             const name = element[id].name;
-            let initials = name.replace(/[a-z]/g, '');
-            initials = initials.replace(/\s/g, '');
+            const nameWords = name.split(/\s+/);
+
+            // Initialen berechnen
+            let initials = "";
+            for (const word of nameWords) {
+                if (word.length > 0) {
+                    initials += word[0].toUpperCase();
+                }
+            }
             let mail = element[id].mail;
             let color = element[id].color;
             let contactId = element[id].contactId;
