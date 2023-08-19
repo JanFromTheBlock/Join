@@ -35,6 +35,7 @@ let colorIndex = 0;
 function renderContacts() {
     let contactColumn = docID('contact-column');
     NumberofContacts = 0;
+    colorIndex = 0;
     contactColumn.innerHTML = '';
 
 
@@ -58,6 +59,7 @@ function renderContacts() {
         // Durchlaufe alle Kontakte für den aktuellen Buchstaben
         for (let id = 0; id < element.length; id++) {
             NumberofContacts++;
+            colorIndex++;
             const name = element[id].name;
             const nameWords = name.split(/\s+/);
 

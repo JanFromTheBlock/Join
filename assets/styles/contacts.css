@@ -7,8 +7,24 @@
     align-items: center;
     box-shadow: 4px 0px 6px 0px #00000014;
     justify-content: center;
+    overflow: auto;
 }
+#contact-list::-webkit-scrollbar {
+    width: 20px;
+  }
+  #contact-list::-webkit-scrollbar-thumb {
+    background-color: #A8A8A8;
+    border: 6px solid transparent;
+    border-radius: 10px;
+    background-clip: content-box;
+    height: 30px;
+  }
 
+  #contact-list::-webkit-scrollbar-track {
+    background-color: white;
+  }
+ 
+  
 #add-contact {
     display: flex;
     align-items: center;
