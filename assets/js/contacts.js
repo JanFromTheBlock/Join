@@ -61,9 +61,10 @@ function renderContacts() {
             initials = initials.replace(/\s/g, '');
             let mail = element[id].mail;
             let color = element[id].color;
+            let contactId = element[id].contactId;
             let display = element[id];
             contact.innerHTML += /*html*/`
-                <div class="contact" id="contact${id}" onclick="renderContactDisplay('${encodeURIComponent(JSON.stringify(display))}')">
+                <div class="contact" id="contact${contactId}" onclick="onclickContact(${contactId}); renderContactDisplay('${encodeURIComponent(JSON.stringify(display))}')">
                     <div class="contact-sign" id="contact-sign${NumberofContacts}">${initials}</div>
                     <div id="contact-data">
                         <div id="name">${name}</div>
@@ -261,4 +262,24 @@ function changeBorderColor(input) {
 function resetBorderColor(input) {
     var inputOutside = input.parentNode;
     inputOutside.style.borderBottomColor = "#D1D1D1";
+}
+
+function onclickContact(clickedId) {
+    // Setze die Hintergrundfarbe und Schriftfarbe zurück für alle Kontakt-Container
+    const contactContainers = document.querySelectorAll('.contact');
+    contactContainers.forEach(container => {
+        container.style.backgroundColor = '';
+        const nameElement = container.querySelector('#name');
+        const mailElement = container.querySelector('#mail');
+        nameElement.style.color = '';
+        mailElement.style.color = '';
+    });
+
+    // Setze die Hintergrundfarbe und Schriftfarbe für das angeklickte Element
+    const clickedContainer = document.getElementById('contact' + clickedId);
+    clickedContainer.style.backgroundColor = '#4589FF';
+    const clickedNameElement = clickedContainer.querySelector('#name');
+    const clickedMailElement = clickedContainer.querySelector('#mail');
+    clickedNameElement.style.color = 'white';
+    clickedMailElement.style.color = 'white';
 }
