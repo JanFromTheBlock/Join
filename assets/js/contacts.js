@@ -107,7 +107,7 @@ function renderContactDisplay(elementJSON) {
             <div id="contact-actions">
                 <div id="contact-display-name">${name}</div>
                 <div id="contact-imgs">
-                    <div class="contact-img"><img src="./assets/img/edit_contact.png">Edit</div>
+                    <div onclick="openEditContact(${contactId}, '${name}', '${mail}', '${phone}')" class="contact-img"><img src="./assets/img/edit_contact.png">Edit</div>
                     <div onclick="deleteContact(${contactId})" class="contact-img"><img src="./assets/img/delete_contact.png">Delete</div>
                 </div>
             </div>
@@ -294,4 +294,18 @@ function onclickContact(clickedId) {
     const clickedMailElement = clickedContainer.querySelector('#mail');
     clickedNameElement.style.color = 'white';
     clickedMailElement.style.color = 'white';
+}
+function openEditContact(contactId, name, mail, phone){
+    docID('background-add-contact').classList.remove('d-none');
+    docID('cancel').innerHTML = 'Delete';
+    docID('create').innerHTML = 'Save';
+    docID('contact-name').value = name;   
+    docID('contact-mail').value = mail;
+    docID('contact-phone').value = phone; 
+
+    let addTaskUnder = document.getElementById(`add-contact-mask`);
+    addTaskUnder.classList.remove(`d-none`);
+    setTimeout(() => {
+        addTaskUnder.classList.remove(`open-add-contact-hide`);
+    }, 100);
 }
