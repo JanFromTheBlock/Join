@@ -45,6 +45,7 @@ function showSubtasks() {
   <label for="subtask1">${inputSubtask}</label>
   </div>
   `;
+  document.getElementById(`inputSubtask`).value = '';
 }
 
 //Onclick auf PriorityButtons
