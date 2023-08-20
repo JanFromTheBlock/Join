@@ -132,6 +132,19 @@ function renderContactDisplay(elementJSON) {
 function addNewContact() {
     docID('background-add-contact').classList.remove('d-none')
 
+    docID('add-contact-body').innerHTML = /*html*/`
+        <img id="add-contact-icon" src="./assets/img/contact_icon.png">
+                <form onsubmit="newContact(); return false">
+                    <div class="input-outside"><input id="contact-name" class="input" required type="text" placeholder="Name" onfocus="changeBorderColor(this)" onblur="resetBorderColor(this)"><img src="./assets/img/person.png" ></div>
+                    <div class="input-outside"><input id="contact-mail" class="input" required type="text" placeholder="Email" onfocus="changeBorderColor(this)" onblur="resetBorderColor(this)"><img src="./assets/img/mail.png" ></div>
+                    <div class="input-outside"><input id="contact-phone" class="input" required type="text" placeholder="Phone" onfocus="changeBorderColor(this)" onblur="resetBorderColor(this)"><img src="./assets/img/call.png"></div>
+                    <div id="contact-buttons">
+                        <button id="contact-cancel" onclick="cancelNewContact()"><span id="cancel">Cancel</span> <div id="x-button">x</div></button>
+                        <button id="contact-create" type="submit"><span id="create">Create contact </span><img src="./assets/img/contact-check.png"></button>
+                    </div>
+                </form>
+    `
+
     let addTaskUnder = document.getElementById(`add-contact-mask`);
     addTaskUnder.classList.remove(`d-none`);
     setTimeout(() => {
@@ -297,7 +310,7 @@ function onclickContact(clickedId) {
 }
 function openEditContact(contactId, name, mail, phone) {
     docID('background-add-contact').classList.remove('d-none');
-    
+
 
     docID('add-contact-body').innerHTML = /*html*/`
         <img id="add-contact-icon" src="./assets/img/contact_icon.png">
@@ -314,9 +327,42 @@ function openEditContact(contactId, name, mail, phone) {
     docID('contact-name').value = name;
     docID('contact-mail').value = mail;
     docID('contact-phone').value = phone;
+    docID('create').style.marginRight = '24px';
+    docID('create').style.marginLeft = '24px';
     let addTaskUnder = document.getElementById(`add-contact-mask`);
     addTaskUnder.classList.remove(`d-none`);
     setTimeout(() => {
         addTaskUnder.classList.remove(`open-add-contact-hide`);
     }, 100);
+}
+
+async function editContact(contactId) {
+    let name = document.getElementById(`contact-name`).value;
+    let mail = document.getElementById(`contact-mail`).value;
+    let phone = document.getElementById(`contact-phone`).value;
+
+    // Finde das Array basierend auf der contactId
+    for (let key in contacts) {
+        let contactArray = contacts[key];
+        let foundContact = contactArray.find(contact => contact.contactId === contactId);
+        
+        if (foundContact) {
+            // Aktualisiere die Werte im gefundenen Kontakt
+            foundContact.name = name;
+            foundContact.mail = mail;
+            foundContact.phone = phone;
+            break; // Wir haben den Kontakt gefunden und aktualisiert, daher können wir die Schleife beenden.
+        }
+    }
+
+    
+
+
+    orderContacts();
+    await setElement('contacts', contacts);
+    contactsInit();
+    docID('background-add-contact').classList.add('d-none');
+    document.getElementById(`contact-name`).value = '';
+    document.getElementById(`contact-mail`).value = '';
+    document.getElementById(`contact-phone`).value = '';
 }
