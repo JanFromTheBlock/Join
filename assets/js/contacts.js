@@ -342,11 +342,14 @@ async function editContact(contactId) {
     let phone = document.getElementById(`contact-phone`).value;
 
     // Finde das Array basierend auf der contactId
+    let oldKey = null; // Speichere den ursprünglichen Schlüssel (Anfangsbuchstaben)
+    let foundContact = null;
     for (let key in contacts) {
         let contactArray = contacts[key];
         let foundContact = contactArray.find(contact => contact.contactId === contactId);
         
         if (foundContact) {
+            oldKey = key; // Speichere den ursprünglichen Schlüssel des Kontakts
             // Aktualisiere die Werte im gefundenen Kontakt
             foundContact.name = name;
             foundContact.mail = mail;
@@ -355,9 +358,16 @@ async function editContact(contactId) {
         }
     }
 
+    if (oldKey && name.charAt(0).toUpperCase() !== oldKey) {
+        // Der Anfangsbuchstabe des Namens hat sich geändert, verschiebe den Kontakt in das richtige Array
+        const newKey = name.charAt(0).toUpperCase();
+        contacts[newKey] = contacts[newKey] || [];
+        contacts[newKey].push(contacts[oldKey].splice(contacts[oldKey].indexOf(foundContact), 1)[0]);
+        if (contacts[oldKey].length === 0) {
+            delete contacts[oldKey];
+        }
+    }
     
-
-
     orderContacts();
     await setElement('contacts', contacts);
     contactsInit();
