@@ -80,8 +80,9 @@ async function addBoardInit(){
     activeSite("menu-board");
     getdata = await getElement('tasks'); 
     tasks = JSON.parse(getdata);  
-    addBoardRender();
     renderAddTaskToBoard();
+  
+    addBoardRender();
 }
 
 function legalNotesInit(){
