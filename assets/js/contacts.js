@@ -295,14 +295,25 @@ function onclickContact(clickedId) {
     clickedNameElement.style.color = 'white';
     clickedMailElement.style.color = 'white';
 }
-function openEditContact(contactId, name, mail, phone){
+function openEditContact(contactId, name, mail, phone) {
     docID('background-add-contact').classList.remove('d-none');
-    docID('cancel').innerHTML = 'Delete';
-    docID('create').innerHTML = 'Save';
-    docID('contact-name').value = name;   
-    docID('contact-mail').value = mail;
-    docID('contact-phone').value = phone; 
+    
 
+    docID('add-contact-body').innerHTML = /*html*/`
+        <img id="add-contact-icon" src="./assets/img/contact_icon.png">
+                <form onsubmit="editContact(${contactId}); return false">
+                    <div class="input-outside"><input id="contact-name" class="input" required type="text" placeholder="Name" onfocus="changeBorderColor(this)" onblur="resetBorderColor(this)"><img src="./assets/img/person.png" ></div>
+                    <div class="input-outside"><input id="contact-mail" class="input" required type="text" placeholder="Email" onfocus="changeBorderColor(this)" onblur="resetBorderColor(this)"><img src="./assets/img/mail.png" ></div>
+                    <div class="input-outside"><input id="contact-phone" class="input" required type="text" placeholder="Phone" onfocus="changeBorderColor(this)" onblur="resetBorderColor(this)"><img src="./assets/img/call.png"></div>
+                    <div id="contact-buttons">
+                        <button id="contact-cancel" onclick="deleteContact(${contactId})"><span id="cancel">Delete</span> <div id="x-button">x</div></button>
+                        <button id="contact-create" type="submit"><span id="create">Save </span><img src="./assets/img/contact-check.png"></button>
+                    </div>
+                </form>
+    `
+    docID('contact-name').value = name;
+    docID('contact-mail').value = mail;
+    docID('contact-phone').value = phone;
     let addTaskUnder = document.getElementById(`add-contact-mask`);
     addTaskUnder.classList.remove(`d-none`);
     setTimeout(() => {
