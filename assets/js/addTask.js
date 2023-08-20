@@ -134,7 +134,7 @@ function newTask() {
   
   document.getElementById(`inputSubtask`).value = ``;
   let contact = document.getElementById(`selectContact`).value;
-  let partOfContact = contact.split(" "); // separiert Vor und Nachnamen
+  let partOfContact = contact.split(""); // separiert Vor und Nachnamen
   let firstName = partOfContact[0]; // speichert Vorname
   let lastName = partOfContact[1]; // speichert Nachname
   clearTaskMask();
