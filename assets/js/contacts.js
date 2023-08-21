@@ -60,6 +60,9 @@ function renderContacts() {
         for (let id = 0; id < element.length; id++) {
             NumberofContacts++;
             colorIndex++;
+            if (colorIndex === 8) {
+                colorIndex = 0;
+            }
             const name = element[id].name;
             const nameWords = name.split(/\s+/);
 
@@ -186,6 +189,7 @@ function cancelNewContact() {
 
 //JSON-Vorlage wird erstellt. Dort wwird der erstellte Contact eingefügt und anschließend in das array gepushed und remote gespeichert
 function createJsonContact(name, mail, phone) {
+    
     const color = colors[colorIndex];
     colorIndex = (colorIndex + 1) % colors.length; // Um den Index im Bereich der Farben zu halten
     contactId = NumberofContacts + 1;
