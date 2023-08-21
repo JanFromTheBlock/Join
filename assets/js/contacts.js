@@ -107,7 +107,7 @@ function renderContactDisplay(elementJSON) {
             <div id="contact-actions">
                 <div id="contact-display-name">${name}</div>
                 <div id="contact-imgs">
-                    <div onclick="openEditContact(${contactId}, '${name}', '${mail}', '${phone}')" class="contact-img"><img src="./assets/img/edit_contact.png">Edit</div>
+                    <div onclick="openEditContact(${contactId}, '${name}', '${mail}', '${phone}', '${color}', '${initials}')" class="contact-img"><img src="./assets/img/edit_contact.png">Edit</div>
                     <div onclick="deleteContact(${contactId})" class="contact-img"><img src="./assets/img/delete_contact.png">Delete</div>
                 </div>
             </div>
@@ -130,19 +130,33 @@ function renderContactDisplay(elementJSON) {
 }
 
 function addNewContact() {
-    docID('background-add-contact').classList.remove('d-none')
+    docID('background-add-contact').classList.remove('d-none');
 
-    docID('add-contact-body').innerHTML = /*html*/`
-        <img id="add-contact-icon" src="./assets/img/contact_icon.png">
-                <form onsubmit="newContact(); return false">
-                    <div class="input-outside"><input id="contact-name" class="input" required type="text" placeholder="Name" onfocus="changeBorderColor(this)" onblur="resetBorderColor(this)"><img src="./assets/img/person.png" ></div>
-                    <div class="input-outside"><input id="contact-mail" class="input" required type="text" placeholder="Email" onfocus="changeBorderColor(this)" onblur="resetBorderColor(this)"><img src="./assets/img/mail.png" ></div>
-                    <div class="input-outside"><input id="contact-phone" class="input" required type="text" placeholder="Phone" onfocus="changeBorderColor(this)" onblur="resetBorderColor(this)"><img src="./assets/img/call.png"></div>
-                    <div id="contact-buttons">
-                        <button id="contact-cancel" onclick="cancelNewContact()"><span id="cancel">Cancel</span> <div id="x-button">x</div></button>
-                        <button id="contact-create" type="submit"><span id="create">Create contact </span><img src="./assets/img/contact-check.png"></button>
-                    </div>
-                </form>
+
+    docID('background-add-contact').innerHTML = /*html*/`
+    <div id="background-color-add-contact"></div>
+    <div id="add-contact-mask" class="open-add-contact-hide d-none">
+        <div id="add-contact-header">
+            <div id="add-contact-back-arrow"><img onclick="cancelNewContact()" src="./assets/img/close_contact.png"></div>
+            <div id="add-contact-center">
+                <img id="add-contact-logo" src="./assets/img/contact_logo.png">
+                <div id="add-contact-title">Add contact</div>
+                <div id="add-contact-subtitle">Tasks are bett with a team!</div>
+            </div>
+        </div>
+        <div id="add-contact-body">
+            <img id="add-contact-icon" src="./assets/img/contact_icon.png">
+            <form onsubmit="newContact(); return false">
+                <div class="input-outside"><input id="contact-name" class="input" required type="text" placeholder="Name" onfocus="changeBorderColor(this)" onblur="resetBorderColor(this)"><img src="./assets/img/person.png" ></div>
+                <div class="input-outside"><input id="contact-mail" class="input" required type="text" placeholder="Email" onfocus="changeBorderColor(this)" onblur="resetBorderColor(this)"><img src="./assets/img/mail.png" ></div>
+                <div class="input-outside"><input id="contact-phone" class="input" required type="text" placeholder="Phone" onfocus="changeBorderColor(this)" onblur="resetBorderColor(this)"><img src="./assets/img/call.png"></div>
+                <div id="contact-buttons">
+                    <button id="contact-cancel" onclick="cancelNewContact()"><span id="cancel">Cancel</span> <div id="x-button">x</div></button>
+                    <button id="contact-create" type="submit"><span id="create">Create contact </span><img src="./assets/img/contact-check.png"></button>
+                </div>
+            </form>
+        </div>
+    </div>
     `
 
     let addTaskUnder = document.getElementById(`add-contact-mask`);
@@ -308,12 +322,23 @@ function onclickContact(clickedId) {
     clickedNameElement.style.color = 'white';
     clickedMailElement.style.color = 'white';
 }
-function openEditContact(contactId, name, mail, phone) {
+function openEditContact(contactId, name, mail, phone, color, initials) {
     docID('background-add-contact').classList.remove('d-none');
 
 
-    docID('add-contact-body').innerHTML = /*html*/`
-        <img id="add-contact-icon" src="./assets/img/contact_icon.png">
+    docID('background-add-contact').innerHTML = /*html*/`
+         <div id="background-color-add-contact"></div>
+        <div id="edit-contact-mask" class="open-edit-contact-hide d-none">
+            <div id="edit-contact-header">
+                <div id="add-contact-back-arrow"><img onclick="cancelNewContact()" src="./assets/img/close_contact.png"></div>
+                <div id="add-contact-center">
+                    <img id="add-contact-logo" src="./assets/img/contact_logo.png">
+                    <div id="add-contact-title">Add contact</div>
+                    <div id="add-contact-subtitle">Tasks are bett with a team!</div>
+                </div>
+            </div>
+            <div id="add-contact-body">
+                <div id = 'edit-contact-icon'>${initials}</div>
                 <form onsubmit="editContact(${contactId}); return false">
                     <div class="input-outside"><input id="contact-name" class="input" required type="text" placeholder="Name" onfocus="changeBorderColor(this)" onblur="resetBorderColor(this)"><img src="./assets/img/person.png" ></div>
                     <div class="input-outside"><input id="contact-mail" class="input" required type="text" placeholder="Email" onfocus="changeBorderColor(this)" onblur="resetBorderColor(this)"><img src="./assets/img/mail.png" ></div>
@@ -323,16 +348,19 @@ function openEditContact(contactId, name, mail, phone) {
                         <button id="contact-create" type="submit"><span id="create">Save </span><img src="./assets/img/contact-check.png"></button>
                     </div>
                 </form>
+            </div>
+        </div>
     `
     docID('contact-name').value = name;
     docID('contact-mail').value = mail;
     docID('contact-phone').value = phone;
+    docID('edit-contact-icon').style.backgroundColor = color;
     docID('create').style.marginRight = '24px';
     docID('create').style.marginLeft = '24px';
-    let addTaskUnder = document.getElementById(`add-contact-mask`);
+    let addTaskUnder = document.getElementById(`edit-contact-mask`);
     addTaskUnder.classList.remove(`d-none`);
     setTimeout(() => {
-        addTaskUnder.classList.remove(`open-add-contact-hide`);
+        addTaskUnder.classList.remove(`open-edit-contact-hide`);
     }, 100);
 }
 

@@ -1,5 +1,7 @@
 #board{
     margin-left: 232px;
+    padding-top: 197px;
+    height: 100vh;
 }
 
 .position-fixed{
@@ -46,7 +48,6 @@
 #board-input{
     display: flex;
     margin-left: 70px;
-    margin-top: 170px;
     gap: 35px;
 }
 #board-button{
