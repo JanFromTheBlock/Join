@@ -49,7 +49,7 @@ function loadTasks(id) {
 
         let contactArea = docID('contact-area' + id);             //Kontaktbereich in der Task wird gerendert 
         contactArea.innerHTML = ``
-        for (let i = 0; i < tasks[id]['contact-firstname'].length; i++) {   //for SChleife durch contact-firstname
+        for (let i = 0; i < tasks[id]['title'].length; i++) {   //for SChleife durch contact-firstname
             let firstName = tasks[id]['contact-firstname'][i];   //Variable erhält Vornamen an der Position i
             let lastName = tasks[id]['contact-lastname'][i];     //Variable erhält Nachnamen an der Position i
             let Initial1 = firstName.charAt(0);                  //Anfangsbuchstabe Vorname
@@ -64,8 +64,6 @@ function loadTasks(id) {
             docID('contacts' + k).style.backgroundColor = color;     //Farbe wird für Kontaksymbol geändert
         }
     }
-
-
 }
 
 function emptyTaskDivs() {

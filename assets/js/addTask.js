@@ -142,7 +142,6 @@ function newTask() {
   let task = createJsonTask(title, description, category, subtasks, urgency, date, firstName, lastName, categoryColor);
   getElement('tasks');
   tasks.push(task);
-  console.log(tasks);
   setElement('tasks', tasks);
   addBoardInit();
 }
@@ -355,4 +354,15 @@ function markColor(){
 }else if(selectCategory.includes("Media")){
   document.getElementById("blue").style.boxShadow = "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
 }
+}
+
+
+// Test
+
+function renderContacts(){
+  let contacts = document.getElementById(`showContacts`);
+  for (let i = 0; i < contacts.length; i++) {
+    const contact = contacts[i];
+  
+  }
 }
