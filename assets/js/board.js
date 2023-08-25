@@ -288,6 +288,7 @@ function renderContactsToWindow(id) {
 
 function deleteTask(id) {  //Löschen der ausgewählten Aufgabe
     tasks.splice(id, 1);  //aus dem array wird die Aufgabe an der Stelle id gelöscht
+    setElement('tasks', tasks);
     addBoardRender();     //anschließend wird das Board neu gerendert ohne das gelöschte Element
     closeWindow();        //dann wird das Fenster wieder geschlossen
 
