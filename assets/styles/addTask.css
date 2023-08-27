@@ -547,3 +547,35 @@ input[type="date"]::placeholder {
 .overflowY{
 overflow-y: hidden;
 }
+
+/* edit Task */
+
+.edit-task-to-board{
+  background-color: white;
+  padding-left: 16px;
+  width: 440px;
+  z-index: 3;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  box-shadow: -2px 2px 7px -6px;
+  position: absolute;
+  flex-direction: column;
+  top: 0;
+  right: 290px;
+  transition: right 325ms ease-out;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.edit-task-button-create-board{
+  background-color: #4589ff;
+  color: white;
+  border-radius: 10px;
+  border: 1px solid;
+  font-size: 23px;
+  width: 120px;
+  height: 61px;
+  margin-left: -730px;
+  margin-top: -40px;
+  position: absolute
+}

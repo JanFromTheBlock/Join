@@ -73,7 +73,7 @@ async function addTaskInit(){
     addTaskRender();
 }
 
-async function addBoardInit(){
+async function addBoardInit(id){
     activeUser();
     headerRender();
     navRender();

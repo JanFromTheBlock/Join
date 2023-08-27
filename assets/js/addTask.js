@@ -203,12 +203,10 @@ function chooseContact(i) {
 
 function addContact() {
   let editContact = document.getElementById(`editContact`);
-
   showContacts.classList.add(`d-none`);
   selectContact.placeholder = "Contact email";
   selectContact.classList.remove(`hide-cursor`);
   selectContact.focus();
-
   editContact.classList.remove(`d-none`);
   contactSelectArrow.classList.add(`d-none`);
 }
@@ -359,10 +357,3 @@ function markColor(){
 
 // Test
 
-function renderContacts(){
-  let contacts = document.getElementById(`showContacts`);
-  for (let i = 0; i < contacts.length; i++) {
-    const contact = contacts[i];
-  
-  }
-}

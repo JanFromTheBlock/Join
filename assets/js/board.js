@@ -2,6 +2,8 @@ let taskTitles = ["1", "2", "3", "4"]  //Array, um Drag und Drop Zielarea festzu
 let taskNames = ["To do", "In progress", "Await feedback", "Done"]  //Array, um beim Rendern der Rask-areas die Titel zu vergeben
 let currentDraggedElement;                           // In dieser Variable wird die id der gedraggten Task gespeichert
 
+
+
 function addBoardRender() {
     let board = docID('board');  //Suchbereich und Add Task Button werden gerendert
     board.innerHTML = '';
@@ -26,7 +28,7 @@ function addBoardRender() {
             <div ondrop="moveTo('${taskTitle}')" ondragover="allowDrop(event)" class="task-body" id="task-body${index}">
                 <div class="task-body-flex">
                     <span>${taskName}</span>
-                    <img  onclick="openAddTask()" id="task-img${index}" src="./assets/img/board_plus.png">
+                    <img onclick="openAddTask()" id="task-img${index}" src="./assets/img/board_plus.png">
                 </div>
                 <div id="tasks${indexFinal}"></div>
             </div>
@@ -93,7 +95,6 @@ function renderTaskBody(id) {
     </div>
 `                                    //Taskbody wurde gerendert und dabei wurde den Task-divs Drag-Funktionen zugeteilt, damit man in diesen Bereich draggen kann und Drag-Funktion gestartet werden kann
 }
-
 function startDragging(element) {                          //Funktion um die id der gedraggten Task in der Variable zu speichern; muss auch um 1 gesenkt werden, da bei den ids bei 1 statt bei 0 angefangen wurde
     currentDraggedElement = element - 1;
 
@@ -230,7 +231,7 @@ function renderStructureOfTheWindow(id) {
                     <div>Assigned to:</div>
                 </div>
             </div>
-            <div id="contact-buttons"><img onmouseover="changeDeleteImage(true)" onmouseout="changeDeleteImage(false)" id="delete-button" onclick="deleteTask(${id})" src="./assets/img/delete.png"> <img id="edit-button" src="./assets/img/edit.png"></div>
+            <div id="contact-buttons"><img onmouseover="changeDeleteImage(true)" onmouseout="changeDeleteImage(false)" id="delete-button" onclick="deleteTask(${id})" src="./assets/img/delete.png"> <img onclick="openAddTask(id)" id="edit-button" src="./assets/img/edit.png"></div>
            
 
         </div>
@@ -285,7 +286,6 @@ function renderContactsToWindow(id) {
     }
 }
 
-
 function deleteTask(id) {  //Löschen der ausgewählten Aufgabe
     tasks.splice(id, 1);  //aus dem array wird die Aufgabe an der Stelle id gelöscht
     setElement('tasks', tasks);
@@ -304,7 +304,7 @@ function changeDeleteImage(isHovering) {
 
 // öffnet AddTask
 
- function openAddTask(){
+ function openAddTask(id){
     let addTaskUnder = document.getElementById(`addTaskToBoardUnderDiv`);
     let backgroundBoard = document.getElementById(`board`);
     let backgroundNav = document.getElementById(`nav`);
@@ -348,3 +348,52 @@ function changeDeleteImage(isHovering) {
     backgroundHeader.classList.remove(`decrease-opacity`);
     backgroundNav.classList.remove(`decrease-opacity`);
  }
+
+// Editieren der Tasks
+
+function openEditTask(){
+    let taskWindow = document.getElementById(`task-window`);
+    let editTaskUnder = document.getElementById(`editTaskToBoardUnderDiv`);
+    let backgroundBoard = document.getElementById(`board`);
+    let backgroundNav = document.getElementById(`nav`);
+    let backgroundHeader = document.getElementById(`header`);
+    let boardBody = document.getElementById(`boardBody`);
+    let board = document.getElementById(`board`);
+    let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
+    editTaskUnder.classList.remove(`d-none`);
+    taskWindow.classList.add(`d-none`);
+    addTaskButtonToBoard.classList.remove(`d-none`);
+    editTaskUnder.classList.remove(`add-task-to-board-hide`);
+    boardBody.classList.remove(`overflow-hidden`);
+    board.classList.add(`overflowY`);
+    backgroundBoard.classList.add(`decrease-opacity`);
+    backgroundHeader.classList.add(`decrease-opacity`);
+    backgroundNav.classList.add(`decrease-opacity`);
+    backgroundBoard.classList.remove(`full-opacity`);
+    backgroundHeader.classList.remove(`full-opacity`);
+    backgroundNav.classList.remove(`full-opacity`);
+ }
+
+ function closeEditTaskToBoard(){
+    let editTask = document.getElementById(`editTaskToBoardUnderDiv`);
+    let backgroundBoard = document.getElementById(`board`);
+    let backgroundNav = document.getElementById(`nav`);
+    let backgroundHeader = document.getElementById(`header`);
+    let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
+    addTaskButtonToBoard.classList.add(`d-none`);
+    board.classList.remove(`overflowY`);
+    editTask.classList.add(`add-task-to-board-hide`);
+    editTask.classList.add(`d-none`);
+    backgroundBoard.classList.add(`full-opacity`);
+    backgroundHeader.classList.add(`full-opacity`);
+    backgroundNav.classList.add(`full-opacity`);
+    backgroundBoard.classList.remove(`decrease-opacity`);
+    backgroundHeader.classList.remove(`decrease-opacity`);
+    backgroundNav.classList.remove(`decrease-opacity`);
+ }
+
+ function editTask(id){
+    let taskTitle = "Hallo";
+    let inputFieldTitle = document.getElementById("inputFieldTitle");
+    inputFieldTitle.value = taskTitle;
+  }

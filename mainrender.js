@@ -162,16 +162,19 @@ docID("addTask").innerHTML = /*html*/ `
       `;
 }
 
-function renderAddTaskToBoard() {
+function renderAddTaskToBoard(id) {
   let addTask = document.getElementById(`renderAddTaskToBoard`);
+ 
   addTask.innerHTML += /*html*/ `
-  
+ 
    <form>
+  
     <div id="addTaskToBoardUnderDiv" class="add-task-to-board add-task-to-board-hide d-none">
       <div class="add-task-to-board-title">
           <img onclick="closeAddTaskToBoard()" class="add-task-to-board-close-button" src="./assets/img/close.png">
           <h2 class="add-task-h2-big">Add Task</h2>
       </div>
+ 
           <input autocomplete="off" id="inputFieldTitle" required class="add-task-title padding-top cursor-pointer" placeholder="Enter a title" type="text">
           <div class="add-task-select-contact-edit">
              <input autocomplete="off" required onclick ="showContactList()" placeholder="Selected contacts to assign" class="add-task-select-contact cursor-pointer" id="selectContact" type="email"> 
@@ -250,4 +253,7 @@ function renderAddTaskToBoard() {
         </div>
   </form> 
    `;
+   editTask();
 }
+
+
