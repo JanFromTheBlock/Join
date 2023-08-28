@@ -114,6 +114,7 @@ function createJsonTask(title, description, category, subtasks, urgency, date, f
     "contact-firstname": firstName,
     "contact-lastname": lastName,
     "contact-color": ["#462F8A", "#FF4646"],
+    arrayId: 0,
   };
 }
 

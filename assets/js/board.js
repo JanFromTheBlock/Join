@@ -44,6 +44,7 @@ function loadTasks(id) {
     emptyTaskDivs();
     let k = 0;         //fortlaufende Variable definiert für die contact-divs
     for (let id = 0; id < tasks.length; id++) {   //For-Schleife zum Beladen der 4 Task-Container
+        tasks.arrayId = id;
         renderTaskBody(id);
         renderSubtasks(id);
         renderUrgencySymbol(id);
@@ -51,9 +52,9 @@ function loadTasks(id) {
 
         let contactArea = docID('contact-area' + id);             //Kontaktbereich in der Task wird gerendert 
         contactArea.innerHTML = ``
-        for (let i = 0; i < tasks[id]['title'].length; i++) {   //for SChleife durch contact-firstname
-            let firstName = tasks[id]['contact-firstname'][i];   //Variable erhält Vornamen an der Position i
-            let lastName = tasks[id]['contact-lastname'][i];     //Variable erhält Nachnamen an der Position i
+        for (let i = 0; i < 1; i++) {   //for SChleife durch contact-firstname
+            let firstName = tasks[id]['contact-firstname'];   //Variable erhält Vornamen an der Position i
+            let lastName = tasks[id]['contact-lastname'];     //Variable erhält Nachnamen an der Position i
             let Initial1 = firstName.charAt(0);                  //Anfangsbuchstabe Vorname
             let Initial2 = lastName.charAt(0);                   //Anfangsbuchstabe Nachname
             let initials = Initial1 + Initial2;                  //beide Initialien werden zusammengeführt        
@@ -76,13 +77,12 @@ function emptyTaskDivs() {
 }
 
 function renderTaskBody(id) {
-    let j = tasks[id]["progress"];            // Variable um festzulegen, in welchem Task-Container die Aufgabe landet
+    let j = tasks[id]["progress"]; 
     let taskBody = docID('tasks' + j);
-    let l = tasks[id]['array-id'];        //// Anschließend wird Div-Struktur mit passenden ID's für die Task-Container gerendert
     let prioritySmall = tasks[id]['urgency']
     taskBody.innerHTML += /*html*/`
                     
-    <div draggable="true" ondragstart="startDragging(${l})" onclick="openWindow(event, ${id})" id="task${l}" class="task-decoration">
+    <div draggable="true" ondragstart="startDragging(${id})" onclick="openWindow(event, ${id})" id="task${id}" class="task-decoration">
         <div id="task-category${id}" class="task-category">${tasks[id]['category']}</div>
         <div id="task-title">${tasks[id]['title']}</div>
         <div id="task-description">${tasks[id]['description']}</div>
@@ -96,7 +96,7 @@ function renderTaskBody(id) {
 `                                    //Taskbody wurde gerendert und dabei wurde den Task-divs Drag-Funktionen zugeteilt, damit man in diesen Bereich draggen kann und Drag-Funktion gestartet werden kann
 }
 function startDragging(element) {                          //Funktion um die id der gedraggten Task in der Variable zu speichern; muss auch um 1 gesenkt werden, da bei den ids bei 1 statt bei 0 angefangen wurde
-    currentDraggedElement = element - 1;
+    currentDraggedElement = element;
 
 }
 function allowDrop(ev) {                                //Funktion die dafür sorgt, dass Tasks gedroppt werden können in dem Bereich
@@ -105,6 +105,7 @@ function allowDrop(ev) {                                //Funktion die dafür so
 
 function moveTo(progress) {                           //Funktion bekommt als Parameter den Ort, wo die gedraggte Task gedropt werden soll
     tasks[currentDraggedElement]['progress'] = progress;   // anschließend wird dies im array verändert an der entsprechenden Position
+    setElement('tasks', tasks);
     addBoardRender();                                      // anschließend muss alles neu gerendert werden, damit die Änderungen geladen werden
 }
 
