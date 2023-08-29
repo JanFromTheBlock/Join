@@ -84,8 +84,8 @@ function renderTaskBody(id) {
                     
     <div draggable="true" ondragstart="startDragging(${id})" onclick="openWindow(event, ${id})" id="task${id}" class="task-decoration">
         <div id="task-category${id}" class="task-category">${tasks[id]['category']}</div>
-        <div id="task-title">${tasks[id]['title']}</div>
-        <div id="task-description">${tasks[id]['description']}</div>
+        <div id="task-title${id}">${tasks[id]['title']}</div>
+        <div id="task-description${id}">${tasks[id]['description']}</div>
         <div class = "progress-bar d-none" id="progress-bar${id}"><div id="progress-bar-outside"><div class="progress-bar-inside" id="progress-bar-inside${id}"></div></div><span id = "subtask${id}"></span></div>
         <div id="task-footer">
             <div class="contact-area" id="contact-area${id}"></div>
@@ -94,6 +94,7 @@ function renderTaskBody(id) {
         
     </div>
 `                                    //Taskbody wurde gerendert und dabei wurde den Task-divs Drag-Funktionen zugeteilt, damit man in diesen Bereich draggen kann und Drag-Funktion gestartet werden kann
+
 }
 function startDragging(element) {                          //Funktion um die id der gedraggten Task in der Variable zu speichern; muss auch um 1 gesenkt werden, da bei den ids bei 1 statt bei 0 angefangen wurde
     currentDraggedElement = element;
@@ -219,11 +220,11 @@ function renderStructureOfTheWindow(id) {
         <div>
             <img id="close-img" onclick="closeWindow()" src="./assets/img/close.png">
             <div id="task-window-inside">
-                <div id="window-category" class="task-category">${tasks[id]['category']}</div>
-                <div id="window-title">${tasks[id]['title']}</div>
-                <div id="window-description">${tasks[id]['description']}</div>
+                <div id="window-category${id}" class="task-category">${tasks[id]['category']}</div>
+                <div id="window-title${id}">${tasks[id]['title']}</div>
+                <div id="window-description${id}">${tasks[id]['description']}</div>
                 <div id="date">Due date: 
-                    <div id="date-inside">${dueDate}</div>
+                    <div id="date-inside${id}">${dueDate}</div>
                 </div>
                 <div id="window-priority">Priority: 
                     <div id="window-priority-inside"> <img id="window-contact-img" src="${priority}"></div>
@@ -232,7 +233,7 @@ function renderStructureOfTheWindow(id) {
                     <div>Assigned to:</div>
                 </div>
             </div>
-            <div id="contact-buttons"><img onmouseover="changeDeleteImage(true)" onmouseout="changeDeleteImage(false)" id="delete-button" onclick="deleteTask(${id})" src="./assets/img/delete.png"> <img onclick="openAddTask(id)" id="edit-button" src="./assets/img/edit.png"></div>
+            <div id="contact-buttons"><img onmouseover="changeDeleteImage(true)" onmouseout="changeDeleteImage(false)" id="delete-button" onclick="deleteTask(${id})" src="./assets/img/delete.png"> <img onclick="openAddTask(${id})" id="edit-button" src="./assets/img/edit.png"></div>
            
 
         </div>
@@ -326,6 +327,7 @@ function changeDeleteImage(isHovering) {
     backgroundBoard.classList.remove(`full-opacity`);
     backgroundHeader.classList.remove(`full-opacity`);
     backgroundNav.classList.remove(`full-opacity`);
+    editTask(id);
  }
 
 // schließt AddTask
@@ -348,53 +350,40 @@ function changeDeleteImage(isHovering) {
     backgroundBoard.classList.remove(`decrease-opacity`);
     backgroundHeader.classList.remove(`decrease-opacity`);
     backgroundNav.classList.remove(`decrease-opacity`);
+  
  }
 
 // Editieren der Tasks
 
-function openEditTask(){
-    let taskWindow = document.getElementById(`task-window`);
-    let editTaskUnder = document.getElementById(`editTaskToBoardUnderDiv`);
-    let backgroundBoard = document.getElementById(`board`);
-    let backgroundNav = document.getElementById(`nav`);
-    let backgroundHeader = document.getElementById(`header`);
-    let boardBody = document.getElementById(`boardBody`);
-    let board = document.getElementById(`board`);
-    let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
-    editTaskUnder.classList.remove(`d-none`);
-    taskWindow.classList.add(`d-none`);
-    addTaskButtonToBoard.classList.remove(`d-none`);
-    editTaskUnder.classList.remove(`add-task-to-board-hide`);
-    boardBody.classList.remove(`overflow-hidden`);
-    board.classList.add(`overflowY`);
-    backgroundBoard.classList.add(`decrease-opacity`);
-    backgroundHeader.classList.add(`decrease-opacity`);
-    backgroundNav.classList.add(`decrease-opacity`);
-    backgroundBoard.classList.remove(`full-opacity`);
-    backgroundHeader.classList.remove(`full-opacity`);
-    backgroundNav.classList.remove(`full-opacity`);
- }
 
- function closeEditTaskToBoard(){
-    let editTask = document.getElementById(`editTaskToBoardUnderDiv`);
-    let backgroundBoard = document.getElementById(`board`);
-    let backgroundNav = document.getElementById(`nav`);
-    let backgroundHeader = document.getElementById(`header`);
-    let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
-    addTaskButtonToBoard.classList.add(`d-none`);
-    board.classList.remove(`overflowY`);
-    editTask.classList.add(`add-task-to-board-hide`);
-    editTask.classList.add(`d-none`);
-    backgroundBoard.classList.add(`full-opacity`);
-    backgroundHeader.classList.add(`full-opacity`);
-    backgroundNav.classList.add(`full-opacity`);
-    backgroundBoard.classList.remove(`decrease-opacity`);
-    backgroundHeader.classList.remove(`decrease-opacity`);
-    backgroundNav.classList.remove(`decrease-opacity`);
- }
-
- function editTask(id){
-    let taskTitle = "Hallo";
+ function editTask(id) {
+    let taskTitle = document.getElementById(`window-title${id}`).innerHTML;
     let inputFieldTitle = document.getElementById("inputFieldTitle");
     inputFieldTitle.value = taskTitle;
-  }
+
+    let taskDescription = document.getElementById(`window-description${id}`).innerHTML;
+    let description = document.getElementById(`description`);
+    description.value = taskDescription;
+
+    let taskCategory = document.getElementById(`window-category${id}`).innerHTML;
+    let selectCategory = document.getElementById(`selectCategory`);
+    selectCategory.value = taskCategory;
+
+    let taskDate = document.getElementById(`date-inside${id}`).innerHTML;
+    let dueDate = document.getElementById(`inputDate`);
+    dueDate.value = taskDate;
+
+    let taskContact = document.getElementById(`contacts${id+1}`).innerHTML;
+    let initials = document.getElementById(`initials`);
+    initials.classList.remove(`d-none`);
+    let taskInitials = document.getElementById(`taskInitials`);
+    taskInitials.innerHTML = taskContact; 
+
+    let taskSubtask = document.getElementById(`subtask${id}`).innerHTML;
+    let inputSubtask = document.getElementById(`inputSubtask`);
+    inputSubtask.value = taskSubtask;
+
+    let taskCategoryColor = document.getElementById(`task-category${id}`).style.backgroundColor;
+    let categoryColor = document.getElementById(`placeholderColorCategory`);
+    categoryColor.style.backgroundColor = taskCategoryColor;
+ }

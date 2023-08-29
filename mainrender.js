@@ -253,7 +253,7 @@ function renderAddTaskToBoard(id) {
         </div>
   </form> 
    `;
-   editTask();
+
 }
 
 

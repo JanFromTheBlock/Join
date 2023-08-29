@@ -231,7 +231,7 @@ function getInitials(contact) {
     // Extrahiere den ersten Buchstaben des aktuellen Wortes und konvertiere ihn in Großbuchstaben
     initialsOfName += words[i].charAt(0).toUpperCase();
   }
-  initials.innerHTML += `<div class="add-task-initials">${initialsOfName}</div>`;
+  initials.innerHTML += `<div id="taskInitials" class="add-task-initials">${initialsOfName}</div>`;
 }
 
 function newCategory() {
