@@ -383,7 +383,16 @@ function changeDeleteImage(isHovering) {
     let inputSubtask = document.getElementById(`inputSubtask`);
     inputSubtask.value = taskSubtask;
 
-    let taskCategoryColor = document.getElementById(`task-category${id}`).style.backgroundColor;
+    let color = tasks[id]["category-color"];
+    
+    let taskCategoryColor = document.getElementById(`task-category${id}`);
     let categoryColor = document.getElementById(`placeholderColorCategory`);
-    categoryColor.style.backgroundColor = taskCategoryColor;
+   
+  
+   
+
+    
+    
+   
+    console.log(taskCategoryColor);
  }

@@ -284,3 +284,13 @@
     cursor: pointer;
     background-color: #005DFF;
 }
+
+/* CategoryColor für edit Task */
+
+.edit-task-categorycolor{
+margin-left: -20px;
+border-radius: 20px;
+width: 20px;
+background-color: #0d589a;
+height: 20px;
+}
