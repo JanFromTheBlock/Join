@@ -377,22 +377,19 @@ function changeDeleteImage(isHovering) {
     let initials = document.getElementById(`initials`);
     initials.classList.remove(`d-none`);
     let taskInitials = document.getElementById(`taskInitials`);
+    taskInitials.classList.remove(`d-none`);
     taskInitials.innerHTML = taskContact; 
 
     let taskSubtask = document.getElementById(`subtask${id}`).innerHTML;
     let inputSubtask = document.getElementById(`inputSubtask`);
     inputSubtask.value = taskSubtask;
-
-    let color = tasks[id]["category-color"];
     
-    let taskCategoryColor = document.getElementById(`task-category${id}`);
-    let categoryColor = document.getElementById(`placeholderColorCategory`);
+    let taskCategoryColor = document.getElementById(`task-category${id}`).style.backgroundColor;
+    let editTaskCategoryColor = document.getElementById(`editTaskCategoryColor`);
+    editTaskCategoryColor.classList.remove(`d-none`);
+    editTaskCategoryColor.style.backgroundColor = taskCategoryColor;
    
   
-   
-
-    
-    
    
     console.log(taskCategoryColor);
  }

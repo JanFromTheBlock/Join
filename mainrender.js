@@ -191,7 +191,7 @@ function renderAddTaskToBoard(id) {
               <span onclick="addContact()" class="add-task-single-contact-invite">Invite new contact <img src="./assets/img/logoContactBlue.png"></span>
           </div>
           <div class="add-task-initials-area" id="initials">
-          <div class="add-task-initials" id="taskInitials"></div>
+          <div class="add-task-initials d-none" id="taskInitials"></div>
           </div>
           <div class="add-task-due-date">
              <h2>Due Date</h2>
@@ -204,7 +204,7 @@ function renderAddTaskToBoard(id) {
                  <input autocomplete="off" onclick="showCategories()" oninput="markColor()" required class="add-task-select-contact cursor-pointer" id="selectCategory" placeholder="Select Task category">
                  <img id="categorySelectArrow" src="./assets/img/selectfieldArrow.png">
                  <div class="add-task-placeholder-color-category">
-                 <div id="editTaskCategoryColor" class="edit-task-categorycolor"></div>
+                 <div id="editTaskCategoryColor" class="edit-task-categorycolor d-none"></div>
                    <img class="d-none" id="placeholderColorCategory" src="${categories[`color`]}">
                  </div>
                  <div class="add-task-edit-category d-none" id="editCategory">
