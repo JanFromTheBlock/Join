@@ -18,7 +18,7 @@ function headerRender() {
 }
 
 function oneLetter() {
-  if (userInitial.length == 1) {
+  if(userInitial.length == 1) {
     docID('header-user-name').classList.add('one-letter');
   }
 }
@@ -73,7 +73,7 @@ function activeSite(id) {
 }
 
 function addTaskRender(id) {
-  docID("addTask").innerHTML = /*html*/ `
+docID("addTask").innerHTML = /*html*/ `
   <form onsubmit="newTask(urgency); return false;">
      <div class="add-task">
             <input required autocomplete="off" id="inputFieldTitle" class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
@@ -90,9 +90,12 @@ function addTaskRender(id) {
               </div>
             </div>
             <div id="showContacts" class="add-task-hide-contacts add-task-choose-contacts">
-            <span onclick="chooseContact(1)" class="add-task-single-contact">You <img id="chooseBoxContact1" src="./assets/img/logoChooseContact.png"></span>
-                <span onclick="chooseContact(2)" class="add-task-single-contact">Test <img id="chooseBoxContact2" src="./assets/img/logoChooseContact.png"></span>
-                <span onclick="addContact()" class="add-task-single-contact-invite">Invite new contact <img src="./assets/img/logoContactBlue.png"></span>
+                <span onclick="chooseContact(1)" class="add-task-single-contact">
+                  <div id = 'center-contacts-row'>
+                  <div id = 'show-contacts-icon'>SM</div> Sofia Müller
+                  </div>  
+                  <img id="chooseBoxContact1" src="./assets/img/logoChooseContact.png">
+                </span>
             </div>
             <div class="add-task-initials-area" id="initials"></div>
             <div class="add-task-due-date">
@@ -164,7 +167,7 @@ function addTaskRender(id) {
 
 function renderAddTaskToBoard(id) {
   let addTask = document.getElementById(`renderAddTaskToBoard`);
-
+ 
   addTask.innerHTML += /*html*/ `
  
    <form>
@@ -188,7 +191,6 @@ function renderAddTaskToBoard(id) {
           <div id="showContacts" class="add-task-hide-contacts add-task-choose-contacts">
               <span onclick="chooseContact(1)" class="add-task-single-contact">You <img id="chooseBoxContact1" src="./assets/img/logoChooseContact.png"></span>
               <span onclick="chooseContact(2)" class="add-task-single-contact">Test <img id="chooseBoxContact2" src="./assets/img/logoChooseContact.png"></span>
-              <span onclick="addContact()" class="add-task-single-contact-invite">Invite new contact <img src="./assets/img/logoContactBlue.png"></span>
           </div>
           <div class="add-task-initials-area" id="initials">
           <div class="add-task-initials d-none" id="taskInitials"></div>
