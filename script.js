@@ -45,11 +45,13 @@ function activeUser() {
       }
 }
 
-function summaryInit() {
+async function summaryInit() {
     activeUser();
     headerRender();
     navRender();
     activeSite("menu-summary");
+    getdata = await getElement('tasks'); 
+    tasks = JSON.parse(getdata); 
     greetingNameRender();
     sumBigBtn();
     squareButtonRender();
