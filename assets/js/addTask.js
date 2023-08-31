@@ -336,6 +336,7 @@ function chooseCategory(i) {
   selectCategory.style.paddingLeft = "0";
   showCategories.classList.add(`d-none`);
   addColorToCategory(categoryImg);
+  editTaskCategoryColor.classList.add(`d-none`)
 }
 
 function markColor(){

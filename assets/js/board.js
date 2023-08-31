@@ -79,7 +79,7 @@ function emptyTaskDivs() {
 function renderTaskBody(id) {
     let j = tasks[id]["progress"]; 
     let taskBody = docID('tasks' + j);
-    let prioritySmall = tasks[id]['urgency']
+    let prioritySmall = tasks[id]['urgency'];
     taskBody.innerHTML += /*html*/`
                     
     <div draggable="true" ondragstart="startDragging(${id})" onclick="openWindow(event, ${id})" id="task${id}" class="task-decoration">
@@ -388,8 +388,15 @@ function changeDeleteImage(isHovering) {
     let editTaskCategoryColor = document.getElementById(`editTaskCategoryColor`);
     editTaskCategoryColor.classList.remove(`d-none`);
     editTaskCategoryColor.style.backgroundColor = taskCategoryColor;
-   
-  
-   
-    console.log(taskCategoryColor);
- }
+
+    let priorityLogo =  tasks[id]['urgency'];
+    if (priorityLogo == "./assets/img/urgentLogo.png") {
+        urgent.classList.add(`change-color-urgent`);
+        urgentLogo.src = "./assets/img/urgentLogoWhite.png"; 
+    } if(priorityLogo == "./assets/img/lowLogo.png") {
+        low.classList.add(`change-color-low`);
+        lowLogo.src = "./assets/img/lowLogoWhite.png"; 
+    } if(priorityLogo == "./assets/img/mediumLogo.png")
+    medium.classList.add(`change-color-medium`);
+    mediumLogo.src = "./assets/img/mediumLogoWhite.png"; 
+}
