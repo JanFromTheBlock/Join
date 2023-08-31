@@ -294,3 +294,8 @@ width: 17px;
 background-color: #0d589a;
 height: 17px;
 }
+
+.subtask-window{
+font-weight: bold;
+font-size: 21px;
+}

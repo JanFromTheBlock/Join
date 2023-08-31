@@ -238,6 +238,7 @@ function renderStructureOfTheWindow(id) {
                 <div id="window-contact-area">
                     <div>Assigned to:</div>
                 </div>
+                <div class="subtask-window">Subtasks:</div>
                 <div id="editSubtask${id}">${subtask}</div>
             </div>
             <div id="contact-buttons"><img onmouseover="changeDeleteImage(true)" onmouseout="changeDeleteImage(false)" id="delete-button" onclick="deleteTask(${id})" src="./assets/img/delete.png"> <img onclick="openAddTask(${id})" id="edit-button" src="./assets/img/edit.png"></div>
