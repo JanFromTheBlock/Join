@@ -90,9 +90,12 @@ docID("addTask").innerHTML = /*html*/ `
               </div>
             </div>
             <div id="showContacts" class="add-task-hide-contacts add-task-choose-contacts">
-                <span onclick="chooseContact(1)" class="add-task-single-contact">You <img id="chooseBoxContact1" src="./assets/img/logoChooseContact.png"></span>
-                <span onclick="chooseContact(2)" class="add-task-single-contact">Test <img id="chooseBoxContact2" src="./assets/img/logoChooseContact.png"></span>
-                <span onclick="addContact()" class="add-task-single-contact-invite">Invite new contact <img src="./assets/img/logoContactBlue.png"></span>
+                <span onclick="chooseContact(1)" class="add-task-single-contact">
+                  <div id = 'center-contacts-row'>
+                  <div id = 'show-contacts-icon'>SM</div> Sofia Müller
+                  </div>  
+                  <img id="chooseBoxContact1" src="./assets/img/logoChooseContact.png">
+                </span>
             </div>
             <div class="add-task-initials-area" id="initials"></div>
             <div class="add-task-due-date">
@@ -188,7 +191,6 @@ function renderAddTaskToBoard(id) {
           <div id="showContacts" class="add-task-hide-contacts add-task-choose-contacts">
               <span onclick="chooseContact(1)" class="add-task-single-contact">You <img id="chooseBoxContact1" src="./assets/img/logoChooseContact.png"></span>
               <span onclick="chooseContact(2)" class="add-task-single-contact">Test <img id="chooseBoxContact2" src="./assets/img/logoChooseContact.png"></span>
-              <span onclick="addContact()" class="add-task-single-contact-invite">Invite new contact <img src="./assets/img/logoContactBlue.png"></span>
           </div>
           <div class="add-task-initials-area" id="initials">
           <div class="add-task-initials d-none" id="taskInitials"></div>

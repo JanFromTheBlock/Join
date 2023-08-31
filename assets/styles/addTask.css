@@ -72,7 +72,7 @@
   align-items: center;
   justify-content: space-between;
   height: 38px;
-  padding-left: 24px;
+  padding: 7px 16px;
 }
 
 .add-task-single-contact-invite {
@@ -578,4 +578,18 @@ overflow-y: hidden;
   margin-left: -730px;
   margin-top: -40px;
   position: absolute
+}
+
+#show-contacts-icon{
+  background: orange;
+  border-radius: 45px;
+  padding: 13px 11px;
+  font-size: 12px;
+  color: white;
+  border: 2px solid white;
+}
+#center-contacts-row{
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
