@@ -33,19 +33,21 @@ let contact;
 let urgency;
 let categoryColor;
 
-function showSubtasks() {
+function showSubtasks(id) {
   let subtaskArea = document.getElementById(`subTaskArea`);
   let inputSubtask = document.getElementById(`inputSubtask`).value;
   
+  console.log(inputSubtask);
   subtaskArea.classList.remove(`d-none`);
   subtasks.push(inputSubtask);
   subtaskArea.innerHTML += `
   <div class="subTaskArea">
   <input class="cursor-pointer" type="checkbox">
-  <label for="subtask1">${inputSubtask}</label>
+  <label id="labelSubtask" for="subtask1">${inputSubtask}</label>
   </div>
   `;
   document.getElementById(`inputSubtask`).value = '';
+  
 }
 
 //Onclick auf PriorityButtons
