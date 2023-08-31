@@ -21,7 +21,8 @@ function sumBigBtn() {
 
 
 function urgentSquareButton() {
-    let urgentNr = sumAmout("urgent", "urgency");
+    let urgentNr = sumAmout(
+        "./assets/img/urgentLogo.png", "urgency");
     docID('sum-urgent-square').innerHTML = /*html*/`
         <div id="sum-urgent-con" class="flex-center">
             <div id="sum-urgent-con-in">
@@ -37,12 +38,25 @@ function urgentSquareButton() {
 
 
 function urgentDateScreenRender() {
-    let date = "October 16, 2022";
+    let date = findMostUrgentDate(tasks);
     let text = "Upcoming Deadline";
     docID('urgent-date-screen').innerHTML = /*html*/`
         <span id="urgent-date-screen-date">${date}</span>
         <span id="urgent-date-screen-deadline">${text}</span>
     `
+}
+
+function findMostUrgentDate(tasks) {
+    let earliestDate = null;
+
+    for (const task of tasks) {
+        const taskDate = task.date;
+        if (taskDate && (earliestDate === null || taskDate < earliestDate)) {
+            earliestDate = taskDate;
+        }
+    }
+
+    return earliestDate;
 }
 
 
