@@ -35,7 +35,7 @@ let categoryColor;
 
 function showSubtasks(id) {
   let subtaskArea = document.getElementById(`subTaskArea`);
-  let inputSubtask = document.getElementById(`inputSubtask`).value;
+  let inputSubtask = document.getElementById(`inputSubtask${id}`).value;
   
   console.log(inputSubtask);
   subtaskArea.classList.remove(`d-none`);
@@ -47,7 +47,7 @@ function showSubtasks(id) {
   </div>
   `;
   document.getElementById(`inputSubtask`).value = '';
-  
+  setElement("subtasks", subtasks);
 }
 
 //Onclick auf PriorityButtons

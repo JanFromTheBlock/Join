@@ -72,6 +72,8 @@ async function addTaskInit(){
     activeSite("menu-add");
     getdata = await getElement('tasks');
     tasks = JSON.parse(getdata);
+    getdata = await getElement('subtasks'); 
+    subtasks = JSON.parse(getdata); 
     addTaskRender();
 }
 
@@ -83,6 +85,8 @@ async function addBoardInit(id){
     renderAddTaskToBoard();
     getdata = await getElement('tasks'); 
     tasks = JSON.parse(getdata); 
+    getdata = await getElement('subtasks'); 
+    subtasks = JSON.parse(getdata); 
     addBoardRender(); 
 }
 
