@@ -35,7 +35,7 @@ let categoryColor;
 
 function showSubtasks(id) {
   let subtaskArea = document.getElementById(`subTaskArea`);
-  let inputSubtask = document.getElementById(`inputSubtask${id}`).value;
+  let inputSubtask = document.getElementById(`inputSubtask`).value;
   
   console.log(inputSubtask);
   subtaskArea.classList.remove(`d-none`);

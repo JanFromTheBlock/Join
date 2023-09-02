@@ -80,7 +80,7 @@ function renderTaskBody(id) {
   let j = tasks[id]["progress"];
   let taskBody = docID("tasks" + j);
   let prioritySmall = tasks[id]["urgency"];
-  let subtasks = subtasks[id];
+  editSubtasks = subtasks[id];
   taskBody.innerHTML += /*html*/ `
                     
     <div draggable="true" ondragstart="startDragging(${id})" onclick="openWindow(event, ${id})" id="task${id}" class="task-decoration">
@@ -88,7 +88,7 @@ function renderTaskBody(id) {
         <div id="task-title${id}">${tasks[id]["title"]}</div>
         <div id="task-description${id}">${tasks[id]["description"]}</div>
         <div class = "progress-bar d-none" id="progress-bar${id}"><div id="progress-bar-outside"><div class="progress-bar-inside" id="progress-bar-inside${id}"></div></div><span id="subtask${id}"></span></div>
-        <div id="editSubtask">${subtasks}</div>
+        <div id="editSubtaskSmall${id}">${editSubtasks}</div>
         <div id="task-footer">
             <div class="contact-area" id="contact-area${id}"></div>
             <img id="contact-area-img${id}" class= "contact-area-img" src="${prioritySmall}">
@@ -221,7 +221,7 @@ function renderStructureOfTheWindow(id, i) {
   let prioritySmall = tasks[id]["urgency"]; //die Priorität aus dem array wird als Variable definiert
   let priority = prioritySmall.charAt(0).toUpperCase() + prioritySmall.slice(1); //die Priorität soll einen großen Anfangsbuchstaben haben
   let dueDate = tasks[id]["date"]; // Das Datum aus dem Array wir als Variable definiert
-  let subtask = document.getElementById(`inputSubtask`).value;
+  let editSubtaskSmall = document.getElementById(`editSubtaskSmall${id}`).innerHTML;
   taskWindow.innerHTML = ""; //Die div wird geleert und anschließend das Gerüst des HTML-Codes für das Window gerendert
   taskWindow.innerHTML = /*html*/ `
 
@@ -241,7 +241,7 @@ function renderStructureOfTheWindow(id, i) {
                     <div>Assigned to:</div>
                 </div>
                 <div class="subtask-window">Subtasks:</div>
-                <div id="editSubtask${id}">${subtask}</div>
+                <div id="editSubtask${id}">${editSubtaskSmall}</div>
             </div>
             <div id="contact-buttons"><img onmouseover="changeDeleteImage(true)" onmouseout="changeDeleteImage(false)" id="delete-button" onclick="deleteTask(${id})" src="./assets/img/delete.png"> <img onclick="openAddTask(${id})" id="edit-button" src="./assets/img/edit.png"></div>
            
@@ -413,7 +413,7 @@ function editTask(id) {
     medium.classList.add(`change-color-medium`);
     mediumLogo.src = "./assets/img/mediumLogoWhite.png";
 
-    let inputSubtask = document.getElementById(`inputSubtask`).value;
-    let editSubtask = document.getElementById(`editSubtask`);
-    editSubtask.innerHTML = inputSubtask;
+    let editSubtask = document.getElementById(`editSubtaskSmall${id}`);
+    let subtaskWindow = document.getElementById(`editsubtask`).innerHTML;
+    editSubtask = subtaskWindow;
 }
