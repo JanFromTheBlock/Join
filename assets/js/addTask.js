@@ -43,7 +43,7 @@ function showSubtasks(id) {
   subtaskArea.innerHTML += `
   <div class="subTaskArea">
   <input class="cursor-pointer" type="checkbox">
-  <label id="labelSubtask" for="subtask1">${inputSubtask}</label>
+  <label id="labelSubtask" >${inputSubtask}</label>
   </div>
   `;
   document.getElementById(`inputSubtask`).value = '';
@@ -159,6 +159,7 @@ function clearTaskMask() {
 
 function clearTask(i) {
   tasks.splice(i, 1);
+  subtasks.splice(i, 1);
 }
 
 function toggleVisibility(elementId) {

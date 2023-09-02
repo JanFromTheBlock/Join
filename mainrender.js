@@ -248,7 +248,7 @@ function renderAddTaskToBoard(id) {
                 <img onclick="showSubtasks()" class="add-task-plus-button cursor-pointer" src="./assets/img/subtaskPlus.png">
               </div>
 
-              <div id="subTaskArea" class="d-none"></div>
+              <div id="subTaskArea"></div>
              </div>
         </div>
         <div class="add-task-button-to-board">

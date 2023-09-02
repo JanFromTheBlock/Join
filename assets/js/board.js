@@ -88,7 +88,7 @@ function renderTaskBody(id) {
         <div id="task-title${id}">${tasks[id]["title"]}</div>
         <div id="task-description${id}">${tasks[id]["description"]}</div>
         <div class = "progress-bar d-none" id="progress-bar${id}"><div id="progress-bar-outside"><div class="progress-bar-inside" id="progress-bar-inside${id}"></div></div><span id="subtask${id}"></span></div>
-        <div id="editSubtaskSmall${id}">${editSubtasks}</div>
+        <div class="d-none" id="editSubtaskSmall${id}">${editSubtasks}</div>
         <div id="task-footer">
             <div class="contact-area" id="contact-area${id}"></div>
             <img id="contact-area-img${id}" class= "contact-area-img" src="${prioritySmall}">
@@ -216,12 +216,14 @@ function renderWindow(id) {
   renderContactsToWindow(id);
 }
 
-function renderStructureOfTheWindow(id, i) {
+function renderStructureOfTheWindow(id) {
   let taskWindow = docID("task-window"); //div in die der HTML-Code gerendert wird, wird als Variable definiert
   let prioritySmall = tasks[id]["urgency"]; //die Priorität aus dem array wird als Variable definiert
   let priority = prioritySmall.charAt(0).toUpperCase() + prioritySmall.slice(1); //die Priorität soll einen großen Anfangsbuchstaben haben
   let dueDate = tasks[id]["date"]; // Das Datum aus dem Array wir als Variable definiert
-  let editSubtaskSmall = document.getElementById(`editSubtaskSmall${id}`).innerHTML;
+  let editSubtaskSmall = document.getElementById(
+    `editSubtaskSmall${id}`
+  ).innerHTML;
   taskWindow.innerHTML = ""; //Die div wird geleert und anschließend das Gerüst des HTML-Codes für das Window gerendert
   taskWindow.innerHTML = /*html*/ `
 
@@ -241,7 +243,8 @@ function renderStructureOfTheWindow(id, i) {
                     <div>Assigned to:</div>
                 </div>
                 <div class="subtask-window">Subtasks:</div>
-                <div id="editSubtask${id}">${editSubtaskSmall}</div>
+                <div>
+                <input id="editSubtask${id}" type="checkbox">${editSubtaskSmall}
             </div>
             <div id="contact-buttons"><img onmouseover="changeDeleteImage(true)" onmouseout="changeDeleteImage(false)" id="delete-button" onclick="deleteTask(${id})" src="./assets/img/delete.png"> <img onclick="openAddTask(${id})" id="edit-button" src="./assets/img/edit.png"></div>
            
@@ -371,17 +374,25 @@ function closeAddTaskToBoard() {
 // Editieren der Tasks
 
 function editTask(id) {
+  //Edit Titel
+
   let taskTitle = document.getElementById(`window-title${id}`).innerHTML;
   let inputFieldTitle = document.getElementById("inputFieldTitle");
   inputFieldTitle.value = taskTitle;
+
+  //Edit Beschreibung
 
   let taskDescription = document.getElementById(`window-description${id}`).innerHTML;
   let description = document.getElementById(`description`);
   description.value = taskDescription;
 
+  //Edit Category
+
   let taskCategory = document.getElementById(`window-category${id}`).innerHTML;
   let selectCategory = document.getElementById(`selectCategory`);
   selectCategory.value = taskCategory;
+
+  // Edit Datum
 
   let taskDate = document.getElementById(`date-inside${id}`).innerHTML;
   let dueDate = document.getElementById(`inputDate`);
@@ -394,13 +405,15 @@ function editTask(id) {
   taskInitials.classList.remove(`d-none`);
   taskInitials.innerHTML = taskContact;
 
+  // Edit Priority
+
   let taskCategoryColor = document.getElementById(`task-category${id}`).style.backgroundColor;
   let editTaskCategoryColor = document.getElementById(`editTaskCategoryColor`);
   editTaskCategoryColor.classList.remove(`d-none`);
   editTaskCategoryColor.style.backgroundColor = taskCategoryColor;
 
   let priorityLogo = tasks[id]["urgency"];
-  
+
   if (priorityLogo == "./assets/img/urgentLogo.png") {
     urgent.classList.add(`change-color-urgent`);
     urgentLogo.src = "./assets/img/urgentLogoWhite.png";
@@ -411,9 +424,14 @@ function editTask(id) {
   }
   if (priorityLogo == "./assets/img/mediumLogo.png")
     medium.classList.add(`change-color-medium`);
-    mediumLogo.src = "./assets/img/mediumLogoWhite.png";
+  mediumLogo.src = "./assets/img/mediumLogoWhite.png";
 
-    let editSubtask = document.getElementById(`editSubtaskSmall${id}`);
-    let subtaskWindow = document.getElementById(`editsubtask`).innerHTML;
-    editSubtask = subtaskWindow;
+  // Edit Subtasks
+  let subtaskArea = document.getElementById(`subTaskArea`);
+  let editSubtaskSmall = document.getElementById(`editSubtaskSmall${id}`).innerHTML;
+  subtaskArea.classList.remove(`d-none`);
+  subtaskArea.innerHTML = `<div class="subTaskArea">
+    <input class="cursor-pointer" type="checkbox">
+    <label id="labelForSubtask">${editSubtaskSmall}</label>
+    </div>`;
 }
