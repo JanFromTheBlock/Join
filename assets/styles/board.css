@@ -299,3 +299,7 @@ height: 17px;
 font-weight: bold;
 font-size: 21px;
 }
+
+.leftZero{
+    left: 0;
+}
