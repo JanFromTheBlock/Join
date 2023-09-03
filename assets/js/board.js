@@ -310,7 +310,9 @@ function renderContactsToWindow(id) {
 function deleteTask(id) {
   //Löschen der ausgewählten Aufgabe
   tasks.splice(id, 1); //aus dem array wird die Aufgabe an der Stelle id gelöscht
+  subtasks.splice(id, 1); // aus dem Array Subtask wird das Subtask an der Stelle id gelöscht
   setElement("tasks", tasks);
+  setElement("subtasks", subtasks);
   addBoardRender(); //anschließend wird das Board neu gerendert ohne das gelöschte Element
   closeWindow(); //dann wird das Fenster wieder geschlossen
 }
@@ -427,6 +429,7 @@ function editTask(id) {
   mediumLogo.src = "./assets/img/mediumLogoWhite.png";
 
   // Edit Subtasks
+
   let subtaskArea = document.getElementById(`subTaskArea`);
   let editSubtaskSmall = document.getElementById(`editSubtaskSmall${id}`).innerHTML;
   subtaskArea.classList.remove(`d-none`);
@@ -434,4 +437,7 @@ function editTask(id) {
     <input class="cursor-pointer" type="checkbox">
     <label id="labelForSubtask">${editSubtaskSmall}</label>
     </div>`;
+
+
+   
 }
