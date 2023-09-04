@@ -303,3 +303,29 @@ font-size: 21px;
 .leftZero{
     left: 0;
 }
+
+.font-size-title{
+    font-size: 48px;;
+}
+
+/*Edit TaskToBoard*/
+
+.edit-add-task-to-board{
+    background-color: white;
+    padding-left: 16px;
+    width: 440px;
+    z-index: 3;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    box-shadow: -2px 2px 7px -6px;
+    position: absolute;
+    flex-direction: column;
+    top: 0;
+    right: 200px;
+    height: 100vh;
+    overflow-y: scroll;
+  }
+
+  .d-none-important {
+    display: none !important;
+  }

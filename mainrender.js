@@ -248,12 +248,15 @@ function renderAddTaskToBoard(id) {
                 <img onclick="showSubtasks()" class="add-task-plus-button cursor-pointer" src="./assets/img/subtaskPlus.png">
               </div>
 
-              <div id="subTaskArea"></div>
+              <div id="subTaskArea">
+                 input
+              </div>
              </div>
         </div>
         <div class="add-task-button-to-board">
             <button onclick="newTask(urgency)" id="addTaskButtonToBoard" class="add-task-button-create-board cursor-pointer">Add Task<img class="add-task-button-img" src="./assets/img/hakenCreateTask.png"></button>
-        </div>
+            <button onclick="saveChangedTaskClicked(${id})" id="saveButton" class="add-task-button-create-board cursor-pointer">Save<img class="add-task-button-img"></button>
+          </div>
   </form> 
    `;
 
