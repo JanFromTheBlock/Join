@@ -338,7 +338,7 @@ function saveChangedTaskClicked(id){
   saveChangedTask = true;
   if(saveChangedTask == true){
     changeTasks(id);
-  }
+  }  
 }
 
 // öffnet AddTask
