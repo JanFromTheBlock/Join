@@ -91,6 +91,12 @@ async function addBoardInit(id){
     renderAddTaskToBoard(id);
     getdata = await getElement('tasks'); 
     tasks = JSON.parse(getdata);  // speichert Subtasks
+    try {
+        const getdataContacts = await getElement('contacts');
+        contacts = JSON.parse(getdataContacts);
+    } catch (error) {
+        console.error('Error initializing contacts:', error);
+    }  
     getdata = await getElement('subtasks'); 
     subtasks = JSON.parse(getdata); 
     addBoardRender(); 

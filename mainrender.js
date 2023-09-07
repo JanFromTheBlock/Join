@@ -167,21 +167,12 @@ function renderAddTaskToBoard(id) {
  
           <input autocomplete="off" id="inputFieldTitle" required class="add-task-title padding-top cursor-pointer" placeholder="Enter a title" type="text">
           <div class="add-task-select-contact-edit">
-             <input autocomplete="off" required onclick ="showContactList()" placeholder="Selected contacts to assign" class="add-task-select-contact cursor-pointer" id="selectContact" type="email"> 
-             <img id="contactSelectArrow" src="./assets/img/selectfieldArrow.png">
-             <div class="d-none" id="editContact">
-               <img onclick="showAddedContact()" class="cursor-pointer" src="./assets/img/logoHaken.png">
-               <img src="./assets/img/seperator.png">
-               <img class="cursor-pointer" onclick="cancelContact()" src="./assets/img/logoCancel.png">
-             </div>
-          </div>
-          <div id="showContacts" class="add-task-hide-contacts add-task-choose-contacts">
-              <span onclick="chooseContact(1)" class="add-task-single-contact">You <img id="chooseBoxContact1" src="./assets/img/logoChooseContact.png"></span>
-              <span onclick="chooseContact(2)" class="add-task-single-contact">Test <img id="chooseBoxContact2" src="./assets/img/logoChooseContact.png"></span>
-          </div>
-          <div class="add-task-initials-area" id="initials">
-          <div class="add-task-initials d-none" id="taskInitials"></div>
-          </div>
+                 <input onclick="showContactList()" autocomplete="off" required placeholder="Selected contacts to assign" class="add-task-select-contact cursor-pointer" id="selectContact" type="email"> 
+                 <img id="contactSelectArrow" src="./assets/img/selectfieldArrow.png">
+            </div>
+            <div id="showContacts" class="add-task-hide-contacts add-task-choose-contacts">
+            </div>
+            <div class="add-task-initials-area" id="initials"></div>
           <div class="add-task-due-date">
              <h2>Due Date</h2>
              <input id="inputDate" class="add-task-due-date-input cursor-pointer cursor-pointer" id="dueDate" type="date">
