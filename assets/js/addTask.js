@@ -115,12 +115,13 @@ function createJsonTask(title, description, category, subtasks, urgency, date, f
     date: date,
     "contact-firstname": firstName,
     "contact-lastname": lastName,
-    "contact-color": ["#462F8A", "#FF4646"],
+    "contact-color": contactcolors,
     arrayId: 0,
   };
 }
 let firstName = [];
 let lastName = [];
+let contactcolors = [];
 
 function newTask() {
   let title = document.getElementById(`inputFieldTitle`).value;
@@ -142,8 +143,10 @@ function newTask() {
   for (let i = 0; i < numberOfContactsToAdd.length; i++) {
     let contactDiv = numberOfContactsToAdd[i];
     const [firstNames, lastNames] = contactDiv.split(' ');
+    const contactcolor = numberOfColorsToAdd[i];
     firstName.push(firstNames);
     lastName.push(lastNames);
+    contactcolors.push(contactcolor);
   }
   clearTaskMask();
   let task = createJsonTask(title, description, category, subtasks, urgency, date, firstName, lastName, categoryColor);
@@ -151,6 +154,7 @@ function newTask() {
   firstName = [];
   lastName = [];
   numberOfContactsToAdd = [];
+  numberOfColorsToAdd = []
   tasks.push(task);
   setElement('tasks', tasks);
   addBoardInit();
@@ -199,6 +203,7 @@ function showCategories() {
 // Eine Map, um den Status der Kontakte zu verfolgen
 const contactStatusMap = new Map();
 let numberOfContactsToAdd = [];
+let numberOfColorsToAdd = [];
 
 function chooseContact(i, contactName, initials, color) {
   let chooseBoxContact = document.getElementById(`chooseBoxContact${i}`);
@@ -213,6 +218,8 @@ function chooseContact(i, contactName, initials, color) {
 
     // Füge den Kontakt zum Array numberOfContactsToAdd hinzu
     numberOfContactsToAdd.push(contactName);
+    numberOfColorsToAdd.push(color);
+    
   } else {
     chooseBoxContact.src = "./assets/img/logoChooseContact.png";
     contactStatusMap.set(i, false);
@@ -222,6 +229,10 @@ function chooseContact(i, contactName, initials, color) {
     const index = numberOfContactsToAdd.indexOf(contactName);
     if (index !== -1) {
       numberOfContactsToAdd.splice(index, 1);
+    }
+    const indexcol = numberOfColorsToAdd.indexOf(color);
+    if (indexcol !== -1) {
+      numberOfColorsToAdd.splice(indexcol, 1);
     }
   }
 }

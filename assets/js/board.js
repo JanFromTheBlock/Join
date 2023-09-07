@@ -60,7 +60,7 @@ function loadTasks(id) {
       let Initial2 = lastName.charAt(0); //Anfangsbuchstabe Nachname
       let initials = Initial1 + Initial2; //beide Initialien werden zusammengeführt
       let initialsUpper = initials.toLocaleUpperCase(); //Initialien werden als Großbuchstaben geschrieben
-      let color = tasks[id]["contact-color"][i]; //die dazugehörige(i) Farbe wird aus dem Array gezogen
+      let color = tasks[id]["contact-color"][index]; //die dazugehörige(i) Farbe wird aus dem Array gezogen
       k++; //Variable k erhöht sich um eins und wird an id contacts angehängt
       contactArea.innerHTML += /*html*/ `                  
         <span class="contacts" id = "contacts${k}"> ${initialsUpper}</span>
