@@ -77,22 +77,11 @@ function addTaskRender(id) {
   <form onsubmit="newTask(urgency); return false;">
      <div class="add-task">
             <input required autocomplete="off" id="inputFieldTitle" class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
-        
             <div class="add-task-select-contact-edit">
-              
                  <input onclick="showContactList()" autocomplete="off" required placeholder="Selected contacts to assign" class="add-task-select-contact cursor-pointer" id="selectContact" type="email"> 
                  <img id="contactSelectArrow" src="./assets/img/selectfieldArrow.png">
-         
-              <div class="d-none" id="editContact">
-                 <img onclick="showAddedContact()" class="cursor-pointer" src="./assets/img/logoHaken.png">
-                 <img src="./assets/img/seperator.png">
-                 <img class="cursor-pointer" onclick="cancelContact()" src="./assets/img/logoCancel.png">
-              </div>
             </div>
             <div id="showContacts" class="add-task-hide-contacts add-task-choose-contacts">
-            <span onclick="chooseContact(1)" class="add-task-single-contact">You <img id="chooseBoxContact1" src="./assets/img/logoChooseContact.png"></span>
-                <span onclick="chooseContact(2)" class="add-task-single-contact">Test <img id="chooseBoxContact2" src="./assets/img/logoChooseContact.png"></span>
-                <span onclick="addContact()" class="add-task-single-contact-invite">Invite new contact <img src="./assets/img/logoContactBlue.png"></span>
             </div>
             <div class="add-task-initials-area" id="initials"></div>
             <div class="add-task-due-date">
@@ -160,6 +149,7 @@ function addTaskRender(id) {
          <img id="taskAddedToBoard" class="task-added-to-board-hide task-added-to-board" src="./assets/img/logoAddedToBoard.png">
   </form> 
       `;
+  addContactsToTasks();
 }
 
 function renderAddTaskToBoard(id) {
@@ -188,7 +178,6 @@ function renderAddTaskToBoard(id) {
           <div id="showContacts" class="add-task-hide-contacts add-task-choose-contacts">
               <span onclick="chooseContact(1)" class="add-task-single-contact">You <img id="chooseBoxContact1" src="./assets/img/logoChooseContact.png"></span>
               <span onclick="chooseContact(2)" class="add-task-single-contact">Test <img id="chooseBoxContact2" src="./assets/img/logoChooseContact.png"></span>
-              <span onclick="addContact()" class="add-task-single-contact-invite">Invite new contact <img src="./assets/img/logoContactBlue.png"></span>
           </div>
           <div class="add-task-initials-area" id="initials">
           <div class="add-task-initials d-none" id="taskInitials"></div>
@@ -258,5 +247,48 @@ function renderAddTaskToBoard(id) {
    `;
 
 }
+function addContactsToTasks() {
+  showContacts = docID('showContacts');
+  showContacts.innerHTML = '';
+  const nameList = [];
+  const colorList = [];
+
+  for (const letter in contacts) {
+    if (contacts.hasOwnProperty(letter)) {
+      const contactsList = contacts[letter];
+      for (const contact of contactsList) {
+        const name = contact.name;
+        nameList.push(name);
+        const color = contact.color;
+        colorList.push(color);
+      }
+    }
+  }
+
+  for (let i = 0; i < nameList.length; i++) {
+    const contactName = nameList[i];
+    const nameWords = contactName.split(/\s+/);
+    const color = colorList[i];
+
+    // Initialen berechnen
+    let initials = "";
+    for (const word of nameWords) {
+      if (word.length > 0) {
+        initials += word[0].toUpperCase();
+      }
+    }
+    showContacts.innerHTML += /*html*/`
+        <span onclick="chooseContact(${i}, '${contactName}', '${initials}', '${color}')" class="add-task-single-contact">
+  <div id = 'center-contacts-row'>
+  <div class = 'show-contacts-icon' id = 'show-contacts-icon${i}'>${initials}</div><span id = 'selected-contact${i}'>${contactName}</span> 
+  </div>  
+  <img id="chooseBoxContact${i}" src="./assets/img/logoChooseContact.png">
+</span>
+    `
+    docID('show-contacts-icon' + i).style.backgroundColor = color;
+
+  }
 
 
+
+}

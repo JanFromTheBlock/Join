@@ -72,6 +72,12 @@ async function addTaskInit(){
     activeSite("menu-add");
     getdata = await getElement('tasks');
     tasks = JSON.parse(getdata);
+    try {
+        const getdataContacts = await getElement('contacts');
+        contacts = JSON.parse(getdataContacts);
+    } catch (error) {
+        console.error('Error initializing contacts:', error);
+    }  
     addTaskRender();
 }
 

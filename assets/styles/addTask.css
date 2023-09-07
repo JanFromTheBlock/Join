@@ -17,7 +17,7 @@
   outline: none;
   border: none;
   font-size: 40px;
- 
+
 }
 
 .add-task-title::placeholder {
@@ -52,7 +52,8 @@
   flex-direction: column;
   font-size: 19px;
   opacity: 1;
-  max-height: 1000px; /* oder eine geeignete Höhe, die größer als die Höhe der Kontaktliste ist */
+  max-height: 1000px;
+  /* oder eine geeignete Höhe, die größer als die Höhe der Kontaktliste ist */
   overflow: hidden;
   transition: max-height 300ms;
 }
@@ -72,7 +73,7 @@
   align-items: center;
   justify-content: space-between;
   height: 38px;
-  padding-left: 24px;
+  padding: 7px 16px;
 }
 
 .add-task-single-contact-invite {
@@ -314,7 +315,7 @@ input[type="date"]::placeholder {
   font-size: 19px;
 }
 
-.subTaskArea{
+.subTaskArea {
   margin-bottom: 34px;
 }
 
@@ -380,7 +381,7 @@ input[type="date"]::placeholder {
   height: 61px;
 }
 
-.add-task-button-clear:hover{
+.add-task-button-clear:hover {
   box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.3);
   border: 2px solid #4589FF;
 }
@@ -443,7 +444,7 @@ input[type="date"]::placeholder {
   position: fixed;
 }
 
-.task-added-to-board-hide{
+.task-added-to-board-hide {
   margin-top: 1000px;
   margin-left: 40%;
   transition: margin-top 300ms;
@@ -451,7 +452,7 @@ input[type="date"]::placeholder {
 
 /* AddTask hinzufügen zu Board*/
 
-.add-task-to-board{
+.add-task-to-board {
   background-color: white;
   padding-left: 16px;
   width: 440px;
@@ -468,18 +469,18 @@ input[type="date"]::placeholder {
   overflow-y: scroll;
 }
 
-.add-task-to-board-hide{
+.add-task-to-board-hide {
   right: -1000px;
   overflow: hidden;
   transition: right 825ms ease-out;
 }
 
-.add-task-h2-big{
-  font-size: 48px!important;
+.add-task-h2-big {
+  font-size: 48px !important;
   margin-left: 22px;
 }
 
-.add-task-button-create-board{
+.add-task-button-create-board {
   background-color: #4589ff;
   color: white;
   border-radius: 10px;
@@ -497,60 +498,60 @@ input[type="date"]::placeholder {
   background-color: #005dff;
 }
 
-.add-task-button-img{
+.add-task-button-img {
   margin-left: 5px;
 }
 
-.add-task-button-to-board{
+.add-task-button-to-board {
   right: -210px;
   top: 87%;
   position: fixed;
 }
 
-.overflow-hidden{
+.overflow-hidden {
   overflow: hidden;
 }
 
-.add-task-to-board-close-button{
+.add-task-to-board-close-button {
   margin-left: 395px;
   margin-top: 16px;
   position: fixed;
   border-radius: 45px;
 }
 
-.add-task-to-board-close-button:hover{
+.add-task-to-board-close-button:hover {
   cursor: pointer;
-  background-color:#dde0e5;
+  background-color: #dde0e5;
 }
 
-.add-task-to-board-title{
+.add-task-to-board-title {
   background-color: white;
   position: fixed;
   z-index: 999;
   width: 422px;
 }
 
-.padding-top{
+.padding-top {
   padding-top: 120px;
 }
 
-.decrease-opacity{
+.decrease-opacity {
   opacity: 0.4;
-  transition: opacity 325ms ease-out; 
+  transition: opacity 325ms ease-out;
 }
 
-.full-opacity{
+.full-opacity {
   opacity: 1;
-  transition: opacity 325ms ease-out; 
+  transition: opacity 325ms ease-out;
 }
 
-.overflowY{
-overflow-y: hidden;
+.overflowY {
+  overflow-y: hidden;
 }
 
 /* edit Task */
 
-.edit-task-to-board{
+.edit-task-to-board {
   background-color: white;
   padding-left: 16px;
   width: 440px;
@@ -567,7 +568,7 @@ overflow-y: hidden;
   overflow-y: scroll;
 }
 
-.edit-task-button-create-board{
+.edit-task-button-create-board {
   background-color: #4589ff;
   color: white;
   border-radius: 10px;
@@ -580,15 +581,21 @@ overflow-y: hidden;
   position: absolute
 }
 
-#show-contacts-icon{
+.show-contacts-icon {
   background: orange;
   border-radius: 45px;
-  padding: 13px 11px;
-  font-size: 12px;
+  padding: 11px 11px;
+  font-size: 16px;
   color: white;
   border: 2px solid white;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-#center-contacts-row{
+
+#center-contacts-row {
   display: flex;
   align-items: center;
   gap: 16px;

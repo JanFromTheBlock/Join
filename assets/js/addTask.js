@@ -119,6 +119,8 @@ function createJsonTask(title, description, category, subtasks, urgency, date, f
     arrayId: 0,
   };
 }
+let firstName = [];
+let lastName = [];
 
 function newTask() {
   let title = document.getElementById(`inputFieldTitle`).value;
@@ -137,13 +139,18 @@ function newTask() {
   }, 2000);
   
   document.getElementById(`inputSubtask`).value = ``;
-  let contact = document.getElementById(`selectContact`).value;
-  let partOfContact = contact.split(""); // separiert Vor und Nachnamen
-  let firstName = partOfContact[0]; // speichert Vorname
-  let lastName = partOfContact[1]; // speichert Nachname
+  for (let i = 0; i < numberOfContactsToAdd.length; i++) {
+    let contactDiv = numberOfContactsToAdd[i];
+    const [firstNames, lastNames] = contactDiv.split(' ');
+    firstName.push(firstNames);
+    lastName.push(lastNames);
+  }
   clearTaskMask();
   let task = createJsonTask(title, description, category, subtasks, urgency, date, firstName, lastName, categoryColor);
   getElement('tasks');
+  firstName = [];
+  lastName = [];
+  numberOfContactsToAdd = [];
   tasks.push(task);
   setElement('tasks', tasks);
   addBoardInit();
@@ -188,17 +195,33 @@ function showCategories() {
   }
 }
 
-let clicked = true;
+// Eine Map, um den Status der Kontakte zu verfolgen
+const contactStatusMap = new Map();
+let numberOfContactsToAdd = [];
 
-function chooseContact(i) {
+function chooseContact(i, contactName, initials, color) {
   let chooseBoxContact = document.getElementById(`chooseBoxContact${i}`);
 
-  if (clicked) {
+  // Überprüfe den aktuellen Status des Kontakts
+  const isClicked = contactStatusMap.get(i) || false;
+
+  if (!isClicked) {
     chooseBoxContact.src = "./assets/img/checkButtonContact.png";
-    clicked = false;
+    contactStatusMap.set(i, true);
+    showAddedContact(i, initials, color);
+
+    // Füge den Kontakt zum Array numberOfContactsToAdd hinzu
+    numberOfContactsToAdd.push(contactName);
   } else {
     chooseBoxContact.src = "./assets/img/logoChooseContact.png";
-    clicked = true;
+    contactStatusMap.set(i, false);
+    cancelContact(i);
+
+    // Entferne den Kontakt aus dem Array numberOfContactsToAdd
+    const index = numberOfContactsToAdd.indexOf(contactName);
+    if (index !== -1) {
+      numberOfContactsToAdd.splice(index, 1);
+    }
   }
 }
 
@@ -206,7 +229,6 @@ function chooseContact(i) {
 
 function addContact() {
   let editContact = document.getElementById(`editContact`);
-  showContacts.classList.add(`d-none`);
   selectContact.placeholder = "Contact email";
   selectContact.classList.remove(`hide-cursor`);
   selectContact.focus();
@@ -214,11 +236,12 @@ function addContact() {
   contactSelectArrow.classList.add(`d-none`);
 }
 
-function showAddedContact() {
-  contact = document.getElementById(`selectContact`).value;
-  let initials = document.getElementById(`initials`);
-  initials.classList.remove(`d-none`);
-  getInitials(contact);
+function showAddedContact(i, initials, color) {
+  let initialsIcon = document.getElementById(`initials`);
+  initialsIcon.classList.remove(`d-none`);
+  initialsIcon.innerHTML += `<div id="taskInitials${i}" class="add-task-initials">${initials}</div>`;
+  document.getElementById('taskInitials' + i).style.backgroundColor = color;
+
 }
 
 // Initialien generieren
@@ -290,8 +313,12 @@ function cancelCategory() {
   placeholderColorCategory.classList.add(`d-none`);
 }
 
-function cancelContact() {
-  cancelInputs(`selectContact`);
+function cancelContact(i) {
+  const taskInitials = document.getElementById(`taskInitials${i}`);
+  
+  if (taskInitials) {
+    taskInitials.remove();
+  }
 }
 
 function cancelInputs(elementId) {
