@@ -78,6 +78,8 @@ async function addTaskInit(){
     } catch (error) {
         console.error('Error initializing contacts:', error);
     }  
+    getdata = await getElement('subtasks'); 
+    subtasks = JSON.parse(getdata); 
     addTaskRender();
 }
 
@@ -86,9 +88,11 @@ async function addBoardInit(id){
     headerRender();
     navRender();
     activeSite("menu-board");
-    renderAddTaskToBoard();
+    renderAddTaskToBoard(id);
     getdata = await getElement('tasks'); 
-    tasks = JSON.parse(getdata); 
+    tasks = JSON.parse(getdata);  // speichert Subtasks
+    getdata = await getElement('subtasks'); 
+    subtasks = JSON.parse(getdata); 
     addBoardRender(); 
 }
 
