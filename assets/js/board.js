@@ -258,7 +258,7 @@ function renderStructureOfTheWindow(id) {
 function addColorOfTheCategory(id) {
   //Hintergrundfarbe der Kategorie wird angepasst
   let color = tasks[id]["category-color"];
-  docID("window-category").style.backgroundColor = color;
+  docID("window-category" + id).style.backgroundColor = color;
 }
 function renderPriorityToTheWindow(id) {
   addUrgencyImage(id);
