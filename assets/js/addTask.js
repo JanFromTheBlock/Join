@@ -183,8 +183,8 @@ function toggleVisibility(elementId) {
   }
 }
 
-function showContactList() {
-  toggleVisibility("showContacts");
+function showContactList(id) {
+  toggleVisibility("showContacts" + id);
   selectContact.classList.add(`hide-cursor`);
 }
 

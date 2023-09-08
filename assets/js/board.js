@@ -71,6 +71,7 @@ function loadTasks(id) {
      
     }
   }
+  addContactsToTasks(1);
 }
 
 function emptyTaskDivs() {
