@@ -74,6 +74,11 @@
   justify-content: space-between;
   height: 38px;
   padding: 7px 16px;
+  border-radius: 10px;
+}
+.add-task-select-contact-activate {
+  background-color: #4589FF;
+  ;
 }
 
 .add-task-single-contact-invite {
