@@ -207,6 +207,7 @@ let numberOfColorsToAdd = [];
 
 function chooseContact(i, contactName, initials, color) {
   let chooseBoxContact = document.getElementById(`chooseBoxContact${i}`);
+  let parentDiv = chooseBoxContact.parentElement;
 
   // Überprüfe den aktuellen Status des Kontakts
   const isClicked = contactStatusMap.get(i) || false;
@@ -215,6 +216,7 @@ function chooseContact(i, contactName, initials, color) {
     chooseBoxContact.src = "./assets/img/checkButtonContact.png";
     contactStatusMap.set(i, true);
     showAddedContact(i, initials, color);
+    parentDiv.classList.add("add-task-select-contact-activate");
 
     // Füge den Kontakt zum Array numberOfContactsToAdd hinzu
     numberOfContactsToAdd.push(contactName);
@@ -224,6 +226,7 @@ function chooseContact(i, contactName, initials, color) {
     chooseBoxContact.src = "./assets/img/logoChooseContact.png";
     contactStatusMap.set(i, false);
     cancelContact(i);
+    parentDiv.classList.remove("add-task-select-contact-activate");
 
     // Entferne den Kontakt aus dem Array numberOfContactsToAdd
     const index = numberOfContactsToAdd.indexOf(contactName);
