@@ -2,9 +2,8 @@
   position: absolute;
   flex-direction: column;
   display: flex;
-  height: 1024px;
   left: 320px;
-  width: 518px;
+  width: 460px;
   top: 137px;
 }
 
@@ -52,10 +51,27 @@
   flex-direction: column;
   font-size: 19px;
   opacity: 1;
-  max-height: 1000px;
+  max-height: 210px;
   /* oder eine geeignete Höhe, die größer als die Höhe der Kontaktliste ist */
   overflow: hidden;
   transition: max-height 300ms;
+  overflow-y: scroll;
+  margin-right: 40px;
+}
+
+.add-task-choose-contacts::-webkit-scrollbar {
+  width: 20px;
+}
+.add-task-choose-contacts::-webkit-scrollbar-thumb {
+  background-color: #A8A8A8;
+  border: 6px solid transparent;
+  border-radius: 10px;
+  background-clip: content-box;
+  height: 30px;
+}
+
+.add-task-choose-contacts::-webkit-scrollbar-track {
+  background-color: white;
 }
 
 .add-task-hide-contacts {
@@ -67,8 +83,7 @@
 }
 
 .add-task-single-contact {
-  width: 400px;
-  height: 38px;
+  width: 377px;
   display: flex;
   align-items: center;
   justify-content: space-between;
