@@ -8,6 +8,7 @@
     box-shadow: 4px 0px 6px 0px #00000014;
     justify-content: center;
     overflow: auto;
+    height: calc(100vh - 99px);
 }
 #contact-list::-webkit-scrollbar {
     width: 20px;
