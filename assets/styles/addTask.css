@@ -80,6 +80,10 @@
   background-color: #4589FF;  ;
 }
 
+.add-task-select-contact-activate:hover {
+  background-color: #005DFF !important;
+}
+
 .add-task-single-contact-invite {
   width: 400px;
   height: 38px;
