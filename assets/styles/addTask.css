@@ -56,7 +56,6 @@
   overflow: hidden;
   transition: max-height 300ms;
   overflow-y: scroll;
-  margin-right: 40px;
 }
 
 .add-task-choose-contacts::-webkit-scrollbar {
@@ -478,7 +477,7 @@ input[type="date"]::placeholder {
 .add-task-to-board {
   background-color: white;
   padding-left: 16px;
-  width: 440px;
+  width: 450px;
   z-index: 3;
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
