@@ -274,6 +274,11 @@
     font-size: 16px;
     line-height: 120%;
 }
+#signup-user{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 /* link for forgot password */
 #forgot-link {
@@ -428,6 +433,9 @@
 #forget-con {
     margin-left: -64%;
 }
+.signup-form{
+    padding: 48px 0px;
+}
 }
 
 @media(max-width: 525px){
@@ -443,5 +451,11 @@
     }
     #login-signup-con-responsive span{
         font-size: 16px;
+    }
+    .not-match-con{
+        width: 300px;
+    }
+    #back-arrow{
+        left: 25px;
     }
     }
