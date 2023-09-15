@@ -1,12 +1,12 @@
 /* generell Classes */
 
 /* background-color page blue */
-.bg-blue{
+.bg-blue {
     background-color: #4589FF;
 }
 
 /* background-color strong blue */
-.bg-white{
+.bg-white {
     background-color: #FFFFFF;
 }
 
@@ -22,9 +22,9 @@
 
 /* the asteriks for the password-inputs */
 .password {
-    font-family: 'aste'!important;
-    font-size: 12px!important;
-    line-height: 190%!important;
+    font-family: 'aste' !important;
+    font-size: 12px !important;
+    line-height: 190% !important;
 }
 
 /* logo on all pages in login section */
@@ -115,7 +115,7 @@
 }
 
 /* the headline text for all pages in login section.*/
-.login-headline span{
+.login-headline span {
     color: #000000;
     text-align: center;
     font-size: 48px;
@@ -148,11 +148,11 @@
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
     font-size: 23px;
     line-height: 120%;
-    color:#FFFFFF;
+    color: #FFFFFF;
 }
 
 /* error text für password segment */
-.not-match-con{
+.not-match-con {
     display: flex;
     align-items: center;
     height: 25px;
@@ -218,6 +218,31 @@
 #login-signup-con a {
     text-decoration: none;
 }
+
+#login-signup-con-responsive {
+    display: none;
+    align-items: center;
+    gap: 35px;
+    margin-top: 80px;
+}
+
+/* text for signup button on login-in page */
+#login-signup-con-responsive span {
+    color: #000;
+    font-size: 23px;
+    line-height: 120%;
+}
+
+/* the signup button on login-in page */
+#login-signup-con-responsive button {
+    padding: 10px 16px;
+}
+
+/* the textdecoration for signup button on login-in page */
+#login-signup-con-responsive a {
+    text-decoration: none;
+}
+
 
 /* spefic paarameter for log in form */
 .login-form {
@@ -346,7 +371,7 @@
 @keyframes colorChange {
     100% {
         background-color: none;
-        z-index: 0; 
+        z-index: 0;
         display: none;
     }
 }
@@ -361,3 +386,62 @@
         opacity: 0.2;
     }
 }
+
+@media (max-width: 800px) {
+    .epass {
+        width: 320px;
+    }
+
+    .epass input {
+        width: 280px;
+    }
+
+    #forget-con {
+        gap: 16px;
+        flex-direction: column-reverse;
+        margin-left: -70%;
+    }
+
+    #login-btn-con {
+        gap: 21px;
+        flex-direction: column;
+    }
+    .login-btn{
+        padding: 10px 61px;
+    }
+}
+
+@media(max-width: 650px){
+#login-signup-con{
+    display: none;
+}
+#login-signup-con-responsive{
+    display: inline-flex;
+}
+.epass {
+    width: 220px;
+}
+
+.epass input {
+    width: 200px;
+}
+#forget-con {
+    margin-left: -64%;
+}
+}
+
+@media(max-width: 525px){
+    .login-form{
+        padding: 48px 40px;
+    }
+    .epass{width: 170px;}
+    .epass input {
+        width: 150px;
+    }
+    #forget-con {
+        margin-left: -40%;
+    }
+    #login-signup-con-responsive span{
+        font-size: 16px;
+    }
+    }
