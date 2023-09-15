@@ -144,7 +144,7 @@ function addNewContact() {
             <div id="add-contact-center">
                 <img id="add-contact-logo" src="./assets/img/contact_logo.png">
                 <div id="add-contact-title">Add contact</div>
-                <div id="add-contact-subtitle">Tasks are bett with a team!</div>
+                <div id="add-contact-subtitle">Tasks are better with a team!</div>
             </div>
         </div>
         <div id="add-contact-body">
