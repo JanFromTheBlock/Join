@@ -223,7 +223,7 @@
     display: none;
     align-items: center;
     gap: 35px;
-    margin-top: 80px;
+    margin-top: 15px;
 }
 
 /* text for signup button on login-in page */
@@ -413,6 +413,12 @@
     }
     .login-btn{
         padding: 10px 61px;
+    }
+    .login-brand{
+        height: 67px;
+        width: auto;
+        top: 16px;
+        left: 47px;
     }
 }
 

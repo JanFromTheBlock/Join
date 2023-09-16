@@ -4,8 +4,8 @@ function headerRender() {
   docID("header").innerHTML = /*html*/ `
         <img class="header-img" src="./assets/img/logo624.png">
         <div class="header-data">
-            <span>Kanban Project Management Tool</span>
-            <a href="./help.html"><img class="header-help" id="header-help" src="./assets/img/help.png"></a>
+            <span id = "header-title">Kanban Project Management Tool</span>
+            <a id ="help-button" href="./help.html"><img class="header-help" id="header-help" src="./assets/img/help.png"></a>
             <div id="header-user-con">
                 <div id="header-user-ellipse">
                     <div id="header-user-name"> ${userInitial}
@@ -13,6 +13,7 @@ function headerRender() {
                 </div>
             </div>
         </div>
+        <div id="menu-responsive"></div>
     `;
   oneLetter();
 }
@@ -39,6 +40,7 @@ function navRender() {
         </div>
     `;
   menuRender();
+  menuResponsiveRender();
 }
 
 function menuRender() {
@@ -59,6 +61,29 @@ function menuRender() {
                 <span>${names[i]}</span>
             </a>
         `;
+  }
+}
+
+function menuResponsiveRender(){
+  docID('menu-responsive').innerHTML = "";
+  let urls = [
+    "./summary.html",
+    "./board.html",
+    "./addTask.html",
+    "./contacts.html",
+  ];
+  let imgs = [
+    "summary_button",
+    "board_button",
+    "addTask_button",
+    "contacts_button"
+  ];
+  let names = ["summary", "board", "add-task", "contacts"]
+  for (let i = 0; i < imgs.length; i++) {
+    const img = imgs[i];
+    docID('menu-responsive').innerHTML += /*html*/`
+      <a class = "button-responsive" href="${urls[i]}"><img id = "${names[i]}-responsive" src="./assets/img/${img}.png"></a>
+    `
   }
 }
 
