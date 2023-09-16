@@ -61,6 +61,7 @@
 .add-task-choose-contacts::-webkit-scrollbar {
   width: 20px;
 }
+
 .add-task-choose-contacts::-webkit-scrollbar-thumb {
   background-color: #A8A8A8;
   border: 6px solid transparent;
@@ -90,8 +91,10 @@
   padding: 7px 16px;
   border-radius: 10px;
 }
+
 .add-task-select-contact-activate {
-  background-color: #4589FF;  ;
+  background-color: #4589FF;
+  ;
 }
 
 .add-task-select-contact-activate:hover {
@@ -625,7 +628,7 @@ input[type="date"]::placeholder {
 
 /*Edit TaskToBoard*/
 
-.edit-add-task-to-board{
+.edit-add-task-to-board {
   background-color: white;
   padding-left: 16px;
   width: 440px;
@@ -639,4 +642,41 @@ input[type="date"]::placeholder {
   right: 200px;
   height: 100vh;
   overflow-y: scroll;
+}
+
+@media (max-width: 1150px) {
+  .add-task {
+    left: 50%;
+    margin-left: -230px;
+  }
+}
+
+@media (max-width: 600px) {
+  .add-task {
+    width: 300px;
+    margin-left: -150px;
+  }
+  .add-task-title{
+    width: 260px;
+  }
+  .add-task-select-contact{
+    width: 260px;
+  }
+  .add-task-due-date-input{
+    width: 260px;
+  }
+  .add-task-priority{
+    width: unset;
+  }
+  .add-task-button-priority{
+    width: 95px;
+    padding: 18px 0px;
+    font-size: 16px;
+  }
+  .add-task-textarea{
+    width: 260px;
+  }
+  .add-task-subtask{
+    width: 260px;
+  }
 }

@@ -192,7 +192,7 @@
     top: 110px;
     left: 50%;
     margin-left: -360px;
-    width: 620px;
+    width: 620px !important;
     padding: 50px;
     z-index: 2;
     background-color: white;
@@ -393,7 +393,7 @@
             flex-wrap: wrap;
         } 
         #task-window{
-            width: 320px;
+            width: 320px !important;
             margin-left: -210px; 
          }
 }
@@ -424,7 +424,7 @@
     } 
     #task-window{
         padding: 25px;
-        width: 250px;
+        width: 250px !important;
         margin-left: -150px;
     }
 }
