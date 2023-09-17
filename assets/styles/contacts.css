@@ -419,8 +419,8 @@
 }
 #back-arrow{
     display: none;
-    margin-left: -40px;
-    margin-top: -100px;
+    margin-left: -70px;
+    margin-top: -110px;
 }
 #back-arrow:hover{
     cursor: pointer;
@@ -474,6 +474,12 @@
 
     #line {
         width: 290px;
+    }
+    #contact-header{
+        gap: 25px;
+    }
+    #contact-display{
+        margin-left: -142px;
     }
 
 

@@ -118,7 +118,7 @@ function renderContactDisplay(elementJSON) {
                     <div onclick="deleteContact(${contactId})" class="contact-img"><img src="./assets/img/delete_contact.png">Delete</div>
                 </div>
             </div>
-            <img src="./assets/img/back_arrow.png" id = "ow" onclick = "closeContactDisplay()">
+            <img src="./assets/img/back_arrow.png" id = "back-arrow" onclick = "closeContactDisplay()">
         </div>
         <div id="contact-body">
             <div id="contact-information">Contact Information</div>
