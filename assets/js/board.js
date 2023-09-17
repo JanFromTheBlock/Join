@@ -54,21 +54,21 @@ function loadTasks(id) {
     for (let i = 0; i < 1; i++) {
       for (let index = 0; index < tasks[id]["contact-firstname"].length; index++) {
         //for SChleife durch contact-area
-      let firstName = tasks[id]["contact-firstname"][index];; //Variable erhält Vornamen an der Position i
-      let lastName = tasks[id]["contact-lastname"][index]; //Variable erhält Nachnamen an der Position i
-      let Initial1 = firstName.charAt(0); //Anfangsbuchstabe Vorname
-      let Initial2 = lastName.charAt(0); //Anfangsbuchstabe Nachname
-      let initials = Initial1 + Initial2; //beide Initialien werden zusammengeführt
-      let initialsUpper = initials.toLocaleUpperCase(); //Initialien werden als Großbuchstaben geschrieben
-      let color = tasks[id]["contact-color"][index]; //die dazugehörige(i) Farbe wird aus dem Array gezogen
-      k++; //Variable k erhöht sich um eins und wird an id contacts angehängt
-      contactArea.innerHTML += /*html*/ `                  
+        let firstName = tasks[id]["contact-firstname"][index];; //Variable erhält Vornamen an der Position i
+        let lastName = tasks[id]["contact-lastname"][index]; //Variable erhält Nachnamen an der Position i
+        let Initial1 = firstName.charAt(0); //Anfangsbuchstabe Vorname
+        let Initial2 = lastName.charAt(0); //Anfangsbuchstabe Nachname
+        let initials = Initial1 + Initial2; //beide Initialien werden zusammengeführt
+        let initialsUpper = initials.toLocaleUpperCase(); //Initialien werden als Großbuchstaben geschrieben
+        let color = tasks[id]["contact-color"][index]; //die dazugehörige(i) Farbe wird aus dem Array gezogen
+        k++; //Variable k erhöht sich um eins und wird an id contacts angehängt
+        contactArea.innerHTML += /*html*/ `                  
         <span class="contacts" id = "contacts${k}"> ${initialsUpper}</span>
     `;
-      docID("contacts" + k).style.backgroundColor = color; //Farbe wird für Kontaksymbol geändert
-        
+        docID("contacts" + k).style.backgroundColor = color; //Farbe wird für Kontaksymbol geändert
+
       }
-     
+
     }
   }
   addContactsToTasks(1);
@@ -332,52 +332,57 @@ function changeDeleteImage(isHovering) {
 editTaskClick = false;
 saveChangedTask = false;
 
-function editTaskClicked(id){
+function editTaskClicked(id) {
   editTaskClick = true;
   let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
   addTaskButtonToBoard.classList.add(`d-none-important`);
   openAddTask(id);
 }
 
-function saveChangedTaskClicked(id){
+function saveChangedTaskClicked(id) {
   saveChangedTask = true;
-  if(saveChangedTask == true){
+  if (saveChangedTask == true) {
     changeTasks(id);
-  }  
+  }
 }
 
 // öffnet AddTask
 
 function openAddTask(id) {
- 
-  let addTaskUnder = document.getElementById(`addTaskToBoardUnderDiv`);
-  let backgroundBoard = document.getElementById(`board`);
-  let backgroundNav = document.getElementById(`nav`);
-  let backgroundHeader = document.getElementById(`header`);
-  let boardBody = document.getElementById(`boardBody`);
-  let board = document.getElementById(`board`);
-  let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
-  addTaskUnder.classList.remove(`d-none`);
-  setTimeout(() => {
-    addTaskButtonToBoard.classList.remove(`d-none`);
-    addTaskUnder.classList.remove(`add-task-to-board-hide`);
-  }, 100);
-  boardBody.classList.remove(`overflow-hidden`);
-  board.classList.add(`overflowY`);
-  backgroundBoard.classList.add(`decrease-opacity`);
-  backgroundHeader.classList.add(`decrease-opacity`);
-  backgroundNav.classList.add(`decrease-opacity`);
-  backgroundBoard.classList.remove(`full-opacity`);
-  backgroundHeader.classList.remove(`full-opacity`);
-  backgroundNav.classList.remove(`full-opacity`);
-  
-  if(editTaskClick == true){
-    let addTaskToBoardUnderDiv = document.getElementById(`addTaskToBoardUnderDiv`);
-    addTaskToBoardUnderDiv.classList.remove(`add-task-to-board`);
-    addTaskToBoardUnderDiv.classList.add(`edit-add-task-to-board`);
-    editTask(id);
+  if (window.innerWidth < 750) {
+    window.location.href = "addTask.html"
   }
- 
+  else {
+    let addTaskUnder = document.getElementById(`addTaskToBoardUnderDiv`);
+    let backgroundBoard = document.getElementById(`board`);
+    let backgroundNav = document.getElementById(`nav`);
+    let backgroundHeader = document.getElementById(`header`);
+    let boardBody = document.getElementById(`boardBody`);
+    let board = document.getElementById(`board`);
+    let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
+    addTaskUnder.classList.remove(`d-none`);
+    setTimeout(() => {
+      addTaskButtonToBoard.classList.remove(`d-none`);
+      addTaskUnder.classList.remove(`add-task-to-board-hide`);
+    }, 100);
+    boardBody.classList.remove(`overflow-hidden`);
+    board.classList.add(`overflowY`);
+    backgroundBoard.classList.add(`decrease-opacity`);
+    backgroundHeader.classList.add(`decrease-opacity`);
+    backgroundNav.classList.add(`decrease-opacity`);
+    backgroundBoard.classList.remove(`full-opacity`);
+    backgroundHeader.classList.remove(`full-opacity`);
+    backgroundNav.classList.remove(`full-opacity`);
+
+    if (editTaskClick == true) {
+      let addTaskToBoardUnderDiv = document.getElementById(`addTaskToBoardUnderDiv`);
+      addTaskToBoardUnderDiv.classList.remove(`add-task-to-board`);
+      addTaskToBoardUnderDiv.classList.add(`edit-add-task-to-board`);
+      editTask(id);
+    }
+  }
+
+
 }
 
 // schließt AddTask
@@ -456,7 +461,7 @@ function editTask(id) {
   }
   if (priorityLogo == "./assets/img/mediumLogo.png")
     medium.classList.add(`change-color-medium`);
-    mediumLogo.src = "./assets/img/mediumLogoWhite.png";
+  mediumLogo.src = "./assets/img/mediumLogoWhite.png";
 
   // Edit Subtasks
 
@@ -469,7 +474,7 @@ function editTask(id) {
     </div>`;
 }
 
-function changeTasks(id){
+function changeTasks(id) {
   let inputValue = document.getElementById(`inputFieldTitle`).value;
   let taskTitle = document.getElementById(`task-title${id}`).innerHTML;
   taskTitle = inputValue;
@@ -481,7 +486,7 @@ function changeTasks(id){
         </div>
         
     </div>
-`; 
+`;
 
-  addBoardRender(); 
+  addBoardRender();
 }
