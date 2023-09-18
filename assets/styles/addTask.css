@@ -658,6 +658,7 @@ input[type="date"]::placeholder {
   }
   .add-task-title{
     width: 260px;
+    margin-top: 35px;
   }
   .add-task-select-contact{
     width: 260px;

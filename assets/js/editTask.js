@@ -365,6 +365,5 @@ function openEditAddTask(id) {
   function deleteEditSubtask(id){
     let editSubtask = document.getElementById(`editSubtask${id}`);
     subtasks.splice(1, id);
-    
     }
     
