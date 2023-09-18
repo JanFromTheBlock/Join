@@ -92,6 +92,10 @@ function renderContacts() {
 }
 
 function renderContactDisplay(elementJSON) {
+    if (document.body.clientWidth < 900) {
+        document.getElementById("background-responsive").style.display = "block";
+    }
+
     const element = JSON.parse(decodeURIComponent(elementJSON));
 
     let contactDisplay = docID('contact-display');
@@ -114,6 +118,7 @@ function renderContactDisplay(elementJSON) {
                     <div onclick="deleteContact(${contactId})" class="contact-img"><img src="./assets/img/delete_contact.png">Delete</div>
                 </div>
             </div>
+            <img src="./assets/img/back_arrow.png" id = "back-arrow" onclick = "closeContactDisplay()">
         </div>
         <div id="contact-body">
             <div id="contact-information">Contact Information</div>
@@ -140,7 +145,7 @@ function addNewContact() {
     <div id="background-color-add-contact"></div>
     <div id="add-contact-mask" class="open-add-contact-hide d-none">
         <div id="add-contact-header">
-            <div id="add-contact-back-arrow"><img onclick="cancelNewContact()" src="./assets/img/close_contact.png"></div>
+            <div id="add-contact-ow"><img onclick="cancelNewContact()" src="./assets/img/close_contact.png"></div>
             <div id="add-contact-center">
                 <img id="add-contact-logo" src="./assets/img/contact_logo.png">
                 <div id="add-contact-title">Add contact</div>
@@ -334,7 +339,7 @@ function openEditContact(contactId, name, mail, phone, color, initials) {
          <div id="background-color-add-contact"></div>
         <div id="edit-contact-mask" class="open-edit-contact-hide d-none">
             <div id="edit-contact-header">
-                <div id="add-contact-back-arrow"><img onclick="cancelNewContact()" src="./assets/img/close_contact.png"></div>
+                <div id="add-contact-ow"><img onclick="cancelNewContact()" src="./assets/img/close_contact.png"></div>
                 <div id="add-contact-center">
                     <img id="add-contact-logo" src="./assets/img/contact_logo.png">
                     <div id="add-contact-title">Add contact</div>
@@ -407,4 +412,28 @@ async function editContact(contactId) {
     document.getElementById(`contact-name`).value = '';
     document.getElementById(`contact-mail`).value = '';
     document.getElementById(`contact-phone`).value = '';
+}
+
+function closeContactDisplay(){
+    docID('contact-display').innerHTML = '';
+    document.getElementById("background-responsive").style.display = "none";
+    const contactContainers = document.querySelectorAll('.contact');
+    contactContainers.forEach(container => {
+        container.style.backgroundColor = '';
+        const nameElement = container.querySelector('#name');
+        const mailElement = container.querySelector('#mail');
+        nameElement.style.color = '';
+        mailElement.style.color = '';
+    });
+}
+window.addEventListener('resize', addClassIfBodyWidthLessThan900px);
+function addClassIfBodyWidthLessThan900px() {
+    if (document.body.clientWidth < 900) {
+        var contactDisplay = document.getElementById('contact-display');
+        if (!contactDisplay.classList.contains('d-none')) {
+            contactDisplay.classList.add('d-none');
+            docID('background-responsive').style.display = "none";
+            onclickContact();
+        }
+    }
 }

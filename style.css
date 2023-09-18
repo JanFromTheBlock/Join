@@ -206,7 +206,7 @@ header {
 }
 
 .button-responsive {
-  padding: 0px 16px;
+  padding: 0px 15px;
 }
 
 #menu-responsive {
@@ -215,6 +215,7 @@ header {
   bottom: 0;
   left: 50%;
   margin-left: -220px;
+  background-color: white;
 }
 @media (max-width: 1150px){
   #nav{display: none;}

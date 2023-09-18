@@ -54,21 +54,21 @@ function loadTasks(id) {
     for (let i = 0; i < 1; i++) {
       for (let index = 0; index < tasks[id]["contact-firstname"].length; index++) {
         //for SChleife durch contact-area
-      let firstName = tasks[id]["contact-firstname"][index];; //Variable erhält Vornamen an der Position i
-      let lastName = tasks[id]["contact-lastname"][index]; //Variable erhält Nachnamen an der Position i
-      let Initial1 = firstName.charAt(0); //Anfangsbuchstabe Vorname
-      let Initial2 = lastName.charAt(0); //Anfangsbuchstabe Nachname
-      let initials = Initial1 + Initial2; //beide Initialien werden zusammengeführt
-      let initialsUpper = initials.toLocaleUpperCase(); //Initialien werden als Großbuchstaben geschrieben
-      let color = tasks[id]["contact-color"][index]; //die dazugehörige(i) Farbe wird aus dem Array gezogen
-      k++; //Variable k erhöht sich um eins und wird an id contacts angehängt
-      contactArea.innerHTML += /*html*/ `                  
+        let firstName = tasks[id]["contact-firstname"][index];; //Variable erhält Vornamen an der Position i
+        let lastName = tasks[id]["contact-lastname"][index]; //Variable erhält Nachnamen an der Position i
+        let Initial1 = firstName.charAt(0); //Anfangsbuchstabe Vorname
+        let Initial2 = lastName.charAt(0); //Anfangsbuchstabe Nachname
+        let initials = Initial1 + Initial2; //beide Initialien werden zusammengeführt
+        let initialsUpper = initials.toLocaleUpperCase(); //Initialien werden als Großbuchstaben geschrieben
+        let color = tasks[id]["contact-color"][index]; //die dazugehörige(i) Farbe wird aus dem Array gezogen
+        k++; //Variable k erhöht sich um eins und wird an id contacts angehängt
+        contactArea.innerHTML += /*html*/ `                  
         <span class="contacts" id = "contacts${k}"> ${initialsUpper}</span>
     `;
-      docID("contacts" + k).style.backgroundColor = color; //Farbe wird für Kontaksymbol geändert
-        
+        docID("contacts" + k).style.backgroundColor = color; //Farbe wird für Kontaksymbol geändert
+
       }
-     
+
     }
   }
   addContactsToTasks(1);
@@ -344,12 +344,27 @@ function changeDeleteImage(isHovering) {
   }
 }
 
+editTaskClick = false;
+saveChangedTask = false;
 
+function editTaskClicked(id){
+  editTaskClick = true;
+  let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
+  addTaskButtonToBoard.classList.add(`d-none-important`);
+  openAddTask(id);
+}
+
+function saveChangedTaskClicked(id){
+  saveChangedTask = true;
+  if(saveChangedTask == true){
+    changeTasks(id);
+  }  
+}
 
 // öffnet AddTask
 
 function openAddTask(id) {
-  addTaskClicked = true;
+ 
   let addTaskUnder = document.getElementById(`addTaskToBoardUnderDiv`);
   let backgroundBoard = document.getElementById(`board`);
   let backgroundNav = document.getElementById(`nav`);
@@ -377,6 +392,7 @@ function openAddTask(id) {
     addTaskToBoardUnderDiv.classList.add(`edit-add-task-to-board`);
     editTask(id);
   }
+ 
 }
 
 // schließt AddTask
@@ -401,4 +417,86 @@ function closeAddTaskToBoard() {
   backgroundNav.classList.remove(`decrease-opacity`);
 }
 
+// Editieren der Tasks
 
+function editTask(id) {
+  //Edit Titel
+  let taskWindow = document.getElementById(`task-window`);
+  taskWindow.classList.add(`d-none`);
+  let taskTitle = document.getElementById(`window-title${id}`).innerHTML;
+  let inputFieldTitle = document.getElementById("inputFieldTitle");
+  inputFieldTitle.value = taskTitle;
+
+  //Edit Beschreibung
+
+  let taskDescription = document.getElementById(`window-description${id}`).innerHTML;
+  let description = document.getElementById(`description`);
+  description.value = taskDescription;
+
+  //Edit Category
+
+  let taskCategory = document.getElementById(`window-category${id}`).innerHTML;
+  let selectCategory = document.getElementById(`selectCategory`);
+  selectCategory.value = taskCategory;
+
+  // Edit Datum
+
+  let taskDate = document.getElementById(`date-inside${id}`).innerHTML;
+  let dueDate = document.getElementById(`inputDate`);
+  dueDate.value = taskDate;
+
+  let taskContact = document.getElementById(`contacts${id + 1}`).innerHTML;
+  let initials = document.getElementById(`initials`);
+  initials.classList.remove(`d-none`);
+  let taskInitials = document.getElementById(`taskInitials`);
+  taskInitials.classList.remove(`d-none`);
+  taskInitials.innerHTML = taskContact;
+
+  // Edit Priority
+
+  let taskCategoryColor = document.getElementById(`task-category${id}`).style.backgroundColor;
+  let editTaskCategoryColor = document.getElementById(`editTaskCategoryColor`);
+  editTaskCategoryColor.classList.remove(`d-none`);
+  editTaskCategoryColor.style.backgroundColor = taskCategoryColor;
+
+  let priorityLogo = tasks[id]["urgency"];
+
+  if (priorityLogo == "./assets/img/urgentLogo.png") {
+    urgent.classList.add(`change-color-urgent`);
+    urgentLogo.src = "./assets/img/urgentLogoWhite.png";
+  }
+  if (priorityLogo == "./assets/img/lowLogo.png") {
+    low.classList.add(`change-color-low`);
+    lowLogo.src = "./assets/img/lowLogoWhite.png";
+  }
+  if (priorityLogo == "./assets/img/mediumLogo.png")
+    medium.classList.add(`change-color-medium`);
+    mediumLogo.src = "./assets/img/mediumLogoWhite.png";
+
+  // Edit Subtasks
+
+  let subtaskArea = document.getElementById(`subTaskArea`);
+  let editSubtaskSmall = document.getElementById(`editSubtaskSmall${id}`).innerHTML;
+  subtaskArea.classList.remove(`d-none`);
+  subtaskArea.innerHTML = `<div class="subTaskArea">
+    <input class="cursor-pointer" type="checkbox">
+    <label id="labelForSubtask">${editSubtaskSmall}</label>
+    </div>`;
+}
+
+function changeTasks(id){
+  let inputValue = document.getElementById(`inputFieldTitle`).value;
+  let taskTitle = document.getElementById(`task-title${id}`).innerHTML;
+  taskTitle = inputValue;
+  taskTitle.innerHTML += /*html*/ `
+                    
+    <div id="task" class="task-decoration">
+      
+        <div id="task-title">${taskTitle}</div> 
+        </div>
+        
+    </div>
+`; 
+
+  addBoardRender(); 
+}
