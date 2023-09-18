@@ -537,12 +537,7 @@
   display: none;
 }
 
-@media screen and (max-width: 1200px) {
-  /* for now the greeting set on display none. To work out the responsive. After that it gets animaton for disappear */
-  #grtng-con {
-    display: none;
-  }
-}
+
 @media (max-width: 1150px) {
     .summary {
     margin-left: 0;;
@@ -603,7 +598,11 @@
   #summary-con-upper{
     margin-bottom: 185px;
   }
-
+  @media screen and (max-width: 500px) {
+    #grtng-con {
+      display: none;
+    }
+  }
 }
 @media (max-width: 400px){
   #urgency-summary{
