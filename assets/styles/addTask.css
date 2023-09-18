@@ -435,6 +435,7 @@ input[type="date"]::placeholder {
   display: flex;
   align-items: end;
   margin-top: 136px;
+  margin-bottom: 50px;
 }
 
 .add-task-button-clear:hover {
@@ -514,8 +515,8 @@ input[type="date"]::placeholder {
   width: 180px;
   height: 61px;
   margin-bottom: 20px;
-  margin-left: -471px;
-  margin-top: 10px;
+  margin-left: 240px;
+
 }
 
 .add-task-button-create-board:hover {

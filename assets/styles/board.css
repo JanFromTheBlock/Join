@@ -377,6 +377,30 @@
     display: none !important;
 }
 
+.edit-task-button{ 
+    background-color: #4589ff;
+    color: white;
+    border-radius: 10px;
+    border: 1px solid;
+    font-size: 23px;
+    width: 130px;
+    height: 40px;
+    margin-bottom: 20px;
+    margin-left: 260px;
+    margin-top: 20px;
+    font-size: 16px;
+ }
+
+ .edit-task-button:hover{
+    background-color: #005DFF;
+    cursor: pointer;
+ }
+
+ .edit-subtask-area{
+    font-size: 15px !important;
+    margin-top: 15px;
+ }
+
 @media (max-width: 1250px) {
     #task-area {
         margin-left: 35px;

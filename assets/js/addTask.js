@@ -27,23 +27,20 @@ let categories = [
 ];
 
 let tasks = [];
-
 let subtasks = [];
 let contact;
 let urgency;
 let categoryColor;
 
 function showSubtasks(id) {
-  let subtaskArea = document.getElementById(`subTaskArea`);
+  let subtaskArea = document.getElementById(`subTaskArea${id}`);
   let inputSubtask = document.getElementById(`inputSubtask`).value;
-  
-  console.log(inputSubtask);
   subtaskArea.classList.remove(`d-none`);
   subtasks.push(inputSubtask);
-  subtaskArea.innerHTML += `
+  subtaskArea.innerHTML += /*html*/ `
   <div class="subTaskArea">
   <input class="cursor-pointer" type="checkbox">
-  <label id="labelSubtask" >${inputSubtask}</label>
+  <label id="labelForSubtask${id}">${inputSubtask}</label>
   </div>
   `;
   document.getElementById(`inputSubtask`).value = '';
@@ -53,6 +50,12 @@ function showSubtasks(id) {
 //Onclick auf PriorityButtons
 
 function changeColorUrgent() {
+  let urgent = document.getElementById(`urgent`);
+  let low = document.getElementById(`low`);
+  let medium = document.getElementById(`medium`);
+  let lowLogo = document.getElementById(`lowLogo`);
+  let mediumLogo = document.getElementById(`mediumLogo`);
+  let urgentLogo = document.getElementById(`urgentLogo`);
   urgent.classList.add("change-color-urgent");
   urgent.classList.add("clicked");
   medium.classList.remove("change-color-medium");
@@ -65,6 +68,12 @@ function changeColorUrgent() {
 }
 
 function changeColorMedium() {
+  let urgent = document.getElementById(`urgent`);
+  let low = document.getElementById(`low`);
+  let medium = document.getElementById(`medium`);
+  let lowLogo = document.getElementById(`lowLogo`);
+  let mediumLogo = document.getElementById(`mediumLogo`);
+  let urgentLogo = document.getElementById(`urgentLogo`);
   urgent.classList.remove("change-color-urgent");
   medium.classList.add("clicked");
   low.classList.remove("clicked");
@@ -77,6 +86,12 @@ function changeColorMedium() {
 }
 
 function changeColorLow() {
+  let urgent = document.getElementById(`urgent`);
+  let low = document.getElementById(`low`);
+  let medium = document.getElementById(`medium`);
+  let lowLogo = document.getElementById(`lowLogo`);
+  let mediumLogo = document.getElementById(`mediumLogo`);
+  let urgentLogo = document.getElementById(`urgentLogo`);
   urgent.classList.remove("change-color-urgent");
   medium.classList.remove("change-color-medium");
   low.classList.add("change-color-low");
@@ -99,23 +114,23 @@ function changeColor(i) {
     urgency = "./assets/img/lowLogo.png"; 
     changeColorLow(i);
   }
-  console.log(i, urgency);
 }
 
-function createJsonTask(title, description, category, subtasks, urgency, date, firstName, lastName, categoryColor){
+function createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor){
   return {
     title: title,
     description: description,
     category: category,
     "category-color": categoryColor,
     progress: "1",
-    subtasks: subtasks.length,
+    subtasksLength: subtasksLength,
+    subtasks: subtasks,
     "done-tasks": 0,
     urgency: urgency,
     date: date,
     "contact-firstname": firstName,
     "contact-lastname": lastName,
-    "contact-color": contactcolors,
+    "contact-color": ["#462F8A", "#FF4646"],
     arrayId: 0,
   };
 }
@@ -127,6 +142,7 @@ function newTask() {
   let title = document.getElementById(`inputFieldTitle`).value;
   let date = document.getElementById(`inputDate`).value;
   let category = document.getElementById(`selectCategory`).value;
+  let subtasksLength = subtasks.length;
   let description = document.getElementById(`description`).value;
   let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
   taskAddedToBoard.classList.remove(`d-none`);
@@ -149,7 +165,7 @@ function newTask() {
     contactcolors.push(contactcolor);
   }
   clearTaskMask();
-  let task = createJsonTask(title, description, category, subtasks, urgency, date, firstName, lastName, categoryColor);
+  let task = createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor);
   getElement('tasks');
   firstName = [];
   lastName = [];
@@ -171,6 +187,8 @@ function clearTaskMask() {
 function clearTask(i) {
   tasks.splice(i, 1);
   subtasks.splice(i, 1);
+  setElement('tasks', tasks);
+  setElement('subtasks', subtasks);
 }
 
 function toggleVisibility(elementId) {
@@ -292,10 +310,7 @@ let savedCategory;
 
 function pushCategoryToArray(categoryColor) {
   let selectCategory = document.getElementById(`selectCategory`).value;
-  let category = {
-    name: selectCategory,
-    color: categoryColor
-  };
+  let category = {name: selectCategory,color: categoryColor};
 
   if (!categories.includes(selectCategory)) {
     categories.push(category);
@@ -380,7 +395,7 @@ function chooseCategory(i) {
   selectCategory.style.paddingLeft = "0";
   showCategories.classList.add(`d-none`);
   addColorToCategory(categoryImg);
-  editTaskCategoryColor.classList.add(`d-none`)
+  taskCategoryColor.classList.add(`d-none`)  // geändert
 }
 
 function markColor(){
@@ -401,5 +416,5 @@ function markColor(){
 }
 
 
-// Test
+
 

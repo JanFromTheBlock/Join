@@ -120,9 +120,11 @@ function moveTo(progress) {
 
 function renderSubtasks(id) {
   //subtasks werden gerendert
-  if (tasks[id]["subtasks"] > 0) {
+  let subtasksLength = tasks[id]["subtasksLength"];
+
+  if (subtasksLength > 0) {
     // wenn die Anzahl an Subtasks größer 0 ist dann wird Funktion ausgeführt
-    let a = parseInt(tasks[id]["subtasks"]); // Variable a sind die Anzahl an subtasks
+    let a = parseInt(subtasksLength); // Variable a sind die Anzahl an subtasks
     let b = parseInt(tasks[id]["done-tasks"]); // Variable b sind die Anzahl erledigter subtasks
     let percent = (b / a) * 100; // Prozentanteil erledigter aufgaben wird berechnet
     docID("progress-bar" + id).classList.remove("d-none"); //der progress-bar wird das d-none entfernt und sie wird sichtbar
@@ -131,6 +133,7 @@ function renderSubtasks(id) {
         `; // die Anzahl an subtass wird neben die progress-bar gerendert
     docID("progress-bar-inside" + id).style.width = `${percent}%`; //der Prozentanteil erledigter Aufgaben wird als Füllmenge für die progress-bar verwnedet
   }
+  subtasks.splice(id, subtasks.length);  // alle subtasks werden gelöscht, so dass nicht alle in allen Tasks angezeigt werden
 }
 
 function renderUrgencySymbol(id) {
@@ -221,46 +224,56 @@ function renderWindow(id) {
   renderContactsToWindow(id);
 }
 
-function renderStructureOfTheWindow(id) {
-  let taskWindow = docID("task-window"); //div in die der HTML-Code gerendert wird, wird als Variable definiert
-  let prioritySmall = tasks[id]["urgency"]; //die Priorität aus dem array wird als Variable definiert
-  let priority = prioritySmall.charAt(0).toUpperCase() + prioritySmall.slice(1); //die Priorität soll einen großen Anfangsbuchstaben haben
-  let dueDate = tasks[id]["date"]; // Das Datum aus dem Array wir als Variable definiert
-  let editSubtaskSmall = document.getElementById(`editSubtaskSmall${id}`).innerHTML;
-  taskWindow.innerHTML = ""; //Die div wird geleert und anschließend das Gerüst des HTML-Codes für das Window gerendert
+function renderStructureOfTheWindow(taskId) {
+  let subtaskHTML = '';
+  let taskWindow = docID("task-window");
+  let prioritySmall = tasks[taskId]["urgency"];
+  let priority = prioritySmall.charAt(0).toUpperCase() + prioritySmall.slice(1);
+  let dueDate = tasks[taskId]["date"];
+  let subtasks = tasks[taskId]["subtasks"]; // Subtasks für diese Aufgabe
+  taskWindow.innerHTML = "";
   taskWindow.style.width = "422px";
+
+  for (let subtaskIndex = 0; subtaskIndex < subtasks.length; subtaskIndex++) {
+      const subtask = subtasks[subtaskIndex];
+      subtaskHTML += `
+          <div>
+              <input id="editSubtask${subtaskIndex}" type="checkbox">${subtask}
+          </div>
+      `;
+  }
+    setElement("subtasks", subtasks);
+    editTaskClick = false;
   taskWindow.innerHTML = /*html*/ `
-
-        <div>
-            <img id="close-img" onclick="closeWindow()" src="./assets/img/close.png">
-            <div id="task-window-inside">
-                <div id="window-category${id}" class="task-category">${tasks[id]["category"]}</div>
-                <div class="font-size-title" id="window-title${id}">${tasks[id]["title"]}</div>
-                <div id="window-description${id}">${tasks[id]["description"]}</div>
-                <div id="date">Due date: 
-                    <div id="date-inside${id}">${dueDate}</div>
-                </div>
-                <div id="window-priority">Priority: 
-                    <div id="window-priority-inside"> <img id="window-contact-img" src="${priority}"></div>
-                </div>
-                <div id="window-contact-area">
-                    <div>Assigned to:</div>
-                </div>
-                <div class="subtask-window">Subtasks:</div>
-                <div>
-                <input id="editSubtask${id}" type="checkbox">${editSubtaskSmall}
-            </div>
-            <div id="contact-buttons"><img onmouseover="changeDeleteImage(true)" onmouseout="changeDeleteImage(false)" id="delete-button" onclick="deleteTask(${id})" src="./assets/img/delete.png"> <img onclick=" editTaskClicked(${id})" id="edit-button" src="./assets/img/edit.png"></div>
-           
-
-        </div>
-    `;
+      <div>
+          <img id="close-img" onclick="closeWindow()" src="./assets/img/close.png">
+          <div id="task-window-inside">
+              <div id="window-category${taskId}" class="task-category">${tasks[taskId]["category"]}</div>
+              <div class="font-size-title" id="window-title${taskId}">${tasks[taskId]["title"]}</div>
+              <div id="window-description${taskId}">${tasks[taskId]["description"]}</div>
+              <div id="date">Due date: 
+                  <div id="date-inside${taskId}">${dueDate}</div>
+              </div>
+              <div id="window-priority">Priority: 
+                  <div id="window-priority-inside"> <img id="window-contact-img" src="${priority}"></div>
+              </div>
+              <div id="window-contact-area">
+                  <div>Assigned to:</div>
+              </div>
+              <div class="subtask-window">Subtasks:</div>
+              ${subtaskHTML}
+              <div id="contact-buttons"><img onmouseover="changeDeleteImage(true)" onmouseout="changeDeleteImage(false)" id="delete-button" onclick="deleteTask(${taskId})" src="./assets/img/delete.png"> <img onclick="editTaskClicked(${taskId})" id="edit-button" src="./assets/img/edit.png"></div>         
+          </div>
+      </div>
+  `;
 }
+
 function addColorOfTheCategory(id) {
   //Hintergrundfarbe der Kategorie wird angepasst
   let color = tasks[id]["category-color"];
-  docID("window-category" + id).style.backgroundColor = color;
+ /* docID("window-category").style.backgroundColor = color;  auskommentiert, da Fehlermedung*/
 }
+
 function renderPriorityToTheWindow(id) {
   addUrgencyImage(id);
   addUrgencyColor(id);
@@ -282,6 +295,7 @@ function addUrgencyColor(id) {
     docID("window-priority-inside").style.backgroundColor = "#FFD2D2";
   }
 }
+
 function renderContactsToWindow(id) {
   let windowContactArea = docID("window-contact-area");
   for (
@@ -320,6 +334,7 @@ function deleteTask(id) {
   addBoardRender(); //anschließend wird das Board neu gerendert ohne das gelöschte Element
   closeWindow(); //dann wird das Fenster wieder geschlossen
 }
+
 function changeDeleteImage(isHovering) {
   const deleteButton = document.getElementById("delete-button");
   if (isHovering) {
@@ -329,27 +344,12 @@ function changeDeleteImage(isHovering) {
   }
 }
 
-editTaskClick = false;
-saveChangedTask = false;
 
-function editTaskClicked(id){
-  editTaskClick = true;
-  let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
-  addTaskButtonToBoard.classList.add(`d-none-important`);
-  openAddTask(id);
-}
-
-function saveChangedTaskClicked(id){
-  saveChangedTask = true;
-  if(saveChangedTask == true){
-    changeTasks(id);
-  }  
-}
 
 // öffnet AddTask
 
 function openAddTask(id) {
- 
+  addTaskClicked = true;
   let addTaskUnder = document.getElementById(`addTaskToBoardUnderDiv`);
   let backgroundBoard = document.getElementById(`board`);
   let backgroundNav = document.getElementById(`nav`);
@@ -377,7 +377,6 @@ function openAddTask(id) {
     addTaskToBoardUnderDiv.classList.add(`edit-add-task-to-board`);
     editTask(id);
   }
- 
 }
 
 // schließt AddTask
@@ -402,86 +401,4 @@ function closeAddTaskToBoard() {
   backgroundNav.classList.remove(`decrease-opacity`);
 }
 
-// Editieren der Tasks
 
-function editTask(id) {
-  //Edit Titel
-  let taskWindow = document.getElementById(`task-window`);
-  taskWindow.classList.add(`d-none`);
-  let taskTitle = document.getElementById(`window-title${id}`).innerHTML;
-  let inputFieldTitle = document.getElementById("inputFieldTitle");
-  inputFieldTitle.value = taskTitle;
-
-  //Edit Beschreibung
-
-  let taskDescription = document.getElementById(`window-description${id}`).innerHTML;
-  let description = document.getElementById(`description`);
-  description.value = taskDescription;
-
-  //Edit Category
-
-  let taskCategory = document.getElementById(`window-category${id}`).innerHTML;
-  let selectCategory = document.getElementById(`selectCategory`);
-  selectCategory.value = taskCategory;
-
-  // Edit Datum
-
-  let taskDate = document.getElementById(`date-inside${id}`).innerHTML;
-  let dueDate = document.getElementById(`inputDate`);
-  dueDate.value = taskDate;
-
-  let taskContact = document.getElementById(`contacts${id + 1}`).innerHTML;
-  let initials = document.getElementById(`initials`);
-  initials.classList.remove(`d-none`);
-  let taskInitials = document.getElementById(`taskInitials`);
-  taskInitials.classList.remove(`d-none`);
-  taskInitials.innerHTML = taskContact;
-
-  // Edit Priority
-
-  let taskCategoryColor = document.getElementById(`task-category${id}`).style.backgroundColor;
-  let editTaskCategoryColor = document.getElementById(`editTaskCategoryColor`);
-  editTaskCategoryColor.classList.remove(`d-none`);
-  editTaskCategoryColor.style.backgroundColor = taskCategoryColor;
-
-  let priorityLogo = tasks[id]["urgency"];
-
-  if (priorityLogo == "./assets/img/urgentLogo.png") {
-    urgent.classList.add(`change-color-urgent`);
-    urgentLogo.src = "./assets/img/urgentLogoWhite.png";
-  }
-  if (priorityLogo == "./assets/img/lowLogo.png") {
-    low.classList.add(`change-color-low`);
-    lowLogo.src = "./assets/img/lowLogoWhite.png";
-  }
-  if (priorityLogo == "./assets/img/mediumLogo.png")
-    medium.classList.add(`change-color-medium`);
-    mediumLogo.src = "./assets/img/mediumLogoWhite.png";
-
-  // Edit Subtasks
-
-  let subtaskArea = document.getElementById(`subTaskArea`);
-  let editSubtaskSmall = document.getElementById(`editSubtaskSmall${id}`).innerHTML;
-  subtaskArea.classList.remove(`d-none`);
-  subtaskArea.innerHTML = `<div class="subTaskArea">
-    <input class="cursor-pointer" type="checkbox">
-    <label id="labelForSubtask">${editSubtaskSmall}</label>
-    </div>`;
-}
-
-function changeTasks(id){
-  let inputValue = document.getElementById(`inputFieldTitle`).value;
-  let taskTitle = document.getElementById(`task-title${id}`).innerHTML;
-  taskTitle = inputValue;
-  taskTitle.innerHTML += /*html*/ `
-                    
-    <div id="task" class="task-decoration">
-      
-        <div id="task-title">${taskTitle}</div> 
-        </div>
-        
-    </div>
-`; 
-
-  addBoardRender(); 
-}
