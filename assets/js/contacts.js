@@ -426,3 +426,14 @@ function closeContactDisplay(){
         mailElement.style.color = '';
     });
 }
+window.addEventListener('resize', addClassIfBodyWidthLessThan900px);
+function addClassIfBodyWidthLessThan900px() {
+    if (document.body.clientWidth < 900) {
+        var contactDisplay = document.getElementById('contact-display');
+        if (!contactDisplay.classList.contains('d-none')) {
+            contactDisplay.classList.add('d-none');
+            docID('background-responsive').style.display = "none";
+            onclickContact();
+        }
+    }
+}

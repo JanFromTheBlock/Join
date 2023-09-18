@@ -445,6 +445,14 @@
     }
 }
 
+@media (min-width: 900px) {
+    
+    #background-responsive{
+        display: none !important;
+    }
+
+}
+
 @media (max-width: 900px) {
     #contacts-outside {
         justify-content: center;
