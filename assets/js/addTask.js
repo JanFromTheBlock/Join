@@ -173,6 +173,7 @@ function newTask() {
   numberOfColorsToAdd = []
   tasks.push(task);
   setElement('tasks', tasks);
+  subtasks.splice(id, subtasks.length);
   addBoardInit();
 }
 

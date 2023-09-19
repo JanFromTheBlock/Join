@@ -139,7 +139,7 @@ function openEditAddTask(id) {
     subtaskArea.classList.remove(`d-none`);
     for (let id = 0; id < subtasks.length; id++) {
       const subtask = subtasks[id];
-    subtaskArea.innerHTML +=  /*html*/`<div class="subTaskArea">
+    subtaskArea.innerHTML +=  /*html*/`<div class="edit-subtask-area">
         <input class="cursor-pointer" type="checkbox">
         <label id="editLabelForSubtask${id}">${subtask}</label><img onclick="deleteEditSubtask()" class="delete-img-subtask" src="./assets/img/delete_contact.png">
         </div>`
@@ -352,7 +352,7 @@ function openEditAddTask(id) {
     subtaskArea.classList.remove(`d-none`);
     subtasks.push(inputSubtask);
     subtaskArea.innerHTML += /*html*/ `
-    <div class="subTaskArea">
+    <div class="edit-subtask-area">
     <input class="cursor-pointer" type="checkbox">
     <label id="editLabelForSubtask${id}">${inputSubtask}</label><img onclick="deleteEditSubtask(id)" class="delete-img-subtask" src="./assets/img/delete_contact.png">
     </div>`;
