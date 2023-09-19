@@ -67,49 +67,66 @@ function openEditAddTask(id) {
   let editSelectCategoryClicked = false;
   
   function editTask(id) {
-    //Edit Titel
+   editTitle(id);
+   editDescription(id);
+   editCategory(id);
+   editDate(id);
+   editContact(id);
+   editTaskCategoryColor(id);
+   editPriority(id);
+   
+  
+    // Edit Priority
+  
+   
+    editSubtask(id);
+  }
+
+  function editTitle(id){
     let taskWindow = document.getElementById(`task-window`);
     taskWindow.classList.add(`d-none`);
     let taskTitle = document.getElementById(`window-title${id}`).innerHTML;
     let inputFieldTitle = document.getElementById(`inputFieldTitle${id}`);
     inputFieldTitle.value = taskTitle;
-  
-    //Edit Beschreibung
-  
+  }
+
+  function editDescription(id){
     let taskDescription = document.getElementById(
       `window-description${id}`
     ).innerHTML;
     let description = document.getElementById(`description${id}`);
     description.value = taskDescription;
-  
-    //Edit Category
-  
+  }
+
+  function editCategory(id){
     let taskCategory = document.getElementById(`window-category${id}`).innerHTML;
     let selectCategory = document.getElementById(`editSelectCategory${id}`);
     selectCategory.value = taskCategory;
-  
-    // Edit Datum
-  
+  }
+
+  function editDate(id){
     let taskDate = document.getElementById(`date-inside${id}`).innerHTML;
     let dueDate = document.getElementById(`dueDate${id}`);
     dueDate.value = taskDate;
-  
+  }
+
+  function editContact(id){
     let taskContact = document.getElementById(`contacts${id + 1}`).innerHTML;
     let initials = document.getElementById(`initials${id}`);
     initials.classList.remove(`d-none`);
     let taskInitials = document.getElementById(`taskInitials${id}`);
     taskInitials.classList.remove(`d-none`);
     taskInitials.innerHTML = taskContact;
-  
-    // Edit Category
-  
+  }
+
+  function editTaskCategoryColor(id){
     let taskCategoryColor = document.getElementById(`task-category${id}`).style.backgroundColor;
     let editTaskCategoryColor = document.getElementById(`editTaskCategoryColor${id}`);
     editTaskCategoryColor.classList.remove(`d-none`);
     editTaskCategoryColor.style.backgroundColor = taskCategoryColor;
+  }
   
-    // Edit Priority
-  
+  function editPriority(id){
     let priorityLogo = tasks[id]["urgency"];
     let urgent = document.getElementById(`editUrgent`);
     let low = document.getElementById(`editLow`);
@@ -130,9 +147,7 @@ function openEditAddTask(id) {
       medium.classList.add(`change-color-medium`);
       editMediumLogo.src = "./assets/img/mediumLogoWhite.png";
     }
-    editSubtask(id);
   }
-  
   function editSubtask(id){
     let subtasks = tasks[id]["subtasks"];
     let subtaskArea = document.getElementById(`editSubTaskArea${id}`);
@@ -147,7 +162,7 @@ function openEditAddTask(id) {
     }
   }
   
-  function changeTasks(id) {
+  function changeTasks(id, subtask) {
     let addTaskUnder = document.getElementById(`editaddTaskToBoardUnderDiv${id}`);
     let backgroundBoard = document.getElementById(`board`);
     let backgroundNav = document.getElementById(`nav`);
@@ -210,10 +225,10 @@ function openEditAddTask(id) {
     }
   
    // Edit Subtask
-  
+   subtasks.push(subtask);
    for (let subtaskIndex = 0; subtaskIndex < subtasks.length; subtaskIndex++) {
     const subtask = subtasks[subtaskIndex];
-  
+   
    
      renderStructureOfTheWindow(id, subtask);
     
