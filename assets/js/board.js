@@ -1,6 +1,7 @@
 let taskTitles = ["1", "2", "3", "4"]; //Array, um Drag und Drop Zielarea festzulegen
 let taskNames = ["To do", "In progress", "Await feedback", "Done"]; //Array, um beim Rendern der Rask-areas die Titel zu vergeben
 let currentDraggedElement; // In dieser Variable wird die id der gedraggten Task gespeichert
+let openedTask
 
 function addBoardRender() {
   let board = docID("board"); //Suchbereich und Add Task Button werden gerendert
@@ -205,6 +206,7 @@ function openWindow(event, id) {
   event.stopPropagation(); // Funktion sorgt dafür, dass das Window nicht geschlossen wird, wenn man auf den onclick-Button drückt
   window.scrollTo(0, 0); // wenn Fenster geöffnet wird, wird nach oben gescrollt
   renderWindow(id); // das Window wird mit seinen Inhalten gerendert
+  openedTask = id
 }
 
 function closeWindow() {

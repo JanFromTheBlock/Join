@@ -116,7 +116,7 @@ function changeColor(i) {
   }
 }
 
-function createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor){
+function createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors){
   return {
     title: title,
     description: description,
@@ -130,13 +130,15 @@ function createJsonTask(title, description, category, subtasks, subtasksLength, 
     date: date,
     "contact-firstname": firstName,
     "contact-lastname": lastName,
-    "contact-color": ["#462F8A", "#FF4646"],
+    "contact-color": contactcolors,
     arrayId: 0,
+    contactid: contactIds,
   };
 }
 let firstName = [];
 let lastName = [];
 let contactcolors = [];
+let contactIds = [];
 
 function newTask() {
   let title = document.getElementById(`inputFieldTitle`).value;
@@ -160,17 +162,20 @@ function newTask() {
     let contactDiv = numberOfContactsToAdd[i];
     const [firstNames, lastNames] = contactDiv.split(' ');
     const contactcolor = numberOfColorsToAdd[i];
+    const contactid = numberOfIdsToAdd[i];
     firstName.push(firstNames);
     lastName.push(lastNames);
     contactcolors.push(contactcolor);
+    contactIds.push(contactid);
   }
   clearTaskMask();
-  let task = createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor);
+  let task = createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors);
   getElement('tasks');
   firstName = [];
   lastName = [];
   numberOfContactsToAdd = [];
-  numberOfColorsToAdd = []
+  numberOfColorsToAdd = [];
+  numberOfIdsToAdd = [];
   tasks.push(task);
   setElement('tasks', tasks);
   addBoardInit();
@@ -203,7 +208,20 @@ function toggleVisibility(elementId) {
 
 function showContactList(id) {
   toggleVisibility("showContacts" + id);
-  selectContact.classList.add(`hide-cursor`);
+  if (id === 2) {
+    index = tasks[openedTask].contactid;
+
+for (let i = 0; i < index.length; i++) {
+  const elementId = `${id}and${index[i]}`; // Die ID des aktuellen Elements
+  const element = document.getElementById(elementId); // Das DOM-Element mit der ID
+  
+  // Überprüfen, ob das Element gefunden wurde
+  if (element) {
+    // Event-Listener hinzufügen, um das Click-Event auszulösen
+    element.click();
+  }
+}
+  }
 }
 
 let isShowAddedCategoryCalled = false;
@@ -222,9 +240,10 @@ function showCategories() {
 const contactStatusMap = new Map();
 let numberOfContactsToAdd = [];
 let numberOfColorsToAdd = [];
+let numberOfIdsToAdd = [];
 
-function chooseContact(i, contactName, initials, color) {
-  let chooseBoxContact = document.getElementById(`chooseBoxContact${i}`);
+function chooseContact(i, contactName, initials, color, id, contactId) {
+  let chooseBoxContact = document.getElementById(`${id}chooseBoxContact${i}`);
   let parentDiv = chooseBoxContact.parentElement;
 
   // Überprüfe den aktuellen Status des Kontakts
@@ -233,17 +252,18 @@ function chooseContact(i, contactName, initials, color) {
   if (!isClicked) {
     chooseBoxContact.src = "./assets/img/checkButtonContact.png";
     contactStatusMap.set(i, true);
-    showAddedContact(i, initials, color);
+    showAddedContact(i, initials, color, id);
     parentDiv.classList.add("add-task-select-contact-activate");
 
     // Füge den Kontakt zum Array numberOfContactsToAdd hinzu
     numberOfContactsToAdd.push(contactName);
     numberOfColorsToAdd.push(color);
+    numberOfIdsToAdd.push(contactId);
     
   } else {
     chooseBoxContact.src = "./assets/img/logoChooseContact.png";
     contactStatusMap.set(i, false);
-    cancelContact(i);
+    cancelContact(i, id);
     parentDiv.classList.remove("add-task-select-contact-activate");
 
     // Entferne den Kontakt aus dem Array numberOfContactsToAdd
@@ -254,6 +274,10 @@ function chooseContact(i, contactName, initials, color) {
     const indexcol = numberOfColorsToAdd.indexOf(color);
     if (indexcol !== -1) {
       numberOfColorsToAdd.splice(indexcol, 1);
+    }
+    const indexid = numberOfIdsToAdd.indexOf(contactId);
+    if (indexid !== -1) {
+      numberOfIdsToAdd.splice(indexid, 1);
     }
   }
 }
@@ -269,11 +293,11 @@ function addContact() {
   contactSelectArrow.classList.add(`d-none`);
 }
 
-function showAddedContact(i, initials, color) {
-  let initialsIcon = document.getElementById(`initials`);
+function showAddedContact(i, initials, color, id) {
+  let initialsIcon = document.getElementById(`${id}initials${id}`);
   initialsIcon.classList.remove(`d-none`);
-  initialsIcon.innerHTML += `<div id="taskInitials${i}" class="add-task-initials">${initials}</div>`;
-  document.getElementById('taskInitials' + i).style.backgroundColor = color;
+  initialsIcon.innerHTML += `<div id="${id}taskInitials${i}" class="add-task-initials">${initials}</div>`;
+  document.getElementById(id + 'taskInitials' + i).style.backgroundColor = color;
 
 }
 
@@ -343,8 +367,8 @@ function cancelCategory() {
   placeholderColorCategory.classList.add(`d-none`);
 }
 
-function cancelContact(i) {
-  const taskInitials = document.getElementById(`taskInitials${i}`);
+function cancelContact(i, id) {
+  const taskInitials = document.getElementById(`${id}taskInitials${i}`);
   
   if (taskInitials) {
     taskInitials.remove();
