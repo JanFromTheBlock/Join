@@ -1,5 +1,6 @@
 let editTaskClick = false;
 let saveChangedTask = false;
+let subtask;
 
 function editTaskClicked(id) {
   editTaskClick = true;
@@ -10,7 +11,7 @@ function editTaskClicked(id) {
 function saveChangedTaskClicked(id) {
   saveChangedTask = true;
   if (saveChangedTask == true) {
-    changeTasks(id);
+    changeTasks(id, subtask);
   }
 }
 
@@ -153,7 +154,7 @@ function openEditAddTask(id) {
     let subtaskArea = document.getElementById(`editSubTaskArea${id}`);
     subtaskArea.classList.remove(`d-none`);
     for (let id = 0; id < subtasks.length; id++) {
-      const subtask = subtasks[id];
+      let subtask = subtasks[id];
     subtaskArea.innerHTML +=  /*html*/`<div class="edit-subtask-area">
         <input class="cursor-pointer" type="checkbox">
         <label id="editLabelForSubtask${id}">${subtask}</label><img onclick="deleteEditSubtask()" class="delete-img-subtask" src="./assets/img/delete_contact.png">
@@ -224,28 +225,24 @@ function openEditAddTask(id) {
       urgency = tasks[id]["urgency"];
     }
   
-   // Edit Subtask
-   subtasks.push(subtask);
-   for (let subtaskIndex = 0; subtaskIndex < subtasks.length; subtaskIndex++) {
-    const subtask = subtasks[subtaskIndex];
-   
-   
-     renderStructureOfTheWindow(id, subtask);
+ // Edit Subtask
+
+ renderStructureOfTheWindow(id, subtask);
     
-  }
-  addBoardRender();
-  setElement('tasks', tasks);
-  setElement("subtasks", subtasks);
-  
-    addTaskUnder.classList.add(`d-none-important`);
-    backgroundBoard.classList.add(`full-opacity`);
-    backgroundHeader.classList.add(`full-opacity`);
-    backgroundNav.classList.add(`full-opacity`);
-    backgroundBoard.classList.remove(`decrease-opacity`);
-    backgroundHeader.classList.remove(`decrease-opacity`);
-    backgroundNav.classList.remove(`decrease-opacity`);
-    backgroundBoard.classList.remove(`overflowY`);
-  }
+ addBoardRender();
+ setElement('tasks', tasks);
+ setElement('subtask', subtask);
+ setElement("subtasks", subtasks);
+ 
+   addTaskUnder.classList.add(`d-none-important`);
+   backgroundBoard.classList.add(`full-opacity`);
+   backgroundHeader.classList.add(`full-opacity`);
+   backgroundNav.classList.add(`full-opacity`);
+   backgroundBoard.classList.remove(`decrease-opacity`);
+   backgroundHeader.classList.remove(`decrease-opacity`);
+   backgroundNav.classList.remove(`decrease-opacity`);
+   backgroundBoard.classList.remove(`overflowY`);
+ }
   
   // Priority Color editieren
   
@@ -364,14 +361,14 @@ function openEditAddTask(id) {
     editShowSubtasksClicked = true;
     let subtaskArea = document.getElementById(`editSubTaskArea${id}`);
     let inputSubtask = document.getElementById(`editInputSubtask${id}`).value;
+    subtask = inputSubtask;
     subtaskArea.classList.remove(`d-none`);
-    subtasks.push(inputSubtask);
     subtaskArea.innerHTML += /*html*/ `
     <div class="edit-subtask-area">
     <input class="cursor-pointer" type="checkbox">
     <label id="editLabelForSubtask${id}">${inputSubtask}</label><img onclick="deleteEditSubtask(id)" class="delete-img-subtask" src="./assets/img/delete_contact.png">
     </div>`;
-     renderSubtasks(id);
+     
      inputSubtask.value = '';
   }
   
