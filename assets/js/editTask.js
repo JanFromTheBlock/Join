@@ -87,7 +87,7 @@ function openEditAddTask(id) {
     let taskWindow = document.getElementById(`task-window`);
     taskWindow.classList.add(`d-none`);
     let taskTitle = document.getElementById(`window-title${id}`).innerHTML;
-    let inputFieldTitle = document.getElementById(`inputFieldTitle${id}`);
+    let inputFieldTitle = document.getElementById(`inputFieldTitle`);
     inputFieldTitle.value = taskTitle;
   }
 
@@ -115,12 +115,10 @@ function openEditAddTask(id) {
     let taskContact = document.getElementById(`contacts${id + 1}`).innerHTML;
     let initials = document.getElementById(`initials${id}`);
     initials.classList.remove(`d-none`);
-    let taskInitials = document.getElementById(`taskInitials${id}`);
-    taskInitials.classList.remove(`d-none`);
-    taskInitials.innerHTML = taskContact;
-  }
-
-  function editTaskCategoryColor(id){
+    initials.innerHTML = taskContact;
+  
+    function editTaskCategoryColor(id){}
+  
     let taskCategoryColor = document.getElementById(`task-category${id}`).style.backgroundColor;
     let editTaskCategoryColor = document.getElementById(`editTaskCategoryColor${id}`);
     editTaskCategoryColor.classList.remove(`d-none`);
@@ -148,6 +146,8 @@ function openEditAddTask(id) {
       medium.classList.add(`change-color-medium`);
       editMediumLogo.src = "./assets/img/mediumLogoWhite.png";
     }
+    editSubtask(id);
+    addContactsToTasks(2);
   }
   function editSubtask(id){
     let subtasks = tasks[id]["subtasks"];
@@ -171,7 +171,7 @@ function openEditAddTask(id) {
   
     //Edit Title
   
-    let inputValue = document.getElementById(`inputFieldTitle${id}`).value;
+    let inputValue = document.getElementById(`inputFieldTitle`).value;
     let taskTitle = document.getElementById(`task-title${id}`).innerHTML;
     taskTitle = inputValue;
     tasks[id]["title"] = taskTitle;
@@ -224,6 +224,23 @@ function openEditAddTask(id) {
     } else {
       urgency = tasks[id]["urgency"];
     }
+
+     // Edit Contacts
+
+     for (let i = 0; i < numberOfContactsToAdd.length; i++) {
+      let contactDiv = numberOfContactsToAdd[i];
+      const [firstNames, lastNames] = contactDiv.split(' ');
+      const contactcolor = numberOfColorsToAdd[i];
+      const contactid = numberOfIdsToAdd[i];
+      firstName.push(firstNames);
+      lastName.push(lastNames);
+      contactcolors.push(contactcolor);
+      contactIds.push(contactid);
+    }
+    tasks[id]['contactid'] = contactIds;
+    tasks[id]['contact-color'] = contactcolors;
+    tasks[id]['contact-firstname'] = firstName;
+    tasks[id]['contact-lastname'] = lastName;
   
  // Edit Subtask
 

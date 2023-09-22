@@ -108,7 +108,7 @@ function addTaskRender(id) {
             </div>
             <div id="showContacts0" class="add-task-hide-contacts add-task-choose-contacts">
             </div>
-            <div class="add-task-initials-area" id="initials"></div>
+            <div class="add-task-initials-area" id="0initials0"></div>
             <div class="add-task-due-date">
                <h2>Due Date</h2>
                <input id="inputDate" required class="add-task-due-date-input cursor-pointer cursor-pointer" id="dueDate" type="date">
@@ -193,7 +193,7 @@ function renderAddTaskToBoard(id) {
             </div>
             <div id="showContacts1" class="add-task-hide-contacts add-task-choose-contacts">
             </div>
-            <div class="add-task-initials-area" id="initials"></div>
+            <div class="add-task-initials-area" id="1initials1"></div>
           <div class="add-task-due-date">
              <h2>Due Date</h2>
              <input id="inputDate" class="add-task-due-date-input cursor-pointer cursor-pointer" id="dueDate" type="date">
@@ -274,24 +274,16 @@ function renderEditAddTaskToBoard(id) {
           <img id="${id}" onclick="closeEditAddTaskToBoard(id)" class="add-task-to-board-close-button" src="./assets/img/close.png">
         </div>
  
-          <input autocomplete="off" id="inputFieldTitle${id}" required class="add-task-title edit-padding-top cursor-pointer" placeholder="Enter a title" type="text">
-          <div class="add-task-select-contact-edit">
-             <input autocomplete="off" required onclick ="showContactList(id)" placeholder="Selected contacts to assign" class="add-task-select-contact cursor-pointer" id="selectContact${id}" type="email"> 
-             <img id="contactSelectArrow" src="./assets/img/selectfieldArrow.png">
-             <div class="d-none" id="editContact">
-               <img onclick="showAddedContact()" class="cursor-pointer" src="./assets/img/logoHaken.png">
-               <img src="./assets/img/seperator.png">
-               <img class="cursor-pointer" onclick="cancelContact()" src="./assets/img/logoCancel.png">
-             </div>
-          </div>
-          <div id="showContacts${id}" class="add-task-hide-contacts add-task-choose-contacts">
-              <span onclick="chooseContact(1)" class="add-task-single-contact">You <img id="chooseBoxContact1" src="./assets/img/logoChooseContact.png"></span>
-              <span onclick="chooseContact(2)" class="add-task-single-contact">Test <img id="chooseBoxContact2" src="./assets/img/logoChooseContact.png"></span>
-              <span onclick="addContact()" class="add-task-single-contact-invite">Invite new contact <img src="./assets/img/logoContactBlue.png"></span>
-          </div>
-          <div class="add-task-initials-area" id="initials${id}">
-          <div class="add-task-initials d-none" id="taskInitials${id}"></div>
-          </div>
+        <input required autocomplete="off" id="inputFieldTitle" class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
+            <div class="add-task-select-contact-edit">
+                 <input onclick="showContactList(2)" autocomplete="off" required placeholder="Selected contacts to assign" class="add-task-select-contact cursor-pointer" id="selectContact" type="email"> 
+                 <img id="contactSelectArrow" src="./assets/img/selectfieldArrow.png">
+            </div>
+            <div id="showContacts2" class="add-task-hide-contacts add-task-choose-contacts">
+            </div>
+            <div class="add-task-initials-area" id="2initials2">
+            <div class="add-task-initials d-none" id="taskInitials${id}"></div>
+            </div>
           <div class="add-task-due-date">
              <h2>Due Date</h2>
              <input id="dueDate${id}" class="add-task-due-date-input cursor-pointer cursor-pointer" type="date">
@@ -364,6 +356,7 @@ function addContactsToTasks(id) {
   showContacts.innerHTML = '';
   const nameList = [];
   const colorList = [];
+  const idList =[];
 
   for (const letter in contacts) {
     if (contacts.hasOwnProperty(letter)) {
@@ -372,7 +365,9 @@ function addContactsToTasks(id) {
         const name = contact.name;
         nameList.push(name);
         const color = contact.color;
+        const contactId = contact.contactId;
         colorList.push(color);
+        idList.push(contactId);
       }
     }
   }
@@ -381,6 +376,7 @@ function addContactsToTasks(id) {
     const contactName = nameList[i];
     const nameWords = contactName.split(/\s+/);
     const color = colorList[i];
+    const contactId = idList[i]
 
     // Initialen berechnen
     let initials = "";
@@ -389,15 +385,16 @@ function addContactsToTasks(id) {
         initials += word[0].toUpperCase();
       }
     }
+
     showContacts.innerHTML += /*html*/`
-        <span onclick="chooseContact(${i}, '${contactName}', '${initials}', '${color}')" class="add-task-single-contact">
+        <span onclick="chooseContact(${i}, '${contactName}', '${initials}', '${color}', '${id}', '${contactId}')" id='${id}and${contactId}' class="add-task-single-contact">
   <div id = 'center-contacts-row'>
-  <div class = 'show-contacts-icon' id = 'show-contacts-icon${i}'>${initials}</div><span id = 'selected-contact${i}'>${contactName}</span> 
+  <div class = 'show-contacts-icon' id = '${id}show-contacts-icon${i}'>${initials}</div><span id = 'selected-contact${i}'>${contactName}</span> 
   </div>  
-  <img id="chooseBoxContact${i}" src="./assets/img/logoChooseContact.png">
+  <img id="${id}chooseBoxContact${i}" src="./assets/img/logoChooseContact.png">
 </span>
     `
-    docID('show-contacts-icon' + i).style.backgroundColor = color;
+    docID(id +'show-contacts-icon' + i).style.backgroundColor = color;
 
   }
 
