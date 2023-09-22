@@ -116,7 +116,7 @@ function openEditAddTask(id) {
     initials.classList.remove(`d-none`);
     initials.innerHTML = taskContact;
   
-    // Edit Category
+    function editTaskCategoryColor(id){}
   
     let taskCategoryColor = document.getElementById(`task-category${id}`).style.backgroundColor;
     let editTaskCategoryColor = document.getElementById(`editTaskCategoryColor${id}`);
