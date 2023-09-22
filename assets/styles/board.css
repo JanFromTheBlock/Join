@@ -399,6 +399,9 @@
  .edit-subtask-area{
     font-size: 15px !important;
     margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
  }
 
 @media (max-width: 1250px) {

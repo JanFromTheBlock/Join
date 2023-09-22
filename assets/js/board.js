@@ -226,6 +226,8 @@ function renderWindow(id) {
   renderContactsToWindow(id);
 }
 
+saveChangedTask = false;
+
 function renderStructureOfTheWindow(taskId) {
   let subtaskHTML = '';
   let taskWindow = docID("task-window");
@@ -235,18 +237,15 @@ function renderStructureOfTheWindow(taskId) {
   let subtasks = tasks[taskId]["subtasks"]; // Subtasks für diese Aufgabe
   taskWindow.innerHTML = "";
   taskWindow.style.width = "422px";
-
+ 
   for (let subtaskIndex = 0; subtaskIndex < subtasks.length; subtaskIndex++) {
-      const subtask = subtasks[subtaskIndex];
-      subtaskHTML += `
-          <div>
-              <input id="editSubtask${subtaskIndex}" type="checkbox">${subtask}
-          </div>
+      let subtask = subtasks[subtaskIndex];
+      subtaskHTML +=  /*html*/`
+                <div id="editSubtask${subtaskIndex}">${subtask}</div> 
       `;
   }
     setElement("subtasks", subtasks);
-    editTaskClick = false;
-  taskWindow.innerHTML = /*html*/ `
+    taskWindow.innerHTML = /*html*/ `
       <div>
           <img id="close-img" onclick="closeWindow()" src="./assets/img/close.png">
           <div id="task-window-inside">

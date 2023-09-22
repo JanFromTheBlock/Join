@@ -67,33 +67,50 @@ function openEditAddTask(id) {
   let editSelectCategoryClicked = false;
   
   function editTask(id) {
-    //Edit Titel
+   editTitle(id);
+   editDescription(id);
+   editCategory(id);
+   editDate(id);
+   editContact(id);
+   editTaskCategoryColor(id);
+   editPriority(id);
+   
+  
+    // Edit Priority
+  
+   
+    editSubtask(id);
+  }
+
+  function editTitle(id){
     let taskWindow = document.getElementById(`task-window`);
     taskWindow.classList.add(`d-none`);
     let taskTitle = document.getElementById(`window-title${id}`).innerHTML;
     let inputFieldTitle = document.getElementById(`inputFieldTitle`);
     inputFieldTitle.value = taskTitle;
-  
-    //Edit Beschreibung
-  
+  }
+
+  function editDescription(id){
     let taskDescription = document.getElementById(
       `window-description${id}`
     ).innerHTML;
     let description = document.getElementById(`description${id}`);
     description.value = taskDescription;
-  
-    //Edit Category
-  
+  }
+
+  function editCategory(id){
     let taskCategory = document.getElementById(`window-category${id}`).innerHTML;
     let selectCategory = document.getElementById(`editSelectCategory${id}`);
     selectCategory.value = taskCategory;
-  
-    // Edit Datum
-  
+  }
+
+  function editDate(id){
     let taskDate = document.getElementById(`date-inside${id}`).innerHTML;
     let dueDate = document.getElementById(`dueDate${id}`);
     dueDate.value = taskDate;
-  
+  }
+
+  function editContact(id){
     let taskContact = document.getElementById(`contacts${id + 1}`).innerHTML;
     let initials = document.getElementById(`initials${id}`);
     initials.classList.remove(`d-none`);
@@ -105,9 +122,9 @@ function openEditAddTask(id) {
     let editTaskCategoryColor = document.getElementById(`editTaskCategoryColor${id}`);
     editTaskCategoryColor.classList.remove(`d-none`);
     editTaskCategoryColor.style.backgroundColor = taskCategoryColor;
+  }
   
-    // Edit Priority
-  
+  function editPriority(id){
     let priorityLogo = tasks[id]["urgency"];
     let urgent = document.getElementById(`editUrgent`);
     let low = document.getElementById(`editLow`);
@@ -131,14 +148,13 @@ function openEditAddTask(id) {
     editSubtask(id);
     addContactsToTasks(2);
   }
-  
   function editSubtask(id){
     let subtasks = tasks[id]["subtasks"];
     let subtaskArea = document.getElementById(`editSubTaskArea${id}`);
     subtaskArea.classList.remove(`d-none`);
     for (let id = 0; id < subtasks.length; id++) {
       const subtask = subtasks[id];
-    subtaskArea.innerHTML +=  /*html*/`<div class="subTaskArea">
+    subtaskArea.innerHTML +=  /*html*/`<div class="edit-subtask-area">
         <input class="cursor-pointer" type="checkbox">
         <label id="editLabelForSubtask${id}">${subtask}</label><img onclick="deleteEditSubtask()" class="delete-img-subtask" src="./assets/img/delete_contact.png">
         </div>`
@@ -146,7 +162,7 @@ function openEditAddTask(id) {
     }
   }
   
-  function changeTasks(id) {
+  function changeTasks(id, subtask) {
     let addTaskUnder = document.getElementById(`editaddTaskToBoardUnderDiv${id}`);
     let backgroundBoard = document.getElementById(`board`);
     let backgroundNav = document.getElementById(`nav`);
@@ -226,14 +242,10 @@ function openEditAddTask(id) {
     tasks[id]['contact-lastname'] = lastName;
   
    // Edit Subtask
-  
+   subtasks.push(subtask);
    for (let subtaskIndex = 0; subtaskIndex < subtasks.length; subtaskIndex++) {
     const subtask = subtasks[subtaskIndex];
-
    
-
-
-  
    
      renderStructureOfTheWindow(id, subtask);
     
@@ -372,7 +384,7 @@ function openEditAddTask(id) {
     subtaskArea.classList.remove(`d-none`);
     subtasks.push(inputSubtask);
     subtaskArea.innerHTML += /*html*/ `
-    <div class="subTaskArea">
+    <div class="edit-subtask-area">
     <input class="cursor-pointer" type="checkbox">
     <label id="editLabelForSubtask${id}">${inputSubtask}</label><img onclick="deleteEditSubtask(id)" class="delete-img-subtask" src="./assets/img/delete_contact.png">
     </div>`;
