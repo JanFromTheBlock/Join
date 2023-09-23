@@ -1,6 +1,5 @@
 let editTaskClick = false;
 let saveChangedTask = false;
-let subtask;
 
 function editTaskClicked(id) {
   editTaskClick = true;
@@ -11,7 +10,7 @@ function editTaskClicked(id) {
 function saveChangedTaskClicked(id) {
   saveChangedTask = true;
   if (saveChangedTask == true) {
-    changeTasks(id, subtask);
+    changeTasks(id);
   }
 }
 
@@ -68,64 +67,47 @@ function openEditAddTask(id) {
   let editSelectCategoryClicked = false;
   
   function editTask(id) {
-   editTitle(id);
-   editDescription(id);
-   editCategory(id);
-   editDate(id);
-   editContact(id);
-   editTaskCategoryColor(id);
-   editPriority(id);
-   
-  
-    // Edit Priority
-  
-   
-    editSubtask(id);
-  }
-
-  function editTitle(id){
+    //Edit Titel
     let taskWindow = document.getElementById(`task-window`);
     taskWindow.classList.add(`d-none`);
     let taskTitle = document.getElementById(`window-title${id}`).innerHTML;
     let inputFieldTitle = document.getElementById(`inputFieldTitle`);
     inputFieldTitle.value = taskTitle;
-  }
-
-  function editDescription(id){
+  
+    //Edit Beschreibung
+  
     let taskDescription = document.getElementById(
       `window-description${id}`
     ).innerHTML;
     let description = document.getElementById(`description${id}`);
     description.value = taskDescription;
-  }
-
-  function editCategory(id){
+  
+    //Edit Category
+  
     let taskCategory = document.getElementById(`window-category${id}`).innerHTML;
     let selectCategory = document.getElementById(`editSelectCategory${id}`);
     selectCategory.value = taskCategory;
-  }
-
-  function editDate(id){
+  
+    // Edit Datum
+  
     let taskDate = document.getElementById(`date-inside${id}`).innerHTML;
     let dueDate = document.getElementById(`dueDate${id}`);
     dueDate.value = taskDate;
-  }
-
-  function editContact(id){
+  
     let taskContact = document.getElementById(`contacts${id + 1}`).innerHTML;
     let initials = document.getElementById(`initials${id}`);
     initials.classList.remove(`d-none`);
     initials.innerHTML = taskContact;
   
-    function editTaskCategoryColor(id){}
+    // Edit Category
   
     let taskCategoryColor = document.getElementById(`task-category${id}`).style.backgroundColor;
     let editTaskCategoryColor = document.getElementById(`editTaskCategoryColor${id}`);
     editTaskCategoryColor.classList.remove(`d-none`);
     editTaskCategoryColor.style.backgroundColor = taskCategoryColor;
-  }
   
-  function editPriority(id){
+    // Edit Priority
+  
     let priorityLogo = tasks[id]["urgency"];
     let urgent = document.getElementById(`editUrgent`);
     let low = document.getElementById(`editLow`);
@@ -149,13 +131,14 @@ function openEditAddTask(id) {
     editSubtask(id);
     addContactsToTasks(2);
   }
+  
   function editSubtask(id){
     let subtasks = tasks[id]["subtasks"];
     let subtaskArea = document.getElementById(`editSubTaskArea${id}`);
     subtaskArea.classList.remove(`d-none`);
     for (let id = 0; id < subtasks.length; id++) {
-      let subtask = subtasks[id];
-    subtaskArea.innerHTML +=  /*html*/`<div class="edit-subtask-area">
+      const subtask = subtasks[id];
+    subtaskArea.innerHTML +=  /*html*/`<div class="subTaskArea">
         <input class="cursor-pointer" type="checkbox">
         <label id="editLabelForSubtask${id}">${subtask}</label><img onclick="deleteEditSubtask()" class="delete-img-subtask" src="./assets/img/delete_contact.png">
         </div>`
@@ -163,7 +146,7 @@ function openEditAddTask(id) {
     }
   }
   
-  function changeTasks(id, subtask) {
+  function changeTasks(id) {
     let addTaskUnder = document.getElementById(`editaddTaskToBoardUnderDiv${id}`);
     let backgroundBoard = document.getElementById(`board`);
     let backgroundNav = document.getElementById(`nav`);
@@ -242,24 +225,32 @@ function openEditAddTask(id) {
     tasks[id]['contact-firstname'] = firstName;
     tasks[id]['contact-lastname'] = lastName;
   
- // Edit Subtask
+   // Edit Subtask
+  
+   for (let subtaskIndex = 0; subtaskIndex < subtasks.length; subtaskIndex++) {
+    const subtask = subtasks[subtaskIndex];
 
- renderStructureOfTheWindow(id, subtask);
+   
+
+
+  
+   
+     renderStructureOfTheWindow(id, subtask);
     
- addBoardRender();
- setElement('tasks', tasks);
- setElement('subtask', subtask);
- setElement("subtasks", subtasks);
- 
-   addTaskUnder.classList.add(`d-none-important`);
-   backgroundBoard.classList.add(`full-opacity`);
-   backgroundHeader.classList.add(`full-opacity`);
-   backgroundNav.classList.add(`full-opacity`);
-   backgroundBoard.classList.remove(`decrease-opacity`);
-   backgroundHeader.classList.remove(`decrease-opacity`);
-   backgroundNav.classList.remove(`decrease-opacity`);
-   backgroundBoard.classList.remove(`overflowY`);
- }
+  }
+  addBoardRender();
+  setElement('tasks', tasks);
+  setElement("subtasks", subtasks);
+  
+    addTaskUnder.classList.add(`d-none-important`);
+    backgroundBoard.classList.add(`full-opacity`);
+    backgroundHeader.classList.add(`full-opacity`);
+    backgroundNav.classList.add(`full-opacity`);
+    backgroundBoard.classList.remove(`decrease-opacity`);
+    backgroundHeader.classList.remove(`decrease-opacity`);
+    backgroundNav.classList.remove(`decrease-opacity`);
+    backgroundBoard.classList.remove(`overflowY`);
+  }
   
   // Priority Color editieren
   
@@ -378,14 +369,14 @@ function openEditAddTask(id) {
     editShowSubtasksClicked = true;
     let subtaskArea = document.getElementById(`editSubTaskArea${id}`);
     let inputSubtask = document.getElementById(`editInputSubtask${id}`).value;
-    subtask = inputSubtask;
     subtaskArea.classList.remove(`d-none`);
+    subtasks.push(inputSubtask);
     subtaskArea.innerHTML += /*html*/ `
-    <div class="edit-subtask-area">
+    <div class="subTaskArea">
     <input class="cursor-pointer" type="checkbox">
     <label id="editLabelForSubtask${id}">${inputSubtask}</label><img onclick="deleteEditSubtask(id)" class="delete-img-subtask" src="./assets/img/delete_contact.png">
     </div>`;
-     
+     renderSubtasks(id);
      inputSubtask.value = '';
   }
   

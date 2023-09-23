@@ -103,7 +103,7 @@ function addTaskRender(id) {
      <div class="add-task">
             <input required autocomplete="off" id="inputFieldTitle" class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
             <div class="add-task-select-contact-edit">
-                 <input onclick="showContactList(0)" autocomplete="off" required placeholder="Selected contacts to assign" class="add-task-select-contact cursor-pointer" id="selectContact" type="Text"> 
+                 <input onclick="showContactList(0)" autocomplete="off" required placeholder="Selected contacts to assign" class="add-task-select-contact cursor-pointer" id="selectContact" type="email"> 
                  <img id="contactSelectArrow" src="./assets/img/selectfieldArrow.png">
             </div>
             <div id="showContacts0" class="add-task-hide-contacts add-task-choose-contacts">
@@ -149,7 +149,9 @@ function addTaskRender(id) {
               <div class="add-task-due-date">
                 <h2>Description</h2>
                 <textarea required id="description" placeholder="Enter a Description" class="add-task-textarea cursor-pointer"></textarea>
-              </div>      
+              </div>
+        
+          
            <div class="subtask">
   
             <div id="test"></div>
@@ -159,11 +161,13 @@ function addTaskRender(id) {
                   <input id="inputSubtask" required class="add-task-subtask cursor-pointer" placeholder="Add new subtask" type="text">
                   <img onclick="showSubtasks()" class="add-task-plus-button cursor-pointer" src="./assets/img/subtaskPlus.png">
                 </div>
+  
                   <div id="subTaskArea${id}" class="d-none"></div>
-               </div> 
+               </div>
+  
               <div class="add-task-button">
                 <button onclick="clearTask()" class="add-task-button-clear cursor-pointer">Clear x</button>  
-                <button class="add-task-button-create cursor-pointer">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
+                <button onclick="newTask(urgency)" class="add-task-button-create cursor-pointer">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
              </div>
            </div>
          </div>
@@ -258,9 +262,12 @@ function renderAddTaskToBoard(id) {
           </div>
   </form> 
    `;
+
 }
 
+
 // Render Edit Task
+
 
 function renderEditAddTaskToBoard(id) {
   let addTask = document.getElementById(`renderAddTaskToBoard`);

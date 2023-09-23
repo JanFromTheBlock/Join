@@ -226,15 +226,7 @@ function renderWindow(id) {
   renderContactsToWindow(id);
 }
 
-saveChangedTask = false;
-
-function renderStructureOfTheWindow(taskId, subtask) {
-  if(saveChangedTask == true){
-  }
-  if(!saveChangedTask == true){
-   subtask = null;
-  }
-
+function renderStructureOfTheWindow(taskId) {
   let subtaskHTML = '';
   let taskWindow = docID("task-window");
   let prioritySmall = tasks[taskId]["urgency"];
@@ -243,20 +235,18 @@ function renderStructureOfTheWindow(taskId, subtask) {
   let subtasks = tasks[taskId]["subtasks"]; // Subtasks für diese Aufgabe
   taskWindow.innerHTML = "";
   taskWindow.style.width = "422px";
-  
-  if(subtask !== null){
-    subtask = subtask;
-    subtasks.push(subtask);
-    subtasks = subtasks.filter(item => item !== undefined);
-  }
+
   for (let subtaskIndex = 0; subtaskIndex < subtasks.length; subtaskIndex++) {
-      let subtask = subtasks[subtaskIndex];
-      subtaskHTML +=  /*html*/`
-                <div id="editSubtask${subtaskIndex}">${subtask}</div> 
+      const subtask = subtasks[subtaskIndex];
+      subtaskHTML += `
+          <div>
+              <input id="editSubtask${subtaskIndex}" type="checkbox">${subtask}
+          </div>
       `;
   }
     setElement("subtasks", subtasks);
-    taskWindow.innerHTML = /*html*/ `
+    editTaskClick = false;
+  taskWindow.innerHTML = /*html*/ `
       <div>
           <img id="close-img" onclick="closeWindow()" src="./assets/img/close.png">
           <div id="task-window-inside">
@@ -278,7 +268,6 @@ function renderStructureOfTheWindow(taskId, subtask) {
           </div>
       </div>
   `;
-
 }
 
 function addColorOfTheCategory(id) {
@@ -357,6 +346,23 @@ function changeDeleteImage(isHovering) {
   }
 }
 
+editTaskClick = false;
+saveChangedTask = false;
+
+function editTaskClicked(id){
+  editTaskClick = true;
+  let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
+  addTaskButtonToBoard.classList.add(`d-none-important`);
+  openAddTask(id);
+}
+
+function saveChangedTaskClicked(id){
+  saveChangedTask = true;
+  if(saveChangedTask == true){
+    changeTasks(id);
+  }  
+}
+
 // öffnet AddTask
 
 function openAddTask(id) {
@@ -413,3 +419,86 @@ function closeAddTaskToBoard() {
   backgroundNav.classList.remove(`decrease-opacity`);
 }
 
+// Editieren der Tasks
+
+function editTask(id) {
+  //Edit Titel
+  let taskWindow = document.getElementById(`task-window`);
+  taskWindow.classList.add(`d-none`);
+  let taskTitle = document.getElementById(`window-title${id}`).innerHTML;
+  let inputFieldTitle = document.getElementById("inputFieldTitle");
+  inputFieldTitle.value = taskTitle;
+
+  //Edit Beschreibung
+
+  let taskDescription = document.getElementById(`window-description${id}`).innerHTML;
+  let description = document.getElementById(`description`);
+  description.value = taskDescription;
+
+  //Edit Category
+
+  let taskCategory = document.getElementById(`window-category${id}`).innerHTML;
+  let selectCategory = document.getElementById(`selectCategory`);
+  selectCategory.value = taskCategory;
+
+  // Edit Datum
+
+  let taskDate = document.getElementById(`date-inside${id}`).innerHTML;
+  let dueDate = document.getElementById(`inputDate`);
+  dueDate.value = taskDate;
+
+  let taskContact = document.getElementById(`contacts${id + 1}`).innerHTML;
+  let initials = document.getElementById(`initials`);
+  initials.classList.remove(`d-none`);
+  let taskInitials = document.getElementById(`taskInitials`);
+  taskInitials.classList.remove(`d-none`);
+  taskInitials.innerHTML = taskContact;
+
+  // Edit Priority
+
+  let taskCategoryColor = document.getElementById(`task-category${id}`).style.backgroundColor;
+  let editTaskCategoryColor = document.getElementById(`editTaskCategoryColor`);
+  editTaskCategoryColor.classList.remove(`d-none`);
+  editTaskCategoryColor.style.backgroundColor = taskCategoryColor;
+
+  let priorityLogo = tasks[id]["urgency"];
+
+  if (priorityLogo == "./assets/img/urgentLogo.png") {
+    urgent.classList.add(`change-color-urgent`);
+    urgentLogo.src = "./assets/img/urgentLogoWhite.png";
+  }
+  if (priorityLogo == "./assets/img/lowLogo.png") {
+    low.classList.add(`change-color-low`);
+    lowLogo.src = "./assets/img/lowLogoWhite.png";
+  }
+  if (priorityLogo == "./assets/img/mediumLogo.png")
+    medium.classList.add(`change-color-medium`);
+    mediumLogo.src = "./assets/img/mediumLogoWhite.png";
+
+  // Edit Subtasks
+
+  let subtaskArea = document.getElementById(`subTaskArea`);
+  let editSubtaskSmall = document.getElementById(`editSubtaskSmall${id}`).innerHTML;
+  subtaskArea.classList.remove(`d-none`);
+  subtaskArea.innerHTML = `<div class="subTaskArea">
+    <input class="cursor-pointer" type="checkbox">
+    <label id="labelForSubtask">${editSubtaskSmall}</label>
+    </div>`;
+}
+
+function changeTasks(id){
+  let inputValue = document.getElementById(`inputFieldTitle`).value;
+  let taskTitle = document.getElementById(`task-title${id}`).innerHTML;
+  taskTitle = inputValue;
+  taskTitle.innerHTML += /*html*/ `
+                    
+    <div id="task" class="task-decoration">
+      
+        <div id="task-title">${taskTitle}</div> 
+        </div>
+        
+    </div>
+`; 
+
+  addBoardRender(); 
+}
