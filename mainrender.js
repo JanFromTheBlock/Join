@@ -281,7 +281,7 @@ function renderEditAddTaskToBoard(id) {
           <img id="${id}" onclick="closeEditAddTaskToBoard(id)" class="add-task-to-board-close-button" src="./assets/img/close.png">
         </div>
  
-        <input required autocomplete="off" id="inputFieldTitle" class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
+        <input required autocomplete="off" id="inputFieldTitle${id}" class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
             <div class="add-task-select-contact-edit">
                  <input onclick="showContactList(2)" autocomplete="off" required placeholder="Selected contacts to assign" class="add-task-select-contact cursor-pointer" id="selectContact" type="email"> 
                  <img id="contactSelectArrow" src="./assets/img/selectfieldArrow.png">

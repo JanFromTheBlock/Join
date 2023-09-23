@@ -71,7 +71,7 @@ function openEditAddTask(id) {
     let taskWindow = document.getElementById(`task-window`);
     taskWindow.classList.add(`d-none`);
     let taskTitle = document.getElementById(`window-title${id}`).innerHTML;
-    let inputFieldTitle = document.getElementById(`inputFieldTitle`);
+    let inputFieldTitle = document.getElementById(`inputFieldTitle${id}`);
     inputFieldTitle.value = taskTitle;
   
     //Edit Beschreibung
