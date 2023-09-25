@@ -5,7 +5,6 @@
   left: 320px;
   width: 460px;
   top: 137px;
-  margin-left: -290px
 }
 
 .add-task-title {
@@ -648,8 +647,8 @@ input[type="date"]::placeholder {
 
 @media (max-width: 1150px) {
   .add-task {
-    left: 50%;
-    margin-left: -200px;
+    left: 70%;
+    margin-left: -230px;
   }
 }
 

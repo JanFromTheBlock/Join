@@ -158,11 +158,8 @@ function addTaskRender(id) {
               <div class="add-task-due-date">
                 <h2>Description</h2>
                 <textarea required id="description" placeholder="Enter a Description" class="add-task-textarea cursor-pointer"></textarea>
-              </div>
-        
-          
+              </div>     
            <div class="subtask">
-  
             <div id="test"></div>
             <div class="add-task-due-date">
                 <h2>Subtasks</h2>
@@ -170,10 +167,8 @@ function addTaskRender(id) {
                   <input id="inputSubtask" required class="add-task-subtask cursor-pointer" placeholder="Add new subtask" type="text">
                   <img onclick="showSubtasks()" class="add-task-plus-button cursor-pointer" src="./assets/img/subtaskPlus.png">
                 </div>
-  
                   <div id="subTaskArea${id}" class="d-none"></div>
                </div>
-  
               <div id="addTaskButton" class="add-task-button">
                 <button onclick="clearTask()" class="add-task-button-clear cursor-pointer">Clear x</button>  
                 <button onclick="newTask(urgency)" class="add-task-button-create cursor-pointer">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
@@ -184,7 +179,7 @@ function addTaskRender(id) {
          <img id="taskAddedToBoard" class="task-added-to-board-hide task-added-to-board" src="./assets/img/logoAddedToBoard.png">
   </form> 
       `;
-
+let addTaskUnderDiv = document.getElementById(`addTaskUnderDiv`);
 let taskTitle = document.getElementById(`taskTitle`);
 addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
 if (addTaskInitClicked == true) {
@@ -195,6 +190,7 @@ if (addTaskInitClicked == true) {
 let addTaskButton = document.getElementById(`addTaskButton`);
 if (addBoardInitClicked == true) {
     addTaskButton.classList.add(`d-none`);
+    addTaskUnderDiv.style.marginLeft = "-290px";
 }
    
   addContactsToTasks(0);
