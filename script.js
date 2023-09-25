@@ -90,7 +90,7 @@ async function addBoardInit(){
     headerRender();
     navRender();
     activeSite("menu-board");
-    addBoardRender();
+    
     getdata = await getElement('tasks'); 
     tasks = JSON.parse(getdata);  // speichert Subtasks
     try {
@@ -101,6 +101,7 @@ async function addBoardInit(){
     }  
     getdata = await getElement('subtasks'); 
     subtasks = JSON.parse(getdata); 
+    addBoardRender();
   
 }
 
