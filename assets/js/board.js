@@ -279,7 +279,7 @@ function renderStructureOfTheWindow(taskId, subtask, editLabelsSubtasks) {
               </div>
               <div class="subtask-window">Subtasks:</div>
               ${subtaskHTML}
-              <div id="contact-buttons"><img onmouseover="changeDeleteImage(true)" onmouseout="changeDeleteImage(false)" id="delete-button" onclick="deleteTask(${taskId})" src="./assets/img/delete.png"> <img onclick="editTaskClicked(${taskId})" id="edit-button" src="./assets/img/edit.png"></div>         
+              <div id="contact-buttons"><img onmouseover="changeDeleteImage(true)" onmouseout="changeDeleteImage(false)" id="delete-button" onclick="deleteTask(${taskId})" src="./assets/img/delete.png"> <img onclick="openAddTask()" id="edit-button" src="./assets/img/edit.png"></div>         
           </div>
       </div>
   `;
@@ -360,6 +360,7 @@ function changeDeleteImage(isHovering) {
     deleteButton.src = "./assets/img/delete.png";
   }
 }
+
 
 // öffnet AddTask
 
