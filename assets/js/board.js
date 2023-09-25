@@ -88,12 +88,13 @@ function emptyTaskDivs() {
 
 function renderTaskBody(id) {
   let j = tasks[id]["progress"];
+  let IdOfTask = tasks[id]["taskId"];
   let taskBody = docID("tasks" + j);
   let prioritySmall = tasks[id]["urgency"];
   editSubtasks = subtasks[id];
   taskBody.innerHTML += /*html*/ `
                     
-    <div draggable="true" ondragstart="startDragging(${id})" onclick="openWindow(event, ${id})" id="task${id}" class="task-decoration">
+    <div draggable="true" ondragstart="startDragging(${id})" onclick="openWindow(event, ${id}, ${IdOfTask})" id="task${id}" class="task-decoration">
         <div id="task-category${id}" class="task-category">${tasks[id]["category"]}</div>
         <div id="task-title${id}">${tasks[id]["title"]}</div>
         <div id="task-description${id}">${tasks[id]["description"]}</div>
@@ -207,11 +208,11 @@ function handleImgClick() {
   // Hier kannst du die Funktion aufrufen, die deine divs nach dem Text filtert
 }
 
-function openWindow(event, id) {
+function openWindow(event, id, IdOfTask) {
   docID("task-window").classList.remove("d-none"); //dem Div wird die d-none-Klasse genommen. und das Window wird sichtbar
   event.stopPropagation(); // Funktion sorgt dafür, dass das Window nicht geschlossen wird, wenn man auf den onclick-Button drückt
   window.scrollTo(0, 0); // wenn Fenster geöffnet wird, wird nach oben gescrollt
-  renderWindow(id); // das Window wird mit seinen Inhalten gerendert
+  renderWindow(id, IdOfTask); // das Window wird mit seinen Inhalten gerendert
   openedTask = id
 }
 
@@ -224,9 +225,9 @@ function doNotClose(event) {
   event.stopPropagation();
 }
 
-function renderWindow(id) {
+function renderWindow(id, IdOfTask) {
   //das Window wird gerendert
-  renderStructureOfTheWindow(id);
+  renderStructureOfTheWindow(id, IdOfTask);
   addColorOfTheCategory(id);
   renderPriorityToTheWindow(id);
   renderContactsToWindow(id);
@@ -234,7 +235,7 @@ function renderWindow(id) {
 
 saveChangedTask = false;
 
-function renderStructureOfTheWindow(taskId, subtask, editLabelsSubtasks) {
+function renderStructureOfTheWindow(taskId, IdOfTask, subtask, editLabelsSubtasks) {
   if(saveChangedTask == true){
   }
   if(!saveChangedTask == true){
@@ -279,7 +280,7 @@ function renderStructureOfTheWindow(taskId, subtask, editLabelsSubtasks) {
               </div>
               <div class="subtask-window">Subtasks:</div>
               ${subtaskHTML}
-              <div id="contact-buttons"><img onmouseover="changeDeleteImage(true)" onmouseout="changeDeleteImage(false)" id="delete-button" onclick="deleteTask(${taskId})" src="./assets/img/delete.png"> <img onclick="openAddTask()" id="edit-button" src="./assets/img/edit.png"></div>         
+              <div id="contact-buttons"><img onmouseover="changeDeleteImage(true)" onmouseout="changeDeleteImage(false)" id="delete-button" onclick="deleteTask(${taskId})" src="./assets/img/delete.png"> <img onclick="openAddTask(${IdOfTask})" id="edit-button" src="./assets/img/edit.png"></div>         
           </div>
       </div>
   `;
@@ -364,7 +365,7 @@ function changeDeleteImage(isHovering) {
 
 // öffnet AddTask
 
-function openAddTask(id) {
+function openAddTask(IdOfTask) {
   let addTaskUnder = document.getElementById(`addTask`);
   let backgroundBoard = document.getElementById(`board`);
   let backgroundNav = document.getElementById(`nav`);
@@ -386,13 +387,6 @@ function openAddTask(id) {
   backgroundBoard.classList.remove(`full-opacity`);
   backgroundHeader.classList.remove(`full-opacity`);
   backgroundNav.classList.remove(`full-opacity`);
-  
-  if(editTaskClick == true){
-    let addTaskToBoardUnderDiv = document.getElementById(`addTaskToBoardUnderDiv`);
-    addTaskToBoardUnderDiv.classList.remove(`add-task-to-board`);
-    addTaskToBoardUnderDiv.classList.add(`edit-add-task-to-board`);
-    editTask(id);
-  }
  
 }
 
