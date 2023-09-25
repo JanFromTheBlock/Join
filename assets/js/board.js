@@ -1,7 +1,8 @@
 let taskTitles = ["1", "2", "3", "4"]; //Array, um Drag und Drop Zielarea festzulegen
 let taskNames = ["To do", "In progress", "Await feedback", "Done"]; //Array, um beim Rendern der Rask-areas die Titel zu vergeben
 let currentDraggedElement; // In dieser Variable wird die id der gedraggten Task gespeichert
-let openedTask
+let openedTask;
+let jsonToEdit;
 
 function addBoardRender() {
   console.log("addBoardRender is called");
@@ -388,6 +389,15 @@ function openAddTask(IdOfTask) {
   backgroundHeader.classList.remove(`full-opacity`);
   backgroundNav.classList.remove(`full-opacity`);
  
+  findJSON(IdOfTask, tasks)
+}
+
+function findJSON(IdOfTask, tasks) {
+  for (let i = 0; i < tasks.length; i++) {
+    if (tasks[i].taskId === IdOfTask) {
+      jsonToEdit = tasks[i];
+    }
+  }
 }
 
 // schließt AddTask
