@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./assets/styles/addTask.css">
     <script src="script.js"></script>
-    <script src="mainrender.js"></script>
     <script src="./assets/js/board.js"></script>
     <script src="./assets/js/addTask.js"></script>
     <script src="./assets/js/editTask.js"></script>
+    <script src="mainrender.js"></script>
     <link rel="stylesheet" href="./assets/styles/board.css">
 </head>
 
@@ -19,8 +19,10 @@
     <header id="header"></header>
     <nav id="nav" class="nav"></nav>
     <div id="task-window" class="d-none" onclick="doNotClose(event)"></div>
+    <div class="add-task-to-board add-task-to-board-hide d-none" id="addTask"></div>
     <div class="board" id="board"></div>
-    <div class="render-add-task-to-board" id="renderAddTaskToBoard"></div>
+   
+   
     <img id="taskAddedToBoard" class="task-added-to-board-board task-added-to-board task-added-to-board-hide" src="./assets/img/logoAddedToBoard.png">
 </body>
 

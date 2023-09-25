@@ -97,11 +97,20 @@ function activeSite(id) {
   }
 }
 
+addTaskInitClicked = false;
+addBoardInitClicked = false;
+
 function addTaskRender(id) {
-  docID("addTask").innerHTML = /*html*/ `
-  <form onsubmit="newTask(urgency); return false;">
-     <div class="add-task">
-            <input required autocomplete="off" id="inputFieldTitle" class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
+
+  let addTask = document.getElementById(`addTask`); 
+  addTask.innerHTML = /*html*/ `
+   <form onsubmit="newTask(urgency); return false;">
+      <div id="addTaskUnderDiv" class="add-task">
+        <div id="taskTitle" class="add-task-to-board-title">
+           <img onclick="closeAddTaskToBoard()" class="add-task-to-board-close-button" src="./assets/img/close.png">
+           <h2 class="add-task-h2-big">Add Task</h2>
+        </div>
+             <input required autocomplete="off" id="inputFieldTitle" class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
             <div class="add-task-select-contact-edit">
                  <input onclick="showContactList(0)" autocomplete="off" required placeholder="Selected contacts to assign" class="add-task-select-contact cursor-pointer" id="selectContact" type="email"> 
                  <img id="contactSelectArrow" src="./assets/img/selectfieldArrow.png">
@@ -110,7 +119,7 @@ function addTaskRender(id) {
             </div>
             <div class="add-task-initials-area" id="0initials0"></div>
             <div class="add-task-due-date">
-               <h2>Due Date</h2>
+            <h2>Due Date</h2>
                <input id="inputDate" required class="add-task-due-date-input cursor-pointer cursor-pointer" id="dueDate" type="date">
             </div>
               <div class="add-task-due-date">
@@ -165,15 +174,29 @@ function addTaskRender(id) {
                   <div id="subTaskArea${id}" class="d-none"></div>
                </div>
   
-              <div class="add-task-button">
+              <div id="addTaskButton" class="add-task-button">
                 <button onclick="clearTask()" class="add-task-button-clear cursor-pointer">Clear x</button>  
                 <button onclick="newTask(urgency)" class="add-task-button-create cursor-pointer">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
              </div>
            </div>
+           <button onclick="newTask()" id="addTaskButtonToBoard" class="add-task-button-create-board cursor-pointer">Add Task<img class="add-task-button-img" src="./assets/img/hakenCreateTask.png"></button>
          </div>
          <img id="taskAddedToBoard" class="task-added-to-board-hide task-added-to-board" src="./assets/img/logoAddedToBoard.png">
   </form> 
       `;
+
+let taskTitle = document.getElementById(`taskTitle`);
+addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
+if (addTaskInitClicked == true) {
+    taskTitle.classList.add(`d-none`);
+    addTaskButtonToBoard.classList.add(`d-none`);
+}
+
+let addTaskButton = document.getElementById(`addTaskButton`);
+if (addBoardInitClicked == true) {
+    addTaskButton.classList.add(`d-none`);
+}
+   
   addContactsToTasks(0);
 }
 

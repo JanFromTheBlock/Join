@@ -5,6 +5,7 @@
   left: 320px;
   width: 460px;
   top: 137px;
+  margin-left: -290px
 }
 
 .add-task-title {
@@ -479,7 +480,7 @@ input[type="date"]::placeholder {
 
 .add-task-to-board {
   background-color: white;
-  padding-left: 16px;
+  padding-left: 40px;
   width: 450px;
   z-index: 3;
   border-top-left-radius: 25px;
@@ -554,6 +555,7 @@ input[type="date"]::placeholder {
   position: fixed;
   z-index: 999;
   width: 422px;
+  margin-top: -130px;
 }
 
 .padding-top {
@@ -647,7 +649,7 @@ input[type="date"]::placeholder {
 @media (max-width: 1150px) {
   .add-task {
     left: 50%;
-    margin-left: -230px;
+    margin-left: -200px;
   }
 }
 

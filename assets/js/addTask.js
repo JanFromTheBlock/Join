@@ -36,6 +36,7 @@ function showSubtasks(id) {
   let subtaskArea = document.getElementById(`subTaskArea${id}`);
   let inputSubtask = document.getElementById(`inputSubtask`).value;
   subtaskArea.classList.remove(`d-none`);
+  subtask = inputSubtask;
   subtasks.push(inputSubtask);
   subtaskArea.innerHTML += /*html*/ `
   <div class="subTaskArea">
@@ -43,8 +44,10 @@ function showSubtasks(id) {
   <label id="labelForSubtask${id}">${inputSubtask}</label>
   </div>
   `;
+    editLabelsSubtasks.push(inputSubtask);
   document.getElementById(`inputSubtask`).value = '';
   setElement("subtasks", subtasks);
+  setElement("editLabelsSubtasks", editLabelsSubtasks);
 }
 
 //Onclick auf PriorityButtons

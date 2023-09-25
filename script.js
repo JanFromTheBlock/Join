@@ -66,6 +66,7 @@ function taskInit() {
 }
 
 async function addTaskInit(){
+    addTaskInitClicked = true;
     activeUser();
     headerRender();
     navRender();
@@ -83,12 +84,13 @@ async function addTaskInit(){
     addTaskRender();
 }
 
-async function addBoardInit(id){
+async function addBoardInit(){
+    addBoardInitClicked = true;
     activeUser();
     headerRender();
     navRender();
     activeSite("menu-board");
-    renderAddTaskToBoard(id);
+    addBoardRender();
     getdata = await getElement('tasks'); 
     tasks = JSON.parse(getdata);  // speichert Subtasks
     try {
@@ -99,7 +101,7 @@ async function addBoardInit(id){
     }  
     getdata = await getElement('subtasks'); 
     subtasks = JSON.parse(getdata); 
-    addBoardRender(); 
+  
 }
 
 function legalNotesInit(){
