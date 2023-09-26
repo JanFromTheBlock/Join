@@ -37,10 +37,10 @@ function addBoardRender() {
         `;
   }
   docID("task-img3").classList.add("d-none"); //bei task-img3 soll das + Symbol nicht angezeigt werden, daher wird die Klasse d-none hinzugefügt
- 
- 
+
+
   addTaskRender();
-  
+
   loadTasks();
 }
 
@@ -128,7 +128,7 @@ function moveTo(progress) {
 function renderSubtasks(id) {
   //subtasks werden gerendert
   let subtasksLength = tasks[id]["subtasksLength"];
-  if(saveChangedTask){
+  if (saveChangedTask) {
     subtasksLength++;
   }
   if (subtasksLength > 0) {
@@ -237,10 +237,10 @@ function renderWindow(id, IdOfTask) {
 saveChangedTask = false;
 
 function renderStructureOfTheWindow(taskId, IdOfTask, subtask, editLabelsSubtasks) {
-  if(saveChangedTask == true){
+  if (saveChangedTask == true) {
   }
-  if(!saveChangedTask == true){
-   subtask = null;
+  if (!saveChangedTask == true) {
+    subtask = null;
   }
   let subtaskHTML = '';
   let taskWindow = docID("task-window");
@@ -251,18 +251,18 @@ function renderStructureOfTheWindow(taskId, IdOfTask, subtask, editLabelsSubtask
   taskWindow.innerHTML = "";
   taskWindow.style.width = "422px";
 
-  if(subtask !== null){
+  if (subtask !== null) {
     subtask = editLabelsSubtasks;
     subtasks.push(subtask);
     subtasks = subtasks.filter(item => item !== undefined);
   }
   for (let subtaskIndex = 0; subtaskIndex < subtasks.length; subtaskIndex++) {
-      let subtask = subtasks[subtaskIndex];
-      subtaskHTML +=  /*html*/`
+    let subtask = subtasks[subtaskIndex];
+    subtaskHTML +=  /*html*/`
                 <div id="editSubtask${subtaskIndex}">${subtask}</div> 
       `;
   }
-    setElement("subtasks", subtasks);
+  setElement("subtasks", subtasks);
   taskWindow.innerHTML = /*html*/ `
       <div>
           <img id="close-img" onclick="closeWindow()" src="./assets/img/close.png">
@@ -290,7 +290,7 @@ function renderStructureOfTheWindow(taskId, IdOfTask, subtask, editLabelsSubtask
 function addColorOfTheCategory(id) {
   //Hintergrundfarbe der Kategorie wird angepasst
   let color = tasks[id]["category-color"];
- /* docID("window-category").style.backgroundColor = color;  auskommentiert, da Fehlermedung*/
+  /* docID("window-category").style.backgroundColor = color;  auskommentiert, da Fehlermedung*/
 }
 
 function renderPriorityToTheWindow(id) {
@@ -388,8 +388,48 @@ function openAddTask(IdOfTask) {
   backgroundBoard.classList.remove(`full-opacity`);
   backgroundHeader.classList.remove(`full-opacity`);
   backgroundNav.classList.remove(`full-opacity`);
- 
-  findJSON(IdOfTask, tasks)
+
+  //Wenn IdOfTask mitgegeben wird, handelt es sich um EditTask und dann wird der folgende Code noch extra ausgeführt
+  if (typeof IdOfTask !== 'undefined') {
+    findJSON(IdOfTask, tasks);
+
+    docID("add-edit-task").innerHTML = "Edit Task"
+
+    docID('inputFieldTitle').value = jsonToEdit.title;
+    docID('inputDate').value = jsonToEdit.date;
+    
+
+    let priority = jsonToEdit.urgency
+    if (priority === "./assets/img/urgentLogo.png") {
+      docID('urgent').click;
+    };
+    if (priority === "./assets/img/mediumLogo.png") {
+      docID('medium').click();
+    };
+    if (priority === "./assets/img/lowLogo.png") {
+      docID('low').click;
+    };
+
+    docID('description').value = jsonToEdit.description;
+
+    docID('selectContact').click();
+    index = jsonToEdit.contactid;
+    for (let i = 0; i < index.length; i++) {
+      const elementId = `0and${index[i]}`; // Die ID des aktuellen Elements
+      const element = document.getElementById(elementId); // Das DOM-Element mit der ID
+
+      // Überprüfen, ob das Element gefunden wurde
+      if (element) {
+        // Event-Listener hinzufügen, um das Click-Event auszulösen
+        element.click();
+      }
+    }
+
+
+
+
+  }
+
 }
 
 function findJSON(IdOfTask, tasks) {
@@ -420,5 +460,10 @@ function closeAddTaskToBoard() {
   backgroundBoard.classList.remove(`decrease-opacity`);
   backgroundHeader.classList.remove(`decrease-opacity`);
   backgroundNav.classList.remove(`decrease-opacity`);
+
+ 
+
+  contactStatusMap.clear()
+  addBoardInit();
 }
 

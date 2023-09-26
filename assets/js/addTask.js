@@ -227,20 +227,6 @@ function toggleVisibility(elementId) {
 
 function showContactList(id) {
   toggleVisibility("showContacts" + id);
-  if (id === 2) {
-    index = tasks[openedTask].contactid;
-
-    for (let i = 0; i < index.length; i++) {
-      const elementId = `${id}and${index[i]}`; // Die ID des aktuellen Elements
-      const element = document.getElementById(elementId); // Das DOM-Element mit der ID
-
-      // Überprüfen, ob das Element gefunden wurde
-      if (element) {
-        // Event-Listener hinzufügen, um das Click-Event auszulösen
-        element.click();
-      }
-    }
-  }
 }
 
 let isShowAddedCategoryCalled = false;

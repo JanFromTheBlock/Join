@@ -108,7 +108,7 @@ function addTaskRender(id) {
       <div id="addTaskUnderDiv" class="add-task">
         <div id="taskTitle" class="add-task-to-board-title">
            <img onclick="closeAddTaskToBoard()" class="add-task-to-board-close-button" src="./assets/img/close.png">
-           <h2 class="add-task-h2-big">Add Task</h2>
+           <h2 id="add-edit-task" class="add-task-h2-big">Add Task</h2>
         </div>
              <input required autocomplete="off" id="inputFieldTitle" class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
             <div class="add-task-select-contact-edit">
