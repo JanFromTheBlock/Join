@@ -3,6 +3,7 @@ let taskNames = ["To do", "In progress", "Await feedback", "Done"]; //Array, um 
 let currentDraggedElement; // In dieser Variable wird die id der gedraggten Task gespeichert
 let openedTask;
 let jsonToEdit;
+let edit = false;
 
 function addBoardRender() {
   console.log("addBoardRender is called");
@@ -397,17 +398,19 @@ function openAddTask(IdOfTask) {
 
     docID('inputFieldTitle').value = jsonToEdit.title;
     docID('inputDate').value = jsonToEdit.date;
-    
+
+    showCategories();
+    docID('savedCategory' + jsonToEdit.categoryId).click();
 
     let priority = jsonToEdit.urgency
     if (priority === "./assets/img/urgentLogo.png") {
-      docID('urgent').click;
+      docID('urgent').click();
     };
     if (priority === "./assets/img/mediumLogo.png") {
       docID('medium').click();
     };
     if (priority === "./assets/img/lowLogo.png") {
-      docID('low').click;
+      docID('low').click();
     };
 
     docID('description').value = jsonToEdit.description;
@@ -424,6 +427,9 @@ function openAddTask(IdOfTask) {
         element.click();
       }
     }
+
+    docID('addTaskButtonToBoard').innerHTML = "Edit Task";
+    edit = true;
 
 
 
@@ -461,9 +467,44 @@ function closeAddTaskToBoard() {
   backgroundHeader.classList.remove(`decrease-opacity`);
   backgroundNav.classList.remove(`decrease-opacity`);
 
- 
+
 
   contactStatusMap.clear()
+  numberOfContactsToAdd = [];
+  numberOfColorsToAdd = [];
+  numberOfIdsToAdd = [];
+  contactcolors = [];
+  contactIds = [];
+  lastName = [];
+  firstName = [];
   addBoardInit();
+}
+
+function safeEditedTask() {
+  jsonToEdit.title = docID('inputFieldTitle').value;
+  jsonToEdit.date = docID('inputDate').value;
+  jsonToEdit.description = docID('description').value;
+  jsonToEdit.urgency = urgency;
+  safeContactsInTask();
+
+  jsonToEdit.contactid = contactIds;
+  jsonToEdit['contact-color'] = contactcolors;
+  jsonToEdit['contact-firstname'] = firstName;
+  jsonToEdit['contact-lastname'] = lastName;
+
+  setElement('tasks', tasks);
+  addBoardInit();
+}
+function safeContactsInTask() {
+  for (let i = 0; i < numberOfContactsToAdd.length; i++) {
+    let contactDiv = numberOfContactsToAdd[i];
+    const [firstNames, lastNames] = contactDiv.split(' ');
+    const contactcolor = numberOfColorsToAdd[i];
+    const contactid = numberOfIdsToAdd[i];
+    firstName.push(firstNames);
+    lastName.push(lastNames);
+    contactcolors.push(contactcolor);
+    contactIds.push(contactid);
+  }
 }
 

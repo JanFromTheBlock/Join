@@ -31,6 +31,7 @@ let subtasks = [];
 let contact;
 let urgency;
 let categoryColor;
+let categoryId;
 
 
 function showSubtasks(id) {
@@ -138,6 +139,7 @@ function createJsonTask(title, description, category, subtasks, subtasksLength, 
     arrayId: 0,
     contactid: contactIds,
     taskId: taskId,
+    categoryId: categoryId, 
   };
 }
 let firstName = [];
@@ -146,58 +148,60 @@ let contactcolors = [];
 let contactIds = [];
 
 function newTask() {
-  let title = document.getElementById(`inputFieldTitle`).value;
-  let date = document.getElementById(`inputDate`).value;
-  let category = document.getElementById(`selectCategory`).value;
-  let subtasksLength = subtasks.length;
-  let description = document.getElementById(`description`).value;
-  let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
-  taskAddedToBoard.classList.remove(`d-none`);
-  taskAddedToBoard.classList.remove(`task-added-to-board-hide`);
-  taskAddedToBoard.classList.add(`task-added-to-board`);
-
-  setTimeout(() => {
-    taskAddedToBoard.classList.add(`task-added-to-board-hide`);
-    window.location.href = "./board.html"; // springt nachdem AddTask gerendert wurde auf die BoardSeite
-    closeAddTaskToBoard();
-  }, 2000);
-
-  document.getElementById(`inputSubtask`).value = ``;
-  for (let i = 0; i < numberOfContactsToAdd.length; i++) {
-    let contactDiv = numberOfContactsToAdd[i];
-    const [firstNames, lastNames] = contactDiv.split(' ');
-    const contactcolor = numberOfColorsToAdd[i];
-    const contactid = numberOfIdsToAdd[i];
-    firstName.push(firstNames);
-    lastName.push(lastNames);
-    contactcolors.push(contactcolor);
-    contactIds.push(contactid);
+  if (edit === true) {
+    safeEditedTask();
   }
-  const highestTaskId = findHighestId(tasks);
-  taskId = highestTaskId + 1;
+  else{
+    let title = document.getElementById(`inputFieldTitle`).value;
+    let date = document.getElementById(`inputDate`).value;
+    let category = document.getElementById(`selectCategory`).value;
+    let subtasksLength = subtasks.length;
+    let description = document.getElementById(`description`).value;
+    let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
+    taskAddedToBoard.classList.remove(`d-none`);
+    taskAddedToBoard.classList.remove(`task-added-to-board-hide`);
+    taskAddedToBoard.classList.add(`task-added-to-board`);
+  
+    setTimeout(() => {
+      taskAddedToBoard.classList.add(`task-added-to-board-hide`);
+      window.location.href = "./board.html"; // springt nachdem AddTask gerendert wurde auf die BoardSeite
+      closeAddTaskToBoard();
+    }, 2000);
+    
 
-  clearTaskMask();
-  let task = createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId);
-  getElement('tasks');
-  firstName = [];
-  lastName = [];
-  numberOfContactsToAdd = [];
-  numberOfColorsToAdd = [];
-  numberOfIdsToAdd = [];
-  tasks.push(task);
-  setElement('tasks', tasks);
-  addBoardInit();
-}
-function findHighestId(tasks) {
-  let highestTaskId = 0;
+    document.getElementById(`inputSubtask`).value = ``;
 
-  for (const task of tasks) {
-    if (task.taskId > highestTaskId) {
-      highestTaskId = task.taskId;
+    safeContactsInTask();
+   
+    const highestTaskId = findHighestId(tasks);
+    taskId = highestTaskId + 1;
+  
+    clearTaskMask();
+    let task = createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId);
+    getElement('tasks');
+    firstName = [];
+    lastName = [];
+    numberOfContactsToAdd = [];
+    numberOfColorsToAdd = [];
+    numberOfIdsToAdd = [];
+    tasks.push(task);
+    setElement('tasks', tasks);
+    addBoardInit();
+  }
+
+
+  function findHighestId(tasks) {
+    let highestTaskId = 0;
+  
+    for (const task of tasks) {
+      if (task.taskId > highestTaskId) {
+        highestTaskId = task.taskId;
+      }
     }
+  
+    return highestTaskId;
   }
 
-  return highestTaskId;
 }
 
 function clearTaskMask() {
@@ -235,10 +239,7 @@ function showCategories() {
   let selectCategory = document.getElementById(`selectCategory`);
   toggleVisibility("showCategories");
   selectCategory.classList.add(`hide-cursor`);
-  if (!isShowAddedCategoryCalled) {  // zeigt die gespeicherten Categories nur einmal an auch bei mehrmaligem klicken
     showAddedCategory(); // zeigt die gespeicherten Catagories an
-    isShowAddedCategoryCalled = true;
-  }
 }
 
 // Eine Map, um den Status der Kontakte zu verfolgen
@@ -424,7 +425,7 @@ function chooseCategory(i) {
   selectCategory.style.paddingLeft = "0";
   showCategories.classList.add(`d-none`);
   addColorToCategory(categoryImg);
-  taskCategoryColor.classList.add(`d-none`)  // geändert
+  categoryId = i;
 }
 
 function markColor() {
