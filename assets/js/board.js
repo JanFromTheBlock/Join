@@ -128,7 +128,7 @@ function moveTo(progress) {
 
 function renderSubtasks(id) {
   //subtasks werden gerendert
-  let subtasksLength = tasks[id]["subtasksLength"];
+  subtasksLength = tasks[id]["subtasksLength"];
   if (saveChangedTask) {
     subtasksLength++;
   }
@@ -250,7 +250,6 @@ function renderStructureOfTheWindow(taskId, IdOfTask, subtask, editLabelsSubtask
   let dueDate = tasks[taskId]["date"];
   let subtasks = tasks[taskId]["subtasks"]; // Subtasks für diese Aufgabe
   taskWindow.innerHTML = "";
-  taskWindow.style.width = "422px";
 
   if (subtask !== null) {
     subtask = editLabelsSubtasks;
@@ -427,6 +426,14 @@ function openAddTask(IdOfTask) {
         element.click();
       }
     }
+    docID('selectContact').click();
+
+    for (let subtaskToLoad  = 0; subtaskToLoad < jsonToEdit.subtasks.length; subtaskToLoad++) {
+      const element = jsonToEdit.subtasks[subtaskToLoad];
+      document.getElementById(`inputSubtask`).value = element;
+      showSubtasks();
+    }
+
 
     docID('addTaskButtonToBoard').innerHTML = "Edit Task";
     edit = true;
@@ -491,6 +498,9 @@ function safeEditedTask() {
   jsonToEdit['contact-color'] = contactcolors;
   jsonToEdit['contact-firstname'] = firstName;
   jsonToEdit['contact-lastname'] = lastName;
+
+  jsonToEdit.subtasks = subtasks;
+  jsonToEdit.subtasksLength = subtasksLength;
 
   setElement('tasks', tasks);
   addBoardInit();

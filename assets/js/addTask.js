@@ -32,7 +32,9 @@ let contact;
 let urgency;
 let categoryColor;
 let categoryId;
-
+let editLabelsSubtasks;
+let subtasksLength;
+edit = false;
 
 function showSubtasks(id) {
   let subtaskArea = document.getElementById(`subTaskArea${id}`);
@@ -46,10 +48,10 @@ function showSubtasks(id) {
   <label id="labelForSubtask${id}">${inputSubtask}</label>
   </div>
   `;
-  editLabelsSubtasks.push(inputSubtask);
+  
   document.getElementById(`inputSubtask`).value = '';
   setElement("subtasks", subtasks);
-  setElement("editLabelsSubtasks", editLabelsSubtasks);
+ 
 }
 
 //Onclick auf PriorityButtons
@@ -155,7 +157,7 @@ function newTask() {
     let title = document.getElementById(`inputFieldTitle`).value;
     let date = document.getElementById(`inputDate`).value;
     let category = document.getElementById(`selectCategory`).value;
-    let subtasksLength = subtasks.length;
+    subtasksLength = subtasks.length;
     let description = document.getElementById(`description`).value;
     let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
     taskAddedToBoard.classList.remove(`d-none`);
@@ -221,6 +223,8 @@ function clearTask(i) {
 
 function toggleVisibility(elementId) {
   let element = document.getElementById(elementId);
+  element.classList.remove("d-none");
+  docID('showCategories').innerHTML = ''
 
   if (element.classList.contains("add-task-hide-contacts")) {
     element.classList.remove("add-task-hide-contacts");
@@ -233,7 +237,6 @@ function showContactList(id) {
   toggleVisibility("showContacts" + id);
 }
 
-let isShowAddedCategoryCalled = false;
 
 function showCategories() {
   let selectCategory = document.getElementById(`selectCategory`);
@@ -406,7 +409,6 @@ function addColorToCategory(id) {
   } else if (id === "http://127.0.0.1:5500/assets/img/ellipseRosa.png" || id === "./assets/img/ellipseRosa.png") {
     categoryColor = "#E200BE";
   }
-  pushCategoryToArray(categoryColor);
 }
 
 function chooseCategory(i) {
@@ -424,6 +426,7 @@ function chooseCategory(i) {
   placeholderColorCategory.classList.remove(`d-none`);
   selectCategory.style.paddingLeft = "0";
   showCategories.classList.add(`d-none`);
+  showCategories.classList.add(`add-task-hide-contacts`);
   addColorToCategory(categoryImg);
   categoryId = i;
 }
