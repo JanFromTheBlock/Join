@@ -127,14 +127,11 @@ function moveTo(progress) {
 }
 
 function renderSubtasks(id) {
+  subtasks = tasks[id]["subtasks"]
   //subtasks werden gerendert
-  subtasksLength = tasks[id]["subtasksLength"];
-  if (saveChangedTask) {
-    subtasksLength++;
-  }
-  if (subtasksLength > 0) {
+  if (subtasks.length > 0) {
     // wenn die Anzahl an Subtasks größer 0 ist dann wird Funktion ausgeführt
-    let a = parseInt(subtasksLength); // Variable a sind die Anzahl an subtasks
+    let a = parseInt(subtasks.length); // Variable a sind die Anzahl an subtasks
     let b = parseInt(tasks[id]["done-tasks"]); // Variable b sind die Anzahl erledigter subtasks
     let percent = (b / a) * 100; // Prozentanteil erledigter aufgaben wird berechnet
     docID("progress-bar" + id).classList.remove("d-none"); //der progress-bar wird das d-none entfernt und sie wird sichtbar
@@ -143,7 +140,7 @@ function renderSubtasks(id) {
         `; // die Anzahl an subtass wird neben die progress-bar gerendert
     docID("progress-bar-inside" + id).style.width = `${percent}%`; //der Prozentanteil erledigter Aufgaben wird als Füllmenge für die progress-bar verwnedet
   }
-  subtasks.splice(id, subtasks.length);  // alle subtasks werden gelöscht, so dass nicht alle in allen Tasks angezeigt werden
+  subtasks.splice(id, subtasks.length);
 }
 
 function renderUrgencySymbol(id) {
@@ -237,7 +234,7 @@ function renderWindow(id, IdOfTask) {
 
 saveChangedTask = false;
 
-function renderStructureOfTheWindow(taskId, IdOfTask, subtask, editLabelsSubtasks) {
+async function renderStructureOfTheWindow(taskId, IdOfTask, subtask, editLabelsSubtasks) {
   if (saveChangedTask == true) {
   }
   if (!saveChangedTask == true) {
@@ -379,6 +376,7 @@ function openAddTask(IdOfTask) {
     addTaskButtonToBoard.classList.remove(`d-none`);
     addTaskUnder.classList.remove(`add-task-to-board-hide`);
   }, 100);
+  addTaskUnder.classList.remove(`add-task-to-board-hide`);
   boardBody.classList.remove(`overflow-hidden`);
   board.classList.add(`overflowY`);
   backgroundBoard.classList.add(`decrease-opacity`);
@@ -428,7 +426,7 @@ function openAddTask(IdOfTask) {
     }
     docID('selectContact').click();
 
-    for (let subtaskToLoad  = 0; subtaskToLoad < jsonToEdit.subtasks.length; subtaskToLoad++) {
+    for (let subtaskToLoad = 0; subtaskToLoad < jsonToEdit.subtasks.length; subtaskToLoad++) {
       const element = jsonToEdit.subtasks[subtaskToLoad];
       document.getElementById(`inputSubtask`).value = element;
       showSubtasks();
@@ -485,6 +483,7 @@ function closeAddTaskToBoard() {
   lastName = [];
   firstName = [];
   addBoardInit();
+  edit = false;
 }
 
 function safeEditedTask() {
@@ -500,10 +499,10 @@ function safeEditedTask() {
   jsonToEdit['contact-lastname'] = lastName;
 
   jsonToEdit.subtasks = subtasks;
-  jsonToEdit.subtasksLength = subtasksLength;
 
   setElement('tasks', tasks);
   addBoardInit();
+  closeAddTaskToBoard();
 }
 function safeContactsInTask() {
   for (let i = 0; i < numberOfContactsToAdd.length; i++) {

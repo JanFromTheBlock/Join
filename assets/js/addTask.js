@@ -27,13 +27,12 @@ let categories = [
 ];
 
 let tasks = [];
-let subtasks = [];
+let subtasks;
 let contact;
 let urgency;
 let categoryColor;
 let categoryId;
 let editLabelsSubtasks;
-let subtasksLength;
 edit = false;
 
 function showSubtasks(id) {
@@ -123,14 +122,13 @@ function changeColor(i) {
   }
 }
 
-function createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId) {
+function createJsonTask(title, description, category, subtasks, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId) {
   return {
     title: title,
     description: description,
     category: category,
     "category-color": categoryColor,
     progress: "1",
-    subtasksLength: subtasksLength,
     subtasks: subtasks,
     "done-tasks": 0,
     urgency: urgency,
@@ -157,7 +155,6 @@ function newTask() {
     let title = document.getElementById(`inputFieldTitle`).value;
     let date = document.getElementById(`inputDate`).value;
     let category = document.getElementById(`selectCategory`).value;
-    subtasksLength = subtasks.length;
     let description = document.getElementById(`description`).value;
     let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
     taskAddedToBoard.classList.remove(`d-none`);
@@ -179,7 +176,7 @@ function newTask() {
     taskId = highestTaskId + 1;
   
     clearTaskMask();
-    let task = createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId);
+    let task = createJsonTask(title, description, category, subtasks, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId);
     getElement('tasks');
     firstName = [];
     lastName = [];
