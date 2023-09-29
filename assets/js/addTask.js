@@ -27,10 +27,13 @@ let categories = [
 ];
 
 let tasks = [];
-let subtasks = [];
+let subtasks;
 let contact;
 let urgency;
 let categoryColor;
+let categoryId;
+let editLabelsSubtasks;
+edit = false;
 
 function showSubtasks(id) {
   let subtaskArea = document.getElementById(`subTaskArea${id}`);
@@ -44,10 +47,10 @@ function showSubtasks(id) {
   <label id="labelForSubtask${id}">${inputSubtask}</label>
   </div>
   `;
-    editLabelsSubtasks.push(inputSubtask);
+  
   document.getElementById(`inputSubtask`).value = '';
   setElement("subtasks", subtasks);
-  setElement("editLabelsSubtasks", editLabelsSubtasks);
+ 
 }
 
 //Onclick auf PriorityButtons
@@ -109,24 +112,23 @@ function changeColorLow() {
 function changeColor(i) {
   if (i === "urgent") {
     changeColorUrgent(i);
-    urgency = "./assets/img/urgentLogo.png"; 
+    urgency = "./assets/img/urgentLogo.png";
   } else if (i === "medium") {
     changeColorMedium(i);
-    urgency = "./assets/img/mediumLogo.png"; 
+    urgency = "./assets/img/mediumLogo.png";
   } else if (i === "low") {
-    urgency = "./assets/img/lowLogo.png"; 
+    urgency = "./assets/img/lowLogo.png";
     changeColorLow(i);
   }
 }
 
-function createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors){
+function createJsonTask(title, description, category, subtasks, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId) {
   return {
     title: title,
     description: description,
     category: category,
     "category-color": categoryColor,
     progress: "1",
-    subtasksLength: subtasksLength,
     subtasks: subtasks,
     "done-tasks": 0,
     urgency: urgency,
@@ -136,6 +138,8 @@ function createJsonTask(title, description, category, subtasks, subtasksLength, 
     "contact-color": contactcolors,
     arrayId: 0,
     contactid: contactIds,
+    taskId: taskId,
+    categoryId: categoryId, 
   };
 }
 let firstName = [];
@@ -144,44 +148,59 @@ let contactcolors = [];
 let contactIds = [];
 
 function newTask() {
-  let title = document.getElementById(`inputFieldTitle`).value;
-  let date = document.getElementById(`inputDate`).value;
-  let category = document.getElementById(`selectCategory`).value;
-  let subtasksLength = subtasks.length;
-  let description = document.getElementById(`description`).value;
-  let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
-  taskAddedToBoard.classList.remove(`d-none`);
-  taskAddedToBoard.classList.remove(`task-added-to-board-hide`);
-  taskAddedToBoard.classList.add(`task-added-to-board`);
-
-  setTimeout(() => {
-    taskAddedToBoard.classList.add(`task-added-to-board-hide`);
-    window.location.href = "./board.html"; // springt nachdem AddTask gerendert wurde auf die BoardSeite
-    closeAddTaskToBoard();
-  }, 2000);
-  
-  document.getElementById(`inputSubtask`).value = ``;
-  for (let i = 0; i < numberOfContactsToAdd.length; i++) {
-    let contactDiv = numberOfContactsToAdd[i];
-    const [firstNames, lastNames] = contactDiv.split(' ');
-    const contactcolor = numberOfColorsToAdd[i];
-    const contactid = numberOfIdsToAdd[i];
-    firstName.push(firstNames);
-    lastName.push(lastNames);
-    contactcolors.push(contactcolor);
-    contactIds.push(contactid);
+  if (edit === true) {
+    safeEditedTask();
   }
-  clearTaskMask();
-  let task = createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors);
-  getElement('tasks');
-  firstName = [];
-  lastName = [];
-  numberOfContactsToAdd = [];
-  numberOfColorsToAdd = [];
-  numberOfIdsToAdd = [];
-  tasks.push(task);
-  setElement('tasks', tasks);
-  addBoardInit();
+  else{
+    let title = document.getElementById(`inputFieldTitle`).value;
+    let date = document.getElementById(`inputDate`).value;
+    let category = document.getElementById(`selectCategory`).value;
+    let description = document.getElementById(`description`).value;
+    let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
+    taskAddedToBoard.classList.remove(`d-none`);
+    taskAddedToBoard.classList.remove(`task-added-to-board-hide`);
+    taskAddedToBoard.classList.add(`task-added-to-board`);
+  
+    setTimeout(() => {
+      taskAddedToBoard.classList.add(`task-added-to-board-hide`);
+      window.location.href = "./board.html"; // springt nachdem AddTask gerendert wurde auf die BoardSeite
+      closeAddTaskToBoard();
+    }, 2000);
+    
+
+    document.getElementById(`inputSubtask`).value = ``;
+
+    safeContactsInTask();
+   
+    const highestTaskId = findHighestId(tasks);
+    taskId = highestTaskId + 1;
+  
+    clearTaskMask();
+    let task = createJsonTask(title, description, category, subtasks, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId);
+    getElement('tasks');
+    firstName = [];
+    lastName = [];
+    numberOfContactsToAdd = [];
+    numberOfColorsToAdd = [];
+    numberOfIdsToAdd = [];
+    tasks.push(task);
+    setElement('tasks', tasks);
+    addBoardInit();
+  }
+
+
+  function findHighestId(tasks) {
+    let highestTaskId = 0;
+  
+    for (const task of tasks) {
+      if (task.taskId > highestTaskId) {
+        highestTaskId = task.taskId;
+      }
+    }
+  
+    return highestTaskId;
+  }
+
 }
 
 function clearTaskMask() {
@@ -201,6 +220,8 @@ function clearTask(i) {
 
 function toggleVisibility(elementId) {
   let element = document.getElementById(elementId);
+  element.classList.remove("d-none");
+  docID('showCategories').innerHTML = ''
 
   if (element.classList.contains("add-task-hide-contacts")) {
     element.classList.remove("add-task-hide-contacts");
@@ -211,32 +232,14 @@ function toggleVisibility(elementId) {
 
 function showContactList(id) {
   toggleVisibility("showContacts" + id);
-  if (id === 2) {
-    index = tasks[openedTask].contactid;
-
-for (let i = 0; i < index.length; i++) {
-  const elementId = `${id}and${index[i]}`; // Die ID des aktuellen Elements
-  const element = document.getElementById(elementId); // Das DOM-Element mit der ID
-  
-  // Überprüfen, ob das Element gefunden wurde
-  if (element) {
-    // Event-Listener hinzufügen, um das Click-Event auszulösen
-    element.click();
-  }
-}
-  }
 }
 
-let isShowAddedCategoryCalled = false;
 
 function showCategories() {
   let selectCategory = document.getElementById(`selectCategory`);
   toggleVisibility("showCategories");
   selectCategory.classList.add(`hide-cursor`);
-  if (!isShowAddedCategoryCalled) {  // zeigt die gespeicherten Categories nur einmal an auch bei mehrmaligem klicken
     showAddedCategory(); // zeigt die gespeicherten Catagories an
-    isShowAddedCategoryCalled = true;
-  }
 }
 
 // Eine Map, um den Status der Kontakte zu verfolgen
@@ -262,7 +265,7 @@ function chooseContact(i, contactName, initials, color, id, contactId) {
     numberOfContactsToAdd.push(contactName);
     numberOfColorsToAdd.push(color);
     numberOfIdsToAdd.push(contactId);
-    
+
   } else {
     chooseBoxContact.src = "./assets/img/logoChooseContact.png";
     contactStatusMap.set(i, false);
@@ -337,7 +340,7 @@ let savedCategory;
 
 function pushCategoryToArray(categoryColor) {
   let selectCategory = document.getElementById(`selectCategory`).value;
-  let category = {name: selectCategory,color: categoryColor};
+  let category = { name: selectCategory, color: categoryColor };
 
   if (!categories.includes(selectCategory)) {
     categories.push(category);
@@ -346,16 +349,16 @@ function pushCategoryToArray(categoryColor) {
   }
 }
 
-function finishPushCategoryToArray(){
+function finishPushCategoryToArray() {
   categoryColors.classList.add(`d-none`);
 }
 
 function showAddedCategory() {
   let showCategories = document.getElementById(`showCategories`);
- 
+
   for (let i = 0; i < categories.length; i++) {
     const category = categories[i];
-    
+
     showCategories.innerHTML += /*html*/ `<span id="savedCategory${i}" onclick="chooseCategory(${i})" class="add-task-single-priority">
     ${category[`name`]}<img src=${category['img']}></span>`;
   }
@@ -372,7 +375,7 @@ function cancelCategory() {
 
 function cancelContact(i, id) {
   const taskInitials = document.getElementById(`${id}taskInitials${i}`);
-  
+
   if (taskInitials) {
     taskInitials.remove();
   }
@@ -390,20 +393,19 @@ function addColorToCategory(id) {
   placeholderColorCategory.src = `${colorOfCategory}`;
   placeholderColorCategory.classList.remove(`d-none`);
 
-  if(id === "http://127.0.0.1:5500/assets/img/ellipsegreen.png" || id === "./assets/img/ellipsegreen.png"){
+  if (id === "http://127.0.0.1:5500/assets/img/ellipsegreen.png" || id === "./assets/img/ellipsegreen.png") {
     categoryColor = "#2AD300";
-  }else if(id === "http://127.0.0.1:5500/assets/img/ellipseOrange.png" || id === "./assets/img/ellipseOrange.png"){
+  } else if (id === "http://127.0.0.1:5500/assets/img/ellipseOrange.png" || id === "./assets/img/ellipseOrange.png") {
     categoryColor = "#FF7A00";
-  }else if(id === "http://127.0.0.1:5500/assets/img/ellipseLightblue.png" || id === "./assets/img/ellipseLightblue.png"){
+  } else if (id === "http://127.0.0.1:5500/assets/img/ellipseLightblue.png" || id === "./assets/img/ellipseLightblue.png") {
     categoryColor = "#1FD7C1";
-  }else if(id === "http://127.0.0.1:5500/assets/img/ellipseRed.png" || id === "./assets/img/ellipseRed.png"){
+  } else if (id === "http://127.0.0.1:5500/assets/img/ellipseRed.png" || id === "./assets/img/ellipseRed.png") {
     categoryColor = "#FF0000";
-  }else if(id === "http://127.0.0.1:5500/assets/img/ellipseBlue.png" || id === "./assets/img/ellipseBlue.png"){
+  } else if (id === "http://127.0.0.1:5500/assets/img/ellipseBlue.png" || id === "./assets/img/ellipseBlue.png") {
     categoryColor = "#0038FF";
-  }else if(id === "http://127.0.0.1:5500/assets/img/ellipseRosa.png" || id === "./assets/img/ellipseRosa.png"){
+  } else if (id === "http://127.0.0.1:5500/assets/img/ellipseRosa.png" || id === "./assets/img/ellipseRosa.png") {
     categoryColor = "#E200BE";
   }
-  pushCategoryToArray(categoryColor);
 }
 
 function chooseCategory(i) {
@@ -421,25 +423,26 @@ function chooseCategory(i) {
   placeholderColorCategory.classList.remove(`d-none`);
   selectCategory.style.paddingLeft = "0";
   showCategories.classList.add(`d-none`);
+  showCategories.classList.add(`add-task-hide-contacts`);
   addColorToCategory(categoryImg);
-  taskCategoryColor.classList.add(`d-none`)  // geändert
+  categoryId = i;
 }
 
-function markColor(){
+function markColor() {
   let selectCategory = document.getElementById("selectCategory").value;
-  
-  if(selectCategory.includes("Sales")){
+
+  if (selectCategory.includes("Sales")) {
     document.getElementById("rosa").style.boxShadow = "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
     categories.push("#2AD300");
-  }else if(selectCategory.includes("Backoffice")){
+  } else if (selectCategory.includes("Backoffice")) {
     document.getElementById("lightBlue3,").style.boxShadow = "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
-  }else if(selectCategory.includes("Design")){
+  } else if (selectCategory.includes("Design")) {
     document.getElementById("orange").style.boxShadow = "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
-  }else if(selectCategory.includes("Marketing")){
-  document.getElementById("green").style.boxShadow = "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
-}else if(selectCategory.includes("Media")){
-  document.getElementById("blue").style.boxShadow = "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
-}
+  } else if (selectCategory.includes("Marketing")) {
+    document.getElementById("green").style.boxShadow = "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
+  } else if (selectCategory.includes("Media")) {
+    document.getElementById("blue").style.boxShadow = "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
+  }
 }
 
 

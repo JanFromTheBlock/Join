@@ -1,7 +1,9 @@
 let taskTitles = ["1", "2", "3", "4"]; //Array, um Drag und Drop Zielarea festzulegen
 let taskNames = ["To do", "In progress", "Await feedback", "Done"]; //Array, um beim Rendern der Rask-areas die Titel zu vergeben
 let currentDraggedElement; // In dieser Variable wird die id der gedraggten Task gespeichert
-let openedTask
+let openedTask;
+let jsonToEdit;
+let edit = false;
 
 function addBoardRender() {
   console.log("addBoardRender is called");
@@ -36,10 +38,10 @@ function addBoardRender() {
         `;
   }
   docID("task-img3").classList.add("d-none"); //bei task-img3 soll das + Symbol nicht angezeigt werden, daher wird die Klasse d-none hinzugefügt
- 
- 
+
+
   addTaskRender();
-  
+
   loadTasks();
 }
 
@@ -88,12 +90,13 @@ function emptyTaskDivs() {
 
 function renderTaskBody(id) {
   let j = tasks[id]["progress"];
+  let IdOfTask = tasks[id]["taskId"];
   let taskBody = docID("tasks" + j);
   let prioritySmall = tasks[id]["urgency"];
   editSubtasks = subtasks[id];
   taskBody.innerHTML += /*html*/ `
                     
-    <div draggable="true" ondragstart="startDragging(${id})" onclick="openWindow(event, ${id})" id="task${id}" class="task-decoration">
+    <div draggable="true" ondragstart="startDragging(${id})" onclick="openWindow(event, ${id}, ${IdOfTask})" id="task${id}" class="task-decoration">
         <div id="task-category${id}" class="task-category">${tasks[id]["category"]}</div>
         <div id="task-title${id}">${tasks[id]["title"]}</div>
         <div id="task-description${id}">${tasks[id]["description"]}</div>
@@ -124,14 +127,11 @@ function moveTo(progress) {
 }
 
 function renderSubtasks(id) {
+  subtasks = tasks[id]["subtasks"]
   //subtasks werden gerendert
-  let subtasksLength = tasks[id]["subtasksLength"];
-  if(saveChangedTask){
-    subtasksLength++;
-  }
-  if (subtasksLength > 0) {
+  if (subtasks.length > 0) {
     // wenn die Anzahl an Subtasks größer 0 ist dann wird Funktion ausgeführt
-    let a = parseInt(subtasksLength); // Variable a sind die Anzahl an subtasks
+    let a = parseInt(subtasks.length); // Variable a sind die Anzahl an subtasks
     let b = parseInt(tasks[id]["done-tasks"]); // Variable b sind die Anzahl erledigter subtasks
     let percent = (b / a) * 100; // Prozentanteil erledigter aufgaben wird berechnet
     docID("progress-bar" + id).classList.remove("d-none"); //der progress-bar wird das d-none entfernt und sie wird sichtbar
@@ -140,7 +140,7 @@ function renderSubtasks(id) {
         `; // die Anzahl an subtass wird neben die progress-bar gerendert
     docID("progress-bar-inside" + id).style.width = `${percent}%`; //der Prozentanteil erledigter Aufgaben wird als Füllmenge für die progress-bar verwnedet
   }
-  subtasks.splice(id, subtasks.length);  // alle subtasks werden gelöscht, so dass nicht alle in allen Tasks angezeigt werden
+  subtasks.splice(id, subtasks.length);
 }
 
 function renderUrgencySymbol(id) {
@@ -207,11 +207,11 @@ function handleImgClick() {
   // Hier kannst du die Funktion aufrufen, die deine divs nach dem Text filtert
 }
 
-function openWindow(event, id) {
+function openWindow(event, id, IdOfTask) {
   docID("task-window").classList.remove("d-none"); //dem Div wird die d-none-Klasse genommen. und das Window wird sichtbar
   event.stopPropagation(); // Funktion sorgt dafür, dass das Window nicht geschlossen wird, wenn man auf den onclick-Button drückt
   window.scrollTo(0, 0); // wenn Fenster geöffnet wird, wird nach oben gescrollt
-  renderWindow(id); // das Window wird mit seinen Inhalten gerendert
+  renderWindow(id, IdOfTask); // das Window wird mit seinen Inhalten gerendert
   openedTask = id
 }
 
@@ -224,9 +224,9 @@ function doNotClose(event) {
   event.stopPropagation();
 }
 
-function renderWindow(id) {
+function renderWindow(id, IdOfTask) {
   //das Window wird gerendert
-  renderStructureOfTheWindow(id);
+  renderStructureOfTheWindow(id, IdOfTask);
   addColorOfTheCategory(id);
   renderPriorityToTheWindow(id);
   renderContactsToWindow(id);
@@ -234,11 +234,11 @@ function renderWindow(id) {
 
 saveChangedTask = false;
 
-function renderStructureOfTheWindow(taskId, subtask, editLabelsSubtasks) {
-  if(saveChangedTask == true){
+async function renderStructureOfTheWindow(taskId, IdOfTask, subtask, editLabelsSubtasks) {
+  if (saveChangedTask == true) {
   }
-  if(!saveChangedTask == true){
-   subtask = null;
+  if (!saveChangedTask == true) {
+    subtask = null;
   }
   let subtaskHTML = '';
   let taskWindow = docID("task-window");
@@ -247,20 +247,19 @@ function renderStructureOfTheWindow(taskId, subtask, editLabelsSubtasks) {
   let dueDate = tasks[taskId]["date"];
   let subtasks = tasks[taskId]["subtasks"]; // Subtasks für diese Aufgabe
   taskWindow.innerHTML = "";
-  taskWindow.style.width = "422px";
 
-  if(subtask !== null){
+  if (subtask !== null) {
     subtask = editLabelsSubtasks;
     subtasks.push(subtask);
     subtasks = subtasks.filter(item => item !== undefined);
   }
   for (let subtaskIndex = 0; subtaskIndex < subtasks.length; subtaskIndex++) {
-      let subtask = subtasks[subtaskIndex];
-      subtaskHTML +=  /*html*/`
+    let subtask = subtasks[subtaskIndex];
+    subtaskHTML +=  /*html*/`
                 <div id="editSubtask${subtaskIndex}">${subtask}</div> 
       `;
   }
-    setElement("subtasks", subtasks);
+  setElement("subtasks", subtasks);
   taskWindow.innerHTML = /*html*/ `
       <div>
           <img id="close-img" onclick="closeWindow()" src="./assets/img/close.png">
@@ -279,7 +278,7 @@ function renderStructureOfTheWindow(taskId, subtask, editLabelsSubtasks) {
               </div>
               <div class="subtask-window">Subtasks:</div>
               ${subtaskHTML}
-              <div id="contact-buttons"><img onmouseover="changeDeleteImage(true)" onmouseout="changeDeleteImage(false)" id="delete-button" onclick="deleteTask(${taskId})" src="./assets/img/delete.png"> <img onclick="openAddTask()" id="edit-button" src="./assets/img/edit.png"></div>         
+              <div id="contact-buttons"><img onmouseover="changeDeleteImage(true)" onmouseout="changeDeleteImage(false)" id="delete-button" onclick="deleteTask(${taskId})" src="./assets/img/delete.png"> <img onclick="openAddTask(${IdOfTask})" id="edit-button" src="./assets/img/edit.png"></div>         
           </div>
       </div>
   `;
@@ -288,7 +287,7 @@ function renderStructureOfTheWindow(taskId, subtask, editLabelsSubtasks) {
 function addColorOfTheCategory(id) {
   //Hintergrundfarbe der Kategorie wird angepasst
   let color = tasks[id]["category-color"];
- /* docID("window-category").style.backgroundColor = color;  auskommentiert, da Fehlermedung*/
+  /* docID("window-category").style.backgroundColor = color;  auskommentiert, da Fehlermedung*/
 }
 
 function renderPriorityToTheWindow(id) {
@@ -364,7 +363,7 @@ function changeDeleteImage(isHovering) {
 
 // öffnet AddTask
 
-function openAddTask(id) {
+function openAddTask(IdOfTask) {
   let addTaskUnder = document.getElementById(`addTask`);
   let backgroundBoard = document.getElementById(`board`);
   let backgroundNav = document.getElementById(`nav`);
@@ -377,6 +376,7 @@ function openAddTask(id) {
     addTaskButtonToBoard.classList.remove(`d-none`);
     addTaskUnder.classList.remove(`add-task-to-board-hide`);
   }, 100);
+  addTaskUnder.classList.remove(`add-task-to-board-hide`);
   boardBody.classList.remove(`overflow-hidden`);
   board.classList.add(`overflowY`);
   backgroundBoard.classList.add(`decrease-opacity`);
@@ -386,14 +386,69 @@ function openAddTask(id) {
   backgroundBoard.classList.remove(`full-opacity`);
   backgroundHeader.classList.remove(`full-opacity`);
   backgroundNav.classList.remove(`full-opacity`);
-  
-  if(editTaskClick == true){
-    let addTaskToBoardUnderDiv = document.getElementById(`addTaskToBoardUnderDiv`);
-    addTaskToBoardUnderDiv.classList.remove(`add-task-to-board`);
-    addTaskToBoardUnderDiv.classList.add(`edit-add-task-to-board`);
-    editTask(id);
+
+  //Wenn IdOfTask mitgegeben wird, handelt es sich um EditTask und dann wird der folgende Code noch extra ausgeführt
+  if (typeof IdOfTask !== 'undefined') {
+    findJSON(IdOfTask, tasks);
+
+    docID("add-edit-task").innerHTML = "Edit Task"
+
+    docID('inputFieldTitle').value = jsonToEdit.title;
+    docID('inputDate').value = jsonToEdit.date;
+
+    showCategories();
+    docID('savedCategory' + jsonToEdit.categoryId).click();
+
+    let priority = jsonToEdit.urgency
+    if (priority === "./assets/img/urgentLogo.png") {
+      docID('urgent').click();
+    };
+    if (priority === "./assets/img/mediumLogo.png") {
+      docID('medium').click();
+    };
+    if (priority === "./assets/img/lowLogo.png") {
+      docID('low').click();
+    };
+
+    docID('description').value = jsonToEdit.description;
+
+    docID('selectContact').click();
+    index = jsonToEdit.contactid;
+    for (let i = 0; i < index.length; i++) {
+      const elementId = `0and${index[i]}`; // Die ID des aktuellen Elements
+      const element = document.getElementById(elementId); // Das DOM-Element mit der ID
+
+      // Überprüfen, ob das Element gefunden wurde
+      if (element) {
+        // Event-Listener hinzufügen, um das Click-Event auszulösen
+        element.click();
+      }
+    }
+    docID('selectContact').click();
+
+    for (let subtaskToLoad = 0; subtaskToLoad < jsonToEdit.subtasks.length; subtaskToLoad++) {
+      const element = jsonToEdit.subtasks[subtaskToLoad];
+      document.getElementById(`inputSubtask`).value = element;
+      showSubtasks();
+    }
+
+
+    docID('addTaskButtonToBoard').innerHTML = "Edit Task";
+    edit = true;
+
+
+
+
   }
- 
+
+}
+
+function findJSON(IdOfTask, tasks) {
+  for (let i = 0; i < tasks.length; i++) {
+    if (tasks[i].taskId === IdOfTask) {
+      jsonToEdit = tasks[i];
+    }
+  }
 }
 
 // schließt AddTask
@@ -416,5 +471,49 @@ function closeAddTaskToBoard() {
   backgroundBoard.classList.remove(`decrease-opacity`);
   backgroundHeader.classList.remove(`decrease-opacity`);
   backgroundNav.classList.remove(`decrease-opacity`);
+
+
+
+  contactStatusMap.clear()
+  numberOfContactsToAdd = [];
+  numberOfColorsToAdd = [];
+  numberOfIdsToAdd = [];
+  contactcolors = [];
+  contactIds = [];
+  lastName = [];
+  firstName = [];
+  addBoardInit();
+  edit = false;
+}
+
+function safeEditedTask() {
+  jsonToEdit.title = docID('inputFieldTitle').value;
+  jsonToEdit.date = docID('inputDate').value;
+  jsonToEdit.description = docID('description').value;
+  jsonToEdit.urgency = urgency;
+  safeContactsInTask();
+
+  jsonToEdit.contactid = contactIds;
+  jsonToEdit['contact-color'] = contactcolors;
+  jsonToEdit['contact-firstname'] = firstName;
+  jsonToEdit['contact-lastname'] = lastName;
+
+  jsonToEdit.subtasks = subtasks;
+
+  setElement('tasks', tasks);
+  addBoardInit();
+  closeAddTaskToBoard();
+}
+function safeContactsInTask() {
+  for (let i = 0; i < numberOfContactsToAdd.length; i++) {
+    let contactDiv = numberOfContactsToAdd[i];
+    const [firstNames, lastNames] = contactDiv.split(' ');
+    const contactcolor = numberOfColorsToAdd[i];
+    const contactid = numberOfIdsToAdd[i];
+    firstName.push(firstNames);
+    lastName.push(lastNames);
+    contactcolors.push(contactcolor);
+    contactIds.push(contactid);
+  }
 }
 

@@ -108,11 +108,11 @@ function addTaskRender(id) {
       <div id="addTaskUnderDiv" class="add-task">
         <div id="taskTitle" class="add-task-to-board-title">
            <img onclick="closeAddTaskToBoard()" class="add-task-to-board-close-button" src="./assets/img/close.png">
-           <h2 class="add-task-h2-big">Add Task</h2>
+           <h2 id="add-edit-task" class="add-task-h2-big">Add Task</h2>
         </div>
              <input required autocomplete="off" id="inputFieldTitle" class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
             <div class="add-task-select-contact-edit">
-                 <input onclick="showContactList(0)" autocomplete="off" required placeholder="Selected contacts to assign" class="add-task-select-contact cursor-pointer" id="selectContact" type="email"> 
+                 <input onclick="showContactList(0)" autocomplete="off" placeholder="Selected contacts to assign" class="add-task-select-contact cursor-pointer" id="selectContact" type="email"> 
                  <img id="contactSelectArrow" src="./assets/img/selectfieldArrow.png">
             </div>
             <div id="showContacts0" class="add-task-hide-contacts add-task-choose-contacts">
@@ -150,9 +150,9 @@ function addTaskRender(id) {
                 </div>
          
             <div class="add-task-priority">
-              <button id="urgent" onclick="changeColor(id)" class="add-task-button-priority cursor-pointer">Urgent <img id="urgentLogo" src="./assets/img/urgentLogo.png"></button>
-              <button id="medium" onclick="changeColor(id)" class="add-task-button-priority cursor-pointer">Medium <img id="mediumLogo" src="./assets/img/mediumLogo.png"></button>
-              <button id="low" onclick="changeColor(id)" class="add-task-button-priority cursor-pointer">Low <img id="lowLogo" src="./assets/img/lowLogo.png"></button>
+              <button type = "button" id="urgent" onclick="changeColor(id)" class="add-task-button-priority cursor-pointer">Urgent <img id="urgentLogo" src="./assets/img/urgentLogo.png"></button>
+              <button type = "button" id="medium" onclick="changeColor(id)" class="add-task-button-priority cursor-pointer">Medium <img id="mediumLogo" src="./assets/img/mediumLogo.png"></button>
+              <button type = "button" id="low" onclick="changeColor(id)" class="add-task-button-priority cursor-pointer">Low <img id="lowLogo" src="./assets/img/lowLogo.png"></button>
             </div>
            
               <div class="add-task-due-date">
@@ -164,7 +164,7 @@ function addTaskRender(id) {
             <div class="add-task-due-date">
                 <h2>Subtasks</h2>
                <div>
-                  <input id="inputSubtask" required class="add-task-subtask cursor-pointer" placeholder="Add new subtask" type="text">
+                  <input id="inputSubtask" class="add-task-subtask cursor-pointer" placeholder="Add new subtask" type="text">
                   <img onclick="showSubtasks()" class="add-task-plus-button cursor-pointer" src="./assets/img/subtaskPlus.png">
                 </div>
                   <div id="subTaskArea${id}" class="d-none"></div>
@@ -174,7 +174,7 @@ function addTaskRender(id) {
                 <button onclick="newTask(urgency)" class="add-task-button-create cursor-pointer">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
              </div>
            </div>
-           <button onclick="newTask()" id="addTaskButtonToBoard" class="add-task-button-create-board cursor-pointer">Add Task<img class="add-task-button-img" src="./assets/img/hakenCreateTask.png"></button>
+           <button type = "submit" id="addTaskButtonToBoard" class="add-task-button-create-board cursor-pointer">Add Task<img class="add-task-button-img" src="./assets/img/hakenCreateTask.png"></button>
          </div>
          <img id="taskAddedToBoard" class="task-added-to-board-hide task-added-to-board" src="./assets/img/logoAddedToBoard.png">
   </form> 
