@@ -167,18 +167,21 @@ function addTaskRender(id) {
                   <input id="inputSubtask" class="add-task-subtask cursor-pointer" placeholder="Add new subtask" type="text">
                   <img onclick="showSubtasks()" class="add-task-plus-button cursor-pointer" src="./assets/img/subtaskPlus.png">
                 </div>
-                  <div id="subTaskArea${id}" class="d-none"></div>
+                  <div id="subTaskArea" class="d-none"></div>
                </div>
               <div id="addTaskButton" class="add-task-button">
                 <button onclick="clearTask()" class="add-task-button-clear cursor-pointer">Clear x</button>  
                 <button onclick="newTask(urgency)" class="add-task-button-create cursor-pointer">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
              </div>
            </div>
-           <button type = "submit" id="addTaskButtonToBoard" class="add-task-button-create-board cursor-pointer">Add Task<img class="add-task-button-img" src="./assets/img/hakenCreateTask.png"></button>
+           <button type ="submit" id="addTaskButtonToBoard" class="add-task-button-create-board cursor-pointer">Add Task<img class="add-task-button-img" src="./assets/img/hakenCreateTask.png"></button>
          </div>
          <img id="taskAddedToBoard" class="task-added-to-board-hide task-added-to-board" src="./assets/img/logoAddedToBoard.png">
   </form> 
       `;
+
+       // Unterschied zwischen addTask.html und board.html
+       
 let addTaskUnderDiv = document.getElementById(`addTaskUnderDiv`);
 let taskTitle = document.getElementById(`taskTitle`);
 addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
@@ -196,187 +199,8 @@ if (addBoardInitClicked == true) {
   addContactsToTasks(0);
 }
 
-function renderAddTaskToBoard(id) {
-  let addTask = document.getElementById(`renderAddTaskToBoard`);
-
-  addTask.innerHTML += /*html*/ `
- 
-   <form>
-  
-    <div id="addTaskToBoardUnderDiv" class="add-task-to-board add-task-to-board-hide d-none">
-      <div class="add-task-to-board-title">
-          <img onclick="closeAddTaskToBoard()" class="add-task-to-board-close-button" src="./assets/img/close.png">
-          <h2 class="add-task-h2-big">Add Task</h2>
-      </div>
- 
-          <input autocomplete="off" id="inputFieldTitle" required class="add-task-title padding-top cursor-pointer" placeholder="Enter a title" type="text">
-          <div class="add-task-select-contact-edit">
-                 <input onclick="showContactList(1)" autocomplete="off" required placeholder="Selected contacts to assign" class="add-task-select-contact cursor-pointer" id="selectContact" type="email"> 
-                 <img id="contactSelectArrow" src="./assets/img/selectfieldArrow.png">
-            </div>
-            <div id="showContacts1" class="add-task-hide-contacts add-task-choose-contacts">
-            </div>
-            <div class="add-task-initials-area" id="1initials1"></div>
-          <div class="add-task-due-date">
-             <h2>Due Date</h2>
-             <input id="inputDate" class="add-task-due-date-input cursor-pointer cursor-pointer" id="dueDate" type="date">
-          </div>
-      
-            <div class="add-task-due-date">
-               <h2>Category</h2>
-               <div class="add-task-select-contact-edit">
-                 <input autocomplete="off" onclick="showCategories()" oninput="markColor()" required class="add-task-select-contact cursor-pointer" id="selectCategory" placeholder="Select Task category">
-                 <img id="categorySelectArrow" src="./assets/img/selectfieldArrow.png">
-                 <div class="add-task-placeholder-color-category">
-                 <div id="editTaskCategoryColor" class="edit-task-categorycolor d-none"></div>
-                   <img class="d-none" id="placeholderColorCategory" src="${categories[`color`]}">
-                 </div>
-                 <div class="add-task-edit-category d-none" id="editCategory">
-                    <img onclick="finishPushCategoryToArray()" class="cursor-pointer" src="./assets/img/logoHaken.png">
-                    <img src="./assets/img/seperator.png">
-                    <img class="cursor-pointer" onclick="cancelCategory()" src="./assets/img/logoCancel.png">
-                 </div>
-               </div>
-                 <div id="showCategories" class="add-task-hide-contacts add-task-choose-contacts">
-                   <span onclick="newCategory()" class="add-task-single-priority">New category</span>
-                </div>
-                 <div id="categoryColors" class="add-task-category-colors d-none">
-                     <img class="cursor-pointer" onclick="addColorToCategory(src)" id="lightBlue" src="./assets/img/ellipseLightblue.png">
-                     <img class="cursor-pointer" onclick="addColorToCategory(src)" id="red" src="./assets/img/ellipseRed.png">
-                     <img class="cursor-pointer" onclick="addColorToCategory(src)" id="green" src="./assets/img/ellipseGreen.png">
-                     <img class="cursor-pointer" onclick="addColorToCategory(src)" id="orange" src="./assets/img/ellipseOrange.png">
-                     <img class="cursor-pointer" onclick="addColorToCategory(src)" id="rosa" src="./assets/img/ellipseRosa.png">
-                     <img class="cursor-pointer" onclick="addColorToCategory(src)" id="blue" src="./assets/img/ellipseBlue.png">
-                 </div>
-              </div>
-      
-              <div class="add-task-priority">
-            <button id="urgent" onclick="changeColor(id)" class="add-task-button-priority cursor-pointer">Urgent <img id="urgentLogo" src="./assets/img/urgentLogo.png"></button>
-            <button id="medium" onclick="changeColor(id)" class="add-task-button-priority cursor-pointer">Medium <img id="mediumLogo" src="./assets/img/mediumLogo.png"></button>
-            <button id="low" onclick="changeColor(id)" class="add-task-button-priority cursor-pointer">Low <img id="lowLogo" src="./assets/img/lowLogo.png"></button>
-          </div>
-       <form class="add-task-description-form">
-        <div class=" add-task-due-date">
-          <h2>Description</h2>
-          <textarea required id="description" placeholder="Enter a Description" class="add-task-textarea cursor-pointer"></textarea>
-        </div>
-        </form>
-        
-        <div class="subtask">
-
-        <div id="test"></div>
-          <div class="add-task-due-date">
-              <h2>Subtasks</h2>
-              <div>
-                <input id="inputSubtask" required class="add-task-subtask cursor-pointer" placeholder="Add new subtask" type="text">
-                <img onclick="showSubtasks()" class="add-task-plus-button cursor-pointer" src="./assets/img/subtaskPlus.png">
-              </div>
-              <div id="subTaskArea${id}"></div>
-          </div>
-        </div>
-        <div class="add-task-button-to-board">
-           
-        </div>
-        <button onclick="newTask()" id="addTaskButtonToBoard" class="add-task-button-create-board cursor-pointer">Add Task<img class="add-task-button-img" src="./assets/img/hakenCreateTask.png"></button>
-          </div>
-  </form> 
-   `;
-
-}
 
 
-// Render Edit Task
-
-
-function renderEditAddTaskToBoard(id) {
-  let addTask = document.getElementById(`renderAddTaskToBoard`);
-
-  addTask.innerHTML += /*html*/ `
- 
-   <form>
-  
-     <div id="editaddTaskToBoardUnderDiv${id}" class="add-task-to-board add-task-to-board-hide d-none">
-       <div class="adsd-task-to-board-title">
-          <img id="${id}" onclick="closeEditAddTaskToBoard(id)" class="add-task-to-board-close-button" src="./assets/img/close.png">
-        </div>
- 
-        <input required autocomplete="off" id="inputFieldTitle${id}" class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
-            <div class="add-task-select-contact-edit">
-                 <input onclick="showContactList(2)" autocomplete="off" required placeholder="Selected contacts to assign" class="add-task-select-contact cursor-pointer" id="selectContact" type="email"> 
-                 <img id="contactSelectArrow" src="./assets/img/selectfieldArrow.png">
-            </div>
-            <div id="showContacts2" class="add-task-hide-contacts add-task-choose-contacts">
-            </div>
-            <div class="add-task-initials-area" id="2initials2">
-            <div class="add-task-initials d-none" id="taskInitials${id}"></div>
-            </div>
-          <div class="add-task-due-date">
-             <h2>Due Date</h2>
-             <input id="dueDate${id}" class="add-task-due-date-input cursor-pointer cursor-pointer" type="date">
-          </div>
-      
-            <div class="add-task-due-date">
-               <h2>Category</h2>
-               <div class="add-task-select-contact-edit">
-                 <input autocomplete="off" onclick="editShowCategories(${id})" oninput="markColor()" required class="add-task-select-contact cursor-pointer" id="editSelectCategory${id}" placeholder="Select Task category">
-                 <img id="categorySelectArrow" src="./assets/img/selectfieldArrow.png">
-                 <div class="add-task-placeholder-color-category">
-                 <div id="editTaskCategoryColor${id}" class="edit-task-categorycolor d-none"></div>
-                   <img class="d-none" id="editPlaceholderColorCategory" src="${categories[`color`]}">
-                 </div>
-                 <div class="add-task-edit-category d-none" id="editCategory">
-                    <img onclick="finishPushCategoryToArray()" class="cursor-pointer" src="./assets/img/logoHaken.png">
-                    <img src="./assets/img/seperator.png">
-                    <img class="cursor-pointer" onclick="cancelCategory()" src="./assets/img/logoCancel.png">
-                 </div>
-               </div>
-                 <div id="editShowCategories${id}" class="add-task-hide-contacts add-task-choose-contacts">
-                   <span onclick="newCategory()" class="add-task-single-priority">New category</span>
-                </div>
-                 <div id="categoryColors${id}" class="add-task-category-colors d-none">
-                     <img class="cursor-pointer" onclick="addColorToCategory(src)" id="lightBlue" src="./assets/img/ellipseLightblue.png">
-                     <img class="cursor-pointer" onclick="addColorToCategory(src)" id="red" src="./assets/img/ellipseRed.png">
-                     <img class="cursor-pointer" onclick="addColorToCategory(src)" id="green" src="./assets/img/ellipseGreen.png">
-                     <img class="cursor-pointer" onclick="addColorToCategory(src)" id="orange" src="./assets/img/ellipseOrange.png">
-                     <img class="cursor-pointer" onclick="addColorToCategory(src)" id="rosa" src="./assets/img/ellipseRosa.png">
-                     <img class="cursor-pointer" onclick="addColorToCategory(src)" id="blue" src="./assets/img/ellipseBlue.png">
-                 </div>
-              </div>
-      
-          <div class="add-task-priority">
-            <button id="editUrgent" onclick="editChangeColor(id)" class="add-task-button-priority cursor-pointer">Urgent <img id="editUrgentLogo" src="./assets/img/urgentLogo.png"></button>
-            <button id="editMedium" onclick="editChangeColor(id)" class="add-task-button-priority cursor-pointer">Medium <img id="editMediumLogo" src="./assets/img/mediumLogo.png"></button>
-            <button id="editLow" onclick="editChangeColor(id)" class="add-task-button-priority cursor-pointer">Low <img id="editLowLogo" src="./assets/img/lowLogo.png"></button>
-          </div>
-       <form class="add-task-description-form">
-        <div class=" add-task-due-date">
-          <h2>Description</h2>
-          <textarea required id="description${id}" placeholder="Enter a Description" class="add-task-textarea cursor-pointer"></textarea>
-        </div>
-        </form>
-        <div class="subtask">
-          <div id="test"></div>
-          <div class="add-task-due-date">
-              <h2>Subtasks</h2>
-              <div>
-                <input id="editInputSubtask${id}" required class="add-task-subtask cursor-pointer" placeholder="Add new subtask" type="text">
-                <img onclick="editShowSubtasks(${id})" class="add-task-plus-button cursor-pointer" src="./assets/img/subtaskPlus.png">
-              </div>
-              <div id="editSubTaskArea${id}">
-                <div id="editLabelForSubtask${id}"></div> 
-              </div>
-              <button onclick="saveChangedTaskClicked(${id})" id="saveButton" class="edit-task-button cursor-pointer">Edit<img class="add-task-button-img"></button>
-             </div>
-           </div>
-         <div class="add-task-button-to-board">
-            <button onclick="newTask()" id="editaddTaskButtonToBoard" class="add-task-button-create-board cursor-pointer">Add Task<img class="add-task-button-img" src="./assets/img/hakenCreateTask.png"></button>
-         </div>
-     </div>
-        
-  </form> 
-   `;
-
-}
 function addContactsToTasks(id) {
   showContacts = docID('showContacts' + id);
   showContacts.innerHTML = '';

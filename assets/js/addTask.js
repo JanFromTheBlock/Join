@@ -36,15 +36,15 @@ let editLabelsSubtasks;
 edit = false;
 
 function showSubtasks(id) {
-  let subtaskArea = document.getElementById(`subTaskArea${id}`);
+  let subtaskArea = document.getElementById(`subTaskArea`);
   let inputSubtask = document.getElementById(`inputSubtask`).value;
   subtaskArea.classList.remove(`d-none`);
-  subtask = inputSubtask;
   subtasks.push(inputSubtask);
   subtaskArea.innerHTML += /*html*/ `
   <div class="subTaskArea">
-  <input class="cursor-pointer" type="checkbox">
-  <label id="labelForSubtask${id}">${inputSubtask}</label>
+    <input class="cursor-pointer" type="checkbox">
+    <label id="labelForSubtask${id}">${inputSubtask}</label>
+    <img onclick="deleteSubtask(id)" src="./assets/img/delete_contact.png">
   </div>
   `;
   
@@ -122,13 +122,14 @@ function changeColor(i) {
   }
 }
 
-function createJsonTask(title, description, category, subtasks, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId) {
+function createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId) {
   return {
     title: title,
     description: description,
     category: category,
     "category-color": categoryColor,
     progress: "1",
+    subtasksLength: subtasksLength,
     subtasks: subtasks,
     "done-tasks": 0,
     urgency: urgency,
@@ -156,6 +157,7 @@ function newTask() {
     let date = document.getElementById(`inputDate`).value;
     let category = document.getElementById(`selectCategory`).value;
     let description = document.getElementById(`description`).value;
+    let subtasksLength = subtasks.length;
     let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
     taskAddedToBoard.classList.remove(`d-none`);
     taskAddedToBoard.classList.remove(`task-added-to-board-hide`);
@@ -176,7 +178,7 @@ function newTask() {
     taskId = highestTaskId + 1;
   
     clearTaskMask();
-    let task = createJsonTask(title, description, category, subtasks, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId);
+    let task = createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId);
     getElement('tasks');
     firstName = [];
     lastName = [];
@@ -445,6 +447,11 @@ function markColor() {
   }
 }
 
-
+function deleteSubtask(id, taskId){
+  subtasks.splice(id, 1);
+  openAddTask(taskId);
+  renderSubtasks();
+ 
+}
 
 
