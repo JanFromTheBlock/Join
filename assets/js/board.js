@@ -101,7 +101,7 @@ function renderTaskBody(id) {
         <div id="task-category${id}" class="task-category">${tasks[id]["category"]}</div>
         <div id="task-title${id}">${tasks[id]["title"]}</div>
         <div id="task-description${id}">${tasks[id]["description"]}</div>
-        <div class = "progress-bar d-none" id="progress-bar${id}"><div id="progress-bar-outside"><div class="progress-bar-inside" id="progress-bar-inside${id}"></div></div><span id="subtask${id}"></span></div>
+        <div class = "progress-bar d-none" id="progress-bar${id}"><div id="progress-bar-outside"><div class="progress-bar-inside" id="progress-bar-inside${id}"></div></div><span id="windowSubtask${id}"></span></div>
         <div class="d-none" id="editSubtaskSmall${id}">${editSubtasks}</div>
         <div id="task-footer">
             <div class="contact-area" id="contact-area${id}"></div>
@@ -140,7 +140,7 @@ function renderSubtasks(id, doneSubtask) {
   }
     let percent = (b / a) * 100; // Prozentanteil erledigter aufgaben wird berechnet
     docID("progress-bar" + id).classList.remove("d-none"); //der progress-bar wird das d-none entfernt und sie wird sichtbar
-    docID("subtask" + id).innerHTML = /*html*/ `
+    docID("windowSubtask" + id).innerHTML = /*html*/ `
             ${b}/${a} subtasks
         `; // die Anzahl an subtass wird neben die progress-bar gerendert
     docID("progress-bar-inside" + id).style.width = `${percent}%`; //der Prozentanteil erledigter Aufgaben wird als Füllmenge für die progress-bar verwnedet
@@ -528,7 +528,6 @@ function safeContactsInTask() {
 
 function doneSubtask(id){
   doneSubtaskClicked = true;
-  let subtaskCheckbox = document.getElementById(`subtaskCheckbox${id}`);
   let doneSubtask = tasks[id]["done-tasks"];
   doneSubtask ++;
   renderSubtasks(id, doneSubtask);
