@@ -287,7 +287,7 @@ async function renderStructureOfTheWindow(taskId, IdOfTask, subtask, editLabelsS
 function addColorOfTheCategory(id) {
   //Hintergrundfarbe der Kategorie wird angepasst
   let color = tasks[id]["category-color"];
-  /* docID("window-category").style.backgroundColor = color;  auskommentiert, da Fehlermedung*/
+  docID("window-category" + id).style.backgroundColor = color;
 }
 
 function renderPriorityToTheWindow(id) {
@@ -363,7 +363,7 @@ function changeDeleteImage(isHovering) {
 
 // öffnet AddTask
 
-function openAddTask(IdOfTask, id) {
+function openAddTask(IdOfTask) {
   let addTaskUnder = document.getElementById(`addTask`);
   let backgroundBoard = document.getElementById(`board`);
   let backgroundNav = document.getElementById(`nav`);
@@ -430,7 +430,7 @@ function openAddTask(IdOfTask, id) {
     for (let subtaskToLoad = 0; subtaskToLoad < jsonToEdit.subtasks.length; subtaskToLoad++) {
       const element = jsonToEdit.subtasks[subtaskToLoad];
       document.getElementById(`inputSubtask`).value = element;
-      showSubtasks(id);
+      showSubtasks(subtaskToLoad);
     }
     docID('addTaskButtonToBoard').innerHTML = "Edit Task";
     edit = true;
@@ -485,6 +485,8 @@ function safeEditedTask() {
   jsonToEdit.title = docID('inputFieldTitle').value;
   jsonToEdit.date = docID('inputDate').value;
   jsonToEdit.category = docID('selectCategory').value; // speichert neue Category
+  jsonToEdit["category-color"] = categoryColor;
+  jsonToEdit.categoryId = categoryId;
   jsonToEdit.description = docID('description').value;
   jsonToEdit.urgency = urgency;
  

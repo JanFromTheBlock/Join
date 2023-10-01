@@ -41,10 +41,10 @@ function showSubtasks(id) {
   subtaskArea.classList.remove(`d-none`);
   subtasks.push(inputSubtask);
   subtaskArea.innerHTML += /*html*/ `
-  <div class="subTaskArea">
+  <div id = "subtask${id}" class="subTaskArea">
     <input class="cursor-pointer" type="checkbox">
     <label id="labelForSubtask${id}">${inputSubtask}</label>
-    <img onclick="deleteSubtask(id)" src="./assets/img/delete_contact.png">
+    <img onclick="deleteSubtask(${id})" src="./assets/img/delete_contact.png">
   </div>
   `;
   
@@ -447,6 +447,7 @@ function markColor() {
 
 function deleteSubtask(id, taskId){
   subtasks.splice(id, 1);
+  docID("subtask" + id).classList.add('d-none')
   openAddTask(taskId);
   renderSubtasks();
 }
