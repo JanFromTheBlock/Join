@@ -388,17 +388,18 @@ function openAddTask(IdOfTask, id) {
   backgroundNav.classList.remove(`full-opacity`);
 
   //Wenn IdOfTask mitgegeben wird, handelt es sich um EditTask und dann wird der folgende Code noch extra ausgeführt
+  
   if (typeof IdOfTask !== 'undefined') {
     findJSON(IdOfTask, tasks);
 
     docID("add-edit-task").innerHTML = "Edit Task"
-
     docID('inputFieldTitle').value = jsonToEdit.title;
     docID('inputDate').value = jsonToEdit.date;
-
+    docID('selectCategory').value = jsonToEdit.category
+    
     showCategories();
     docID('savedCategory' + jsonToEdit.categoryId).click();
-
+    
     let priority = jsonToEdit.urgency
     if (priority === "./assets/img/urgentLogo.png") {
       docID('urgent').click();
@@ -431,14 +432,8 @@ function openAddTask(IdOfTask, id) {
       document.getElementById(`inputSubtask`).value = element;
       showSubtasks(id);
     }
-
-
     docID('addTaskButtonToBoard').innerHTML = "Edit Task";
     edit = true;
-
-
-
-
   }
 
 }
@@ -489,8 +484,10 @@ function closeAddTaskToBoard() {
 function safeEditedTask() {
   jsonToEdit.title = docID('inputFieldTitle').value;
   jsonToEdit.date = docID('inputDate').value;
+  jsonToEdit.category = docID('selectCategory').value; // speichert neue Category
   jsonToEdit.description = docID('description').value;
   jsonToEdit.urgency = urgency;
+ 
   safeContactsInTask();
 
   jsonToEdit.contactid = contactIds;
@@ -504,6 +501,7 @@ function safeEditedTask() {
   addBoardInit();
   closeAddTaskToBoard();
 }
+
 function safeContactsInTask() {
   for (let i = 0; i < numberOfContactsToAdd.length; i++) {
     let contactDiv = numberOfContactsToAdd[i];

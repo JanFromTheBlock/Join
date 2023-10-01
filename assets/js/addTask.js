@@ -199,10 +199,8 @@ function newTask() {
         highestTaskId = task.taskId;
       }
     }
-  
     return highestTaskId;
   }
-
 }
 
 function clearTaskMask() {
@@ -451,7 +449,6 @@ function deleteSubtask(id, taskId){
   subtasks.splice(id, 1);
   openAddTask(taskId);
   renderSubtasks();
- 
 }
 
 
