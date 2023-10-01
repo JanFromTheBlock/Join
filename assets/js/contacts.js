@@ -58,7 +58,6 @@ function renderContacts() {
         contact.innerHTML = '';
         // Durchlaufe alle Kontakte für den aktuellen Buchstaben
         for (let id = 0; id < element.length; id++) {
-            NumberofContacts++;
             colorIndex++;
             if (colorIndex === 8) {
                 colorIndex = 0;
@@ -76,17 +75,20 @@ function renderContacts() {
             let mail = element[id].mail;
             let color = element[id].color;
             let contactId = element[id].contactId;
+            if (contactId > NumberofContacts) {
+                NumberofContacts = contactId;
+            }
             let display = element[id];
             contact.innerHTML += /*html*/`
                 <div class="contact" id="contact${contactId}" onclick="onclickContact(${contactId}); renderContactDisplay('${encodeURIComponent(JSON.stringify(display))}')">
-                    <div class="contact-sign" id="contact-sign${NumberofContacts}">${initials}</div>
+                    <div class="contact-sign" id="contact-sign${contactId}">${initials}</div>
                     <div id="contact-data">
                         <div id="name">${name}</div>
                         <div id="mail">${mail}</div>
                     </div>
                 </div>
             `;
-            docID('contact-sign' + NumberofContacts).style.backgroundColor = color;
+            docID('contact-sign' + contactId).style.backgroundColor = color;
         }
     }
 }
