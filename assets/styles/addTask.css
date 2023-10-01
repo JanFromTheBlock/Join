@@ -483,7 +483,7 @@ input[type="date"]::placeholder {
 .add-task-to-board {
   background-color: white;
   padding-left: 40px;
-  width: 450px;
+  width: 467px;
   z-index: 3;
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
@@ -491,7 +491,7 @@ input[type="date"]::placeholder {
   position: absolute;
   flex-direction: column;
   top: 0;
-  right: 0;
+  left: 20%;
   transition: right 325ms ease-out;
   height: 100vh;
   overflow-y: scroll;
@@ -588,7 +588,6 @@ input[type="date"]::placeholder {
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
   box-shadow: -2px 2px 7px -6px;
-  position: absolute;
   flex-direction: column;
   top: 0;
   right: 290px;

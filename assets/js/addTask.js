@@ -42,7 +42,7 @@ function showSubtasks(id) {
   subtasks.push(inputSubtask);
   subtaskArea.innerHTML += /*html*/ `
   <div id = "subtask${id}" class="subTaskArea">
-    <input class="cursor-pointer" type="checkbox">
+    <input onclick="doneSubtask(${id})" id="subtaskCheckbox${id}" class="cursor-pointer" type="checkbox">
     <label id="labelForSubtask${id}">${inputSubtask}</label>
     <img onclick="deleteSubtask(${id})" src="./assets/img/delete_contact.png">
   </div>
@@ -159,6 +159,8 @@ function newTask() {
     let description = document.getElementById(`description`).value;
     let subtasksLength = subtasks.length;
     let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
+    let boardBody = document.getElementById(`boardBody`);
+    boardBody.style.backgroundAttachment = "scroll";
     taskAddedToBoard.classList.remove(`d-none`);
     taskAddedToBoard.classList.remove(`task-added-to-board-hide`);
     taskAddedToBoard.classList.add(`task-added-to-board`);

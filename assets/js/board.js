@@ -4,6 +4,7 @@ let currentDraggedElement; // In dieser Variable wird die id der gedraggten Task
 let openedTask;
 let jsonToEdit;
 let edit = false;
+let doneSubtaskClicked = false;
 
 function addBoardRender() {
   console.log("addBoardRender is called");
@@ -126,13 +127,17 @@ function moveTo(progress) {
   addBoardRender(); // anschließend muss alles neu gerendert werden, damit die Änderungen geladen werden
 }
 
-function renderSubtasks(id) {
+function renderSubtasks(id, doneSubtask) {
   let subtasksLength = tasks[id]["subtasksLength"]; // Subtaskslänge beim erstellen der Task
   let lengthOfSubtasks = tasks[id]["subtasks"].length; // Länge der Subtasks im jeweiligen Task
   if (subtasksLength > 0) {
     // wenn die Anzahl an Subtasks größer 0 ist dann wird Funktion ausgeführt
     let a = parseInt(lengthOfSubtasks); // Variable a sind die Anzahl an subtasks
     let b = parseInt(tasks[id]["done-tasks"]); // Variable b sind die Anzahl erledigter subtasks
+
+    if(doneSubtaskClicked == true){
+    b = doneSubtask;
+  }
     let percent = (b / a) * 100; // Prozentanteil erledigter aufgaben wird berechnet
     docID("progress-bar" + id).classList.remove("d-none"); //der progress-bar wird das d-none entfernt und sie wird sichtbar
     docID("subtask" + id).innerHTML = /*html*/ `
@@ -371,6 +376,8 @@ function openAddTask(IdOfTask) {
   let boardBody = document.getElementById(`boardBody`);
   let board = document.getElementById(`board`);
   let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
+  boardBody.style.backgroundAttachment = "fixed";
+  boardBody.style.overflow = "hidden";
   addTaskUnder.classList.remove(`d-none`);
   setTimeout(() => {
     addTaskButtonToBoard.classList.remove(`d-none`);
@@ -380,7 +387,7 @@ function openAddTask(IdOfTask) {
   boardBody.classList.remove(`overflow-hidden`);
   board.classList.add(`overflowY`);
   backgroundBoard.classList.add(`decrease-opacity`);
-  backgroundBoard.style.position = "fixed";
+ 
   backgroundHeader.classList.add(`decrease-opacity`);
   backgroundNav.classList.add(`decrease-opacity`);
   backgroundBoard.classList.remove(`full-opacity`);
@@ -454,6 +461,8 @@ function closeAddTaskToBoard() {
   let backgroundNav = document.getElementById(`nav`);
   let backgroundHeader = document.getElementById(`header`);
   let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
+  boardBody.style.backgroundAttachment = "initial";
+  boardBody.style.overflow = "visible";
   addTaskButtonToBoard.classList.add(`d-none`);
   board.classList.remove(`overflowY`);
   addTask.classList.add(`add-task-to-board-hide`);
@@ -517,3 +526,10 @@ function safeContactsInTask() {
   }
 }
 
+function doneSubtask(id){
+  doneSubtaskClicked = true;
+  let subtaskCheckbox = document.getElementById(`subtaskCheckbox${id}`);
+  let doneSubtask = tasks[id]["done-tasks"];
+  doneSubtask ++;
+  renderSubtasks(id, doneSubtask);
+}
