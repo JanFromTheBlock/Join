@@ -128,7 +128,7 @@ function moveTo(progress) {
 
 function renderSubtasks(id) {
   let subtasksLength = tasks[id]["subtasksLength"]; // Subtaskslänge beim erstellen der Task
-  let lengthOfSubtasks = subtasks.length; // Länge der Subtasks im jeweiligen Task
+  let lengthOfSubtasks = tasks[id]["subtasks"].length; // Länge der Subtasks im jeweiligen Task
   if (subtasksLength > 0) {
     // wenn die Anzahl an Subtasks größer 0 ist dann wird Funktion ausgeführt
     let a = parseInt(lengthOfSubtasks); // Variable a sind die Anzahl an subtasks
@@ -396,7 +396,7 @@ function openAddTask(IdOfTask, id) {
     docID('inputFieldTitle').value = jsonToEdit.title;
     docID('inputDate').value = jsonToEdit.date;
     docID('selectCategory').value = jsonToEdit.category
-    
+
     showCategories();
     docID('savedCategory' + jsonToEdit.categoryId).click();
     
