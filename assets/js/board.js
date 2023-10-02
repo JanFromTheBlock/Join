@@ -131,6 +131,9 @@ function moveTo(progress) {
 function renderSubtasks(id, doneSubtask) {
   let subtasksLength = tasks[id]["subtasksLength"]; // Subtaskslänge beim erstellen der Task
   let lengthOfSubtasks = tasks[id]["subtasks"].length; // Länge der Subtasks im jeweiligen Task
+  if(edit == false){
+    subtasksLength = lengthOfSubtasks;
+  }
   if (subtasksLength > 0) {
     // wenn die Anzahl an Subtasks größer 0 ist dann wird Funktion ausgeführt
     let a = parseInt(lengthOfSubtasks); // Variable a sind die Anzahl an subtasks
@@ -493,6 +496,7 @@ function closeAddTaskToBoard() {
 }
 
 function safeEditedTask() {
+  edit = true;
   jsonToEdit.title = docID('inputFieldTitle').value;
   jsonToEdit.date = docID('inputDate').value;
   jsonToEdit.category = docID('selectCategory').value; // speichert neue Category

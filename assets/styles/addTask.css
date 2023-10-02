@@ -474,7 +474,7 @@ input[type="date"]::placeholder {
 
 .task-added-to-board-hide {
   margin-top: 1000px;
-  margin-left: 40%;
+  margin-left: 9%;
   transition: margin-top 300ms;
 }
 
@@ -495,6 +495,7 @@ input[type="date"]::placeholder {
   transition: right 325ms ease-out;
   height: 100vh;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .add-task-to-board-hide {
@@ -505,7 +506,6 @@ input[type="date"]::placeholder {
 
 .add-task-h2-big {
   font-size: 48px !important;
-  margin-left: 22px;
 }
 
 .add-task-button-create-board {

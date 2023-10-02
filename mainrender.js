@@ -195,6 +195,7 @@ let addTaskButton = document.getElementById(`addTaskButton`);
 if (addBoardInitClicked == true) {
     addTaskButton.classList.add(`d-none`);
     addTaskUnderDiv.style.marginLeft = "-290px";
+    taskAddedToBoard
 }
    
   addContactsToTasks(0);

@@ -159,14 +159,13 @@ function newTask() {
     let description = document.getElementById(`description`).value;
     let subtasksLength = subtasks.length;
     let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
-    let boardBody = document.getElementById(`boardBody`);
-    boardBody.style.backgroundAttachment = "scroll";
+
     taskAddedToBoard.classList.remove(`d-none`);
     taskAddedToBoard.classList.remove(`task-added-to-board-hide`);
     taskAddedToBoard.classList.add(`task-added-to-board`);
   
     setTimeout(() => {
-      taskAddedToBoard.classList.add(`task-added-to-board-hide`);
+     
       window.location.href = "./board.html"; // springt nachdem AddTask gerendert wurde auf die BoardSeite
       closeAddTaskToBoard();
     }, 2000);
