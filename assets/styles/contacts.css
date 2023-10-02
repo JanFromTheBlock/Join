@@ -69,6 +69,7 @@
 #line {
     width: 356px;
     height: 1px;
+    min-height: 1px;
     background-color: #D1D1D1;
     margin: 8px 0;
 }
