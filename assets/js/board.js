@@ -109,7 +109,7 @@ function emptyTaskDivs() {
 function renderTaskBody(id) {
   let j = tasks[id]["progress"];
   let IdOfTask = tasks[id]["taskId"];
-  let taskBody = docID("tasks" + j);
+  let taskBody = docID("tasks" + j); 
   let prioritySmall = tasks[id]["urgency"];
   editSubtasks = subtasks[id];
   taskBody.innerHTML += /*html*/ `
@@ -401,11 +401,9 @@ function openAddTask(IdOfTask) {
     addTaskButtonToBoard.classList.remove(`d-none`);
     addTaskUnder.classList.remove(`add-task-to-board-hide`);
   }, 100);
-  addTaskUnder.classList.remove(`add-task-to-board-hide`);
   boardBody.classList.remove(`overflow-hidden`);
   board.classList.add(`overflowY`);
   backgroundBoard.classList.add(`decrease-opacity`);
- 
   backgroundHeader.classList.add(`decrease-opacity`);
   backgroundNav.classList.add(`decrease-opacity`);
   backgroundBoard.classList.remove(`full-opacity`);
@@ -547,7 +545,7 @@ function safeContactsInTask() {
   }
 }
 
-function doneSubtask(id){
+  function doneSubtask(id){
   doneSubtaskClicked = true;
   let doneSubtask = tasks[id]["done-tasks"];
   doneSubtask ++;

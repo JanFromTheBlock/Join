@@ -491,7 +491,7 @@ input[type="date"]::placeholder {
   position: absolute;
   flex-direction: column;
   top: 0;
-  left: 20%;
+  right: 0;
   transition: right 325ms ease-out;
   height: 100vh;
   overflow-y: scroll;
