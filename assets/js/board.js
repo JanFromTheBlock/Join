@@ -93,7 +93,7 @@ function emptyTaskDivs() {
 function renderTaskBody(id) {
   let j = tasks[id]["progress"];
   let IdOfTask = tasks[id]["taskId"];
-  let taskBody = docID("tasks" + j);
+  let taskBody = docID("tasks" + j); 
   let prioritySmall = tasks[id]["urgency"];
   editSubtasks = subtasks[id];
   taskBody.innerHTML += /*html*/ `
@@ -530,7 +530,7 @@ function safeContactsInTask() {
   }
 }
 
-function doneSubtask(id){
+  function doneSubtask(id){
   doneSubtaskClicked = true;
   let doneSubtask = tasks[id]["done-tasks"];
   doneSubtask ++;
