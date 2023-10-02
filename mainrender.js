@@ -100,11 +100,11 @@ function activeSite(id) {
 addTaskInitClicked = false;
 addBoardInitClicked = false;
 
-function addTaskRender(id) {
+function addTaskRender() {
 
   let addTask = document.getElementById(`addTask`); 
   addTask.innerHTML = /*html*/ `
-   <form onsubmit="newTask(urgency); return false;">
+   <form onsubmit="newTask(); return false;">
       <div id="addTaskUnderDiv" class="add-task">
         <div id="taskTitle" class="add-task-to-board-title">
            <img onclick="closeAddTaskToBoard()" class="add-task-to-board-close-button" src="./assets/img/close.png">
@@ -172,7 +172,7 @@ function addTaskRender(id) {
                </div>
               <div id="addTaskButton" class="add-task-button">
                 <button onclick="clearTask()" class="add-task-button-clear cursor-pointer">Clear x</button>  
-                <button onclick="newTask(urgency)" class="add-task-button-create cursor-pointer">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
+                <button onclick="newTask()" class="add-task-button-create cursor-pointer">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
              </div>
            </div>
            <button type ="submit" id="addTaskButtonToBoard" class="add-task-button-create-board cursor-pointer">Add Task<img class="add-task-button-img" src="./assets/img/hakenCreateTask.png"></button>

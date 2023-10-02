@@ -5,6 +5,7 @@ let openedTask;
 let jsonToEdit;
 let edit = false;
 let doneSubtaskClicked = false;
+let progress;
 
 function addBoardRender() {
   console.log("addBoardRender is called");
@@ -32,7 +33,7 @@ function addBoardRender() {
             <div ondrop="moveTo('${taskTitle}')" ondragover="allowDrop(event)" class="task-body" id="task-body${index}">
                 <div class="task-body-flex">
                     <span>${taskName}</span>
-                    <img onclick="openAddTask()" id="task-img${index}" src="./assets/img/board_plus.png">
+                    <img onclick="openAddTask(${indexFinal})" id="task-img${index}" src="./assets/img/board_plus.png">
                 </div>
                 <div id="tasks${indexFinal}"></div>
             </div>
@@ -394,9 +395,12 @@ function openAddTask(IdOfTask) {
   backgroundHeader.classList.remove(`full-opacity`);
   backgroundNav.classList.remove(`full-opacity`);
 
-  //Wenn IdOfTask mitgegeben wird, handelt es sich um EditTask und dann wird der folgende Code noch extra ausgeführt
-  
-  if (typeof IdOfTask !== 'undefined') {
+  //Wenn IdOfTask > 3 mitgegeben wird, handelt es sich um EditTask und dann wird der folgende Code noch extra ausgeführt; wenn Wert > 3 ist, dann handelt es sich um addTask und der Wert soll anzeigen, um welchen Bearbeitungsstand es sich handelt (ToDo, in progress, Await feedback)
+  if (IdOfTask < 4) {
+    progress = IdOfTask;
+  }
+
+  if (IdOfTask > 3) {
     findJSON(IdOfTask, tasks);
 
     docID("add-edit-task").innerHTML = "Edit Task"

@@ -128,7 +128,7 @@ function createJsonTask(title, description, category, subtasks, subtasksLength, 
     description: description,
     category: category,
     "category-color": categoryColor,
-    progress: "1",
+    progress: progress,
     subtasksLength: subtasksLength,
     subtasks: subtasks,
     "done-tasks": 0,
@@ -194,7 +194,7 @@ function newTask() {
 
 
   function findHighestId(tasks) {
-    let highestTaskId = 0;
+    let highestTaskId = 3;
   
     for (const task of tasks) {
       if (task.taskId > highestTaskId) {
