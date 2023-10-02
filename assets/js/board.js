@@ -81,6 +81,22 @@ function loadTasks(id) {
     }
   }
   addContactsToTasks(0);
+  findEmptyTaskAreas();
+}
+function findEmptyTaskAreas(){
+  for (let i = 1; i < 5; i++) {
+    const element = docID(`tasks${i}`);
+    p = i - 1;
+    let progressTitle = taskNames[p];
+
+    if (element.childElementCount === 0) {
+      element.innerHTML = /*html*/`
+        <div id = "notask${i}" class = "notasks">No tasks ${progressTitle}</div>
+      `
+    
+    
+  }
+}
 }
 
 function emptyTaskDivs() {
@@ -197,6 +213,7 @@ function filterTasks() {
       }
     }
   }
+  findEmptyTaskAreas();
 }
 
 function clearInput() {
