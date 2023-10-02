@@ -20,7 +20,7 @@ function addBoardRender() {
                 </div>
                 
             </div>
-            <button onclick="openAddTask()" id="board-button">Add Task <span id="board-button-plus">+</span></button>
+            <button onclick="openAddTask(1)" id="board-button">Add Task <span id="board-button-plus">+</span></button>
         </div>
         <div id="task-area"></div>
     `;

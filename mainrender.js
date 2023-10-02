@@ -101,7 +101,7 @@ addTaskInitClicked = false;
 addBoardInitClicked = false;
 
 function addTaskRender() {
-
+  progress = 1;
   let addTask = document.getElementById(`addTask`); 
   addTask.innerHTML = /*html*/ `
    <form onsubmit="newTask(); return false;">
