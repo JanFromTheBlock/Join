@@ -535,6 +535,7 @@ function safeEditedTask() {
   jsonToEdit["contact-lastname"] = lastName;
 
   jsonToEdit.subtasks = subtasks;
+  jsonToEdit['done-tasks'] = doneSubtasks.length;
 
   setElement("tasks", tasks);
   addBoardInit();
