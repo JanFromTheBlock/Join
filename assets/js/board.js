@@ -557,18 +557,19 @@ function safeContactsInTask() {
 let doneSubtasks = [];
 
 function pushDoneSubtask(id, taskId) {
- 
-  const subtaskCheckbox = document.getElementById(`subtaskCheckbox${id}`);
-  const isChecked = subtaskCheckbox.checked; // Überprüfe, ob die Checkbox ausgewählt ist
+  let subtaskCheckbox = document.getElementById(`subtaskCheckbox${id}`);
+  let isChecked = subtaskCheckbox.checked; // Überprüfe, ob die Checkbox ausgewählt ist
 
   // Überprüfe den Status der Checkbox und füge/entferne die Teilaufgabe entsprechend hinzu/entferne
   if (isChecked) {
     id = openedTask;
     let doneSubtask = tasks[id]["done-tasks"];
     doneSubtask++;
-    doneSubtasks.push(taskId);
+    doneSubtasks.push(doneSubtask);
   } else {
     // Entferne die Teilaufgabe mit taskId aus doneSubtasks, wenn sie vorhanden ist
+    id = openedTask;
+    let doneSubtask = tasks[id]["done-tasks"];
     doneSubtask--;
     doneSubtasks.splice(id, 1);
   }
