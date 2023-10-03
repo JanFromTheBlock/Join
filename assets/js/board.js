@@ -41,7 +41,6 @@ function addBoardRender() {
   }
   docID("task-img3").classList.add("d-none"); //bei task-img3 soll das + Symbol nicht angezeigt werden, daher wird die Klasse d-none hinzugefügt
 
-
   addTaskRender();
 
   loadTasks();
@@ -61,9 +60,13 @@ function loadTasks(id) {
     let contactArea = docID("contact-area" + id); //Kontaktbereich in der Task wird gerendert
     contactArea.innerHTML = ``;
     for (let i = 0; i < 1; i++) {
-      for (let index = 0; index < tasks[id]["contact-firstname"].length; index++) {
+      for (
+        let index = 0;
+        index < tasks[id]["contact-firstname"].length;
+        index++
+      ) {
         //for SChleife durch contact-area
-        let firstName = tasks[id]["contact-firstname"][index];; //Variable erhält Vornamen an der Position i
+        let firstName = tasks[id]["contact-firstname"][index]; //Variable erhält Vornamen an der Position i
         let lastName = tasks[id]["contact-lastname"][index]; //Variable erhält Nachnamen an der Position i
         let Initial1 = firstName.charAt(0); //Anfangsbuchstabe Vorname
         let Initial2 = lastName.charAt(0); //Anfangsbuchstabe Nachname
@@ -75,28 +78,24 @@ function loadTasks(id) {
         <span class="contacts" id = "contacts${k}"> ${initialsUpper}</span>
     `;
         docID("contacts" + k).style.backgroundColor = color; //Farbe wird für Kontaksymbol geändert
-
       }
-
     }
   }
   addContactsToTasks(0);
   findEmptyTaskAreas();
 }
-function findEmptyTaskAreas(){
+function findEmptyTaskAreas() {
   for (let i = 1; i < 5; i++) {
     const element = docID(`tasks${i}`);
     p = i - 1;
     let progressTitle = taskNames[p];
 
     if (element.childElementCount === 0) {
-      element.innerHTML = /*html*/`
+      element.innerHTML = /*html*/ `
         <div id = "notask${i}" class = "notasks">No tasks ${progressTitle}</div>
-      `
-    
-    
+      `;
+    }
   }
-}
 }
 
 function emptyTaskDivs() {
@@ -109,7 +108,7 @@ function emptyTaskDivs() {
 function renderTaskBody(id) {
   let j = tasks[id]["progress"];
   let IdOfTask = tasks[id]["taskId"];
-  let taskBody = docID("tasks" + j); 
+  let taskBody = docID("tasks" + j);
   let prioritySmall = tasks[id]["urgency"];
   editSubtasks = subtasks[id];
   taskBody.innerHTML += /*html*/ `
@@ -147,7 +146,7 @@ function moveTo(progress) {
 function renderSubtasks(id, doneSubtask) {
   let subtasksLength = tasks[id]["subtasksLength"]; // Subtaskslänge beim erstellen der Task
   let lengthOfSubtasks = tasks[id]["subtasks"].length; // Länge der Subtasks im jeweiligen Task
-  if(edit == false){
+  if (edit == false) {
     subtasksLength = lengthOfSubtasks;
   }
   if (subtasksLength > 0) {
@@ -155,9 +154,9 @@ function renderSubtasks(id, doneSubtask) {
     let a = parseInt(lengthOfSubtasks); // Variable a sind die Anzahl an subtasks
     let b = parseInt(tasks[id]["done-tasks"]); // Variable b sind die Anzahl erledigter subtasks
 
-    if(doneSubtaskClicked == true){
-    b = doneSubtask;
-  }
+    if (doneSubtaskClicked == true) {
+      b = doneSubtask;
+    }
     let percent = (b / a) * 100; // Prozentanteil erledigter aufgaben wird berechnet
     docID("progress-bar" + id).classList.remove("d-none"); //der progress-bar wird das d-none entfernt und sie wird sichtbar
     docID("windowSubtask" + id).innerHTML = /*html*/ `
@@ -165,7 +164,7 @@ function renderSubtasks(id, doneSubtask) {
         `; // die Anzahl an subtass wird neben die progress-bar gerendert
     docID("progress-bar-inside" + id).style.width = `${percent}%`; //der Prozentanteil erledigter Aufgaben wird als Füllmenge für die progress-bar verwnedet
   }
-  subtasks.splice(id, subtasks.length);  // alle subtasks werden gelöscht, so dass nicht alle in allen Tasks angezeigt werden
+  subtasks.splice(id, subtasks.length); // alle subtasks werden gelöscht, so dass nicht alle in allen Tasks angezeigt werden
 }
 
 function renderUrgencySymbol(id) {
@@ -238,7 +237,7 @@ function openWindow(event, id, IdOfTask) {
   event.stopPropagation(); // Funktion sorgt dafür, dass das Window nicht geschlossen wird, wenn man auf den onclick-Button drückt
   window.scrollTo(0, 0); // wenn Fenster geöffnet wird, wird nach oben gescrollt
   renderWindow(id, IdOfTask); // das Window wird mit seinen Inhalten gerendert
-  openedTask = id
+  openedTask = id;
 }
 
 function closeWindow() {
@@ -260,13 +259,18 @@ function renderWindow(id, IdOfTask) {
 
 saveChangedTask = false;
 
-async function renderStructureOfTheWindow(taskId, IdOfTask, subtask, editLabelsSubtasks) {
+async function renderStructureOfTheWindow(
+  taskId,
+  IdOfTask,
+  subtask,
+  editLabelsSubtasks
+) {
   if (saveChangedTask == true) {
   }
   if (!saveChangedTask == true) {
     subtask = null;
   }
-  let subtaskHTML = '';
+  let subtaskHTML = "";
   let taskWindow = docID("task-window");
   let prioritySmall = tasks[taskId]["urgency"];
   let priority = prioritySmall.charAt(0).toUpperCase() + prioritySmall.slice(1);
@@ -277,11 +281,11 @@ async function renderStructureOfTheWindow(taskId, IdOfTask, subtask, editLabelsS
   if (subtask !== null) {
     subtask = editLabelsSubtasks;
     subtasks.push(subtask);
-    subtasks = subtasks.filter(item => item !== undefined);
+    subtasks = subtasks.filter((item) => item !== undefined);
   }
   for (let subtaskIndex = 0; subtaskIndex < subtasks.length; subtaskIndex++) {
     let subtask = subtasks[subtaskIndex];
-    subtaskHTML +=  /*html*/`
+    subtaskHTML += /*html*/ `
                 <div id="editSubtask${subtaskIndex}">${subtask}</div> 
       `;
   }
@@ -386,7 +390,6 @@ function changeDeleteImage(isHovering) {
   }
 }
 
-
 // öffnet AddTask
 
 function openAddTask(IdOfTask) {
@@ -421,28 +424,28 @@ function openAddTask(IdOfTask) {
   if (IdOfTask > 3) {
     findJSON(IdOfTask, tasks);
 
-    docID("add-edit-task").innerHTML = "Edit Task"
-    docID('inputFieldTitle').value = jsonToEdit.title;
-    docID('inputDate').value = jsonToEdit.date;
-    docID('selectCategory').value = jsonToEdit.category
+    docID("add-edit-task").innerHTML = "Edit Task";
+    docID("inputFieldTitle").value = jsonToEdit.title;
+    docID("inputDate").value = jsonToEdit.date;
+    docID("selectCategory").value = jsonToEdit.category;
 
     showCategories();
-    docID('savedCategory' + jsonToEdit.categoryId).click();
-    
-    let priority = jsonToEdit.urgency
+    docID("savedCategory" + jsonToEdit.categoryId).click();
+
+    let priority = jsonToEdit.urgency;
     if (priority === "./assets/img/urgentLogo.png") {
-      docID('urgent').click();
-    };
+      docID("urgent").click();
+    }
     if (priority === "./assets/img/mediumLogo.png") {
-      docID('medium').click();
-    };
+      docID("medium").click();
+    }
     if (priority === "./assets/img/lowLogo.png") {
-      docID('low').click();
-    };
+      docID("low").click();
+    }
 
-    docID('description').value = jsonToEdit.description;
+    docID("description").value = jsonToEdit.description;
 
-    docID('selectContact').click();
+    docID("selectContact").click();
     index = jsonToEdit.contactid;
     for (let i = 0; i < index.length; i++) {
       const elementId = `0and${index[i]}`; // Die ID des aktuellen Elements
@@ -454,17 +457,20 @@ function openAddTask(IdOfTask) {
         element.click();
       }
     }
-    docID('selectContact').click();
+    docID("selectContact").click();
 
-    for (let subtaskToLoad = 0; subtaskToLoad < jsonToEdit.subtasks.length; subtaskToLoad++) {
+    for (
+      let subtaskToLoad = 0;
+      subtaskToLoad < jsonToEdit.subtasks.length;
+      subtaskToLoad++
+    ) {
       const element = jsonToEdit.subtasks[subtaskToLoad];
       document.getElementById(`inputSubtask`).value = element;
       showSubtasks(subtaskToLoad);
     }
-    docID('addTaskButtonToBoard').innerHTML = "Edit Task";
+    docID("addTaskButtonToBoard").innerHTML = "Edit Task";
     edit = true;
   }
-
 }
 
 function findJSON(IdOfTask, tasks) {
@@ -498,9 +504,7 @@ function closeAddTaskToBoard() {
   backgroundHeader.classList.remove(`decrease-opacity`);
   backgroundNav.classList.remove(`decrease-opacity`);
 
-
-
-  contactStatusMap.clear()
+  contactStatusMap.clear();
   numberOfContactsToAdd = [];
   numberOfColorsToAdd = [];
   numberOfIdsToAdd = [];
@@ -514,24 +518,24 @@ function closeAddTaskToBoard() {
 
 function safeEditedTask() {
   edit = true;
-  jsonToEdit.title = docID('inputFieldTitle').value;
-  jsonToEdit.date = docID('inputDate').value;
-  jsonToEdit.category = docID('selectCategory').value; // speichert neue Category
+  jsonToEdit.title = docID("inputFieldTitle").value;
+  jsonToEdit.date = docID("inputDate").value;
+  jsonToEdit.category = docID("selectCategory").value; // speichert neue Category
   jsonToEdit["category-color"] = categoryColor;
   jsonToEdit.categoryId = categoryId;
-  jsonToEdit.description = docID('description').value;
+  jsonToEdit.description = docID("description").value;
   jsonToEdit.urgency = urgency;
- 
+
   safeContactsInTask();
 
   jsonToEdit.contactid = contactIds;
-  jsonToEdit['contact-color'] = contactcolors;
-  jsonToEdit['contact-firstname'] = firstName;
-  jsonToEdit['contact-lastname'] = lastName;
+  jsonToEdit["contact-color"] = contactcolors;
+  jsonToEdit["contact-firstname"] = firstName;
+  jsonToEdit["contact-lastname"] = lastName;
 
   jsonToEdit.subtasks = subtasks;
 
-  setElement('tasks', tasks);
+  setElement("tasks", tasks);
   addBoardInit();
   closeAddTaskToBoard();
 }
@@ -539,7 +543,7 @@ function safeEditedTask() {
 function safeContactsInTask() {
   for (let i = 0; i < numberOfContactsToAdd.length; i++) {
     let contactDiv = numberOfContactsToAdd[i];
-    const [firstNames, lastNames] = contactDiv.split(' ');
+    const [firstNames, lastNames] = contactDiv.split(" ");
     const contactcolor = numberOfColorsToAdd[i];
     const contactid = numberOfIdsToAdd[i];
     firstName.push(firstNames);
@@ -549,9 +553,12 @@ function safeContactsInTask() {
   }
 }
 
-  function doneSubtask(id){
+function doneSubtask(id, taskId) {
+  id = openedTask;
+  taskId = tasks[id]["taskId"];
   doneSubtaskClicked = true;
+  edit = false;
   let doneSubtask = tasks[id]["done-tasks"];
-  doneSubtask ++;
+  doneSubtask++;
   renderSubtasks(id, doneSubtask);
 }

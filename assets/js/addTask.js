@@ -35,7 +35,7 @@ let categoryId;
 let editLabelsSubtasks;
 edit = false;
 
-function showSubtasks(id) {
+function showSubtasks(id, taskId) {
   let subtaskArea = document.getElementById(`subTaskArea`);
   let inputSubtask = document.getElementById(`inputSubtask`).value;
   subtaskArea.classList.remove(`d-none`);
