@@ -557,16 +557,28 @@ let doneSubtasks = [];
 
 function pushDoneSubtask(id, taskId) {
   let doneSubtask = tasks[id]["done-tasks"];
-  doneSubtasks.push(doneSubtask);
+  const subtaskCheckbox = document.getElementById(`subtaskCheckbox${id}`);
+  const isChecked = subtaskCheckbox.checked; // Überprüfe, ob die Checkbox ausgewählt ist
+
+  // Überprüfe den Status der Checkbox und füge/entferne die Teilaufgabe entsprechend hinzu/entferne
+  if (isChecked) {
+    let doneSubtask = tasks[id]["done-tasks"];
+    doneSubtask++;
+    doneSubtasks.push(taskId);
+  } else {
+    // Entferne die Teilaufgabe mit taskId aus doneSubtasks, wenn sie vorhanden ist
+    doneSubtask--;
+    doneSubtasks.splice(id, 1);
+  }
+
   id = openedTask;
   taskId = tasks[id]["taskId"];
   doneSubtaskClicked = true;
   edit = false;
-  showDoneSubtask(id, doneSubtask);
+  showDoneSubtask(id);
 }
 
-function showDoneSubtask(id, doneSubtask) {
+function showDoneSubtask(id, doneSubtaskLength) {
   doneSubtaskLength = doneSubtasks.length;
-  doneSubtask++;
   renderSubtasks(id, doneSubtaskLength);
 }
