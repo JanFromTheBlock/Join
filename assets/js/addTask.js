@@ -42,7 +42,7 @@ function showSubtasks(id, taskId) {
   subtasks.push(inputSubtask);
   subtaskArea.innerHTML += /*html*/ `
   <div id = "subtask${id}" class="subTaskArea">
-    <input onclick="doneSubtask(${id})" id="subtaskCheckbox${id}" class="cursor-pointer" type="checkbox">
+    <input onclick=" pushDoneSubtask(${id})" id="subtaskCheckbox${id}" class="cursor-pointer" type="checkbox">
     <label id="labelForSubtask${id}">${inputSubtask}</label>
     <img onclick="deleteSubtask(${id})" src="./assets/img/delete_contact.png">
   </div>

@@ -553,12 +553,20 @@ function safeContactsInTask() {
   }
 }
 
-function doneSubtask(id, taskId) {
+let doneSubtasks = [];
+
+function pushDoneSubtask(id, taskId) {
+  let doneSubtask = tasks[id]["done-tasks"];
+  doneSubtasks.push(doneSubtask);
   id = openedTask;
   taskId = tasks[id]["taskId"];
   doneSubtaskClicked = true;
   edit = false;
-  let doneSubtask = tasks[id]["done-tasks"];
+  showDoneSubtask(id, doneSubtask);
+}
+
+function showDoneSubtask(id, doneSubtask) {
+  doneSubtaskLength = doneSubtasks.length;
   doneSubtask++;
-  renderSubtasks(id, doneSubtask);
+  renderSubtasks(id, doneSubtaskLength);
 }
