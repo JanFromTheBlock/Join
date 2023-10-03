@@ -165,6 +165,7 @@ function renderSubtasks(id, doneSubtask) {
     docID("progress-bar-inside" + id).style.width = `${percent}%`; //der Prozentanteil erledigter Aufgaben wird als Füllmenge für die progress-bar verwnedet
   }
   subtasks.splice(id, subtasks.length); // alle subtasks werden gelöscht, so dass nicht alle in allen Tasks angezeigt werden
+ 
 }
 
 function renderUrgencySymbol(id) {
@@ -556,12 +557,13 @@ function safeContactsInTask() {
 let doneSubtasks = [];
 
 function pushDoneSubtask(id, taskId) {
-  let doneSubtask = tasks[id]["done-tasks"];
+ 
   const subtaskCheckbox = document.getElementById(`subtaskCheckbox${id}`);
   const isChecked = subtaskCheckbox.checked; // Überprüfe, ob die Checkbox ausgewählt ist
 
   // Überprüfe den Status der Checkbox und füge/entferne die Teilaufgabe entsprechend hinzu/entferne
   if (isChecked) {
+    id = openedTask;
     let doneSubtask = tasks[id]["done-tasks"];
     doneSubtask++;
     doneSubtasks.push(taskId);
@@ -570,11 +572,11 @@ function pushDoneSubtask(id, taskId) {
     doneSubtask--;
     doneSubtasks.splice(id, 1);
   }
-
-  id = openedTask;
+  
   taskId = tasks[id]["taskId"];
   doneSubtaskClicked = true;
   edit = false;
+
   showDoneSubtask(id);
 }
 
