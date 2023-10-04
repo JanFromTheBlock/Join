@@ -178,12 +178,13 @@ function addNewContact() {
 }
 
 function cancelNewContact() {
-    docID('background-add-contact').classList.add('d-none')
+    
 
     let addTask = document.getElementById(`add-contact-mask`);
     addTask.classList.add(`open-add-contact-hide`);
     setTimeout(() => {
         addTask.classList.add(`d-none`);
+        docID('background-add-contact').classList.add('d-none')
     }, 325);
     document.getElementById(`contact-name`).value = '';
     document.getElementById(`contact-mail`).value = '';

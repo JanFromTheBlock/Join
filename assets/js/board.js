@@ -115,7 +115,7 @@ function renderTaskBody(id) {
                     
     <div draggable="true" ondragstart="startDragging(${id})" onclick="openWindow(event, ${id}, ${IdOfTask})" id="task${id}" class="task-decoration">
         <div id="task-category${id}" class="task-category">${tasks[id]["category"]}</div>
-        <div id="task-title${id}">${tasks[id]["title"]}</div>
+        <div class="task-title" id="task-title${id}">${tasks[id]["title"]}</div>
         <div id="task-description${id}">${tasks[id]["description"]}</div>
         <div class = "progress-bar d-none" id="progress-bar${id}"><div id="progress-bar-outside"><div class="progress-bar-inside" id="progress-bar-inside${id}"></div></div><span id="windowSubtask${id}"></span></div>
         <div class="d-none" id="editSubtaskSmall${id}">${editSubtasks}</div>
