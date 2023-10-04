@@ -160,7 +160,7 @@ function renderSubtasks(id, doneSubtask) {
     let percent = (b / a) * 100; // Prozentanteil erledigter aufgaben wird berechnet
     docID("progress-bar" + id).classList.remove("d-none"); //der progress-bar wird das d-none entfernt und sie wird sichtbar
     docID("windowSubtask" + id).innerHTML = /*html*/ `
-            ${b}/${a} subtasks
+            ${b}/${a} Subtasks
         `; // die Anzahl an subtass wird neben die progress-bar gerendert
     docID("progress-bar-inside" + id).style.width = `${percent}%`; //der Prozentanteil erledigter Aufgaben wird als Füllmenge für die progress-bar verwnedet
   }
