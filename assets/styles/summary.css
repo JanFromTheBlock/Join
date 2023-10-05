@@ -547,7 +547,7 @@
   .summary {
   margin-left: 10px;
   margin-right: 10px;
-  margin-top: 25px;
+
 }
 #summary-con{
   width: unset;
@@ -608,6 +608,10 @@
   #urgency-summary{
     padding-left: 10px !important;
     gap: 20px;
+  }
+  #urgent-date-screen-date{
+    font-size: 24px;
+
   }
 
 }

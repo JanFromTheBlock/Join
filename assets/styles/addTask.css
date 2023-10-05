@@ -649,14 +649,14 @@ input[type="date"]::placeholder {
 
 @media (max-width: 1150px) {
   .add-task {
-    left: 70%;
+    left: 53%;
     margin-left: -230px;
   }
 }
 
 @media (max-width: 600px) {
   .add-task {
-    width: 300px;
+    width: 290px;
     margin-left: -150px;
   }
   .add-task-title{

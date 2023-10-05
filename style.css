@@ -229,10 +229,32 @@ header {
 
 @media (max-width: 450px){
   #menu-responsive{
-  left: 48%;
-  margin-left: -44.5%;
+  left: 53%;
+  margin-left: -40.5%;
   }
   .button-responsive{
     padding: 0;
+  }
+}
+
+  @media (max-width: 380px){
+  #menu-responsive{
+    left: 48%
+  }
+  
+ #summary-responsive {
+    height: 64px;
+  }
+
+  #board-responsive {
+    height: 64px;
+  }
+
+  #add-task-responsive {
+    height: 64px;
+  }
+
+  #contacts-responsive {
+    height: 64px;
   }
 }
