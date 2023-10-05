@@ -180,6 +180,13 @@
   font-size: 16px;
 }
 
+#contact-name {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 16px;
+}
+
 #contact-phone {
   display: flex;
   flex-direction: column;
@@ -478,7 +485,15 @@
     width: 400px;
   }
 
+  #edit-contact-mask {
+    width: 400px;
+  }
+
   #add-contact-subtitle {
+    font-size: 24px;
+  }
+
+  #edit-contact-subtitle {
     font-size: 24px;
   }
 
@@ -502,28 +517,41 @@
 }
 
 @media (max-width: 400px) {
-#add-contact-title{
+  #add-contact-title {
     font-size: 40px;
-}
+  }
 
-#add-contact-subtitle{
+  #edit-contact-title {
+    font-size: 40px;
+  }
+
+  #add-contact-subtitle {
     font-size: 18px;
-}
+  }
 
-#contact-create{
+  #edit-contact-subtitle {
+    font-size: 18px;
+  }
+
+  #contact-create {
     font-size: 19px;
     padding: 6px;
-}
+  }
 
-#contact-cancel{
+  #contact-cancel {
     font-size: 19px;
-}
+  }
 
   #add-contact-mask {
+    width: 320px;
+  }
+
+  #edit-contact-mask {
     width: 320px;
   }
 
   .input-outside {
     width: 240px;
   }
+
 }
