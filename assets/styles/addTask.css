@@ -649,7 +649,6 @@ input[type="date"]::placeholder {
 
 @media (max-width: 1150px) {
   .add-task {
-    left: 53%;
     margin-left: -230px;
   }
 }
@@ -657,11 +656,12 @@ input[type="date"]::placeholder {
 @media (max-width: 600px) {
   .add-task {
     width: 290px;
-    margin-left: -150px;
+    margin-right: 100px;
+    padding-left: 10px;
   }
   .add-task-title{
     width: 260px;
-    margin-top: 35px;
+    margin-top: -15px!important;
   }
   .add-task-select-contact{
     width: 260px;
@@ -682,5 +682,27 @@ input[type="date"]::placeholder {
   }
   .add-task-subtask{
     width: 260px;
+  }
+  .add-task-to-board-close-button{
+    margin-left: 270px;
+  }
+  .add-task-to-board{
+    width: 300px;
+    padding-left: 55px;
+  }
+  .add-task-select-contact-edit img{
+    margin-right: 125px!important;
+  }
+  .add-task-button-create-board{
+    margin-left: 46px;
+  }
+  #inputFieldTitle{
+    font-size: 35px;
+  }
+}
+
+@media (max-width: 450px) {
+  .add-task {
+    margin-left: -313px;
   }
 }

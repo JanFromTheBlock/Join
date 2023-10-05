@@ -435,123 +435,84 @@
 }
 
 @media (max-width: 1150px) {
-  #contact-list {
-    margin-left: 0;
+    #contact-list {
+      margin-left: 0;
+    }
+  
+    #contact-display {
+      margin-left: 0;
+      left: 600px;
+    }
   }
-
-  #contact-display {
-    margin-left: 0;
-    left: 600px;
+  
+  @media (max-width: 1000px) {
+    #contact-display {
+      margin-left: 0;
+      left: 500px;
+    }
   }
-}
-
-@media (max-width: 1000px) {
-  #contact-display {
-    margin-left: 0;
-    left: 500px;
+  
+  @media (min-width: 900px) {
+    #background-responsive {
+      display: none !important;
+    }
   }
-}
-
-@media (min-width: 900px) {
-  #background-responsive {
-    display: none !important;
+  
+  @media (max-width: 900px) {
+    #contacts-outside {
+      justify-content: center;
+    }
+  
+    #contact-list {
+      box-shadow: 4px 0px 6px 0px #00000014, -4px 0px 6px 0px #00000014;
+    }
+    #contact-display {
+      left: 50%;
+      margin-left: -162px;
+      z-index: 99;
+    }
+    #back-arrow {
+      display: block;
+    }
   }
-}
-
-@media (max-width: 900px) {
-  #contacts-outside {
-    justify-content: center;
+  
+  @media (max-width: 600px) {
+    #add-contact {
+      width: 290px;
+    }
+  
+    #add-contact-mask {
+      width: 400px;
+    }
+  
+    #edit-contact-mask {
+      width: 400px;
+    }
+  
+    #add-contact-subtitle {
+      font-size: 24px;
+    }
+  
+    #edit-contact-subtitle {
+      font-size: 24px;
+    }
+  
+    .input-outside {
+      width: 300px;
+    }
+  
+    #contact-column {
+      width: 290px;
+    }
+  
+    #line {
+      width: 290px;
+    }
+    #contact-header {
+      gap: 25px;
+    }
+    #contact-display {
+      margin-left: -142px;
+    }
   }
-
-  #contact-list {
-    box-shadow: 4px 0px 6px 0px #00000014, -4px 0px 6px 0px #00000014;
-  }
-  #contact-display {
-    left: 50%;
-    margin-left: -162px;
-    z-index: 99;
-  }
-  #back-arrow {
-    display: block;
-  }
-}
-
-@media (max-width: 600px) {
-  #add-contact {
-    width: 290px;
-  }
-
-  #add-contact-mask {
-    width: 400px;
-  }
-
-  #edit-contact-mask {
-    width: 400px;
-  }
-
-  #add-contact-subtitle {
-    font-size: 24px;
-  }
-
-  #edit-contact-subtitle {
-    font-size: 24px;
-  }
-
-  .input-outside {
-    width: 300px;
-  }
-
-  #contact-column {
-    width: 290px;
-  }
-
-  #line {
-    width: 290px;
-  }
-  #contact-header {
-    gap: 25px;
-  }
-  #contact-display {
-    margin-left: -142px;
-  }
-}
-
-@media (max-width: 400px) {
-  #add-contact-title {
-    font-size: 40px;
-  }
-
-  #edit-contact-title {
-    font-size: 40px;
-  }
-
-  #add-contact-subtitle {
-    font-size: 18px;
-  }
-
-  #edit-contact-subtitle {
-    font-size: 18px;
-  }
-
-  #contact-create {
-    font-size: 19px;
-    padding: 6px;
-  }
-
-  #contact-cancel {
-    font-size: 19px;
-  }
-
-  #add-contact-mask {
-    width: 320px;
-  }
-
-  #edit-contact-mask {
-    width: 320px;
-  }
-
-  .input-outside {
-    width: 240px;
-  }
-
-}
+  
