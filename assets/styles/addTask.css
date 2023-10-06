@@ -541,7 +541,7 @@ input[type="date"]::placeholder {
 
 .add-task-to-board-close-button {
   margin-left: 395px;
-  margin-top: 16px;
+  margin-top: 60px;
   position: fixed;
   border-radius: 45px;
 }

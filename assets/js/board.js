@@ -40,9 +40,7 @@ function addBoardRender() {
         `;
   }
   docID("task-img3").classList.add("d-none"); //bei task-img3 soll das + Symbol nicht angezeigt werden, daher wird die Klasse d-none hinzugefügt
-
   addTaskRender();
-
   loadTasks();
 }
 
@@ -56,7 +54,6 @@ function loadTasks(id) {
     renderSubtasks(id);
     renderUrgencySymbol(id);
     renderCategoryColor(id);
-
     let contactArea = docID("contact-area" + id); //Kontaktbereich in der Task wird gerendert
     contactArea.innerHTML = ``;
     for (let i = 0; i < 1; i++) {
@@ -75,8 +72,7 @@ function loadTasks(id) {
         let color = tasks[id]["contact-color"][index]; //die dazugehörige(i) Farbe wird aus dem Array gezogen
         k++; //Variable k erhöht sich um eins und wird an id contacts angehängt
         contactArea.innerHTML += /*html*/ `                  
-        <span class="contacts" id = "contacts${k}"> ${initialsUpper}</span>
-    `;
+        <span class="contacts" id = "contacts${k}"> ${initialsUpper}</span>`;
         docID("contacts" + k).style.backgroundColor = color; //Farbe wird für Kontaksymbol geändert
       }
     }
@@ -84,6 +80,7 @@ function loadTasks(id) {
   addContactsToTasks(0);
   findEmptyTaskAreas();
 }
+
 function findEmptyTaskAreas() {
   for (let i = 1; i < 5; i++) {
     const element = docID(`tasks${i}`);
@@ -111,8 +108,7 @@ function renderTaskBody(id) {
   let taskBody = docID("tasks" + j);
   let prioritySmall = tasks[id]["urgency"];
   editSubtasks = subtasks[id];
-  taskBody.innerHTML += /*html*/ `
-                    
+  taskBody.innerHTML += /*html*/ `           
     <div draggable="true" ondragstart="startDragging(${id})" onclick="openWindow(event, ${id}, ${IdOfTask})" id="task${id}" class="task-decoration">
         <div id="task-category${id}" class="task-category">${tasks[id]["category"]}</div>
         <div class="task-title" id="task-title${id}">${tasks[id]["title"]}</div>
@@ -127,10 +123,12 @@ function renderTaskBody(id) {
     </div>
 `; //Taskbody wurde gerendert und dabei wurde den Task-divs Drag-Funktionen zugeteilt, damit man in diesen Bereich draggen kann und Drag-Funktion gestartet werden kann
 }
+
 function startDragging(element) {
   //Funktion um die id der gedraggten Task in der Variable zu speichern; muss auch um 1 gesenkt werden, da bei den ids bei 1 statt bei 0 angefangen wurde
   currentDraggedElement = element;
 }
+
 function allowDrop(ev) {
   //Funktion die dafür sorgt, dass Tasks gedroppt werden können in dem Bereich
   ev.preventDefault();
@@ -165,7 +163,6 @@ function renderSubtasks(id, doneSubtask) {
     docID("progress-bar-inside" + id).style.width = `${percent}%`; //der Prozentanteil erledigter Aufgaben wird als Füllmenge für die progress-bar verwnedet
   }
   subtasks.splice(id, subtasks.length); // alle subtasks werden gelöscht, so dass nicht alle in allen Tasks angezeigt werden
- 
 }
 
 function renderUrgencySymbol(id) {
@@ -194,7 +191,6 @@ function filterTasks() {
       renderSubtasks(id);
       renderUrgencySymbol(id);
       renderCategoryColor(id);
-
       let contactArea = docID("contact-area" + id);
       contactArea.innerHTML = ``;
       for (let i = 0; i < tasks[id]["contact-firstname"].length; i++) {
@@ -207,8 +203,7 @@ function filterTasks() {
         let color = tasks[id]["contact-color"][i];
         k++;
         contactArea.innerHTML += /*html*/ `                  
-            <span class="contacts" id = "contacts${k}"> ${initialsUpper}</span>
-        `;
+            <span class="contacts" id = "contacts${k}"> ${initialsUpper}</span>`;
         docID("contacts" + k).style.backgroundColor = color; //Farbe wird für Kontaksymbol geändert
       }
     }
@@ -219,7 +214,6 @@ function filterTasks() {
 function clearInput() {
   docID("input").value = ""; // Setze den Wert des Input-Feldes auf leer
 }
-
 // Event-Handler für das Tastaturereignis (Enter-Taste)
 function handleKeyPress(event) {
   if (event.key === "Enter") {
@@ -228,6 +222,7 @@ function handleKeyPress(event) {
   }
 }
 // Event-Handler für das Klickeignis auf das Bild
+
 function handleImgClick() {
   clearInput();
   // Hier kannst du die Funktion aufrufen, die deine divs nach dem Text filtert
@@ -257,15 +252,9 @@ function renderWindow(id, IdOfTask) {
   renderPriorityToTheWindow(id);
   renderContactsToWindow(id);
 }
-
 saveChangedTask = false;
 
-async function renderStructureOfTheWindow(
-  taskId,
-  IdOfTask,
-  subtask,
-  editLabelsSubtasks
-) {
+async function renderStructureOfTheWindow(taskId, IdOfTask, subtask, editLabelsSubtasks) {
   if (saveChangedTask == true) {
   }
   if (!saveChangedTask == true) {
@@ -505,7 +494,6 @@ function closeAddTaskToBoard() {
   backgroundBoard.classList.remove(`decrease-opacity`);
   backgroundHeader.classList.remove(`decrease-opacity`);
   backgroundNav.classList.remove(`decrease-opacity`);
-
   contactStatusMap.clear();
   numberOfContactsToAdd = [];
   numberOfColorsToAdd = [];
@@ -527,17 +515,13 @@ function safeEditedTask() {
   jsonToEdit.categoryId = categoryId;
   jsonToEdit.description = docID("description").value;
   jsonToEdit.urgency = urgency;
-
   safeContactsInTask();
-
   jsonToEdit.contactid = contactIds;
   jsonToEdit["contact-color"] = contactcolors;
   jsonToEdit["contact-firstname"] = firstName;
   jsonToEdit["contact-lastname"] = lastName;
-
   jsonToEdit.subtasks = subtasks;
   jsonToEdit['done-tasks'] = doneSubtasks.length;
-
   setElement("tasks", tasks);
   addBoardInit();
   closeAddTaskToBoard();
@@ -575,11 +559,9 @@ function pushDoneSubtask(id, taskId) {
     doneSubtask--;
     doneSubtasks.splice(id, 1);
   }
-  
   taskId = tasks[id]["taskId"];
   doneSubtaskClicked = true;
   edit = false;
-
   showDoneSubtask(id);
 }
 
