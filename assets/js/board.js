@@ -394,6 +394,7 @@ function changeDeleteImage(isHovering) {
 // öffnet AddTask
 
 function openAddTask(IdOfTask) {
+  window.scrollTo(0, 0); // scrollt die Seite vor dem Öfnen der AddTask nach oben
   let addTaskUnder = document.getElementById(`addTask`);
   let backgroundBoard = document.getElementById(`board`);
   let backgroundNav = document.getElementById(`nav`);

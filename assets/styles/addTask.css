@@ -647,9 +647,19 @@ input[type="date"]::placeholder {
   overflow-y: scroll;
 }
 
+@media (max-width: 1400px) {
+  .add-task-button {
+    margin-left: -330px;
+    margin-top: 160px;
+  }
+}
+
 @media (max-width: 1150px) {
   .add-task {
     margin-left: -230px;
+  }
+  .add-task-button{
+    margin-bottom: 100px;
   }
 }
 
@@ -705,4 +715,18 @@ input[type="date"]::placeholder {
   .add-task {
     margin-left: -313px;
   }
+  .add-task-button{
+    margin-left: -355px;
+  }
+  .add-task-button-clear{
+    width: 100px;
+    height: 45px;
+    font-size: 16px;
+  }
+  .add-task-button-create{
+    width: 100px;
+    height: 45px;
+    font-size: 16px;
+  }
+
 }
