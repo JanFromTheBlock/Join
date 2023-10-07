@@ -8,6 +8,7 @@ let doneSubtaskClicked = false;
 let progress;
 let doneSubtask = 0;
 let subtasksWereChecked
+let zero = true
 
 function addBoardRender() {
   console.log("addBoardRender is called");
@@ -228,6 +229,7 @@ function openWindow(event, id, IdOfTask) {
   window.scrollTo(0, 0); // wenn Fenster geöffnet wird, wird nach oben gescrollt
   renderWindow(id, IdOfTask); // das Window wird mit seinen Inhalten gerendert
   openedTask = id;
+  subtaskStatus = [];
 }
 
 function closeWindow() {
@@ -513,6 +515,7 @@ function closeAddTaskToBoard() {
   addBoardInit();
   edit = false;
   subtasksWereChecked = false;
+  zero = true;
 }
 
 function safeEditedTask() {
@@ -531,11 +534,13 @@ function safeEditedTask() {
   jsonToEdit["contact-lastname"] = lastName;
   jsonToEdit.subtasks = subtasks;
   jsonToEdit['done-tasks'] = doneSubtask;
+  jsonToEdit.subtaskStatus = subtaskStatus;
 
   setElement("tasks", tasks);
   doneSubtask = '';
   addBoardInit();
   closeAddTaskToBoard();
+  subtaskStatus = [];
 }
 
 function safeContactsInTask() {
@@ -556,16 +561,22 @@ function pushDoneSubtask(id) {
   let subtaskCheckbox = document.getElementById(`subtaskCheckbox${id}`);
   let isChecked = subtaskCheckbox.checked;
   if (doneSubtask === 0) {
-    doneSubtask = tasks[openedTask]["done-tasks"];
+    if (zero === false) { 
+    }
+    else{
+      doneSubtask = tasks[openedTask]["done-tasks"];
+    }
+    
   }
   // Überprüfe den Status der Checkbox und füge/entferne die Teilaufgabe entsprechend hinzu/entferne
   if (isChecked) {
     doneSubtask++;
-    tasks[openedTask].subtaskStatus[id] = 1;
+    subtaskStatus[id] = 1;
   } else {
     // Entferne die Teilaufgabe mit taskId aus doneSubtasks, wenn sie vorhanden ist
-    tasks[openedTask].subtaskStatus[id] = 0;
+    subtaskStatus[id] = 0;
     doneSubtask--;
+    zero = false
   }
   
   taskId = tasks[openedTask]["taskId"];

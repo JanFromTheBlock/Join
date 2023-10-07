@@ -40,10 +40,12 @@ let statusSubtask;
 function showSubtasks(id) {
   let subtaskArea = document.getElementById(`subTaskArea`);
   let inputSubtask = document.getElementById(`inputSubtask`).value;
-  if (edit === false) {
+  if (edit === false || id === undefined) {
     statusSubtask = 0;
+  } else {
+    statusSubtask = jsonToEdit.subtaskStatus[id];
   }
-  
+
   subtaskArea.classList.remove(`d-none`);
   subtasks.push(inputSubtask);
   subtaskStatus.push(statusSubtask)
@@ -54,11 +56,12 @@ function showSubtasks(id) {
     <img onclick="deleteSubtask(${id})" src="./assets/img/delete_contact.png">
   </div>
   `;
-  
+
   document.getElementById(`inputSubtask`).value = '';
   setElement("subtasks", subtasks);
   if (subtasksWereChecked === true) {
     checkSubtasks();
+    doneSubtask = tasks[openedTask]["done-tasks"]
   }
 }
 
@@ -149,7 +152,7 @@ function createJsonTask(title, description, category, subtasks, subtasksLength, 
     arrayId: 0,
     contactid: contactIds,
     taskId: taskId,
-    categoryId: categoryId, 
+    categoryId: categoryId,
     subtaskStatus: subtaskStatus
   };
 }
@@ -163,7 +166,7 @@ function newTask() {
   if (edit === true) {
     safeEditedTask();
   }
-  else{
+  else {
     let title = document.getElementById(`inputFieldTitle`).value;
     let date = document.getElementById(`inputDate`).value;
     let category = document.getElementById(`selectCategory`).value;
@@ -198,7 +201,7 @@ function newTask() {
 
   function findHighestId(tasks) {
     let highestTaskId = 3;
-  
+
     for (const task of tasks) {
       if (task.taskId > highestTaskId) {
         highestTaskId = task.taskId;
@@ -244,7 +247,7 @@ function showCategories() {
   let selectCategory = document.getElementById(`selectCategory`);
   toggleVisibility("showCategories");
   selectCategory.classList.add(`hide-cursor`);
-    showAddedCategory(); // zeigt die gespeicherten Catagories an
+  showAddedCategory(); // zeigt die gespeicherten Catagories an
 }
 // Eine Map, um den Status der Kontakte zu verfolgen
 const contactStatusMap = new Map();
@@ -449,7 +452,7 @@ function markColor() {
   }
 }
 
-function deleteSubtask(id, taskId){
+function deleteSubtask(id, taskId) {
   subtasks.splice(id, 1);
   docID("subtask" + id).classList.add('d-none')
   openAddTask(taskId);
