@@ -6,6 +6,8 @@ let jsonToEdit;
 let edit = false;
 let doneSubtaskClicked = false;
 let progress;
+let doneSubtask = 0;
+let subtasksWereChecked
 
 function addBoardRender() {
   console.log("addBoardRender is called");
@@ -143,27 +145,19 @@ function moveTo(progress) {
   addBoardRender(); // anschließend muss alles neu gerendert werden, damit die Änderungen geladen werden
 }
 
-function renderSubtasks(id, doneSubtask) {
-  let subtasksLength = tasks[id]["subtasksLength"]; // Subtaskslänge beim erstellen der Task
-  let lengthOfSubtasks = tasks[id]["subtasks"].length; // Länge der Subtasks im jeweiligen Task
-  if (edit == false) {
-    subtasksLength = lengthOfSubtasks;
-  }
-  if (subtasksLength > 0) {
-    // wenn die Anzahl an Subtasks größer 0 ist dann wird Funktion ausgeführt
-    let a = parseInt(lengthOfSubtasks); // Variable a sind die Anzahl an subtasks
+function renderSubtasks(id) {
+  
+    let a = parseInt(tasks[id]["subtasks"].length); // Variable a sind die Anzahl an subtasks
     let b = parseInt(tasks[id]["done-tasks"]); // Variable b sind die Anzahl erledigter subtasks
 
-    if (doneSubtaskClicked == true) {
-      b = doneSubtask;
-    }
+  
     let percent = (b / a) * 100; // Prozentanteil erledigter aufgaben wird berechnet
     docID("progress-bar" + id).classList.remove("d-none"); //der progress-bar wird das d-none entfernt und sie wird sichtbar
     docID("windowSubtask" + id).innerHTML = /*html*/ `
             ${b}/${a} Subtasks
         `; // die Anzahl an subtass wird neben die progress-bar gerendert
     docID("progress-bar-inside" + id).style.width = `${percent}%`; //der Prozentanteil erledigter Aufgaben wird als Füllmenge für die progress-bar verwnedet
-  }
+  
   subtasks.splice(id, subtasks.length); // alle subtasks werden gelöscht, so dass nicht alle in allen Tasks angezeigt werden
  
 }
@@ -459,6 +453,7 @@ function openAddTask(IdOfTask) {
       }
     }
     docID("selectContact").click();
+    edit = true;
 
     for (
       let subtaskToLoad = 0;
@@ -468,9 +463,22 @@ function openAddTask(IdOfTask) {
       const element = jsonToEdit.subtasks[subtaskToLoad];
       document.getElementById(`inputSubtask`).value = element;
       showSubtasks(subtaskToLoad);
+      
     }
+    checkSubtasks();
     docID("addTaskButtonToBoard").innerHTML = "Edit Task";
-    edit = true;
+    
+  }
+}
+
+function checkSubtasks(){
+  for (let i = 0; i < jsonToEdit.subtasks.length; i++) {
+    if (jsonToEdit.subtaskStatus[i] === 1) {
+      let subtaskCheckbox = document.getElementById('subtaskCheckbox' + i);
+      subtaskCheckbox.checked = true; 
+      subtasksWereChecked = true
+    }
+
   }
 }
 
@@ -515,6 +523,7 @@ function closeAddTaskToBoard() {
   firstName = [];
   addBoardInit();
   edit = false;
+  subtasksWereChecked = false;
 }
 
 function safeEditedTask() {
@@ -535,9 +544,10 @@ function safeEditedTask() {
   jsonToEdit["contact-lastname"] = lastName;
 
   jsonToEdit.subtasks = subtasks;
-  jsonToEdit['done-tasks'] = doneSubtasks.length;
+  jsonToEdit['done-tasks'] = doneSubtask;
 
   setElement("tasks", tasks);
+  doneSubtask = '';
   addBoardInit();
   closeAddTaskToBoard();
 }
@@ -555,34 +565,26 @@ function safeContactsInTask() {
   }
 }
 
-let doneSubtasks = [];
 
-function pushDoneSubtask(id, taskId) {
+function pushDoneSubtask(id) {
   let subtaskCheckbox = document.getElementById(`subtaskCheckbox${id}`);
-  let isChecked = subtaskCheckbox.checked; // Überprüfe, ob die Checkbox ausgewählt ist
-
+  let isChecked = subtaskCheckbox.checked;
+  if (doneSubtask === 0) {
+    doneSubtask = tasks[openedTask]["done-tasks"];
+  }
   // Überprüfe den Status der Checkbox und füge/entferne die Teilaufgabe entsprechend hinzu/entferne
   if (isChecked) {
-    id = openedTask;
-    let doneSubtask = tasks[id]["done-tasks"];
     doneSubtask++;
-    doneSubtasks.push(doneSubtask);
+    tasks[openedTask].subtaskStatus[id] = 1;
   } else {
     // Entferne die Teilaufgabe mit taskId aus doneSubtasks, wenn sie vorhanden ist
-    id = openedTask;
-    let doneSubtask = tasks[id]["done-tasks"];
+    tasks[openedTask].subtaskStatus[id] = 0;
     doneSubtask--;
-    doneSubtasks.splice(id, 1);
   }
   
-  taskId = tasks[id]["taskId"];
+  taskId = tasks[openedTask]["taskId"];
   doneSubtaskClicked = true;
-  edit = false;
-
-  showDoneSubtask(id);
 }
 
-function showDoneSubtask(id, doneSubtaskLength) {
-  doneSubtaskLength = doneSubtasks.length;
-  renderSubtasks(id, doneSubtaskLength);
-}
+
+  

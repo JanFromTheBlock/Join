@@ -197,7 +197,7 @@ if (addBoardInitClicked == true) {
     addTaskUnderDiv.style.marginLeft = "-290px";
     taskAddedToBoard
 }
-   
+
   addContactsToTasks(0);
 }
 

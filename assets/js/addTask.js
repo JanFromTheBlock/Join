@@ -34,12 +34,19 @@ let categoryColor;
 let categoryId;
 let editLabelsSubtasks;
 edit = false;
+let subtaskStatus = [];
+let statusSubtask;
 
-function showSubtasks(id, taskId) {
+function showSubtasks(id) {
   let subtaskArea = document.getElementById(`subTaskArea`);
   let inputSubtask = document.getElementById(`inputSubtask`).value;
+  if (edit === false) {
+    statusSubtask = 0;
+  }
+  
   subtaskArea.classList.remove(`d-none`);
   subtasks.push(inputSubtask);
+  subtaskStatus.push(statusSubtask)
   subtaskArea.innerHTML += /*html*/ `
   <div id = "subtask${id}" class="subTaskArea">
     <input onclick=" pushDoneSubtask(${id})" id="subtaskCheckbox${id}" class="cursor-pointer" type="checkbox">
@@ -50,7 +57,9 @@ function showSubtasks(id, taskId) {
   
   document.getElementById(`inputSubtask`).value = '';
   setElement("subtasks", subtasks);
- 
+  if (subtasksWereChecked === true) {
+    checkSubtasks();
+  }
 }
 
 //Onclick auf PriorityButtons
@@ -141,12 +150,14 @@ function createJsonTask(title, description, category, subtasks, subtasksLength, 
     contactid: contactIds,
     taskId: taskId,
     categoryId: categoryId, 
+    subtaskStatus: subtaskStatus
   };
 }
 let firstName = [];
 let lastName = [];
 let contactcolors = [];
 let contactIds = [];
+
 
 function newTask() {
   if (edit === true) {
@@ -186,6 +197,7 @@ function newTask() {
     numberOfContactsToAdd = [];
     numberOfColorsToAdd = [];
     numberOfIdsToAdd = [];
+    subtaskStatus = [];
     tasks.push(task);
     setElement('tasks', tasks);
     addBoardInit();
