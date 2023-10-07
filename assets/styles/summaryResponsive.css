@@ -1,0 +1,76 @@
+@media (max-width: 1150px) {
+    .summary {
+    margin-left: 0;
+  }
+}
+@media (max-width: 950px) {
+  .summary {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: -40px;
+  height: 130vh;
+}
+#summary-con{
+  width: unset;
+  gap: 0px;
+  align-items: center;
+}
+#summary-con-upper{
+  flex-wrap: wrap;
+  margin-bottom: 235px;
+}
+#urgency-summary{
+  width: unset;
+  flex: 100%;
+  margin-bottom: 25px;
+  margin-right: 0px;
+}
+#square-button{
+  flex: 100%;
+  margin-left: 0px;
+
+}
+#sum-overview{
+  flex-wrap: wrap;
+  gap: 25px;
+}
+.sum-board-btn{
+  flex: 33%;
+  margin: 0;
+  padding: 0;
+}
+#summary-con-upper{
+  width: unset;
+}
+
+}
+@media (max-width: 800px){
+  #urgency-summary:hover{
+    width: unset;
+  }
+}
+@media (max-width: 750px){
+  #square-button{
+    padding: 10px 0px;
+  }
+  #urgency-summary{
+    padding: 0;
+  }
+  #summary-con-upper{
+    margin-bottom: 185px;
+  }
+  @media screen and (max-width: 500px) {
+    #grtng-con {
+      display: none;
+    }
+  }
+}
+@media (max-width: 400px){
+  #urgency-summary{
+    padding-left: 10px !important;
+    gap: 20px;
+  }
+  #urgent-date-screen-date{
+    font-size: 24px;
+  }
+}

@@ -174,21 +174,14 @@ function newTask() {
     taskAddedToBoard.classList.remove(`d-none`);
     taskAddedToBoard.classList.remove(`task-added-to-board-hide`);
     taskAddedToBoard.classList.add(`task-added-to-board`);
-  
     setTimeout(() => {
-     
       window.location.href = "./board.html"; // springt nachdem AddTask gerendert wurde auf die BoardSeite
       closeAddTaskToBoard();
     }, 2000);
-    
-
     document.getElementById(`inputSubtask`).value = ``;
-
     safeContactsInTask();
-   
     const highestTaskId = findHighestId(tasks);
     taskId = highestTaskId + 1;
-  
     clearTaskMask();
     let task = createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId);
     getElement('tasks');
@@ -202,7 +195,6 @@ function newTask() {
     setElement('tasks', tasks);
     addBoardInit();
   }
-
 
   function findHighestId(tasks) {
     let highestTaskId = 3;
@@ -254,7 +246,6 @@ function showCategories() {
   selectCategory.classList.add(`hide-cursor`);
     showAddedCategory(); // zeigt die gespeicherten Catagories an
 }
-
 // Eine Map, um den Status der Kontakte zu verfolgen
 const contactStatusMap = new Map();
 let numberOfContactsToAdd = [];
