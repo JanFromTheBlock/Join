@@ -82,6 +82,7 @@ async function addTaskInit(){
     getdata = await getElement('subtasks'); 
     subtasks = JSON.parse(getdata); 
     addTaskRender();
+    subtasks = [];
 }
 
 async function addBoardInit(){
