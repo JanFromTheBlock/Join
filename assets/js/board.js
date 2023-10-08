@@ -447,6 +447,7 @@ function openAddTask(IdOfTask) {
     docID("selectContact").click();
     edit = true;
 
+    doneSubtask = tasks[openedTask]["done-tasks"];
     for (
       let subtaskToLoad = 0;
       subtaskToLoad < jsonToEdit.subtasks.length;

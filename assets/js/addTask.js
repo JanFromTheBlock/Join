@@ -454,9 +454,8 @@ function markColor() {
 
 function deleteSubtask(id, taskId) {
   subtasks.splice(id, 1);
+  subtaskStatus.splice(id, 1);
   docID("subtask" + id).classList.add('d-none')
-  openAddTask(taskId);
-  renderSubtasks();
 }
 
 
