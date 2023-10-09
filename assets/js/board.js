@@ -10,6 +10,8 @@ let doneSubtask = 0;
 let subtasksWereChecked
 let zero = true
 
+
+
 function addBoardRender() {
   console.log("addBoardRender is called");
   let board = docID("board"); //Suchbereich und Add Task Button werden gerendert
@@ -583,6 +585,21 @@ function pushDoneSubtask(id) {
   taskId = tasks[openedTask]["taskId"];
   doneSubtaskClicked = true;
 }
+
+function setupInputField(){
+  const inputField = docID('inputSubtask');
+if (inputField) {
+  document.getElementById('inputSubtask').addEventListener('keydown', function (event) {
+    if (event.key === "Enter") {
+        event.preventDefault(); // Verhindert das Standardverhalten (z. B. Formularübermittlung)
+        showSubtasks(); // Ruft die Funktion addSubtask() auf
+    }
+  });
+}
+}
+
+
+
 
 
   

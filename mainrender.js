@@ -199,6 +199,7 @@ if (addBoardInitClicked == true) {
 }
 
   addContactsToTasks(0);
+  setupInputField();
 }
 
 
