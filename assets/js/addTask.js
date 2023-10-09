@@ -50,10 +50,15 @@ function showSubtasks(id) {
   subtasks.push(inputSubtask);
   subtaskStatus.push(statusSubtask)
   subtaskArea.innerHTML += /*html*/ `
-  <div id = "subtask${id}" class="subTaskArea">
+  <div id = "subtask${id}" class="subTaskArea subtask${id}">
+  <div class ="inner-subtask1">
     <input onclick=" pushDoneSubtask(${id})" id="subtaskCheckbox${id}" class="cursor-pointer" type="checkbox">
     <label id="labelForSubtask${id}">${inputSubtask}</label>
-    <img onclick="deleteSubtask(${id})" src="./assets/img/delete_contact.png">
+  </div>
+    <div class="inner-subtask2">
+      <img onclick="deleteSubtask(${id})" class="delete-subtask-button" src="./assets/img/delete_contact.png">
+      <img onclick = "renameSubtask(${id})" src="./assets/img/edit_contact.png">
+    </div>
   </div>
   `;
 
@@ -456,6 +461,12 @@ function deleteSubtask(id, taskId) {
   subtasks.splice(id, 1);
   subtaskStatus.splice(id, 1);
   docID("subtask" + id).classList.add('d-none')
+}
+
+function renameSubtask(id) {
+  docID('inputSubtask').value = docID('labelForSubtask' + id).innerHTML
+  deleteSubtask(id);
+
 }
 
 
