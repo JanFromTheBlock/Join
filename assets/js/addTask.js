@@ -55,7 +55,7 @@ function showSubtasks(id) {
     <input onclick=" pushDoneSubtask(${id})" id="subtaskCheckbox${id}" class="cursor-pointer" type="checkbox">
     <label id="labelForSubtask${id}">${inputSubtask}</label>
   </div>
-    <div class="inner-subtask2">
+    <div class="inner-subtask2" id="inner-subtask${id}">
       <img onclick="deleteSubtask(${id})" class="delete-subtask-button" src="./assets/img/delete_contact.png">
       <img onclick = "renameSubtask(${id})" src="./assets/img/edit_contact.png">
     </div>
@@ -67,6 +67,9 @@ function showSubtasks(id) {
   if (subtasksWereChecked === true) {
     checkSubtasks();
     doneSubtask = tasks[openedTask]["done-tasks"]
+  }
+  if (jsonToEdit.subtaskStatus[id] === 1) {
+    docID('inner-subtask' + id).classList.add('d-none');
   }
 }
 
