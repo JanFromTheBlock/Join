@@ -538,7 +538,6 @@ function safeEditedTask() {
   jsonToEdit.subtasks = subtasks;
   jsonToEdit['done-tasks'] = doneSubtask;
   jsonToEdit.subtaskStatus = subtaskStatus;
-
   setElement("tasks", tasks);
   doneSubtask = '';
   addBoardInit();
@@ -559,7 +558,6 @@ function safeContactsInTask() {
   }
 }
 
-
 function pushDoneSubtask(id) {
   let subtaskCheckbox = document.getElementById(`subtaskCheckbox${id}`);
   let isChecked = subtaskCheckbox.checked;
@@ -569,7 +567,6 @@ function pushDoneSubtask(id) {
     else{
       doneSubtask = tasks[openedTask]["done-tasks"];
     }
-    
   }
   // Überprüfe den Status der Checkbox und füge/entferne die Teilaufgabe entsprechend hinzu/entferne
   if (isChecked) {
@@ -581,7 +578,6 @@ function pushDoneSubtask(id) {
     doneSubtask--;
     zero = false
   }
-  
   taskId = tasks[openedTask]["taskId"];
   doneSubtaskClicked = true;
 }

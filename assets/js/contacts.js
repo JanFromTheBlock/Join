@@ -188,10 +188,12 @@ function addNewContact() {
 function cancelNewContact() {
   if (openEditContactClicked) {
     addTask = document.getElementById(`edit-contact-mask`);
+    addTask.classList.add(`open-edit-contact-hide`);
   }else{
      addTask = document.getElementById(`add-contact-mask`);
+     addTask.classList.add(`open-add-contact-hide`);
   }
-  addTask.classList.add(`open-add-contact-hide`);
+  
   setTimeout(() => {
     addTask.classList.add(`d-none`);
     docID("background-add-contact").classList.add("d-none");
