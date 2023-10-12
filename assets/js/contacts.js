@@ -189,6 +189,7 @@ function cancelNewContact() {
   if (openEditContactClicked) {
     addTask = document.getElementById(`edit-contact-mask`);
     addTask.classList.add(`open-edit-contact-hide`);
+    openEditContactClicked = false;
   }else{
      addTask = document.getElementById(`add-contact-mask`);
      addTask.classList.add(`open-add-contact-hide`);
@@ -346,7 +347,7 @@ function openEditContact(contactId, name, mail, phone, color, initials) {
                 <div id="add-contact-ow"><img onclick="cancelNewContact()" src="./assets/img/close_contact.png"></div>
                 <div id="add-contact-center">
                     <img id="add-contact-logo" src="./assets/img/contact_logo.png">
-                    <div id="add-contact-title">Add contact</div>
+                    <div id="add-contact-title">Edit contact</div>
                     <div id="add-contact-subtitle">Tasks are bett with a team!</div>
                 </div>
             </div>
