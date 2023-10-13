@@ -72,13 +72,16 @@ function showSubtasks(id) {
     checkSubtasks();
     doneSubtask = tasks[openedTask]["done-tasks"]
   }
-  if (jsonToEdit.subtaskStatus[id] === 1) {
-    docID('inner-subtask' + id).classList.add('d-none');
+  if (edit === true) {
+    if (jsonToEdit.subtaskStatus[id] === 1) {
+      docID('inner-subtask' + id).classList.add('d-none');
+    }
   }
-  if (jsonToEdit.subtasks[id] === undefined) {
-    docID('subtaskCheckbox' + id).disabled = true;
-    docID('subtaskCheckbox' + id).classList.remove('cursor-pointer')
 
+  if (jsonToEdit && jsonToEdit.subtasks && jsonToEdit.subtasks[id] === undefined) {
+  } else {
+    docID('subtaskCheckbox' + id).disabled = true;
+    docID('subtaskCheckbox' + id).classList.remove('cursor-pointer');
   }
   amountOfAddedTask++;
 }
