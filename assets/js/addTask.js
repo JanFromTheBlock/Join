@@ -36,6 +36,7 @@ let editLabelsSubtasks;
 edit = false;
 let subtaskStatus = [];
 let statusSubtask;
+let amountOfAddedTask = 0;
 
 function showSubtasks(id) {
   let subtaskArea = document.getElementById(`subTaskArea`);
@@ -44,6 +45,9 @@ function showSubtasks(id) {
     statusSubtask = 0;
   } else {
     statusSubtask = jsonToEdit.subtaskStatus[id];
+  }
+  if (id === undefined) {
+    id = amountOfAddedTask;
   }
 
   subtaskArea.classList.remove(`d-none`);
@@ -71,6 +75,7 @@ function showSubtasks(id) {
   if (jsonToEdit.subtaskStatus[id] === 1) {
     docID('inner-subtask' + id).classList.add('d-none');
   }
+  amountOfAddedTask++;
 }
 
 //Onclick auf PriorityButtons
@@ -202,6 +207,7 @@ function newTask() {
     numberOfColorsToAdd = [];
     numberOfIdsToAdd = [];
     subtaskStatus = [];
+    amountOfAddedTask = 0;
     tasks.push(task);
     setElement('tasks', tasks);
     addBoardInit();

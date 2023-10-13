@@ -519,6 +519,7 @@ function closeAddTaskToBoard() {
   edit = false;
   subtasksWereChecked = false;
   zero = true;
+  amountOfAddedTask = 0;
 }
 
 function safeEditedTask() {
