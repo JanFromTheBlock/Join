@@ -75,6 +75,11 @@ function showSubtasks(id) {
   if (jsonToEdit.subtaskStatus[id] === 1) {
     docID('inner-subtask' + id).classList.add('d-none');
   }
+  if (jsonToEdit.subtasks[id] === undefined) {
+    docID('subtaskCheckbox' + id).disabled = true;
+    docID('subtaskCheckbox' + id).classList.remove('cursor-pointer')
+
+  }
   amountOfAddedTask++;
 }
 
