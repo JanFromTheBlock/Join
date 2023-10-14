@@ -93,7 +93,7 @@ async function addBoardInit(){
     activeSite("menu-board");
     
     getdata = await getElement('tasks'); 
-    tasks = JSON.parse(getdata);  // speichert Subtasks
+    tasks = JSON.parse(getdata); 
     try {
         const getdataContacts = await getElement('contacts');
         contacts = JSON.parse(getdataContacts);

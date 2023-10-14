@@ -172,7 +172,7 @@ function addTaskRender() {
                </div>
               <div id="addTaskButton" class="add-task-button">
                 <button onclick="clearTask()" class="add-task-button-clear cursor-pointer">Clear x</button>  
-                <button onclick="newTask()" class="add-task-button-create cursor-pointer">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
+                <button class="add-task-button-create cursor-pointer">Add Task<img src="./assets/img/hakenCreateTask.png"></button>
              </div>
            </div>
            <button type ="submit" id="addTaskButtonToBoard" class="add-task-button-create-board cursor-pointer">Add Task<img class="add-task-button-img" src="./assets/img/hakenCreateTask.png"></button>
