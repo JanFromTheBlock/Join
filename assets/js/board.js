@@ -330,32 +330,33 @@ function addUrgencyColor(id) {
   }
 }
 
+function renderContactInitials(id, contactID) {
+  let firstName = tasks[id]["contact-firstname"][contactID];
+  let lastName = tasks[id]["contact-lastname"][contactID];
+  let Initial1 = firstName.charAt(0);
+  let Initial2 = lastName.charAt(0);
+  let initials = Initial1 + Initial2;
+  let initialsUpper = initials.toLocaleUpperCase();
+  let color = tasks[id]["contact-color"][contactID];
+
+  return /*html*/ `
+      <div id="window-contact-area-inside">
+          <div class="initials" id="initials${contactID}">${initialsUpper}</div>
+          <div class="name-contact">
+              <div>${firstName}</div>
+              <div>${lastName}</div>
+          </div>
+      </div>`;
+}
+
 function renderContactsToWindow(id) {
   let windowContactArea = docID("window-contact-area");
-  for (
-    let contactID = 0;
-    contactID < tasks[id]["contact-firstname"].length;
-    contactID++
-  ) {
-    let firstName = tasks[id]["contact-firstname"][contactID];
-    let lastName = tasks[id]["contact-lastname"][contactID];
-    let Initial1 = firstName.charAt(0);
-    let Initial2 = lastName.charAt(0);
-    let initials = Initial1 + Initial2;
-    let initialsUpper = initials.toLocaleUpperCase();
-    let color = tasks[id]["contact-color"][contactID];
+  windowContactArea.innerHTML = "";
 
-    windowContactArea.innerHTML += /*html*/ `
-            <div id="window-contact-area-inside">
-                <div class="initials" id="initials${contactID}">${initialsUpper}</div>
-                <div class = "name-contact">
-                    <div>${firstName}</div>
-                    <div>${lastName}</div>
-                </div>
-            </div>
-            
-        `;
-    docID("initials" + contactID).style.backgroundColor = color;
+  for (let contactID = 0; contactID < tasks[id]["contact-firstname"].length; contactID++) {
+      const contactHtml = renderContactInitials(id, contactID);
+      windowContactArea.insertAdjacentHTML("beforeend", contactHtml);
+      docID("initials" + contactID).style.backgroundColor = tasks[id]["contact-color"][contactID];
   }
 }
 
@@ -485,7 +486,6 @@ function findJSON(IdOfTask, tasks) {
   }
 }
 
-// schließt AddTask
 
 function closeAddTaskToBoard() {
   let addTask = document.getElementById(`addTask`);
@@ -493,6 +493,12 @@ function closeAddTaskToBoard() {
   let backgroundNav = document.getElementById(`nav`);
   let backgroundHeader = document.getElementById(`header`);
   let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
+  hideAddTaskAtBoard(addTask, backgroundBoard, backgroundNav, backgroundHeader, addTaskButtonToBoard)
+  addBoardInit();
+  subtasksWereChecked = false
+}
+
+function hideAddTaskAtBoard(addTask, backgroundBoard, backgroundNav, backgroundHeader, addTaskButtonToBoard){
   boardBody.style.backgroundAttachment = "initial";
   boardBody.style.overflow = "visible";
   addTaskButtonToBoard.classList.add(`d-none`);
@@ -507,6 +513,9 @@ function closeAddTaskToBoard() {
   backgroundBoard.classList.remove(`decrease-opacity`);
   backgroundHeader.classList.remove(`decrease-opacity`);
   backgroundNav.classList.remove(`decrease-opacity`);
+}
+
+function resetAddTaskMask(){
   contactStatusMap.clear();
   numberOfContactsToAdd = [];
   numberOfColorsToAdd = [];
@@ -515,7 +524,6 @@ function closeAddTaskToBoard() {
   contactIds = [];
   lastName = [];
   firstName = [];
-  addBoardInit();
   edit = false;
   subtasksWereChecked = false;
   zero = true;
@@ -539,13 +547,16 @@ function safeEditedTask() {
   jsonToEdit.subtasks = subtasks;
   jsonToEdit['done-tasks'] = doneSubtask;
   jsonToEdit.subtaskStatus = subtaskStatus;
+  saveAndClearEditedTask();
+}
+
+function saveAndClearEditedTask(){
   setElement("tasks", tasks);
   doneSubtask = '';
   addBoardInit();
   closeAddTaskToBoard();
   subtaskStatus = [];
 }
-
 function safeContactsInTask() {
   for (let i = 0; i < numberOfContactsToAdd.length; i++) {
     let contactDiv = numberOfContactsToAdd[i];
@@ -562,6 +573,13 @@ function safeContactsInTask() {
 function pushDoneSubtask(id) {
   let subtaskCheckbox = document.getElementById(`subtaskCheckbox${id}`);
   let isChecked = subtaskCheckbox.checked;
+  defineDoneSubtask();
+  adjustValuesOfTheSubtasks(id, isChecked)
+  taskId = tasks[openedTask]["taskId"];
+  doneSubtaskClicked = true;
+}
+
+function defineDoneSubtask(){
   if (doneSubtask === 0) {
     if (zero === false) { 
     }
@@ -569,18 +587,17 @@ function pushDoneSubtask(id) {
       doneSubtask = tasks[openedTask]["done-tasks"];
     }
   }
-  // Überprüfe den Status der Checkbox und füge/entferne die Teilaufgabe entsprechend hinzu/entferne
-  if (isChecked) {
+}
+
+function adjustValuesOfTheSubtasks(id, isChecked){
+  if (isChecked) {   // Überprüfe den Status der Checkbox und füge/entferne die Teilaufgabe entsprechend hinzu/entferne
     doneSubtask++;
     subtaskStatus[id] = 1;
-  } else {
-    // Entferne die Teilaufgabe mit taskId aus doneSubtasks, wenn sie vorhanden ist
+  } else {     // Entferne die Teilaufgabe mit taskId aus doneSubtasks, wenn sie vorhanden ist
     subtaskStatus[id] = 0;
     doneSubtask--;
     zero = false
   }
-  taskId = tasks[openedTask]["taskId"];
-  doneSubtaskClicked = true;
 }
 
 function setupInputField(){
