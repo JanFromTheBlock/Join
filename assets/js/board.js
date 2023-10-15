@@ -6,6 +6,7 @@ let currentDraggedElement; // In dieser Variable wird die id der gedraggten Task
 
 let openedTask;
 
+let saveChangedTask = false;
 
 let jsonToEdit;
 
@@ -312,7 +313,6 @@ function renderWindow(id, IdOfTask) {
   renderPriorityToTheWindow(id);
   renderContactsToWindow(id);
 }
-saveChangedTask = false;
 
 
 async function renderStructureOfTheWindow(taskId, IdOfTask, subtask, editLabelsSubtasks) {
@@ -417,7 +417,6 @@ function addUrgencyColor(id) {
     docID("window-priority-inside").style.backgroundColor = "#FFD2D2";
   }
 }
-
 
 
 function renderContactInitials(id, contactID) {
