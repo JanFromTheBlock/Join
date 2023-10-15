@@ -78,7 +78,7 @@ function showSubtasks(id) {
     }
   }
 
-  if (jsonToEdit === undefined) {
+  if (jsonToEdit) {
     docID('subtaskCheckbox' + id).disabled = true;
     docID('subtaskCheckbox' + id).classList.remove('cursor-pointer');
   } else {
