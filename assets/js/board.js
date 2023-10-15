@@ -6,7 +6,9 @@ let currentDraggedElement; // In dieser Variable wird die id der gedraggten Task
 
 let openedTask;
 
+
 let jsonToEdit;
+
 
 let edit = false;
 
@@ -64,6 +66,7 @@ function renderTaskAreas() {
   }
   docID("task-img3").classList.add("d-none");
 }
+
 
 function loadTasks(id) {
   emptyTaskDivs();
@@ -199,6 +202,7 @@ function renderCategoryColor(id) {
   docID("task-category" + id).style.backgroundColor = color;
 }
 
+
 function filterTasks() {
   const search = getSearchText();
   emptyTaskDivs();
@@ -310,6 +314,7 @@ function renderWindow(id, IdOfTask) {
 }
 saveChangedTask = false;
 
+
 async function renderStructureOfTheWindow(taskId, IdOfTask, subtask, editLabelsSubtasks) {
   if (saveChangedTask == true) {
     // Führe die Aufgabe aus
@@ -413,6 +418,8 @@ function addUrgencyColor(id) {
   }
 }
 
+
+
 function renderContactInitials(id, contactID) {
   let firstName = tasks[id]["contact-firstname"][contactID];
   let lastName = tasks[id]["contact-lastname"][contactID];
@@ -464,6 +471,7 @@ function changeDeleteImage(isHovering) {
     deleteButton.src = "./assets/img/delete.png";
   }
 }
+
 
 function openAddTask(IdOfTask) {
   windowscrollToTop();
@@ -537,9 +545,11 @@ function handleEditTask(IdOfTask) {
   setEditTaskUI(jsonToEdit);
   setTaskPriority(jsonToEdit.urgency);
   setTaskContacts(jsonToEdit.contactid);
+
   edit = true;
   setSubtasks(jsonToEdit.subtasks);
   setEditMode();
+
 }
 
 
@@ -573,6 +583,7 @@ function setTaskContacts(contactIds) {
     const element = document.getElementById(elementId);
     if (element) {
       element.click();
+
     }
   }
   docID("selectContact").click();
@@ -588,6 +599,7 @@ function setSubtasks() {
       showSubtasks(subtaskToLoad);
       
     }
+
   checkSubtasks();
 }
 
@@ -626,7 +638,9 @@ function closeAddTaskToBoard() {
   let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
   hideAddTaskAtBoard(addTask, backgroundBoard, backgroundNav, backgroundHeader, addTaskButtonToBoard)
   addBoardInit();
+
   resetAddTaskMask();
+
 }
 
 
@@ -662,6 +676,7 @@ function resetAddTaskMask(){
   zero = true;
   amountOfAddedTask = 0;
 }
+
 
 function safeEditedTask() {
   edit = true;
