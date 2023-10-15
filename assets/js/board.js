@@ -532,6 +532,7 @@ function updateBoardBodyStyles(boardBody) {
 
 function setProgress(IdOfTask) {
   progress = IdOfTask;
+  edit = false;
 }
 
 
@@ -542,6 +543,7 @@ function handleEditTask(IdOfTask) {
   setTaskContacts(jsonToEdit.contactid);
   setSubtasks(jsonToEdit.subtasks);
   setEditMode();
+  edit = true;
 }
 
 
