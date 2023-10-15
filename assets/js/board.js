@@ -7,6 +7,9 @@ let currentDraggedElement; // In dieser Variable wird die id der gedraggten Task
 let openedTask;
 
 
+let jsonToEdit;
+
+
 let edit = false;
 
 let doneSubtaskClicked = false;
@@ -416,6 +419,7 @@ function addUrgencyColor(id) {
 }
 
 
+
 function renderContactInitials(id, contactID) {
   let firstName = tasks[id]["contact-firstname"][contactID];
   let lastName = tasks[id]["contact-lastname"][contactID];
@@ -541,9 +545,11 @@ function handleEditTask(IdOfTask) {
   setEditTaskUI(jsonToEdit);
   setTaskPriority(jsonToEdit.urgency);
   setTaskContacts(jsonToEdit.contactid);
+
+  edit = true;
   setSubtasks(jsonToEdit.subtasks);
   setEditMode();
-  edit = true;
+
 }
 
 
@@ -577,18 +583,23 @@ function setTaskContacts(contactIds) {
     const element = document.getElementById(elementId);
     if (element) {
       element.click();
+
     }
   }
   docID("selectContact").click();
 }
 
 
-function setSubtasks(subtasks) {
-  const inputSubtask = docID("inputSubtask");
-  for (let i = 0; i < subtasks.length; i++) {
-    inputSubtask.value = subtasks[i];
-    showSubtasks(i);
-  }
+function setSubtasks() {
+    doneSubtask = tasks[openedTask]["done-tasks"];
+    for (
+      let subtaskToLoad = 0;subtaskToLoad < jsonToEdit.subtasks.length; subtaskToLoad++    ) {
+      const element = jsonToEdit.subtasks[subtaskToLoad];
+      document.getElementById(`inputSubtask`).value = element;
+      showSubtasks(subtaskToLoad);
+      
+    }
+
   checkSubtasks();
 }
 
@@ -627,7 +638,9 @@ function closeAddTaskToBoard() {
   let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
   hideAddTaskAtBoard(addTask, backgroundBoard, backgroundNav, backgroundHeader, addTaskButtonToBoard)
   addBoardInit();
-  subtasksWereChecked = false
+
+  resetAddTaskMask();
+
 }
 
 
