@@ -500,7 +500,7 @@ input[type="date"]::placeholder {
 }
 
 .task-added-to-board-hide {
-  margin-top: 1000px;
+  margin-top: 1500px;
   margin-left: 9%;
   transition: margin-top 300ms;
 }
