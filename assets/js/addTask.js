@@ -22,8 +22,8 @@ let categories = [
   {
     name: "Marketing",
     img: "./assets/img/ellipsegreen.png",
-    color: "#2AD300"
-  }
+    color: "#2AD300",
+  },
 ];
 
 let tasks = [];
@@ -52,7 +52,7 @@ function showSubtasks(id) {
 
   subtaskArea.classList.remove(`d-none`);
   subtasks.push(inputSubtask);
-  subtaskStatus.push(statusSubtask)
+  subtaskStatus.push(statusSubtask);
   subtaskArea.innerHTML += /*html*/ `
   <div id = "subtask${id}" class="subTaskArea subtask${id}">
   <div class ="inner-subtask1">
@@ -66,23 +66,25 @@ function showSubtasks(id) {
   </div>
   `;
 
-  document.getElementById(`inputSubtask`).value = '';
+  document.getElementById(`inputSubtask`).value = "";
   setElement("subtasks", subtasks);
   if (subtasksWereChecked === true) {
     checkSubtasks();
-    doneSubtask = tasks[openedTask]["done-tasks"]
+    doneSubtask = tasks[openedTask]["done-tasks"];
   }
   if (edit === true) {
     if (jsonToEdit.subtaskStatus[id] === 1) {
-      docID('inner-subtask' + id).classList.add('d-none');
+      docID("inner-subtask" + id).classList.add("d-none");
     }
   }
 
-
-  if (jsonToEdit && jsonToEdit.subtasks && jsonToEdit.subtasks[id] === undefined) {
-
-    docID('subtaskCheckbox' + id).disabled = true;
-    docID('subtaskCheckbox' + id).classList.remove('cursor-pointer');
+  if (
+    jsonToEdit &&
+    jsonToEdit.subtasks &&
+    jsonToEdit.subtasks[id] === undefined
+  ) {
+    docID("subtaskCheckbox" + id).disabled = true;
+    docID("subtaskCheckbox" + id).classList.remove("cursor-pointer");
   } else {
   }
   amountOfAddedTask++;
@@ -157,7 +159,21 @@ function changeColor(i) {
   }
 }
 
-function createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId) {
+function createJsonTask(
+  title,
+  description,
+  category,
+  subtasks,
+  subtasksLength,
+  urgency,
+  date,
+  firstName,
+  lastName,
+  categoryColor,
+  contactIds,
+  contactcolors,
+  taskId
+) {
   return {
     title: title,
     description: description,
@@ -176,7 +192,7 @@ function createJsonTask(title, description, category, subtasks, subtasksLength, 
     contactid: contactIds,
     taskId: taskId,
     categoryId: categoryId,
-    subtaskStatus: subtaskStatus
+    subtaskStatus: subtaskStatus,
   };
 }
 let firstName = [];
@@ -184,12 +200,10 @@ let lastName = [];
 let contactcolors = [];
 let contactIds = [];
 
-
 function newTask() {
   if (edit === true) {
     safeEditedTask();
-  }
-  else {
+  } else {
     let title = document.getElementById(`inputFieldTitle`).value;
     let date = document.getElementById(`inputDate`).value;
     let category = document.getElementById(`selectCategory`).value;
@@ -209,8 +223,22 @@ function newTask() {
     const highestTaskId = findHighestId(tasks);
     taskId = highestTaskId + 1;
     clearTaskMask();
-    let task = createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId);
-    getElement('tasks');
+    let task = createJsonTask(
+      title,
+      description,
+      category,
+      subtasks,
+      subtasksLength,
+      urgency,
+      date,
+      firstName,
+      lastName,
+      categoryColor,
+      contactIds,
+      contactcolors,
+      taskId
+    );
+    getElement("tasks");
     firstName = [];
     lastName = [];
     numberOfContactsToAdd = [];
@@ -219,7 +247,7 @@ function newTask() {
     subtaskStatus = [];
     amountOfAddedTask = 0;
     tasks.push(task);
-    setElement('tasks', tasks);
+    setElement("tasks", tasks);
     addBoardInit();
   }
 
@@ -246,14 +274,14 @@ function clearTaskMask() {
 function clearTask(i) {
   tasks.splice(i, 1);
   subtasks.splice(i, 1);
-  setElement('tasks', tasks);
-  setElement('subtasks', subtasks);
+  setElement("tasks", tasks);
+  setElement("subtasks", subtasks);
 }
 
 function toggleVisibility(elementId) {
   let element = document.getElementById(elementId);
   element.classList.remove("d-none");
-  docID('showCategories').innerHTML = ''
+  docID("showCategories").innerHTML = "";
 
   if (element.classList.contains("add-task-hide-contacts")) {
     element.classList.remove("add-task-hide-contacts");
@@ -266,20 +294,20 @@ function showContactList(id) {
   toggleVisibility("showContacts" + id);
 }
 
-
 function showCategories() {
   let selectCategory = document.getElementById(`selectCategory`);
   toggleVisibility("showCategories");
   selectCategory.classList.add(`hide-cursor`);
   showAddedCategory(); // zeigt die gespeicherten Catagories an
 }
+
 // Eine Map, um den Status der Kontakte zu verfolgen
 const contactStatusMap = new Map();
 let numberOfContactsToAdd = [];
 let numberOfColorsToAdd = [];
 let numberOfIdsToAdd = [];
 
-function chooseContact(i, contactName, initials, color, id, contactId) {
+  function chooseContact(i, contactName, initials, color, id, contactId) {
   let chooseBoxContact = document.getElementById(`${id}chooseBoxContact${i}`);
   let parentDiv = chooseBoxContact.parentElement;
 
@@ -296,26 +324,32 @@ function chooseContact(i, contactName, initials, color, id, contactId) {
     numberOfContactsToAdd.push(contactName);
     numberOfColorsToAdd.push(color);
     numberOfIdsToAdd.push(contactId);
-
   } else {
-    chooseBoxContact.src = "./assets/img/logoChooseContact.png";
-    contactStatusMap.set(i, false);
-    cancelContact(i, id);
-    parentDiv.classList.remove("add-task-select-contact-activate");
+    deselectContact(i, contactName, color, id, contactId);
+  }
+}
 
-    // Entferne den Kontakt aus dem Array numberOfContactsToAdd
-    const index = numberOfContactsToAdd.indexOf(contactName);
-    if (index !== -1) {
-      numberOfContactsToAdd.splice(index, 1);
-    }
-    const indexcol = numberOfColorsToAdd.indexOf(color);
-    if (indexcol !== -1) {
-      numberOfColorsToAdd.splice(indexcol, 1);
-    }
-    const indexid = numberOfIdsToAdd.indexOf(contactId);
-    if (indexid !== -1) {
-      numberOfIdsToAdd.splice(indexid, 1);
-    }
+function deselectContact(i, contactName, color, id, contactId) {
+  let chooseBoxContact = document.getElementById(`${id}chooseBoxContact${i}`);
+  let parentDiv = chooseBoxContact.parentElement;
+
+  chooseBoxContact.src = "./assets/img/logoChooseContact.png";
+  contactStatusMap.set(i, false);
+  cancelContact(i, id);
+  parentDiv.classList.remove("add-task-select-contact-activate");
+
+  // Entferne den Kontakt aus den Arrays
+  const index = numberOfContactsToAdd.indexOf(contactName);
+  if (index !== -1) {
+    numberOfContactsToAdd.splice(index, 1);
+  }
+  const indexcol = numberOfColorsToAdd.indexOf(color);
+  if (indexcol !== -1) {
+    numberOfColorsToAdd.splice(indexcol, 1);
+  }
+  const indexid = numberOfIdsToAdd.indexOf(contactId);
+  if (indexid !== -1) {
+    numberOfIdsToAdd.splice(indexid, 1);
   }
 }
 
@@ -334,8 +368,8 @@ function showAddedContact(i, initials, color, id) {
   let initialsIcon = document.getElementById(`${id}initials${id}`);
   initialsIcon.classList.remove(`d-none`);
   initialsIcon.innerHTML += `<div id="${id}taskInitials${i}" class="add-task-initials">${initials}</div>`;
-  document.getElementById(id + 'taskInitials' + i).style.backgroundColor = color;
-
+  document.getElementById(id + "taskInitials" + i).style.backgroundColor =
+    color;
 }
 
 // Initialien generieren
@@ -391,7 +425,7 @@ function showAddedCategory() {
     const category = categories[i];
 
     showCategories.innerHTML += /*html*/ `<span id="savedCategory${i}" onclick="chooseCategory(${i})" class="add-task-single-priority">
-    ${category[`name`]}<img src=${category['img']}></span>`;
+    ${category[`name`]}<img src=${category["img"]}></span>`;
   }
 }
 
@@ -420,21 +454,41 @@ function cancelInputs(elementId) {
 
 function addColorToCategory(id) {
   let colorOfCategory = id;
-  placeholderColorCategory = document.getElementById(`placeholderColorCategory`);
+  placeholderColorCategory = document.getElementById(
+    `placeholderColorCategory`
+  );
   placeholderColorCategory.src = `${colorOfCategory}`;
   placeholderColorCategory.classList.remove(`d-none`);
 
-  if (id === "http://127.0.0.1:5500/assets/img/ellipsegreen.png" || id === "./assets/img/ellipsegreen.png") {
+  if (
+    id === "http://127.0.0.1:5500/assets/img/ellipsegreen.png" ||
+    id === "./assets/img/ellipsegreen.png"
+  ) {
     categoryColor = "#2AD300";
-  } else if (id === "http://127.0.0.1:5500/assets/img/ellipseOrange.png" || id === "./assets/img/ellipseOrange.png") {
+  } else if (
+    id === "http://127.0.0.1:5500/assets/img/ellipseOrange.png" ||
+    id === "./assets/img/ellipseOrange.png"
+  ) {
     categoryColor = "#FF7A00";
-  } else if (id === "http://127.0.0.1:5500/assets/img/ellipseLightblue.png" || id === "./assets/img/ellipseLightblue.png") {
+  } else if (
+    id === "http://127.0.0.1:5500/assets/img/ellipseLightblue.png" ||
+    id === "./assets/img/ellipseLightblue.png"
+  ) {
     categoryColor = "#1FD7C1";
-  } else if (id === "http://127.0.0.1:5500/assets/img/ellipseRed.png" || id === "./assets/img/ellipseRed.png") {
+  } else if (
+    id === "http://127.0.0.1:5500/assets/img/ellipseRed.png" ||
+    id === "./assets/img/ellipseRed.png"
+  ) {
     categoryColor = "#FF0000";
-  } else if (id === "http://127.0.0.1:5500/assets/img/ellipseBlue.png" || id === "./assets/img/ellipseBlue.png") {
+  } else if (
+    id === "http://127.0.0.1:5500/assets/img/ellipseBlue.png" ||
+    id === "./assets/img/ellipseBlue.png"
+  ) {
     categoryColor = "#0038FF";
-  } else if (id === "http://127.0.0.1:5500/assets/img/ellipseRosa.png" || id === "./assets/img/ellipseRosa.png") {
+  } else if (
+    id === "http://127.0.0.1:5500/assets/img/ellipseRosa.png" ||
+    id === "./assets/img/ellipseRosa.png"
+  ) {
     categoryColor = "#E200BE";
   }
 }
@@ -447,7 +501,9 @@ function chooseCategory(i) {
   // Zugriff auf das <img>-Element innerhalb des savedCategory-Containers
   let savedCategoryImg = savedCategory.querySelector("img");
   // Ersetze das src-Attribut des placeholderColorCategory-Bildes mit dem des savedCategory-Bildes
-  let placeholderColorCategory = document.getElementById("placeholderColorCategory");
+  let placeholderColorCategory = document.getElementById(
+    "placeholderColorCategory"
+  );
   placeholderColorCategory.src = savedCategoryImg.src;
   // Setze den Wert des selectCategory-Eingabefeldes auf den Text der ausgewählten Kategorie
   selectCategory.value = savedCategory.textContent;
@@ -463,29 +519,31 @@ function markColor() {
   let selectCategory = document.getElementById("selectCategory").value;
 
   if (selectCategory.includes("Sales")) {
-    document.getElementById("rosa").style.boxShadow = "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
+    document.getElementById("rosa").style.boxShadow =
+      "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
     categories.push("#2AD300");
   } else if (selectCategory.includes("Backoffice")) {
-    document.getElementById("lightBlue3,").style.boxShadow = "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
+    document.getElementById("lightBlue3,").style.boxShadow =
+      "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
   } else if (selectCategory.includes("Design")) {
-    document.getElementById("orange").style.boxShadow = "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
+    document.getElementById("orange").style.boxShadow =
+      "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
   } else if (selectCategory.includes("Marketing")) {
-    document.getElementById("green").style.boxShadow = "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
+    document.getElementById("green").style.boxShadow =
+      "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
   } else if (selectCategory.includes("Media")) {
-    document.getElementById("blue").style.boxShadow = "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
+    document.getElementById("blue").style.boxShadow =
+      "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
   }
 }
 
 function deleteSubtask(id, taskId) {
   subtasks.splice(id, 1);
   subtaskStatus.splice(id, 1);
-  docID("subtask" + id).classList.add('d-none')
+  docID("subtask" + id).classList.add("d-none");
 }
 
 function renameSubtask(id) {
-  docID('inputSubtask').value = docID('labelForSubtask' + id).innerHTML
+  docID("inputSubtask").value = docID("labelForSubtask" + id).innerHTML;
   deleteSubtask(id);
-
 }
-
-
