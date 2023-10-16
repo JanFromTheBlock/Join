@@ -39,32 +39,8 @@ let statusSubtask;
 let amountOfAddedTask = 0;
 
 function showSubtasks(id) {
-  let subtaskArea = document.getElementById(`subTaskArea`);
-  let inputSubtask = document.getElementById(`inputSubtask`).value;
-  if (edit === false || id === undefined) {
-    statusSubtask = 0;
-  } else {
-    statusSubtask = jsonToEdit.subtaskStatus[id];
-  }
-  if (id === undefined) {
-    id = amountOfAddedTask;
-  }
-
-  subtaskArea.classList.remove(`d-none`);
-  subtasks.push(inputSubtask);
-  subtaskStatus.push(statusSubtask);
-  subtaskArea.innerHTML += /*html*/ `
-  <div id = "subtask${id}" class="subTaskArea subtask${id}">
-  <div class ="inner-subtask1">
-    <input onclick=" pushDoneSubtask(${id})" id="subtaskCheckbox${id}" class="cursor-pointer" type="checkbox">
-    <label id="labelForSubtask${id}">${inputSubtask}</label>
-  </div>
-    <div class="inner-subtask2" id="inner-subtask${id}">
-      <img onclick="deleteSubtask(${id})" class="delete-subtask-button" src="./assets/img/delete_contact.png">
-      <img onclick = "renameSubtask(${id})" src="./assets/img/edit_contact.png">
-    </div>
-  </div>
-  `;
+  checkStatusSubtask(id);
+  renderSubtaskArea(id);
 
   document.getElementById(`inputSubtask`).value = "";
   setElement("subtasks", subtasks);
@@ -77,18 +53,46 @@ function showSubtasks(id) {
       docID("inner-subtask" + id).classList.add("d-none");
     }
   }
-
   if (
-    jsonToEdit &&
-    jsonToEdit.subtasks &&
-    jsonToEdit.subtasks[id] === undefined
-  ) {
+    jsonToEdit && jsonToEdit.subtasks && jsonToEdit.subtasks[id] === undefined) {
     docID("subtaskCheckbox" + id).disabled = true;
     docID("subtaskCheckbox" + id).classList.remove("cursor-pointer");
   } else {
   }
   amountOfAddedTask++;
 }
+
+function checkStatusSubtask(id){
+  if (edit === false || id === undefined) {
+    statusSubtask = 0;
+  } else {
+    statusSubtask = jsonToEdit.subtaskStatus[id];
+  }
+  if (id === undefined) {
+    id = amountOfAddedTask;
+  }
+}
+
+function renderSubtaskArea(id){
+  let subtaskArea = document.getElementById(`subTaskArea`);
+  let inputSubtask = document.getElementById(`inputSubtask`).value;
+  subtaskArea.classList.remove(`d-none`);
+  subtasks.push(inputSubtask);
+  subtaskStatus.push(statusSubtask);
+  subtaskArea.innerHTML += /*html*/ `
+  <div id="subtask${id}" class="subTaskArea subtask${id}">
+  <div class ="inner-subtask1">
+    <input onclick=" pushDoneSubtask(${id})" id="subtaskCheckbox${id}" class="cursor-pointer" type="checkbox">
+    <label id="labelForSubtask${id}">${inputSubtask}</label>
+  </div>
+    <div class="inner-subtask2" id="inner-subtask${id}">
+      <img onclick="deleteSubtask(${id})" class="delete-subtask-button" src="./assets/img/delete_contact.png">
+      <img onclick = "renameSubtask(${id})" src="./assets/img/edit_contact.png">
+    </div>
+  </div>
+  `;
+}
+
 
 //Onclick auf PriorityButtons
 
@@ -159,21 +163,7 @@ function changeColor(i) {
   }
 }
 
-function createJsonTask(
-  title,
-  description,
-  category,
-  subtasks,
-  subtasksLength,
-  urgency,
-  date,
-  firstName,
-  lastName,
-  categoryColor,
-  contactIds,
-  contactcolors,
-  taskId
-) {
+function createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId) {
   return {
     title: title,
     description: description,
@@ -195,6 +185,7 @@ function createJsonTask(
     subtaskStatus: subtaskStatus,
   };
 }
+
 let firstName = [];
 let lastName = [];
 let contactcolors = [];
@@ -223,21 +214,7 @@ function newTask() {
     const highestTaskId = findHighestId(tasks);
     taskId = highestTaskId + 1;
     clearTaskMask();
-    let task = createJsonTask(
-      title,
-      description,
-      category,
-      subtasks,
-      subtasksLength,
-      urgency,
-      date,
-      firstName,
-      lastName,
-      categoryColor,
-      contactIds,
-      contactcolors,
-      taskId
-    );
+    let task = createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId);
     getElement("tasks");
     firstName = [];
     lastName = [];
