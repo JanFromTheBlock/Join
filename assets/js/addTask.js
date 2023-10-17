@@ -96,7 +96,6 @@ function renderSubtaskArea(id){
   `;
 }
 
-
 //Onclick auf PriorityButtons
 
 function changeColorUrgent() {
