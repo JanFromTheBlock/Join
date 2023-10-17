@@ -41,7 +41,10 @@ let amountOfAddedTask = 0;
 function showSubtasks(id) {
   checkStatusSubtask(id);
   renderSubtaskArea(id);
+  checkSubtaskCheckbox(id);
+}
 
+function checkSubtaskCheckbox(id){
   document.getElementById(`inputSubtask`).value = "";
   setElement("subtasks", subtasks);
   if (subtasksWereChecked === true) {
@@ -191,6 +194,31 @@ let lastName = [];
 let contactcolors = [];
 let contactIds = [];
 
+
+function showTaskAddedToBoardButton(){
+  let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
+  taskAddedToBoard.classList.remove(`d-none`);
+  taskAddedToBoard.classList.remove(`task-added-to-board-hide`);
+  taskAddedToBoard.classList.add(`task-added-to-board`);
+}
+
+function cacheOfArrays(){
+  firstName = [];
+  lastName = [];
+  numberOfContactsToAdd = [];
+  numberOfColorsToAdd = [];
+  numberOfIdsToAdd = [];
+  subtaskStatus = [];
+  amountOfAddedTask = 0;
+}
+
+function jumpToBoard(){
+  setTimeout(() => {
+    window.location.href = "./board.html"; // springt nachdem AddTask gerendert wurde auf die BoardSeite
+    closeAddTaskToBoard();
+  }, 2000);
+}
+
 function newTask() {
   if (edit === true) {
     safeEditedTask();
@@ -200,15 +228,8 @@ function newTask() {
     let category = document.getElementById(`selectCategory`).value;
     let description = document.getElementById(`description`).value;
     let subtasksLength = subtasks.length;
-    let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
-
-    taskAddedToBoard.classList.remove(`d-none`);
-    taskAddedToBoard.classList.remove(`task-added-to-board-hide`);
-    taskAddedToBoard.classList.add(`task-added-to-board`);
-    setTimeout(() => {
-      window.location.href = "./board.html"; // springt nachdem AddTask gerendert wurde auf die BoardSeite
-      closeAddTaskToBoard();
-    }, 2000);
+    showTaskAddedToBoardButton();
+    jumpToBoard();
     document.getElementById(`inputSubtask`).value = ``;
     safeContactsInTask();
     const highestTaskId = findHighestId(tasks);
@@ -216,13 +237,7 @@ function newTask() {
     clearTaskMask();
     let task = createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId);
     getElement("tasks");
-    firstName = [];
-    lastName = [];
-    numberOfContactsToAdd = [];
-    numberOfColorsToAdd = [];
-    numberOfIdsToAdd = [];
-    subtaskStatus = [];
-    amountOfAddedTask = 0;
+    cacheOfArrays();
     tasks.push(task);
     setElement("tasks", tasks);
     addBoardInit();
@@ -230,7 +245,6 @@ function newTask() {
 
   function findHighestId(tasks) {
     let highestTaskId = 3;
-
     for (const task of tasks) {
       if (task.taskId > highestTaskId) {
         highestTaskId = task.taskId;
@@ -259,7 +273,6 @@ function toggleVisibility(elementId) {
   let element = document.getElementById(elementId);
   element.classList.remove("d-none");
   docID("showCategories").innerHTML = "";
-
   if (element.classList.contains("add-task-hide-contacts")) {
     element.classList.remove("add-task-hide-contacts");
   } else {
@@ -287,16 +300,13 @@ let numberOfIdsToAdd = [];
   function chooseContact(i, contactName, initials, color, id, contactId) {
   let chooseBoxContact = document.getElementById(`${id}chooseBoxContact${i}`);
   let parentDiv = chooseBoxContact.parentElement;
-
   // Überprüfe den aktuellen Status des Kontakts
   const isClicked = contactStatusMap.get(i) || false;
-
   if (!isClicked) {
     chooseBoxContact.src = "./assets/img/checkButtonContact.png";
     contactStatusMap.set(i, true);
     showAddedContact(i, initials, color, id);
     parentDiv.classList.add("add-task-select-contact-activate");
-
     // Füge den Kontakt zum Array numberOfContactsToAdd hinzu
     numberOfContactsToAdd.push(contactName);
     numberOfColorsToAdd.push(color);
@@ -314,7 +324,6 @@ function deselectContact(i, contactName, color, id, contactId) {
   contactStatusMap.set(i, false);
   cancelContact(i, id);
   parentDiv.classList.remove("add-task-select-contact-activate");
-
   // Entferne den Kontakt aus den Arrays
   const index = numberOfContactsToAdd.indexOf(contactName);
   if (index !== -1) {
@@ -397,10 +406,8 @@ function finishPushCategoryToArray() {
 
 function showAddedCategory() {
   let showCategories = document.getElementById(`showCategories`);
-
   for (let i = 0; i < categories.length; i++) {
     const category = categories[i];
-
     showCategories.innerHTML += /*html*/ `<span id="savedCategory${i}" onclick="chooseCategory(${i})" class="add-task-single-priority">
     ${category[`name`]}<img src=${category["img"]}></span>`;
   }
@@ -417,7 +424,6 @@ function cancelCategory() {
 
 function cancelContact(i, id) {
   const taskInitials = document.getElementById(`${id}taskInitials${i}`);
-
   if (taskInitials) {
     taskInitials.remove();
   }
@@ -436,36 +442,29 @@ function addColorToCategory(id) {
   );
   placeholderColorCategory.src = `${colorOfCategory}`;
   placeholderColorCategory.classList.remove(`d-none`);
-
   if (
     id === "http://127.0.0.1:5500/assets/img/ellipsegreen.png" ||
-    id === "./assets/img/ellipsegreen.png"
-  ) {
+    id === "./assets/img/ellipsegreen.png") {
     categoryColor = "#2AD300";
   } else if (
     id === "http://127.0.0.1:5500/assets/img/ellipseOrange.png" ||
-    id === "./assets/img/ellipseOrange.png"
-  ) {
+    id === "./assets/img/ellipseOrange.png") {
     categoryColor = "#FF7A00";
   } else if (
     id === "http://127.0.0.1:5500/assets/img/ellipseLightblue.png" ||
-    id === "./assets/img/ellipseLightblue.png"
-  ) {
+    id === "./assets/img/ellipseLightblue.png") {
     categoryColor = "#1FD7C1";
   } else if (
     id === "http://127.0.0.1:5500/assets/img/ellipseRed.png" ||
-    id === "./assets/img/ellipseRed.png"
-  ) {
+    id === "./assets/img/ellipseRed.png") {
     categoryColor = "#FF0000";
   } else if (
     id === "http://127.0.0.1:5500/assets/img/ellipseBlue.png" ||
-    id === "./assets/img/ellipseBlue.png"
-  ) {
+    id === "./assets/img/ellipseBlue.png") {
     categoryColor = "#0038FF";
   } else if (
     id === "http://127.0.0.1:5500/assets/img/ellipseRosa.png" ||
-    id === "./assets/img/ellipseRosa.png"
-  ) {
+    id === "./assets/img/ellipseRosa.png") {
     categoryColor = "#E200BE";
   }
 }
@@ -479,8 +478,7 @@ function chooseCategory(i) {
   let savedCategoryImg = savedCategory.querySelector("img");
   // Ersetze das src-Attribut des placeholderColorCategory-Bildes mit dem des savedCategory-Bildes
   let placeholderColorCategory = document.getElementById(
-    "placeholderColorCategory"
-  );
+    "placeholderColorCategory");
   placeholderColorCategory.src = savedCategoryImg.src;
   // Setze den Wert des selectCategory-Eingabefeldes auf den Text der ausgewählten Kategorie
   selectCategory.value = savedCategory.textContent;
