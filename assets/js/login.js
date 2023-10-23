@@ -134,7 +134,7 @@ async function checkreset(variable) {
     let array = await getElement('users');
     mailUsers = JSON.parse(array);
     for (let i = 0; i < mailUsers.length; i++) {
-        if(mailUsers[i]['mail'] === variable) {
+        if(mailUsers[i]['email'] === variable) {
             return true;
         }
     }
