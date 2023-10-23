@@ -29,23 +29,23 @@ body {
   
   /* checkbox the image */
   .accept-me {
-    content: url('./assets/img/blue-checkbox.svg');
+    content: url('../img/blue-checkbox.svg');
     appearance: none;
   }
   
   /* checkbox picture on hover */
   .accept-me:hover {
-    content: url('./assets/img/blue-checkbox-hover.svg');
+    content: url('../img/blue-checkbox-hover.svg');
   }
   
   /* checkbox picture when checked */
   .accept-me:checked {
-    content: url('./assets/img/blue-checkbox-checked.svg');
+    content: url('../img/blue-checkbox-checked.svg');
   }
   
   /* checkbox picture on hover while checked */
   .accept-me:checked:hover {
-    content: url('./assets/img/blue-checkbox-checked-hover.svg');
+    content: url('../img/blue-checkbox-checked-hover.svg');
   }
   
   /* the text for the checkbox */

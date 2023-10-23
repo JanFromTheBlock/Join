@@ -291,7 +291,7 @@
 #forgot-link:hover {
   font-weight: 600;
   text-decoration: underline;
-  margin-left: 1px;
+  margin-left: -3px;
 }
 
 /* container of the login buttons */
