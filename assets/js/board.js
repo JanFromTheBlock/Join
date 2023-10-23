@@ -738,14 +738,14 @@ function adjustValuesOfTheSubtasks(id, isChecked){
 
 function setupInputField(){
   const inputField = docID('inputSubtask');
-if (inputField) {
-  document.getElementById('inputSubtask').addEventListener('keydown', function (event) {
-    if (event.key === "Enter") {
-        event.preventDefault(); // Verhindert das Standardverhalten (z. B. Formularübermittlung)
-        showSubtasks(); // Ruft die Funktion addSubtask() auf
-    }
-  });
-}
+  if (inputField) {
+    document.getElementById('inputSubtask').addEventListener('keydown', function (event) {
+      if (event.key === "Enter") {
+          event.preventDefault(); // Verhindert das Standardverhalten (z. B. Formularübermittlung)
+          showSubtasks(); // Ruft die Funktion addSubtask() auf
+      }
+    });
+  }
 }
 
 
