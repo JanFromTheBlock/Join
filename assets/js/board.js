@@ -1,26 +1,14 @@
 let taskTitles = ["1", "2", "3", "4"]; //Array, um Drag und Drop Zielarea festzulegen
-
 let taskNames = ["To do", "In progress", "Await feedback", "Done"]; //Array, um beim Rendern der Rask-areas die Titel zu vergeben
-
 let currentDraggedElement; // In dieser Variable wird die id der gedraggten Task gespeichert
-
 let openedTask;
-
 let saveChangedTask = false;
-
 let jsonToEdit;
-
-
 let edit = false;
-
 let doneSubtaskClicked = false;
-
 let progress;
-
 let doneSubtask = 0;
-
 let subtasksWereChecked
-
 let zero = true
 
 
@@ -40,7 +28,7 @@ function renderBoardInput() {
             <div id="find-task">
                 <input id="input" type="text" placeholder="Find Task" onkeyup="filterTasks(); handleKeyPress(event)">
                 <div id="img-search-margin">
-                    <img id="img-search" onclick="handleImgClick()" src="./assets/img/search.png">
+                    <img id="img-search" onclick="clearInput()" src="./assets/img/search.png">
                 </div>
             </div>
             <button onclick="openAddTask(1)" id="board-button">Add Task <span id="board-button-plus">+</span></button>
@@ -276,12 +264,6 @@ function handleKeyPress(event) {
     clearInput();
     // Hier kannst du die Funktion aufrufen, die deine divs nach dem Text filtert
   }
-}
-
-
-function handleImgClick() {
-  clearInput();
-  // Hier kannst du die Funktion aufrufen, die deine divs nach dem Text filtert
 }
 
 
