@@ -273,9 +273,25 @@ function toggleVisibility(elementId) {
   docID("showCategories").innerHTML = "";
   if (element.classList.contains("add-task-hide-contacts")) {
     element.classList.remove("add-task-hide-contacts");
+    if (boardActive === true) {
+      docID('closeDropDownBoard').classList.remove('d-none');
+    }
+    if (boardActive === false) {
+      docID('closeDropDownAddTask').classList.remove('d-none');
+    }
   } else {
     element.classList.add("add-task-hide-contacts");
+    if (boardActive === true) {
+      docID('closeDropDownBoard').classList.add('d-none');
+    }
+    if (boardActive === false){
+      docID('closeDropDownAddTask').classList.add('d-none');
+    }
   }
+}
+
+function doNotCloseWindow(event){
+  event.stopPropagation();
 }
 
 function showContactList(id) {

@@ -111,11 +111,11 @@ function addTaskRender() {
            <h2 id="add-edit-task" class="add-task-h2-big">Add Task</h2>
         </div>
              <input required autocomplete="off" id="inputFieldTitle" class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
-            <div class="add-task-select-contact-edit">
+            <div onclick="doNotCloseWindow(event)" class="add-task-select-contact-edit">
                  <input onclick="showContactList(0)" autocomplete="off" placeholder="Selected contacts to assign" class="add-task-select-contact cursor-pointer" id="selectContact" type="email"> 
                  <img id="contactSelectArrow" src="./assets/img/selectfieldArrow.png">
             </div>
-            <div id="showContacts0" class="add-task-hide-contacts add-task-choose-contacts">
+            <div onclick="doNotCloseWindow(event)" id="showContacts0" class="add-task-hide-contacts add-task-choose-contacts">
             </div>
             <div class="add-task-initials-area" id="0initials0"></div>
             <div class="add-task-due-date">
