@@ -36,10 +36,12 @@ let editLabelsSubtasks;
 edit = false;
 let subtaskStatus = [];
 let statusSubtask;
+let newsubtask;
 
 function showSubtasks(id) {
   if (id === undefined) {
     id = subtaskCounter;
+    newsubtask = true
   }
   checkStatusSubtask(id);
   renderSubtaskArea(id);
@@ -72,11 +74,12 @@ function checkSubtaskCheckbox(id){
 }
 
 function checkStatusSubtask(id){
-  if (edit === false || id === undefined) {
+  if (edit === false || newsubtask === true) {
     statusSubtask = 0;
   } else {
     statusSubtask = jsonToEdit.subtaskStatus[id];
   }
+  newsubtask = false;
 }
 let subtaskCounter = 0;
 function renderSubtaskArea(id){
