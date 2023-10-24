@@ -36,9 +36,13 @@ let editLabelsSubtasks;
 edit = false;
 let subtaskStatus = [];
 let statusSubtask;
-let amountOfAddedTask = 0;
+let newsubtask;
 
 function showSubtasks(id) {
+  if (id === undefined) {
+    id = subtaskCounter;
+    newsubtask = true
+  }
   checkStatusSubtask(id);
   renderSubtaskArea(id);
   checkSubtaskCheckbox(id);
@@ -62,20 +66,22 @@ function checkSubtaskCheckbox(id){
     docID("subtaskCheckbox" + id).classList.remove("cursor-pointer");
   } else {
   }
-  amountOfAddedTask++;
+  if (jsonToEdit){
+  }else{
+    docID("subtaskCheckbox" + id).disabled = true;
+    docID("subtaskCheckbox" + id).classList.remove("cursor-pointer");
+  }
 }
 
 function checkStatusSubtask(id){
-  if (edit === false || id === undefined) {
+  if (edit === false || newsubtask === true) {
     statusSubtask = 0;
   } else {
     statusSubtask = jsonToEdit.subtaskStatus[id];
   }
-  if (id === undefined) {
-    id = amountOfAddedTask;
-  }
+  newsubtask = false;
 }
-
+let subtaskCounter = 0;
 function renderSubtaskArea(id){
   let subtaskArea = docID(`subTaskArea`);
   let inputSubtask = docID(`inputSubtask`).value;
@@ -94,6 +100,7 @@ function renderSubtaskArea(id){
     </div>
   </div>
   `;
+  subtaskCounter++
 }
 
 //Onclick auf PriorityButtons
@@ -208,7 +215,7 @@ function cacheOfArrays(){
   numberOfColorsToAdd = [];
   numberOfIdsToAdd = [];
   subtaskStatus = [];
-  amountOfAddedTask = 0;
+  subtaskCounter = 0;
 }
 
 function jumpToBoard(){
