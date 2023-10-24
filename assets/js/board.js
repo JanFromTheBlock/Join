@@ -9,7 +9,7 @@ let doneSubtaskClicked = false;
 let progress;
 let doneSubtask = 0;
 let subtasksWereChecked
-let zero = true
+let zero = true;
 
 
 function addBoardRender() {
@@ -655,7 +655,7 @@ function resetAddTaskMask(){
   edit = false;
   subtasksWereChecked = false;
   zero = true;
-  amountOfAddedTask = 0;
+  subtaskCounter = 0;
 }
 
 

@@ -36,9 +36,11 @@ let editLabelsSubtasks;
 edit = false;
 let subtaskStatus = [];
 let statusSubtask;
-let amountOfAddedTask = 0;
 
 function showSubtasks(id) {
+  if (id === undefined) {
+    id = subtaskCounter;
+  }
   checkStatusSubtask(id);
   renderSubtaskArea(id);
   checkSubtaskCheckbox(id);
@@ -62,7 +64,6 @@ function checkSubtaskCheckbox(id){
     docID("subtaskCheckbox" + id).classList.remove("cursor-pointer");
   } else {
   }
-  amountOfAddedTask++;
 }
 
 function checkStatusSubtask(id){
@@ -71,11 +72,8 @@ function checkStatusSubtask(id){
   } else {
     statusSubtask = jsonToEdit.subtaskStatus[id];
   }
-  if (id === undefined) {
-    id = amountOfAddedTask;
-  }
 }
-
+let subtaskCounter = 0;
 function renderSubtaskArea(id){
   let subtaskArea = document.getElementById(`subTaskArea`);
   let inputSubtask = document.getElementById(`inputSubtask`).value;
@@ -94,6 +92,7 @@ function renderSubtaskArea(id){
     </div>
   </div>
   `;
+  subtaskCounter++
 }
 
 //Onclick auf PriorityButtons
@@ -208,7 +207,7 @@ function cacheOfArrays(){
   numberOfColorsToAdd = [];
   numberOfIdsToAdd = [];
   subtaskStatus = [];
-  amountOfAddedTask = 0;
+  subtaskCounter = 0;
 }
 
 function jumpToBoard(){
