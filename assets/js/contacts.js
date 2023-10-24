@@ -117,7 +117,7 @@ function resetContactPage(){
 
 function renderContactDisplay(elementJSON) {
   if (document.body.clientWidth < 900) {
-    document.getElementById("background-responsive").style.display = "block";
+    docID("background-responsive").style.display = "block";
   }
 
   const element = JSON.parse(decodeURIComponent(elementJSON));
@@ -190,7 +190,7 @@ function addNewContact() {
     </div>
     `;
 
-  let addTaskUnder = document.getElementById(`add-contact-mask`);
+  let addTaskUnder = docID(`add-contact-mask`);
   addTaskUnder.classList.remove(`d-none`);
   setTimeout(() => {
     addTaskUnder.classList.remove(`open-add-contact-hide`);
@@ -200,11 +200,11 @@ function addNewContact() {
 
 function cancelNewContact() {
   if (openEditContactClicked) {
-    addTask = document.getElementById(`edit-contact-mask`);
+    addTask = docID(`edit-contact-mask`);
     addTask.classList.add(`open-edit-contact-hide`);
     openEditContactClicked = false;
   }else{
-     addTask = document.getElementById(`add-contact-mask`);
+     addTask = docID(`add-contact-mask`);
      addTask.classList.add(`open-add-contact-hide`);
   }
   
@@ -222,9 +222,9 @@ function animateCloseAddContact(){
 
 
 function emptyContactMask(){
-  document.getElementById(`contact-name`).value = "";
-  document.getElementById(`contact-mail`).value = "";
-  document.getElementById(`contact-phone`).value = "";
+  docID(`contact-name`).value = "";
+  docID(`contact-mail`).value = "";
+  docID(`contact-phone`).value = "";
 }
 
 
@@ -255,9 +255,9 @@ async function newContact() {
 
 
 function gatherContactData() {
-  const name = document.getElementById('contact-name').value;
-  const mail = document.getElementById('contact-mail').value;
-  const phone = document.getElementById('contact-phone').value;
+  const name = docID('contact-name').value;
+  const mail = docID('contact-mail').value;
+  const phone = docID('contact-phone').value;
   return (name && mail && phone) ? { name, mail, phone } : null;
 }
 
@@ -283,16 +283,14 @@ function orderAndSaveContacts() {
 
 function resetNewContactForm(){
   docID("background-add-contact").classList.add("d-none");
-    document.getElementById(`contact-name`).value = "";
-    document.getElementById(`contact-mail`).value = "";
-    document.getElementById(`contact-phone`).value = "";
+    docID(`contact-name`).value = "";
+    docID(`contact-mail`).value = "";
+    docID(`contact-phone`).value = "";
 }
 
 
 function contactAddedSuccesfully(){
-  let addedContactSuccesfully = document.getElementById(
-    `contact-added-succesfully-animation`
-  );
+  let addedContactSuccesfully = docID(`contact-added-succesfully-animation`);
   addedContactSuccesfully.classList.remove(`contact-added-succesfully-hide`);
   addedContactSuccesfully.classList.add(`contact-added-succesfully`);
   setTimeout(() => {
@@ -383,7 +381,7 @@ function resetColorOfAllContactContainer(){
 
 
 function setColorOfSelectedContact(clickedId){
-   const clickedContainer = document.getElementById("contact" + clickedId);
+   const clickedContainer = docID("contact" + clickedId);
    clickedContainer.style.backgroundColor = "#4589FF";
    const clickedNameElement = clickedContainer.querySelector("#name");
    const clickedMailElement = clickedContainer.querySelector("#mail");
@@ -436,7 +434,7 @@ function fillInputs(name, mail, phone, color){
 
 
 function animateOpenContactMask(){
-  let addTaskUnder = document.getElementById(`edit-contact-mask`);
+  let addTaskUnder = docID(`edit-contact-mask`);
   addTaskUnder.classList.remove(`d-none`);
   setTimeout(() => {
     addTaskUnder.classList.remove(`open-edit-contact-hide`);
@@ -445,9 +443,9 @@ function animateOpenContactMask(){
 
 
 async function editContact(contactId) {
-  const nameInput = document.getElementById("contact-name");
-  const mailInput = document.getElementById("contact-mail");
-  const phoneInput = document.getElementById("contact-phone");
+  const nameInput = docID("contact-name");
+  const mailInput = docID("contact-mail");
+  const phoneInput = docID("contact-phone");
   const name = nameInput.value;
   const mail = mailInput.value;
   const phone = phoneInput.value;
@@ -537,7 +535,7 @@ window.addEventListener("resize", addClassIfBodyWidthLessThan900px);
 
 function addClassIfBodyWidthLessThan900px() {
   if (document.body.clientWidth < 900) {
-    var contactDisplay = document.getElementById("contact-display");
+    var contactDisplay = docID("contact-display");
     if (!contactDisplay.classList.contains("d-none")) {
       contactDisplay.classList.add("d-none");
       docID("background-responsive").style.display = "none";
