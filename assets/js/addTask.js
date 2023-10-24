@@ -64,6 +64,11 @@ function checkSubtaskCheckbox(id){
     docID("subtaskCheckbox" + id).classList.remove("cursor-pointer");
   } else {
   }
+  if (jsonToEdit){
+  }else{
+    docID("subtaskCheckbox" + id).disabled = true;
+    docID("subtaskCheckbox" + id).classList.remove("cursor-pointer");
+  }
 }
 
 function checkStatusSubtask(id){
