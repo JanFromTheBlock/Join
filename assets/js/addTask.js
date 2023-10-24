@@ -45,7 +45,7 @@ function showSubtasks(id) {
 }
 
 function checkSubtaskCheckbox(id){
-  document.getElementById(`inputSubtask`).value = "";
+  docID(`inputSubtask`).value = "";
   setElement("subtasks", subtasks);
   if (subtasksWereChecked === true) {
     checkSubtasks();
@@ -77,8 +77,8 @@ function checkStatusSubtask(id){
 }
 
 function renderSubtaskArea(id){
-  let subtaskArea = document.getElementById(`subTaskArea`);
-  let inputSubtask = document.getElementById(`inputSubtask`).value;
+  let subtaskArea = docID(`subTaskArea`);
+  let inputSubtask = docID(`inputSubtask`).value;
   subtaskArea.classList.remove(`d-none`);
   subtasks.push(inputSubtask);
   subtaskStatus.push(statusSubtask);
@@ -99,12 +99,12 @@ function renderSubtaskArea(id){
 //Onclick auf PriorityButtons
 
 function changeColorUrgent() {
-  let urgent = document.getElementById(`urgent`);
-  let low = document.getElementById(`low`);
-  let medium = document.getElementById(`medium`);
-  let lowLogo = document.getElementById(`lowLogo`);
-  let mediumLogo = document.getElementById(`mediumLogo`);
-  let urgentLogo = document.getElementById(`urgentLogo`);
+  let urgent = docID(`urgent`);
+  let low = docID(`low`);
+  let medium = docID(`medium`);
+  let lowLogo = docID(`lowLogo`);
+  let mediumLogo = docID(`mediumLogo`);
+  let urgentLogo = docID(`urgentLogo`);
   urgent.classList.add("change-color-urgent");
   urgent.classList.add("clicked");
   medium.classList.remove("change-color-medium");
@@ -117,12 +117,12 @@ function changeColorUrgent() {
 }
 
 function changeColorMedium() {
-  let urgent = document.getElementById(`urgent`);
-  let low = document.getElementById(`low`);
-  let medium = document.getElementById(`medium`);
-  let lowLogo = document.getElementById(`lowLogo`);
-  let mediumLogo = document.getElementById(`mediumLogo`);
-  let urgentLogo = document.getElementById(`urgentLogo`);
+  let urgent = docID(`urgent`);
+  let low = docID(`low`);
+  let medium = docID(`medium`);
+  let lowLogo = docID(`lowLogo`);
+  let mediumLogo = docID(`mediumLogo`);
+  let urgentLogo = docID(`urgentLogo`);
   urgent.classList.remove("change-color-urgent");
   medium.classList.add("clicked");
   low.classList.remove("clicked");
@@ -135,12 +135,12 @@ function changeColorMedium() {
 }
 
 function changeColorLow() {
-  let urgent = document.getElementById(`urgent`);
-  let low = document.getElementById(`low`);
-  let medium = document.getElementById(`medium`);
-  let lowLogo = document.getElementById(`lowLogo`);
-  let mediumLogo = document.getElementById(`mediumLogo`);
-  let urgentLogo = document.getElementById(`urgentLogo`);
+  let urgent = docID(`urgent`);
+  let low = docID(`low`);
+  let medium = docID(`medium`);
+  let lowLogo = docID(`lowLogo`);
+  let mediumLogo = docID(`mediumLogo`);
+  let urgentLogo = docID(`urgentLogo`);
   urgent.classList.remove("change-color-urgent");
   medium.classList.remove("change-color-medium");
   low.classList.add("change-color-low");
@@ -195,7 +195,7 @@ let contactIds = [];
 
 
 function showTaskAddedToBoardButton(){
-  let taskAddedToBoard = document.getElementById(`taskAddedToBoard`);
+  let taskAddedToBoard = docID(`taskAddedToBoard`);
   taskAddedToBoard.classList.remove(`d-none`);
   taskAddedToBoard.classList.remove(`task-added-to-board-hide`);
   taskAddedToBoard.classList.add(`task-added-to-board`);
@@ -222,14 +222,14 @@ function newTask() {
   if (edit === true) {
     safeEditedTask();
   } else {
-    let title = document.getElementById(`inputFieldTitle`).value;
-    let date = document.getElementById(`inputDate`).value;
-    let category = document.getElementById(`selectCategory`).value;
-    let description = document.getElementById(`description`).value;
+    let title = docID(`inputFieldTitle`).value;
+    let date = docID(`inputDate`).value;
+    let category = docID(`selectCategory`).value;
+    let description = docID(`description`).value;
     let subtasksLength = subtasks.length;
     showTaskAddedToBoardButton();
     jumpToBoard();
-    document.getElementById(`inputSubtask`).value = ``;
+    docID(`inputSubtask`).value = ``;
     safeContactsInTask();
     const highestTaskId = findHighestId(tasks);
     taskId = highestTaskId + 1;
@@ -254,11 +254,11 @@ function newTask() {
 }
 
 function clearTaskMask() {
-  document.getElementById(`inputFieldTitle`).value = ``;
-  document.getElementById(`description`).value = ``;
-  document.getElementById(`selectContact`).value = ``;
-  document.getElementById(`selectCategory`).value = ``;
-  document.getElementById(`placeholderColorCategory`).classList.add(`d-none`);
+  docID(`inputFieldTitle`).value = ``;
+  docID(`description`).value = ``;
+  docID(`selectContact`).value = ``;
+  docID(`selectCategory`).value = ``;
+  docID(`placeholderColorCategory`).classList.add(`d-none`);
 }
 
 function clearTask(i) {
@@ -269,7 +269,7 @@ function clearTask(i) {
 }
 
 function toggleVisibility(elementId) {
-  let element = document.getElementById(elementId);
+  let element = docID(elementId);
   element.classList.remove("d-none");
   docID("showCategories").innerHTML = "";
   if (element.classList.contains("add-task-hide-contacts")) {
@@ -284,7 +284,7 @@ function showContactList(id) {
 }
 
 function showCategories() {
-  let selectCategory = document.getElementById(`selectCategory`);
+  let selectCategory = docID(`selectCategory`);
   toggleVisibility("showCategories");
   selectCategory.classList.add(`hide-cursor`);
   showAddedCategory(); // zeigt die gespeicherten Catagories an
@@ -297,7 +297,7 @@ let numberOfColorsToAdd = [];
 let numberOfIdsToAdd = [];
 
   function chooseContact(i, contactName, initials, color, id, contactId) {
-  let chooseBoxContact = document.getElementById(`${id}chooseBoxContact${i}`);
+  let chooseBoxContact = docID(`${id}chooseBoxContact${i}`);
   let parentDiv = chooseBoxContact.parentElement;
   // Überprüfe den aktuellen Status des Kontakts
   const isClicked = contactStatusMap.get(i) || false;
@@ -316,7 +316,7 @@ let numberOfIdsToAdd = [];
 }
 
 function deselectContact(i, contactName, color, id, contactId) {
-  let chooseBoxContact = document.getElementById(`${id}chooseBoxContact${i}`);
+  let chooseBoxContact = docID(`${id}chooseBoxContact${i}`);
   let parentDiv = chooseBoxContact.parentElement;
 
   chooseBoxContact.src = "./assets/img/logoChooseContact.png";
@@ -341,7 +341,7 @@ function deselectContact(i, contactName, color, id, contactId) {
 // add new Contact
 
 function addContact() {
-  let editContact = document.getElementById(`editContact`);
+  let editContact = docID(`editContact`);
   selectContact.placeholder = "Contact email";
   selectContact.classList.remove(`hide-cursor`);
   selectContact.focus();
@@ -350,10 +350,10 @@ function addContact() {
 }
 
 function showAddedContact(i, initials, color, id) {
-  let initialsIcon = document.getElementById(`${id}initials${id}`);
+  let initialsIcon = docID(`${id}initials${id}`);
   initialsIcon.classList.remove(`d-none`);
   initialsIcon.innerHTML += `<div id="${id}taskInitials${i}" class="add-task-initials">${initials}</div>`;
-  document.getElementById(id + "taskInitials" + i).style.backgroundColor =
+  docID(id + "taskInitials" + i).style.backgroundColor =
     color;
 }
 
@@ -373,10 +373,10 @@ function getInitials(contact) {
 }
 
 function newCategory() {
-  let showCategories = document.getElementById(`showCategories`);
-  let editCategory = document.getElementById(`editCategory`);
-  let selectCategory = document.getElementById(`selectCategory`);
-  let categoryColors = document.getElementById(`categoryColors`);
+  let showCategories = docID(`showCategories`);
+  let editCategory = docID(`editCategory`);
+  let selectCategory = docID(`selectCategory`);
+  let categoryColors = docID(`categoryColors`);
   categoryColors.classList.remove(`d-none`);
   categorySelectArrow.classList.add(`d-none`);
   editCategory.classList.remove(`d-none`);
@@ -389,7 +389,7 @@ function newCategory() {
 let savedCategory;
 
 function pushCategoryToArray(categoryColor) {
-  let selectCategory = document.getElementById(`selectCategory`).value;
+  let selectCategory = docID(`selectCategory`).value;
   let category = { name: selectCategory, color: categoryColor };
 
   if (!categories.includes(selectCategory)) {
@@ -404,7 +404,7 @@ function finishPushCategoryToArray() {
 }
 
 function showAddedCategory() {
-  let showCategories = document.getElementById(`showCategories`);
+  let showCategories = docID(`showCategories`);
   for (let i = 0; i < categories.length; i++) {
     const category = categories[i];
     showCategories.innerHTML += /*html*/ `<span id="savedCategory${i}" onclick="chooseCategory(${i})" class="add-task-single-priority">
@@ -422,23 +422,21 @@ function cancelCategory() {
 }
 
 function cancelContact(i, id) {
-  const taskInitials = document.getElementById(`${id}taskInitials${i}`);
+  const taskInitials = docID(`${id}taskInitials${i}`);
   if (taskInitials) {
     taskInitials.remove();
   }
 }
 
 function cancelInputs(elementId) {
-  let element = document.getElementById(elementId);
+  let element = docID(elementId);
   element.value = ``;
   initials.classList.add(`d-none`);
 }
 
 function addColorToCategory(id) {
   let colorOfCategory = id;
-  placeholderColorCategory = document.getElementById(
-    `placeholderColorCategory`
-  );
+  placeholderColorCategory = docID(`placeholderColorCategory`);
   placeholderColorCategory.src = `${colorOfCategory}`;
   placeholderColorCategory.classList.remove(`d-none`);
   if (
@@ -469,15 +467,14 @@ function addColorToCategory(id) {
 }
 
 function chooseCategory(i) {
-  let savedCategory = document.getElementById(`savedCategory${i}`);
-  let showCategories = document.getElementById(`showCategories`);
-  let selectCategory = document.getElementById(`selectCategory`);
+  let savedCategory = docID(`savedCategory${i}`);
+  let showCategories = docID(`showCategories`);
+  let selectCategory = docID(`selectCategory`);
   let categoryImg = categories[i][`img`];
   // Zugriff auf das <img>-Element innerhalb des savedCategory-Containers
   let savedCategoryImg = savedCategory.querySelector("img");
   // Ersetze das src-Attribut des placeholderColorCategory-Bildes mit dem des savedCategory-Bildes
-  let placeholderColorCategory = document.getElementById(
-    "placeholderColorCategory");
+  let placeholderColorCategory = docID("placeholderColorCategory");
   placeholderColorCategory.src = savedCategoryImg.src;
   // Setze den Wert des selectCategory-Eingabefeldes auf den Text der ausgewählten Kategorie
   selectCategory.value = savedCategory.textContent;
@@ -490,23 +487,23 @@ function chooseCategory(i) {
 }
 
 function markColor() {
-  let selectCategory = document.getElementById("selectCategory").value;
+  let selectCategory = docID("selectCategory").value;
 
   if (selectCategory.includes("Sales")) {
-    document.getElementById("rosa").style.boxShadow =
+    docID("rosa").style.boxShadow =
       "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
     categories.push("#2AD300");
   } else if (selectCategory.includes("Backoffice")) {
-    document.getElementById("lightBlue3,").style.boxShadow =
+    docID("lightBlue3,").style.boxShadow =
       "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
   } else if (selectCategory.includes("Design")) {
-    document.getElementById("orange").style.boxShadow =
+    docID("orange").style.boxShadow =
       "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
   } else if (selectCategory.includes("Marketing")) {
-    document.getElementById("green").style.boxShadow =
+    docID("green").style.boxShadow =
       "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
   } else if (selectCategory.includes("Media")) {
-    document.getElementById("blue").style.boxShadow =
+    docID("blue").style.boxShadow =
       "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
   }
 }
