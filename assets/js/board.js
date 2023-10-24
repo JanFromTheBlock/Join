@@ -445,7 +445,7 @@ function deleteTask(id) {
 
 
 function changeDeleteImage(isHovering) {
-  const deleteButton = document.getElementById("delete-button");
+  const deleteButton = docID("delete-button");
   if (isHovering) {
     deleteButton.src = "./assets/img/delete_hover.png";
   } else {
@@ -456,11 +456,11 @@ function changeDeleteImage(isHovering) {
 
 function openAddTask(IdOfTask) {
   windowscrollToTop();
-  const addTaskUnder = document.getElementById(`addTask`);
+  const addTaskUnder = docID(`addTask`);
   const backgroundElements = getBackgroundElements();
-  const boardBody = document.getElementById(`boardBody`);
-  const board = document.getElementById(`board`);
-  const addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
+  const boardBody = docID(`boardBody`);
+  const board = docID(`board`);
+  const addTaskButtonToBoard = docID(`addTaskButtonToBoard`);
   adjustBackgroundElements(backgroundElements);
   toggleAddTaskDisplay(addTaskUnder, addTaskButtonToBoard);
   updateBoardBodyStyles(boardBody);
@@ -480,9 +480,9 @@ function windowscrollToTop() {
 
 function getBackgroundElements() {
   return {
-    backgroundBoard: document.getElementById(`board`),
-    backgroundNav: document.getElementById(`nav`),
-    backgroundHeader: document.getElementById(`header`),
+    backgroundBoard: docID(`board`),
+    backgroundNav: docID(`nav`),
+    backgroundHeader: docID(`header`),
   };
 }
 
@@ -561,7 +561,7 @@ function setTaskContacts(contactIds) {
   docID("selectContact").click();
   for (let i = 0; i < contactIds.length; i++) {
     const elementId = `0and${contactIds[i]}`;
-    const element = document.getElementById(elementId);
+    const element = docID(elementId);
     if (element) {
       element.click();
 
@@ -576,7 +576,7 @@ function setSubtasks() {
     for (
       let subtaskToLoad = 0;subtaskToLoad < jsonToEdit.subtasks.length; subtaskToLoad++    ) {
       const element = jsonToEdit.subtasks[subtaskToLoad];
-      document.getElementById(`inputSubtask`).value = element;
+      docID(`inputSubtask`).value = element;
       showSubtasks(subtaskToLoad);
       
     }
@@ -593,7 +593,7 @@ function setEditMode() {
 function checkSubtasks(){
   for (let i = 0; i < jsonToEdit.subtasks.length; i++) {
     if (jsonToEdit.subtaskStatus[i] === 1) {
-      let subtaskCheckbox = document.getElementById('subtaskCheckbox' + i);
+      let subtaskCheckbox = docID('subtaskCheckbox' + i);
       subtaskCheckbox.checked = true; 
       subtasksWereChecked = true
     }
@@ -612,11 +612,11 @@ function findJSON(IdOfTask, tasks) {
 
 
 function closeAddTaskToBoard() {
-  let addTask = document.getElementById(`addTask`);
-  let backgroundBoard = document.getElementById(`board`);
-  let backgroundNav = document.getElementById(`nav`);
-  let backgroundHeader = document.getElementById(`header`);
-  let addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
+  let addTask = docID(`addTask`);
+  let backgroundBoard = docID(`board`);
+  let backgroundNav = docID(`nav`);
+  let backgroundHeader = docID(`header`);
+  let addTaskButtonToBoard = docID(`addTaskButtonToBoard`);
   hideAddTaskAtBoard(addTask, backgroundBoard, backgroundNav, backgroundHeader, addTaskButtonToBoard)
   addBoardInit();
 
@@ -704,7 +704,7 @@ function safeContactsInTask() {
 
 
 function pushDoneSubtask(id) {
-  let subtaskCheckbox = document.getElementById(`subtaskCheckbox${id}`);
+  let subtaskCheckbox = docID(`subtaskCheckbox${id}`);
   let isChecked = subtaskCheckbox.checked;
   defineDoneSubtask();
   adjustValuesOfTheSubtasks(id, isChecked)
@@ -739,7 +739,7 @@ function adjustValuesOfTheSubtasks(id, isChecked){
 function setupInputField(){
   const inputField = docID('inputSubtask');
   if (inputField) {
-    document.getElementById('inputSubtask').addEventListener('keydown', function (event) {
+    docID('inputSubtask').addEventListener('keydown', function (event) {
       if (event.key === "Enter") {
           event.preventDefault(); // Verhindert das Standardverhalten (z. B. Formularübermittlung)
           showSubtasks(); // Ruft die Funktion addSubtask() auf
