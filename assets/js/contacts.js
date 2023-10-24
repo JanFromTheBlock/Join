@@ -26,11 +26,8 @@ let contacts = {
   Y: [],
   Z: [],
 };
-
 let openEditContactClicked = false;
-
 let NumberofContacts;
-
 const colors = [
   "#FF7A00",
   "#9327FF",
@@ -41,7 +38,6 @@ const colors = [
   "#462F8A",
   "#FF4646",
 ];
-
 let colorIndex = 0;
 
 
@@ -526,7 +522,7 @@ function hideAddContactBackground() {
 
 function closeContactDisplay() {
   docID("contact-display").innerHTML = "";
-  document.getElementById("background-responsive").style.display = "none";
+  docID("background-responsive").style.display = "none";
   const contactContainers = document.querySelectorAll(".contact");
   contactContainers.forEach((container) => {
     container.style.backgroundColor = "";
