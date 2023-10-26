@@ -75,15 +75,16 @@ function updateColorIndex(colorIndex) {
 }
 
 
-function renderContactItem(container, contactData, colorIndex) {
-  const { name, mail, color, contactId } = contactData;
-  const initials = calculateInitials(name);
+function renderContactItem(container, contactData, colorIndex) { //Wozu colorIndex? Wird nicht verwendet.
+  const { name, mail, color, contactId } = contactData; //holt die Daten aus dem JOSN und speichert sie in Variablen, muss das sein?
+  const initials = calculateInitials(name); // erstellt die Initialien
   if (contactId > NumberofContacts) {
     NumberofContacts = contactId;
   }
 
-  const display = encodeURIComponent(JSON.stringify(contactData));
-  container.innerHTML += /*html*/ `
+  const display = encodeURIComponent(JSON.stringify(contactData)); // Wozu das?
+  //schreiben des HTML
+  container.innerHTML += /*html*/ ` 
     <div class="contact" id="contact${contactId}" onclick="onclickContact(${contactId}); renderContactDisplay('${display}')">
       <div class="contact-sign" id="contact-sign${contactId}" style="background-color: ${color}">${initials}</div>
       <div id="contact-data">
@@ -120,13 +121,13 @@ function renderContactDisplay(elementJSON) {
     docID("background-responsive").style.display = "block";
   }
 
-  const element = JSON.parse(decodeURIComponent(elementJSON));
+  const element = JSON.parse(decodeURIComponent(elementJSON)); //Warum wird der Code hier wieder zurückgerechnet?
 
   let contactDisplay = docID("contact-display");
   let name = element.name;
-  let initials = name.replace(/[a-z]/g, "");
+  let initials = name.replace(/[a-z]/g, ""); //erstellen der Initialien geht da auch die Function?
   initials = initials.replace(/\s/g, "");
-  let mail = element.mail;
+  let mail = element.mail; //muss das sein? Kann man es auch direkt mit dem JSON im HTML lösen?
   let color = element.color;
   let phone = element.phone;
   let contactId = element.contactId;

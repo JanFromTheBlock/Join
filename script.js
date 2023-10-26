@@ -16,9 +16,9 @@ async function setElement(key, value) {
 }
 
 async function getElement(key) {
-    const url = `${JOIN_URL}?key=${key}&token=${JOIN_TOKEN}`;
+    const url = `${JOIN_URL}?key=${key}&token=${JOIN_TOKEN}`; //store the fetchparameter in url variable
     return await fetch(url).then(res => res.json()).then(res => {
-        // Verbesserter code
+        // Verbesserter code - fetch die Daten.
         if (res.data) { 
             return res.data.value;
         } throw `Could not find data with key "${key}".`;
@@ -49,7 +49,7 @@ async function summaryInit() {
     activeUser();
     headerRender();
     navRender();
-    activeSite("menu-summary");
+    activeSite("menu-summary"); 
     getdata = await getElement('tasks'); 
     tasks = JSON.parse(getdata); 
     greetingNameRender();
@@ -113,11 +113,11 @@ function legalNotesInit(){
 }
 
 async function contactsInit(){
-    activeUser();
-    headerRender();
-    navRender();
-    activeSite("menu-contacts");
-    try {
+    activeUser(); // check if there is an active user and which one
+    headerRender(); // render the header
+    navRender(); // render the nav bar
+    activeSite("menu-contacts"); //mark the contactsicon on the board.
+    try { // getting data from backend
         const getdataContacts = await getElement('contacts');
         contacts = JSON.parse(getdataContacts);
     } catch (error) {

@@ -21,50 +21,55 @@ function addBoardRender() {
 
 
 function renderBoardInput() {
-  let board = docID("board");
-  board.innerHTML = "";
-  board.innerHTML += /*html*/ `
-        <div id="board-input">
-            <div id="find-task">
-                <input id="input" type="text" placeholder="Find Task" onkeyup="filterTasks(); handleKeyPress(event)">
-                <div id="img-search-margin">
-                    <img id="img-search" onclick="clearInput()" src="./assets/img/search.png">
-                </div>
-            </div>
-            <button onclick="openAddTask(1)" id="board-button">Add Task <span id="board-button-plus">+</span></button>
-        </div>
-        <div id="task-area"></div>
-    `;
+  docID("board").innerHTML = "";
+  docID("board").innerHTML += renderBoardInputHTML();
+}
+
+function renderBoardInputHTML() {
+  return /*html*/ `
+          <div id="board-input">
+              <div id="find-task">
+                  <input id="input" type="text" placeholder="Find Task" onkeyup="filterTasks(); handleKeyPress(event)">
+                  <div id="img-search-margin">
+                      <img id="img-search" onclick="clearInput()" src="./assets/img/search.png">
+                  </div>
+              </div>
+              <button onclick="openAddTask(1)" id="board-button">Add Task <span id="board-button-plus">+</span></button>
+          </div>
+          <div id="task-area"></div>
+        `
 }
 
 
 function renderTaskAreas() {
   for (let index = 0; index < taskTitles.length; index++) {
-    const taskTitle = taskTitles[index];
-    const taskName = taskNames[index];
     let indexFinal = index + 1;
-    docID("task-area").innerHTML += /*html*/ ` 
-            <div ondrop="moveTo('${taskTitle}')" ondragover="allowDrop(event)" class="task-body" id="task-body${index}">
-                <div class="task-body-flex">
-                    <span>${taskName}</span>
-                    <img onclick="openAddTask(${indexFinal})" id="task-img${index}" src="./assets/img/board_plus.png">
-                </div>
-                <div id="tasks${indexFinal}"></div>
-            </div>
-        `;
+    docID("task-area").innerHTML += renderTaskAreasHTML(taskTitles[index], taskNames[index], indexFinal, index);
   }
   docID("task-img3").classList.add("d-none");
 }
 
+function renderTaskAreasHTML(taskTitle, taskName, indexFinal, index) {
+  return /*html*/ ` 
+  <div ondrop="moveTo('${taskTitle}')" ondragover="allowDrop(event)" class="task-body" id="task-body${index}">
+      <div class="task-body-flex">
+          <span>${taskName}</span>
+          <img onclick="openAddTask(${indexFinal})" id="task-img${index}" src="./assets/img/board_plus.png">
+      </div>
+      <div id="tasks${indexFinal}"></div>
+  </div>
+`;
+}
 
-function loadTasks(id) {
+
+function loadTasks() {
   emptyTaskDivs();
-  for (let taskIndex = 0; taskIndex < tasks.length; taskIndex++) {
-    const task = tasks[taskIndex];
-    renderTask(taskIndex);
-    renderContactArea(task, taskIndex);
+  for (let i = 0; i < tasks.length; i++) {
+    let task = tasks[i];
+    renderTask(i);
+    renderContactArea(task, i);
   }
-  addContactsToTasks(0);
+  addContactsToTasks(0); //mainrender.js
   findEmptyTaskAreas();
 }
 
@@ -98,13 +103,10 @@ function renderContactSymbol(contactArea, initials, color) {
 
 
 function findEmptyTaskAreas() {
-  for (let i = 1; i < 5; i++) {
-    const element = docID(`tasks${i}`);
-    p = i - 1;
-    let progressTitle = taskNames[p];
-
-    if (element.childElementCount === 0) {
-      element.innerHTML = /*html*/ `
+  for (let i = 0; i < taskTitles.length; i++) {
+    let progressTitle = taskNames[i];
+    if (docID(`tasks${i+1}`).childElementCount === 0) {
+      docID(`tasks${i+1}`).innerHTML = /*html*/ `
         <div id = "notask${i}" class = "notasks">No tasks ${progressTitle}</div>
       `;
     }
@@ -113,32 +115,32 @@ function findEmptyTaskAreas() {
 
 
 function emptyTaskDivs() {
-  docID("tasks1").innerHTML = "";
-  docID("tasks2").innerHTML = "";
-  docID("tasks3").innerHTML = "";
-  docID("tasks4").innerHTML = "";
+  for (let i = 1; i < taskTitles.length +1; i++) {
+    docID(`tasks${i}`).innerHTML = "";
+  }
 }
 
 
 function renderTaskBody(id) {
-  let j = tasks[id]["progress"];
-  let IdOfTask = tasks[id]["taskId"];
-  let taskBody = docID("tasks" + j);
-  let prioritySmall = tasks[id]["urgency"];
-  editSubtasks = subtasks[id];
-  taskBody.innerHTML += /*html*/ `           
-    <div draggable="true" ondragstart="startDragging(${id})" onclick="openWindow(event, ${id}, ${IdOfTask})" id="task${id}" class="task-decoration">
-        <div id="task-category${id}" class="task-category">${tasks[id]["category"]}</div>
-        <div class="task-title" id="task-title${id}">${tasks[id]["title"]}</div>
-        <div id="task-description${id}">${tasks[id]["description"]}</div>
-        <div class = "progress-bar d-none" id="progress-bar${id}"><div id="progress-bar-outside"><div class="progress-bar-inside" id="progress-bar-inside${id}"></div></div><span id="windowSubtask${id}"></span></div>
-        <div class="d-none" id="editSubtaskSmall${id}">${editSubtasks}</div>
-        <div id="task-footer">
-            <div class="contact-area" id="contact-area${id}"></div>
-            <img id="contact-area-img${id}" class= "contact-area-img" src="${prioritySmall}">
-        </div>
-    </div>
-`;
+  let taskBody = docID("tasks" + tasks[id]["progress"]);
+  taskBody.innerHTML += renderTaskBodyHTML(id, tasks[id]["taskId"], tasks[id]["urgency"], subtasks[id]);
+}
+
+
+function renderTaskBodyHTML(id, IdOfTask, prioritySmall, editSubtasks) {
+  return /*html*/ `           
+  <div draggable="true" ondragstart="startDragging(${id})" onclick="openWindow(event, ${id}, ${IdOfTask})" id="task${id}" class="task-decoration">
+      <div id="task-category${id}" class="task-category">${tasks[id]["category"]}</div>
+      <div class="task-title" id="task-title${id}">${tasks[id]["title"]}</div>
+      <div id="task-description${id}">${tasks[id]["description"]}</div>
+      <div class = "progress-bar d-none" id="progress-bar${id}"><div id="progress-bar-outside"><div class="progress-bar-inside" id="progress-bar-inside${id}"></div></div><span id="windowSubtask${id}"></span></div>
+      <div class="d-none" id="editSubtaskSmall${id}">${editSubtasks}</div>
+      <div id="task-footer">
+          <div class="contact-area" id="contact-area${id}"></div>
+          <img id="contact-area-img${id}" class= "contact-area-img" src="${prioritySmall}">
+      </div>
+  </div>
+`
 }
 
 
@@ -163,32 +165,29 @@ function moveTo(progress) {
 
 
 function renderSubtasks(id) {
-  
-    let a = parseInt(tasks[id]["subtasks"].length); // Variable a sind die Anzahl an subtasks
-    let b = parseInt(tasks[id]["done-tasks"]); // Variable b sind die Anzahl erledigter subtasks
-
-  
+    let a = tasks[id]["subtasks"].length; // Variable a sind die Anzahl an subtasks
+    let b = tasks[id]["done-tasks"]; // Variable b sind die Anzahl erledigter subtasks
     let percent = (b / a) * 100; // Prozentanteil erledigter aufgaben wird berechnet
     docID("progress-bar" + id).classList.remove("d-none"); //der progress-bar wird das d-none entfernt und sie wird sichtbar
-    docID("windowSubtask" + id).innerHTML = /*html*/ `
-            ${b}/${a} Subtasks
-        `; // die Anzahl an subtass wird neben die progress-bar gerendert
+    docID("windowSubtask" + id).innerHTML = renderSubtasksHTML(a, b);// die Anzahl an subtass wird neben die progress-bar gerendert
     docID("progress-bar-inside" + id).style.width = `${percent}%`; //der Prozentanteil erledigter Aufgaben wird als Füllmenge für die progress-bar verwnedet
-  
-  subtasks.splice(id, subtasks.length); // alle subtasks werden gelöscht, so dass nicht alle in allen Tasks angezeigt werden
+    subtasks.splice(id, subtasks.length); // alle subtasks werden gelöscht, so dass nicht alle in allen Tasks angezeigt werden
+}
+
+
+function renderSubtasksHTML(a, b) {
+  return /*html*/ `${b}/${a} Subtasks`; // die Anzahl an subtass wird neben die progress-bar gerendert
 }
 
 
 function renderUrgencySymbol(id) {
-  let urgency = tasks[id]["urgency"];
-  docID("contact-area-img" + id).src = urgency; //je nachdem welche urgency besteht, wird ein anderes Bild gerendert
+  docID("contact-area-img" + id).src = tasks[id]["urgency"]; //je nachdem welche urgency besteht, wird ein anderes Bild gerendert
 }
 
 
 function renderCategoryColor(id) {
   //die Hintergrundfarbe für die Task-Kategorie wird geladen und dem div gegeben
-  let color = tasks[id]["category-color"];
-  docID("task-category" + id).style.backgroundColor = color;
+  docID("task-category" + id).style.backgroundColor = tasks[id]["category-color"];
 }
 
 
