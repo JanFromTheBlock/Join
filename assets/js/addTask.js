@@ -49,7 +49,7 @@ function showSubtasks(id) {
   checkSubtaskCheckbox(id);
 }
 
-function checkSubtaskCheckbox(id){
+function checkSubtaskCheckbox(id) {
   docID(`inputSubtask`).value = "";
   setElement("subtasks", subtasks);
   if (subtasksWereChecked === true) {
@@ -67,14 +67,14 @@ function checkSubtaskCheckbox(id){
     docID("subtaskCheckbox" + id).classList.remove("cursor-pointer");
   } else {
   }
-  if (jsonToEdit){
-  }else{
+  if (jsonToEdit) {
+  } else {
     docID("subtaskCheckbox" + id).disabled = true;
     docID("subtaskCheckbox" + id).classList.remove("cursor-pointer");
   }
 }
 
-function checkStatusSubtask(id){
+function checkStatusSubtask(id) {
   if (edit === false || newsubtask === true) {
     statusSubtask = 0;
   } else {
@@ -83,7 +83,7 @@ function checkStatusSubtask(id){
   newsubtask = false;
 }
 let subtaskCounter = 0;
-function renderSubtaskArea(id){
+function renderSubtaskArea(id) {
   let subtaskArea = docID(`subTaskArea`);
   let inputSubtask = docID(`inputSubtask`).value;
   subtaskArea.classList.remove(`d-none`);
@@ -202,14 +202,14 @@ let contactcolors = [];
 let contactIds = [];
 
 
-function showTaskAddedToBoardButton(){
+function showTaskAddedToBoardButton() {
   let taskAddedToBoard = docID(`taskAddedToBoard`);
   taskAddedToBoard.classList.remove(`d-none`);
   taskAddedToBoard.classList.remove(`task-added-to-board-hide`);
   taskAddedToBoard.classList.add(`task-added-to-board`);
 }
 
-function cacheOfArrays(){
+function cacheOfArrays() {
   firstName = [];
   lastName = [];
   numberOfContactsToAdd = [];
@@ -219,7 +219,7 @@ function cacheOfArrays(){
   subtaskCounter = 0;
 }
 
-function jumpToBoard(){
+function jumpToBoard() {
   setTimeout(() => {
     window.location.href = "./board.html"; // springt nachdem AddTask gerendert wurde auf die BoardSeite
     closeAddTaskToBoard();
@@ -275,35 +275,34 @@ function clearTask(i) {
   setElement("tasks", tasks);
   setElement("subtasks", subtasks);
 }
+let contactsOpen;
 
 function toggleVisibility(elementId) {
   let element = document.getElementById(elementId);
   element.classList.remove("d-none");
   docID("showCategories").innerHTML = "";
-  
+
   if (element.classList.contains("add-task-hide-contacts")) {
     element.classList.remove("add-task-hide-contacts");
     if (toggleContacts === true) {
       if (boardActive === true) {
+        contactsOpen = true;
       }
       if (boardActive === false) {
-        docID('closeDropDownAddTask').classList.remove('d-none');
+        contactsOpen = true;;
       }
     }
   } else {
     element.classList.add("add-task-hide-contacts");
-    if (toggleContacts ===true) {
+    if (toggleContacts === true) {
       if (boardActive === true) {
+        contactsOpen = false;
       }
-      if (boardActive === false){
-        docID('closeDropDownAddTask').classList.add('d-none');
+      if (boardActive === false) {
+        contactsOpen = false;
       }
     }
   }
-}
-
-function doNotCloseWindow(event){
-  event.stopPropagation();
 }
 
 
@@ -326,7 +325,7 @@ let numberOfContactsToAdd = [];
 let numberOfColorsToAdd = [];
 let numberOfIdsToAdd = [];
 
-  function chooseContact(i, contactName, initials, color, id, contactId) {
+function chooseContact(i, contactName, initials, color, id, contactId) {
   let chooseBoxContact = docID(`${id}chooseBoxContact${i}`);
   let parentDiv = chooseBoxContact.parentElement;
   // Überprüfe den aktuellen Status des Kontakts
@@ -547,4 +546,16 @@ function deleteSubtask(id, taskId) {
 function renameSubtask(id) {
   docID("inputSubtask").value = docID("labelForSubtask" + id).innerHTML;
   deleteSubtask(id);
+}
+
+function logDivID(event) {
+  let selectedTxtElement = event.target;
+  if (selectedTxtElement.id !== "do-not-close" && contactsOpen === true) {
+    showContactList(0);
+  }
+  selectedTxtElement = selectedTxtElement.parentNode;
+}
+
+function doNotCloseWindow(event){
+  event.stopPropagation();
 }
