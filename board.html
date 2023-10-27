@@ -18,10 +18,10 @@
     <script src="mainrender.js"></script>
 </head>
 
-<body id="boardBody" onload="addBoardInit()" onclick="closeWindow()">
+<body id="boardBody" onload="addBoardInit()" onclick="closeWindow(), logDivID(event)" >
     <header id="header"></header>
     <nav id="nav" class="nav"></nav>
-    <div id="task-window" class="d-none" onclick="doNotClose(event)"></div>
+    <div id="task-window" class="d-none"></div>
     <div class="add-task-to-board add-task-to-board-hide d-none" id="addTask"></div>
     <div class="board" id="board"></div>
     <img id="taskAddedToBoard" class="task-added-to-board-board task-added-to-board task-added-to-board-hide" src="./assets/img/logoAddedToBoard.png">
