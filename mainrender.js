@@ -130,6 +130,7 @@ function addTaskRender() {
                    <div class="add-task-placeholder-color-category">
                    <div id="taskCategoryColor" class="task-categorycolor d-none"></div>
                      <img class="d-none" id="placeholderColorCategory" src="${categories[`color`]}">
+                     <!-- src="${categories[`color`]}" -->
                    </div>
                    <div class="add-task-edit-category d-none" id="editCategory">
                       <img onclick="finishPushCategoryToArray()" class="cursor-pointer" src="./assets/img/logoHaken.png">

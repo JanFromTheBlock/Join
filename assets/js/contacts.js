@@ -291,7 +291,7 @@ function resetNewContactForm(){
 
 
 function contactAddedSuccesfully(){
-  let addedContactSuccesfully = docID(`contact-added-succesfully-animation`);
+  let addedContactSuccesfully = docID(`contact-added-succesfully-animation`); // variablennamen kürzen
   addedContactSuccesfully.classList.remove(`contact-added-succesfully-hide`);
   addedContactSuccesfully.classList.add(`contact-added-succesfully`);
   setTimeout(() => {
