@@ -37,6 +37,7 @@ edit = false;
 let subtaskStatus = [];
 let statusSubtask;
 let newsubtask;
+let toggleContacts = false
 
 function showSubtasks(id) {
   if (id === undefined) {
@@ -276,18 +277,40 @@ function clearTask(i) {
 }
 
 function toggleVisibility(elementId) {
-  let element = docID(elementId);
+  let element = document.getElementById(elementId);
   element.classList.remove("d-none");
   docID("showCategories").innerHTML = "";
+  
   if (element.classList.contains("add-task-hide-contacts")) {
     element.classList.remove("add-task-hide-contacts");
+    if (toggleContacts === true) {
+      if (boardActive === true) {
+      }
+      if (boardActive === false) {
+        docID('closeDropDownAddTask').classList.remove('d-none');
+      }
+    }
   } else {
     element.classList.add("add-task-hide-contacts");
+    if (toggleContacts ===true) {
+      if (boardActive === true) {
+      }
+      if (boardActive === false){
+        docID('closeDropDownAddTask').classList.add('d-none');
+      }
+    }
   }
 }
 
+function doNotCloseWindow(event){
+  event.stopPropagation();
+}
+
+
 function showContactList(id) {
+  toggleContacts = true;
   toggleVisibility("showContacts" + id);
+  toggleContacts = false;
 }
 
 function showCategories() {

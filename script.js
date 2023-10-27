@@ -8,7 +8,8 @@ let start = [{
 }]
 let users;
 let user = "Guest";
-let userInitial = "G";  
+let userInitial = "G"; 
+let boardActive; 
 
 async function setElement(key, value) {
     const payload = {key, value, token: JOIN_TOKEN};
@@ -83,6 +84,7 @@ async function addTaskInit(){
     subtasks = JSON.parse(getdata); 
     addTaskRender();
     subtasks = [];
+    boardActive = false;
 }
 
 async function addBoardInit(){
@@ -103,7 +105,7 @@ async function addBoardInit(){
     getdata = await getElement('subtasks'); 
     subtasks = JSON.parse(getdata); 
     addBoardRender();
-  
+    boardActive = true;
 }
 
 function legalNotesInit(){
