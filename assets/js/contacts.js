@@ -26,7 +26,6 @@ let contacts = {
   Y: [],
   Z: [],
 };
-let openEditContactClicked = false;
 const colors = [
   "#FF7A00",
   "#9327FF",
@@ -159,7 +158,7 @@ function addNewContact() {
   docID("background-add-contact").innerHTML = addNewContactHTML();
   docID(`add-contact-mask`).classList.remove(`d-none`);
   setTimeout(() => {
-    docID(`add-contact-mask`).classList.remove(`open-add-contact-hide`);
+    docID(`add-contact-mask`).classList.remove(`open-contact-hide`);
   }, 100);
 }
 
@@ -167,7 +166,7 @@ function addNewContact() {
 function addNewContactHTML() {
   return /*html*/ `
   <div id="background-color-add-contact"></div>
-  <div id="add-contact-mask" class="open-add-contact-hide d-none">
+  <div id="add-contact-mask" class="open-contact-hide d-none">
       <div id="add-contact-header">
           <div id="add-contact-ow"><img onclick="cancelNewContact()" src="./assets/img/close_contact.png"></div>
           <div id="add-contact-center">
@@ -192,37 +191,35 @@ function addNewContactHTML() {
   `
 }
 
-
+//functional check
 function cancelNewContact() {
-  if (openEditContactClicked) {
-    docID(`edit-contact-mask`).classList.add(`open-edit-contact-hide`);
-    openEditContactClicked = false;
-  }else{
-     docID(`add-contact-mask`).classList.add(`open-add-contact-hide`);
+  if (docID(`add-contact-mask`) === null) { // check if edit or add
+    docID(`edit-contact-mask`).classList.add(`open-contact-hide`)
+  }else {
+    docID(`add-contact-mask`).classList.add(`open-contact-hide`);
   }
-  animateCloseAddContact();
-  emptyContactMask();
+  animateCloseAddContact();  //function to close background with delay 
+  emptyContactMask(); // function to clear the value of the contact add masked
 }
 
-
+//kay checked
 function animateCloseAddContact(){
   setTimeout(() => {
-    addTask.classList.add(`d-none`);
     docID("background-add-contact").classList.add("d-none");
   }, 325);
 }
 
-
+//function checked
 function emptyContactMask(){
   docID(`contact-name`).value = "";
   docID(`contact-mail`).value = "";
   docID(`contact-phone`).value = "";
 }
 
-
+//Kay check - create function a JSON for create a Contacted
 function createJsonContact(name, mail, phone) {
-  const color = colors[colorIndex];
-  colorIndex = (colorIndex + 1) % colors.length; // Um den Index im Bereich der Farben zu halten
+  let color = colors[colorIndex];
+  colorIndex = updateColorIndex(colorIndex);
   contactId = NumberofContacts() + 1;
   return {
     name: name,
@@ -244,7 +241,7 @@ function NumberofContacts() {
 
 
 async function newContact() {
-  const contactData = gatherContactData();
+  const contactData = gatherContactData(); 
   if (!contactData) return;
 
   const { name, mail, phone } = contactData;
@@ -307,7 +304,6 @@ function orderContacts() {
     return;
   }
   sortContactsByKey();
- 
 }
 
 
@@ -392,11 +388,10 @@ function setColorOfSelectedContact(clickedId){
 
 
 function openEditContact(contactId, name, mail, phone, color, initials) {
-  openEditContactClicked = true;
   docID("background-add-contact").classList.remove("d-none");
   docID("background-add-contact").innerHTML = /*html*/ `
          <div id="background-color-add-contact"></div>
-        <div id="edit-contact-mask" class="open-edit-contact-hide d-none">
+        <div id="edit-contact-mask" class="open-contact-hide d-none">
             <div id="edit-contact-header">
                 <div id="add-contact-ow"><img onclick="cancelNewContact()" src="./assets/img/close_contact.png"></div>
                 <div id="add-contact-center">
@@ -435,10 +430,9 @@ function fillInputs(name, mail, phone, color){
 
 
 function animateOpenContactMask(){
-  let addTaskUnder = docID(`edit-contact-mask`);
-  addTaskUnder.classList.remove(`d-none`);
+  docID(`edit-contact-mask`).classList.remove(`d-none`);
   setTimeout(() => {
-    addTaskUnder.classList.remove(`open-edit-contact-hide`);
+    docID(`edit-contact-mask`).classList.remove(`open-contact-hide`);
   }, 100);
 }
 

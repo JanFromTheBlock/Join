@@ -370,16 +370,10 @@
   transition: margin-top 300ms;
 }
 
-.open-add-contact-hide {
+.open-contact-hide {
   right: -1000px !important;
   overflow: hidden;
   transition: right 825ms ease-out !important;
-}
-
-.open-edit-contact-hide {
-  left: -1000px !important;
-  overflow: hidden;
-  transition: left 825ms ease-out !important;
 }
 
 #edit-contact-mask {
