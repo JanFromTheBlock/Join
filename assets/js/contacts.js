@@ -27,7 +27,6 @@ let contacts = {
   Z: [],
 };
 let openEditContactClicked = false;
-let NumberofContacts;
 const colors = [
   "#FF7A00",
   "#9327FF",
@@ -40,175 +39,167 @@ const colors = [
 ];
 let colorIndex = 0;
 
-
+//kay check
 function renderContacts() {
-  let contactColumn = docID("contact-column");
-  resetContactPage();
-  for (let index in contacts) {
-    if (contacts[index].length === 0) {
+  resetContactPage(); //set contact-Colum to "" und Number and Index to 0
+  for (let i in contacts) {
+    if (contacts[i].length === 0) { //if no contact inside do not render, skip it
       continue;
     }
-    renderContactSection(index, contacts[index], contactColumn);
+    renderContactSection(i); //start the function for render the Names in the contactlist
   }
 }
 
 
-function renderContactSection(index, elements, contactColumn) {
-  contactColumn.innerHTML += /*html*/ `
+function renderContactSection(index) {
+  docID("contact-column").innerHTML += renderContactSectionHTML(index); //render the HTML for the letters
+  docID("contact" + index).innerHTML = ""; //clear the contactitem section before render
+  for (let id = 0; id < contacts[index].length; id++) { //for loop to upate the color and the function for the contacts
+    colorIndex = updateColorIndex(colorIndex); //update for the number of the color
+    renderContactItem(index, id); //start the function to create the contactitems
+  }
+}
+
+//Kay check - HTML part for renderContactSection(index)
+function renderContactSectionHTML(index) { 
+  return /*html*/ `
     <div id="letter-headline">${index}</div>
     <div id="line"></div>
     <div id="contact${index}"></div>
-  `;
-  const contactContainer = docID("contact" + index);
-  contactContainer.innerHTML = "";
-  let colorIndex = 0;
-
-  for (let id = 0; id < elements.length; id++) {
-    colorIndex = updateColorIndex(colorIndex);
-    renderContactItem(contactContainer, elements[id], colorIndex);
-  }
+  `
 }
 
-
+//funktional check - brauchen wir diese Funktion? Wird nur einmal aufgerufen
 function updateColorIndex(colorIndex) {
-  return colorIndex === 7 ? 0 : colorIndex + 1;
+  return colorIndex === colors.length ? 0 : colorIndex + 1; //if-function to to around
 }
 
+//kay -check
+function renderContactItem(index, id) {
+  const { name, mail, color, contactId } = contacts[index][id]; //save the data in variables
+  const initials = calculateInitials(name); // start function to return the Initials
+  
+  docID("contact" + index).innerHTML += renderContactItemHTML(contactId, index, color, initials, name, mail, id); //start function to render the HTML code
+}
 
-function renderContactItem(container, contactData, colorIndex) { //Wozu colorIndex? Wird nicht verwendet.
-  const { name, mail, color, contactId } = contactData; //holt die Daten aus dem JOSN und speichert sie in Variablen, muss das sein?
-  const initials = calculateInitials(name); // erstellt die Initialien
-  if (contactId > NumberofContacts) {
-    NumberofContacts = contactId;
-  }
-
-  const display = encodeURIComponent(JSON.stringify(contactData)); // Wozu das?
-  //schreiben des HTML
-  container.innerHTML += /*html*/ ` 
-    <div class="contact" id="contact${contactId}" onclick="onclickContact(${contactId}); renderContactDisplay('${display}')">
+//function check
+function renderContactItemHTML(contactId, index, color, initials, name, mail, id) {
+  return /*html*/ ` 
+    <div class="contact" id="contact${contactId}" onclick="onclickContact(${contactId}); renderContactDisplay('${index}', ${id})">
       <div class="contact-sign" id="contact-sign${contactId}" style="background-color: ${color}">${initials}</div>
       <div id="contact-data">
         <div id="name">${name}</div>
         <div id="mail">${mail}</div>
       </div>
     </div>
-  `;
+  `
 }
 
-
+//function check - wie klappt das bei 2 Vornamen?
 function calculateInitials(name) {
-  const nameWords = name.split(/\s+/);
-  let initials = "";
-  for (const word of nameWords) {
-    if (word.length > 0) {
-      initials += word[0].toUpperCase();
-    }
-  }
-  return initials;
+  let initials = name.replace(/[a-z]/g, "").replace(/\s/g, "");
+  return initials[0] + initials.slice(-1);
 }
 
 
+//kay -check
 function resetContactPage(){
-  let contactColumn = docID("contact-column");
-  NumberofContacts = 0;
   colorIndex = 0;
-  contactColumn.innerHTML = "";
+  docID("contact-column").innerHTML = "";
 }
 
 
-function renderContactDisplay(elementJSON) {
+function renderContactDisplay(index, id) {
+  //sollte das nicht übers CSS gelöst werden?
   if (document.body.clientWidth < 900) {
     docID("background-responsive").style.display = "block";
   }
-
-  const element = JSON.parse(decodeURIComponent(elementJSON)); //Warum wird der Code hier wieder zurückgerechnet?
-
-  let contactDisplay = docID("contact-display");
+  let element = contacts[index][id];
   let name = element.name;
-  let initials = name.replace(/[a-z]/g, ""); //erstellen der Initialien geht da auch die Function?
-  initials = initials.replace(/\s/g, "");
-  let mail = element.mail; //muss das sein? Kann man es auch direkt mit dem JSON im HTML lösen?
-  let color = element.color;
-  let phone = element.phone;
-  let contactId = element.contactId;
-  contactDisplay.classList.remove("d-none");
-  contactDisplay.innerHTML = "";
-  contactDisplay.innerHTML += /*html*/ `
-        <div id="contact-header">
-            <div id="contact-icon">${initials}</div>
-            <div id="contact-actions">
-                <div id="contact-display-name">${name}</div>
-                <div id="contact-imgs">
-                    <div onclick="openEditContact(${contactId}, '${name}', '${mail}', '${phone}', '${color}', '${initials}')" class="contact-img"><img src="./assets/img/edit_contact.png">Edit</div>
-                    <div onclick="deleteContact(${contactId})" class="contact-img"><img src="./assets/img/delete_contact.png">Delete</div>
-                </div>
-            </div>
-            <img src="./assets/img/back_arrow.png" id = "back-arrow" onclick = "closeContactDisplay()">
-        </div>
-        <div id="contact-body">
-            <div id="contact-information">Contact Information</div>
-            <div id="contact-mail-phone">
-                <div id="contact-mail">
-                    <span id="contact-mail-title">E-Mail</span>
-                    <span id="contact-mail-adress">${mail}</span>
-                </div>
-                <div id="contact-phone">
-                    <span id="contact-phone-title">Phone</span>
-                    <span id="contact-phone-number">${phone}</span>
-                </div>
-            </div>
-        </div>
-    `;
-  docID("contact-icon").style.backgroundColor = color;
+  let initials = calculateInitials(name);
+  docID("contact-display").classList.remove("d-none");
+  docID("contact-display").innerHTML = "";
+  docID("contact-display").innerHTML += renderContactDisplayHTML(initials, name, element.contactId, element.mail, element.phone, element.color)
+  docID("contact-icon").style.backgroundColor = element.color;
 }
 
-
-function addNewContact() {
-  docID("background-add-contact").classList.remove("d-none");
-  docID("background-add-contact").innerHTML = /*html*/ `
-    <div id="background-color-add-contact"></div>
-    <div id="add-contact-mask" class="open-add-contact-hide d-none">
-        <div id="add-contact-header">
-            <div id="add-contact-ow"><img onclick="cancelNewContact()" src="./assets/img/close_contact.png"></div>
-            <div id="add-contact-center">
-                <img id="add-contact-logo" src="./assets/img/contact_logo.png">
-                <div id="add-contact-title">Add contact</div>
-                <div id="add-contact-subtitle">Tasks are better with a team!</div>
+//functional check 
+function renderContactDisplayHTML(initials, name, contactId, mail, phone, color) {
+  return /*html*/ `
+    <div id="contact-header">
+        <div id="contact-icon">${initials}</div>
+        <div id="contact-actions">
+            <div id="contact-display-name">${name}</div>
+            <div id="contact-imgs">
+                <div onclick="openEditContact(${contactId}, '${name}', '${mail}', '${phone}', '${color}', '${initials}')" class="contact-img"><img src="./assets/img/edit_contact.png">Edit</div>
+                <div onclick="deleteContact(${contactId})" class="contact-img"><img src="./assets/img/delete_contact.png">Delete</div>
             </div>
         </div>
-        <div id="add-contact-body">
-            <img id="add-contact-icon" src="./assets/img/contact_icon.png">
-            <form onsubmit="newContact(); return false">
-                <div class="input-outside"><input id="contact-name" class="input" required type="text" placeholder="Name" onfocus="changeBorderColor(this)" onblur="resetBorderColor(this)"><img src="./assets/img/person.png" ></div>
-                <div class="input-outside"><input id="contact-mail" class="input" required type="text" placeholder="Email" onfocus="changeBorderColor(this)" onblur="resetBorderColor(this)"><img src="./assets/img/mail.png" ></div>
-                <div class="input-outside"><input id="contact-phone" class="input" required type="text" placeholder="Phone" onfocus="changeBorderColor(this)" onblur="resetBorderColor(this)"><img src="./assets/img/call.png"></div>
-                <div id="contact-buttons">
-                    <button id="contact-cancel" onclick="cancelNewContact()"><span id="cancel">Cancel</span> <div id="x-button">x</div></button>
-                    <button id="contact-create" type="submit"><span id="create">Create contact </span><img src="./assets/img/contact-check.png"></button>
-                </div>
-            </form>
+        <img src="./assets/img/back_arrow.png" id= "back-arrow" onclick = "closeContactDisplay()">
+    </div>
+    <div id="contact-body">
+        <div id="contact-information">Contact Information</div>
+        <div id="contact-mail-phone">
+            <div id="contact-mail">
+                <span id="contact-mail-title">E-Mail</span>
+                <span id="contact-mail-adress">${mail}</span>
+            </div>
+            <div id="contact-phone">
+                <span id="contact-phone-title">Phone</span>
+                <span id="contact-phone-number">${phone}</span>
+            </div>
         </div>
     </div>
     `;
+}
 
-  let addTaskUnder = docID(`add-contact-mask`);
-  addTaskUnder.classList.remove(`d-none`);
+//functional check
+function addNewContact() {
+  docID("background-add-contact").classList.remove("d-none");
+  docID("background-add-contact").innerHTML = addNewContactHTML();
+  docID(`add-contact-mask`).classList.remove(`d-none`);
   setTimeout(() => {
-    addTaskUnder.classList.remove(`open-add-contact-hide`);
+    docID(`add-contact-mask`).classList.remove(`open-add-contact-hide`);
   }, 100);
+}
+
+//functional check
+function addNewContactHTML() {
+  return /*html*/ `
+  <div id="background-color-add-contact"></div>
+  <div id="add-contact-mask" class="open-add-contact-hide d-none">
+      <div id="add-contact-header">
+          <div id="add-contact-ow"><img onclick="cancelNewContact()" src="./assets/img/close_contact.png"></div>
+          <div id="add-contact-center">
+              <img id="add-contact-logo" src="./assets/img/contact_logo.png">
+              <div id="add-contact-title">Add contact</div>
+              <div id="add-contact-subtitle">Tasks are better with a team!</div>
+          </div>
+      </div>
+      <div id="add-contact-body">
+          <img id="add-contact-icon" src="./assets/img/contact_icon.png">
+          <form onsubmit="newContact(); return false">
+              <div class="input-outside"><input id="contact-name" class="input" required type="text" placeholder="Name" onfocus="changeBorderColor(this)" onblur="resetBorderColor(this)"><img src="./assets/img/person.png" ></div>
+              <div class="input-outside"><input id="contact-mail" class="input" required type="text" placeholder="Email" onfocus="changeBorderColor(this)" onblur="resetBorderColor(this)"><img src="./assets/img/mail.png" ></div>
+              <div class="input-outside"><input id="contact-phone" class="input" required type="text" placeholder="Phone" onfocus="changeBorderColor(this)" onblur="resetBorderColor(this)"><img src="./assets/img/call.png"></div>
+              <div id="contact-buttons">
+                  <button id="contact-cancel" onclick="cancelNewContact()"><span id="cancel">Cancel</span> <div id="x-button">x</div></button>
+                  <button id="contact-create" type="submit"><span id="create">Create contact </span><img src="./assets/img/contact-check.png"></button>
+              </div>
+          </form>
+      </div>
+  </div>
+  `
 }
 
 
 function cancelNewContact() {
   if (openEditContactClicked) {
-    addTask = docID(`edit-contact-mask`);
-    addTask.classList.add(`open-edit-contact-hide`);
+    docID(`edit-contact-mask`).classList.add(`open-edit-contact-hide`);
     openEditContactClicked = false;
   }else{
-     addTask = docID(`add-contact-mask`);
-     addTask.classList.add(`open-add-contact-hide`);
+     docID(`add-contact-mask`).classList.add(`open-add-contact-hide`);
   }
-  
   animateCloseAddContact();
   emptyContactMask();
 }
@@ -232,7 +223,7 @@ function emptyContactMask(){
 function createJsonContact(name, mail, phone) {
   const color = colors[colorIndex];
   colorIndex = (colorIndex + 1) % colors.length; // Um den Index im Bereich der Farben zu halten
-  contactId = NumberofContacts + 1;
+  contactId = NumberofContacts() + 1;
   return {
     name: name,
     mail: mail,
@@ -240,6 +231,15 @@ function createJsonContact(name, mail, phone) {
     color: color,
     contactId: contactId,
   };
+}
+
+// Kay check - function to know the numbers of contacts
+function NumberofContacts() {
+  let sum = 0;
+  for (let i in contacts) {
+    sum += contacts[i].length;
+  }
+  return sum
 }
 
 

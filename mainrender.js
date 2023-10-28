@@ -129,7 +129,7 @@ function addTaskRender() {
                    <img id="categorySelectArrow" src="./assets/img/selectfieldArrow.png">
                    <div class="add-task-placeholder-color-category">
                    <div id="taskCategoryColor" class="task-categorycolor d-none"></div>
-                     <img class="d-none" id="placeholderColorCategory" src="${categories[`color`]}">
+                     <img class="d-none" id="placeholderColorCategory">
                      <!-- src="${categories[`color`]}" -->
                    </div>
                    <div class="add-task-edit-category d-none" id="editCategory">
