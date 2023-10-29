@@ -49,12 +49,22 @@ function showSubtasks(id) {
   checkSubtaskCheckbox(id);
 }
 
+function countDoneTasks(index, count){
+  for (let key in index) {
+    if(index.hasOwnProperty(key) && index[key] ===1) {
+      count++
+    }
+  }
+  doneSubtask = count; 
+  }
+
 function checkSubtaskCheckbox(id) {
   docID(`inputSubtask`).value = "";
   setElement("subtasks", subtasks);
   if (subtasksWereChecked === true) {
     checkSubtasks();
-    doneSubtask = tasks[openedTask]["done-tasks"];
+    let count = 0
+    countDoneTasks(subtaskStatus, count)
   }
   if (edit === true) {
     if (jsonToEdit.subtaskStatus[id] === 1) {
