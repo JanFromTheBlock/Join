@@ -220,7 +220,7 @@ function emptyContactMask(){
 function createJsonContact(name, mail, phone) {
   let color = colors[colorIndex];
   colorIndex = updateColorIndex(colorIndex);
-  contactId = NumberofContacts() + 1;
+  contactId = highestId() + 1;
   return {
     name: name,
     mail: mail,
@@ -231,12 +231,19 @@ function createJsonContact(name, mail, phone) {
 }
 
 // Kay check - function to know the numbers of contacts
-function NumberofContacts() {
-  let sum = 0;
+function highestId() {
+  let highestContactId = 0;
   for (let i in contacts) {
-    sum += contacts[i].length;
+    if (contacts.hasOwnProperty(i)) {
+      let elementArray = contacts[i];
+      for (let element of elementArray) {
+          if (element.contactId > highestContactId) {
+            highestContactId = element.contactId;
+          }
+      }
   }
-  return sum
+  }
+  return highestContactId;
 }
 
 
