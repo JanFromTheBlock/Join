@@ -590,8 +590,8 @@ function setEditMode() {
 
 
 function checkSubtasks(){
-  for (let i = 0; i < jsonToEdit.subtasks.length; i++) {
-    if (jsonToEdit.subtaskStatus[i] === 1) {
+  for (let i = 0; i < subtasks.length; i++) {
+    if (subtaskStatus[i] === 1) {
       let subtaskCheckbox = docID('subtaskCheckbox' + i);
       subtaskCheckbox.checked = true; 
       subtasksWereChecked = true
@@ -655,6 +655,7 @@ function resetAddTaskMask(){
   subtasksWereChecked = false;
   zero = true;
   subtaskCounter = 0;
+  jsonToEdit = undefined;
 }
 
 
@@ -685,6 +686,7 @@ function saveAndClearEditedTask(){
   addBoardInit();
   closeAddTaskToBoard();
   subtaskStatus = [];
+  jsonToEdit = undefined;
 }
 
 

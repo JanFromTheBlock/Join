@@ -188,6 +188,7 @@ function emptyContactMask(){
   docID(`contact-phone`).value = "";
 }
 
+
 //funktion aufsplitten
 function newContactId() {
   let sum = 0;
