@@ -1,31 +1,3 @@
-let contacts = {
-  A: [],
-  B: [],
-  C: [],
-  D: [],
-  E: [],
-  F: [],
-  G: [],
-  H: [],
-  I: [],
-  J: [],
-  K: [],
-  L: [],
-  M: [],
-  N: [],
-  O: [],
-  P: [],
-  Q: [],
-  R: [],
-  S: [],
-  T: [],
-  U: [],
-  V: [],
-  W: [],
-  X: [],
-  Y: [],
-  Z: [],
-};
 const colors = [
   "#FF7A00",
   "#9327FF",
@@ -60,7 +32,7 @@ function renderContactSection(index) {
 }
 
 //Kay check - HTML part for renderContactSection(index)
-function renderContactSectionHTML(index) { 
+function renderContactSectionHTML(index) {
   return /*html*/ `
     <div id="letter-headline">${index}</div>
     <div id="line"></div>
@@ -70,14 +42,14 @@ function renderContactSectionHTML(index) {
 
 //funktional check - brauchen wir diese Funktion? Wird nur einmal aufgerufen
 function updateColorIndex(colorIndex) {
-  return colorIndex === colors.length ? 0 : colorIndex + 1; //if-function to to around
+  return colorIndex === colors.length ? 0 : colorIndex + 1; //if-function to turn around
 }
 
 //kay -check
 function renderContactItem(index, id) {
   const { name, mail, color, contactId } = contacts[index][id]; //save the data in variables
   const initials = calculateInitials(name); // start function to return the Initials
-  
+
   docID("contact" + index).innerHTML += renderContactItemHTML(contactId, index, color, initials, name, mail, id); //start function to render the HTML code
 }
 
@@ -216,50 +188,47 @@ function emptyContactMask(){
   docID(`contact-phone`).value = "";
 }
 
-//Kay check - create function a JSON for create a Contacted
-function createJsonContact(name, mail, phone) {
-  let color = colors[colorIndex];
-  colorIndex = updateColorIndex(colorIndex);
-  contactId = NumberofContacts() + 1;
-  return {
-    name: name,
-    mail: mail,
-    phone: phone,
-    color: color,
-    contactId: contactId,
-  };
-}
-
-// Kay check - function to know the numbers of contacts
-function NumberofContacts() {
+//funktion aufsplitten
+function newContactId() {
   let sum = 0;
   for (let i in contacts) {
-    sum += contacts[i].length;
+    if (!contacts[i][0]) {
+      continue;
+    }
+    for (let J = 0; J < contacts[i].length; J++) {
+      let element = contacts[i][J].contactId;
+      if (element > sum) {
+        sum = element;
+      }
+    }
   }
-  return sum
+  return sum + 1;
 }
 
 
+// Kay check-
 async function newContact() {
-  const contactData = gatherContactData(); 
+  let contactData = gatherContactData();
   if (!contactData) return;
 
-  const { name, mail, phone } = contactData;
-  const firstLetter = name.charAt(0).toUpperCase();
-  const contact = createJsonContact(name, mail, phone);
-  addToContacts(firstLetter, contact);
+  let firstLetter = contactData.name.charAt(0).toUpperCase();
+  addToContacts(firstLetter, contactData);
   orderAndSaveContacts();
 }
 
-
+// Kay check - 
 function gatherContactData() {
-  const name = docID('contact-name').value;
-  const mail = docID('contact-mail').value;
-  const phone = docID('contact-phone').value;
-  return (name && mail && phone) ? { name, mail, phone } : null;
+  let name = docID('contact-name').value;
+  let mail = docID('contact-mail').value;
+  let phone = docID('contact-phone').value;
+  let color = colors[colorIndex];
+  colorIndex = updateColorIndex(colorIndex);
+  let contactId = newContactId();
+  return (name && mail && phone) ? { name: name, mail: mail, phone: phone, color: color, contactId: contactId } : null;
 }
 
 
+// function to push the contact in contacts
 function addToContacts(firstLetter, contact) {
   if (!contacts[firstLetter]) {
     contacts[firstLetter] = [];
@@ -267,38 +236,36 @@ function addToContacts(firstLetter, contact) {
   contacts[firstLetter].push(contact);
 }
 
-
+//
 function orderAndSaveContacts() {
-  const flatContacts = Object.values(contacts).flat();
-  orderContacts();
-  setElement('contacts', contacts);
-  contactsInit();
-  resetNewContactForm();
-  contactAddedSuccesfully();
-  renderContacts();
+  orderContacts(); // order the contacts with alphabet
+  setElement('contacts', contacts); //save the contacts in Backend
+  contactsInit(); // restart contact-page
+  resetNewContactForm(); //close the contact-page and clear the values
+  contactAddedSuccesfully(); //the pop up sign
 }
 
-
+//function check
 function resetNewContactForm(){
   docID("background-add-contact").classList.add("d-none");
-    docID(`contact-name`).value = "";
-    docID(`contact-mail`).value = "";
-    docID(`contact-phone`).value = "";
+  docID(`contact-name`).value = "";
+  docID(`contact-mail`).value = "";
+  docID(`contact-phone`).value = "";
 }
 
-
-function contactAddedSuccesfully(){
-  let addedContactSuccesfully = docID(`contact-added-succesfully-animation`); // variablennamen kürzen
-  addedContactSuccesfully.classList.remove(`contact-added-succesfully-hide`);
-  addedContactSuccesfully.classList.add(`contact-added-succesfully`);
+//funtion check
+function contactAddedSuccesfully() {
+  let succesfully = docID(`contact-added-succesfully-animation`); // variablennamen kürzen
+  succesfully.classList.remove(`contact-added-succesfully-hide`);
+  succesfully.classList.add(`contact-added-succesfully`);
   setTimeout(() => {
-    addedContactSuccesfully.classList.add(`contact-added-succesfully-hide`);
+    succesfully.classList.add(`contact-added-succesfully-hide`);
   }, 2000);
 }
 
-
+//function check
 function orderContacts() {
-  // Stelle sicher, dass die globale Variable 'contacts' definiert ist
+  // Stelle sicher, dass die globale Variable 'contacts' definiert ist / noch notwendig?
   if (typeof contacts === "undefined") {
     console.error("Die Variable 'contacts' ist nicht definiert.");
     return;
@@ -306,25 +273,24 @@ function orderContacts() {
   sortContactsByKey();
 }
 
-
-function sortContactsByKey(){
+//function check
+function sortContactsByKey() {
   const sortedContacts = {};
-  const sortedKeys = Object.keys(contacts).sort();
+  let sortedKeys = Object.keys(contacts).sort();
   sortedKeys.forEach((key) => {
     sortedContacts[key] = contacts[key].sort((a, b) => {
       return a.name.localeCompare(b.name); // Sortiere nach Namen
     });
   });
-   // Aktualisiere die globale Variable 'contacts' mit den sortierten Kontakten
-   Object.assign(contacts, sortedContacts);
-   contacts = sortedContacts;
+  // Aktualisiere die globale Variable 'contacts' mit den sortierten Kontakten
+  Object.assign(contacts, sortedContacts);
 }
 
 
 function deleteContact(contactId) {
-  for (const letter in contacts) {
+  for (let letter in contacts) {
     if (contacts.hasOwnProperty(letter)) {
-      const contactArray = contacts[letter];
+      let contactArray = contacts[letter];
       for (let i = 0; i < contactArray.length; i++) {
         if (contactArray[i].contactId === contactId) {
           removeContact(contactArray, i);
@@ -366,24 +332,24 @@ function onclickContact(clickedId) {
 
 
 function resetColorOfAllContactContainer(){
-   const contactContainers = document.querySelectorAll(".contact");
-   contactContainers.forEach((container) => {
-     container.style.backgroundColor = "";
-     const nameElement = container.querySelector("#name");
-     const mailElement = container.querySelector("#mail");
-     nameElement.style.color = "";
-     mailElement.style.color = "";
-   });
+  const contactContainers = document.querySelectorAll(".contact");
+  contactContainers.forEach((container) => {
+    container.style.backgroundColor = "";
+    const nameElement = container.querySelector("#name");
+    const mailElement = container.querySelector("#mail");
+    nameElement.style.color = "";
+    mailElement.style.color = "";
+  });
 }
 
 
 function setColorOfSelectedContact(clickedId){
-   const clickedContainer = docID("contact" + clickedId);
-   clickedContainer.style.backgroundColor = "#4589FF";
-   const clickedNameElement = clickedContainer.querySelector("#name");
-   const clickedMailElement = clickedContainer.querySelector("#mail");
-   clickedNameElement.style.color = "white";
-   clickedMailElement.style.color = "white";
+  const clickedContainer = docID("contact" + clickedId);
+  clickedContainer.style.backgroundColor = "#4589FF";
+  const clickedNameElement = clickedContainer.querySelector("#name");
+  const clickedMailElement = clickedContainer.querySelector("#mail");
+  clickedNameElement.style.color = "white";
+  clickedMailElement.style.color = "white";
 }
 
 
