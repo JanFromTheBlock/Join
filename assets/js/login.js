@@ -12,6 +12,11 @@ function passChange(login, img, span, other) {
     }
 }
 
+function passChangeMail(span, other) {
+    docID(other).classList.remove('red-line');
+    docID(span).classList.add('d-none');
+}
+
 function passAsterik(input, img) {
     if (docID(input).value.length > 0 && docID(img).src != "http://" + window.location.host + "/assets/img/visibility.svg") {
         docID(input).classList.add('password');
@@ -59,12 +64,19 @@ async function login() {
                     return
                 }
                 
+            }else {
+                notPassLogin();
             }
         if (i == data.length - 1) {
             //docID('Fehler-Container').Classlist.remove("d-none")
             console.log('email or password incorrect');
         }
     }
+}
+
+function notPassLogin() {
+    docID('login-pass').classList.add('red-line');
+    docID('wrong-user').classList.remove('d-none');
 }
 
 function successCheck() {

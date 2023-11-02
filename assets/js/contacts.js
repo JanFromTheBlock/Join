@@ -1,14 +1,3 @@
-const colors = [
-  "#FF7A00",
-  "#9327FF",
-  "#6E52FF",
-  "#FC71FF",
-  "#FFBB2B",
-  "#1FD7C1",
-  "#462F8A",
-  "#FF4646",
-];
-
 //kay check
 function renderContacts() {
   resetContactPage(); //set contact-Colum to "" und Number and Index to 0
@@ -201,31 +190,6 @@ function gatherContactData() {
   return (name && mail && phone) ? { name: name, mail: mail, phone: phone, color: color, contactId: contactId } : null;
 }
 
-
-function firstname(contactData, what) {
-  let firstLetter = contactData.name.charAt(0).toUpperCase();
-  addToContacts(firstLetter, contactData);
-  orderAndSaveContacts(what);
-}
-
-
-// function to push the contact in contacts
-function addToContacts(firstLetter, contact) {
-  if (!contacts[firstLetter]) {
-    contacts[firstLetter] = [];
-  }
-  contacts[firstLetter].push(contact);
-}
-
-//
-function orderAndSaveContacts(what) {
-  orderContacts(); // order the contacts with alphabet
-  setElement('contacts', contacts); //save the contacts in Backend
-  if (what) {
-    ContactInitNew();
-  }
-}
-
 function ContactInitNew() {
   contactsInit(); // restart contact-page
   resetNewContactForm(); //close the contact-page and clear the values
@@ -248,29 +212,6 @@ function contactAddedSuccesfully() {
   setTimeout(() => {
     succesfully.classList.add(`contact-added-succesfully-hide`);
   }, 2000);
-}
-
-//function check
-function orderContacts() {
-  // Stelle sicher, dass die globale Variable 'contacts' definiert ist / noch notwendig?
-  if (typeof contacts === "undefined") {
-    console.error("Die Variable 'contacts' ist nicht definiert.");
-    return;
-  }
-  sortContactsByKey();
-}
-
-//function check
-function sortContactsByKey() {
-  const sortedContacts = {};
-  let sortedKeys = Object.keys(contacts).sort();
-  sortedKeys.forEach((key) => {
-    sortedContacts[key] = contacts[key].sort((a, b) => {
-      return a.name.localeCompare(b.name); // Sortiere nach Namen
-    });
-  });
-  // Aktualisiere die globale Variable 'contacts' mit den sortierten Kontakten
-  Object.assign(contacts, sortedContacts);
 }
 
 

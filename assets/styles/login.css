@@ -257,6 +257,11 @@
   gap: 32px;
 }
 
+#worng-user-con {
+  position: relative;
+  top: -32px;
+}
+
 /* container for Remember me and forgot pass link */
 #forget-con {
   gap: 53px;

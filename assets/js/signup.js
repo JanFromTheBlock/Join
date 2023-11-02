@@ -16,6 +16,8 @@ async function newUser() {
     transition();
 }
 
+
+
 function notMatchPass(login, other, span) {
     docID(login).classList.add('red-line');
     docID(login).classList.remove('blue-line');

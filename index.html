@@ -13,7 +13,7 @@
     <script src="./assets/js/login.js"></script>
     <title>Log In</title>
 </head>
-<body>
+<body onload="withContacts()">
     <div id="start-con" class="start-animation">
         <img id="login-img" class="start-animation" src="./assets/img/logo624.png">
     </div>
@@ -28,15 +28,15 @@
             </div>
             <div id="login-user" class="login-user">
                 <div id="login-email" class="epass">
-                    <input id="email-input" type="email" required placeholder="Email">
+                    <input id="email-input" type="email" required placeholder="Email" onfocusin="passChangeMail('wrong-user', 'login-pass')">
                     <img src="./assets/img/mail-icon.svg">
                 </div>
                 <div id="login-pass" class="epass">
-                    <input id="pass-input"  type="password" required placeholder="Password" onfocusin="passChange('login-pass', 'pass-img')" onfocusout="passOutChange('pass-input', 'login-pass', 'pass-img')" oninput="passAsterik('pass-input', 'pass-img')">
+                    <input id="pass-input"  type="password" required placeholder="Password" onfocusin="passChange('login-pass', 'pass-img', 'wrong-user', 'login-pass')" onfocusout="passOutChange('pass-input', 'login-pass', 'pass-img')" oninput="passAsterik('pass-input', 'pass-img')">
                     <img id="pass-img" src="./assets/img/lock-icon.svg" onclick="passVisibility('pass-input', 'pass-img')">
                 </div>
                 <!-- Es muss noch die richtige paddings/Gap Border bekommen -->
-                <div class="not-match-con"><span id="wrong-user" class="d-none">Your username or password </span></div>
+                <div class="not-match-con" id="worng-user-con"><span id="wrong-user" class="d-none">Your username or password </span></div>
             </div>
             <div id="forget-con" class="flex-center">
                 <div id="rem-checkbox" class="flex-center">
