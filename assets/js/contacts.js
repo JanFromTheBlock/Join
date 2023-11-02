@@ -8,7 +8,6 @@ const colors = [
   "#462F8A",
   "#FF4646",
 ];
-let colorIndex = 0;
 
 //kay check
 function renderContacts() {
@@ -38,11 +37,6 @@ function renderContactSectionHTML(index) {
     <div id="line"></div>
     <div id="contact${index}"></div>
   `
-}
-
-//funktional check - brauchen wir diese Funktion? Wird nur einmal aufgerufen
-function updateColorIndex(colorIndex) {
-  return colorIndex === colors.length ? 0 : colorIndex + 1; //if-function to turn around
 }
 
 //kay -check
@@ -189,32 +183,11 @@ function emptyContactMask(){
 }
 
 
-//funktion aufsplitten
-function newContactId() {
-  let sum = 0;
-  for (let i in contacts) {
-    if (!contacts[i][0]) {
-      continue;
-    }
-    for (let J = 0; J < contacts[i].length; J++) {
-      let element = contacts[i][J].contactId;
-      if (element > sum) {
-        sum = element;
-      }
-    }
-  }
-  return sum + 1;
-}
-
-
 // Kay check-
 async function newContact() {
   let contactData = gatherContactData();
   if (!contactData) return;
-
-  let firstLetter = contactData.name.charAt(0).toUpperCase();
-  addToContacts(firstLetter, contactData);
-  orderAndSaveContacts();
+  firstname(contactData, true); //+ variable true
 }
 
 // Kay check - 
@@ -229,6 +202,13 @@ function gatherContactData() {
 }
 
 
+function firstname(contactData, what) {
+  let firstLetter = contactData.name.charAt(0).toUpperCase();
+  addToContacts(firstLetter, contactData);
+  orderAndSaveContacts(what);
+}
+
+
 // function to push the contact in contacts
 function addToContacts(firstLetter, contact) {
   if (!contacts[firstLetter]) {
@@ -238,9 +218,15 @@ function addToContacts(firstLetter, contact) {
 }
 
 //
-function orderAndSaveContacts() {
+function orderAndSaveContacts(what) {
   orderContacts(); // order the contacts with alphabet
   setElement('contacts', contacts); //save the contacts in Backend
+  if (what) {
+    ContactInitNew();
+  }
+}
+
+function ContactInitNew() {
   contactsInit(); // restart contact-page
   resetNewContactForm(); //close the contact-page and clear the values
   contactAddedSuccesfully(); //the pop up sign
@@ -309,8 +295,9 @@ async function removeContact(contactArray, index) {
   await setElement("contacts", contacts);
   renderContacts();
   const contactDisplay = docID("contact-display");
-  contactDisplay.classList.remove("d-none");
+  contactDisplay.classList.add("d-none");
   contactDisplay.innerHTML = "";
+  docID("background-responsive").style.display = "none";
 }
 
 
@@ -331,7 +318,7 @@ function onclickContact(clickedId) {
   setColorOfSelectedContact(clickedId)
 }
 
-
+//reset color for before clicked person
 function resetColorOfAllContactContainer(){
   const contactContainers = document.querySelectorAll(".contact");
   contactContainers.forEach((container) => {
@@ -384,6 +371,8 @@ function openEditContact(contactId, name, mail, phone, color, initials) {
   fillInputs(name, mail, phone, color);
   animateOpenContactMask();
 }
+
+
 
 
 function fillInputs(name, mail, phone, color){
@@ -492,16 +481,16 @@ function closeContactDisplay() {
     mailElement.style.color = "";
   });
 }
-window.addEventListener("resize", addClassIfBodyWidthLessThan900px);
+// window.addEventListener("resize", addClassIfBodyWidthLessThan900px);
 
 
-function addClassIfBodyWidthLessThan900px() {
-  if (document.body.clientWidth < 900) {
-    var contactDisplay = docID("contact-display");
-    if (!contactDisplay.classList.contains("d-none")) {
-      contactDisplay.classList.add("d-none");
-      docID("background-responsive").style.display = "none";
-      onclickContact();
-    }
-  }
-}
+// function addClassIfBodyWidthLessThan900px() {
+//   if (document.body.clientWidth < 900) {
+//     var contactDisplay = docID("contact-display");
+//     if (!contactDisplay.classList.contains("d-none")) {
+//       contactDisplay.classList.add("d-none");
+//       docID("background-responsive").style.display = "none";
+//       onclickContact(); // fehlt die Id - Was ist das Ziel?
+//     }
+//   }
+// }

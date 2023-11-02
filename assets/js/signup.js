@@ -11,7 +11,8 @@ async function newUser() {
     }
     let newUser = {'name': newName, 'email':newEmail, 'pass': newPass, 'tel': ""};
     users.push(newUser);
-    // setElement('users', users);
+    setElement('users', users);
+    newContactsign(newName, newEmail);
     transition();
 }
 

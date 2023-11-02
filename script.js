@@ -9,7 +9,8 @@ let start = [{
 let users;
 let user = "Guest";
 let userInitial = "G"; 
-let boardActive; 
+let boardActive;
+let colorIndex = 0;
 
 async function setElement(key, value) {
     const payload = {key, value, token: JOIN_TOKEN};
@@ -157,3 +158,39 @@ function localUserload() {
     user = sessionStorage.getItem('activeuser');
     userInitial = sessionStorage.getItem('activeshort');
 }
+
+async function newContactsign(name, mail) {
+    let contactData = gatherContactDataSign(name, mail); //neue
+    if (!contactData) return;
+    firstname(contactData, false); 
+  }
+
+function gatherContactDataSign(name, mail) {
+let phone = "Keine Angabe";
+let color = colors[colorIndex];
+colorIndex = updateColorIndex(colorIndex);
+let contactId = newContactId();
+return { name: name, mail: mail, phone: phone, color: color, contactId: contactId }
+}
+
+//Kay check
+function updateColorIndex(colorIndex) {
+    return colorIndex === colors.length ? 0 : colorIndex + 1; //if-function to turn around
+  }
+
+  //funktion aufsplitten
+function newContactId() {
+    let sum = 0;
+    for (let i in contacts) {
+      if (!contacts[i][0]) {
+        continue;
+      }
+      for (let J = 0; J < contacts[i].length; J++) {
+        let element = contacts[i][J].contactId;
+        if (element > sum) {
+          sum = element;
+        }
+      }
+    }
+    return sum + 1;
+  }

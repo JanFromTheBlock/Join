@@ -35,6 +35,8 @@
                     <input id="pass-input"  type="password" required placeholder="Password" onfocusin="passChange('login-pass', 'pass-img')" onfocusout="passOutChange('pass-input', 'login-pass', 'pass-img')" oninput="passAsterik('pass-input', 'pass-img')">
                     <img id="pass-img" src="./assets/img/lock-icon.svg" onclick="passVisibility('pass-input', 'pass-img')">
                 </div>
+                <!-- Es muss noch die richtige paddings/Gap Border bekommen -->
+                <div class="not-match-con"><span id="wrong-user" class="d-none">Your username or password </span></div>
             </div>
             <div id="forget-con" class="flex-center">
                 <div id="rem-checkbox" class="flex-center">
@@ -47,6 +49,7 @@
                 <button type="submit" class="flex-center login-btn">Log in</button>
                 <a id="login-guest" class="flex-center" href="./summary.html" onclick="guestLogin()">Guest log in</a>
             </div>
+            
         </form>
         <div id="login-signup-con" class="login-signup-con">
             <span>Not a join user?</span>
