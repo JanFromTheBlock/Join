@@ -104,6 +104,7 @@ async function addTaskInit() {
     addTaskRender();
     subtasks = [];
     boardActive = false;
+    docID('header').style.zIndex = '5';
 }
 
 async function addBoardInit() {
@@ -125,6 +126,7 @@ async function addBoardInit() {
     subtasks = JSON.parse(getdata);
     addBoardRender();
     boardActive = true;
+    docID('header').style.zIndex = '3';
 }
 
 function legalNotesInit() {
