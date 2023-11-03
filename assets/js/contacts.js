@@ -311,6 +311,7 @@ function openEditContact(contactId, name, mail, phone, color, initials) {
     `;
   fillInputs(name, mail, phone, color);
   animateOpenContactMask();
+  closeContactDisplay();
 }
 
 
