@@ -6,12 +6,17 @@ function headerRender() {
         <div class="header-data">
             <span id = "header-title">Kanban Project Management Tool</span>
             <a id ="help-button" href="./help.html"><img class="header-help" id="header-help" src="./assets/img/help.png"></a>
-            <div id="header-user-con">
+            <div onclick = "showDropdown(), doNotClose(event)" id="header-user-con">
                 <div id="header-user-ellipse">
                     <div id="header-user-name"> ${userInitial}
                     </div>
                 </div>
             </div>
+        </div>
+        <div onclick="doNotClose(event)" id='menu-dropdown' class='d-none'>
+          <a href="./legalNotes.html" class="dropdown-menu">Legal Notice</a>
+          <a href="./privatePolicy.html" class="dropdown-menu">Privacy Policy</a>
+          <a class="dropdown-menu">Logout</a>
         </div>
         <div id="menu-responsive"></div>
     `;

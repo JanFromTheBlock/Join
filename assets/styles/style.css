@@ -258,4 +258,28 @@ body {
       height: 64px;
     }
   }
+
+  #menu-dropdown{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    right: 0;
+    top: 97.3px;
+    box-shadow: -3px 3px 16px rgba(0, 0,0, 0.16);
+    padding: 10px;
+    border-radius: 10px 0px 10px 10px;
+    font-size: 14px;
+  }
+
+  .dropdown-menu{
+    padding: 4px 8px;
+    border-radius: 7px;
+    text-align: right;
+    text-decoration: none;
+    color: black;
+  }
+  .dropdown-menu:hover{
+    background-color: #D2E3FF;
+    cursor: pointer;
+  }
   

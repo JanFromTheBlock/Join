@@ -262,3 +262,17 @@ function newContactId() {
     }
     return sum + 1;
 }
+
+function showDropdown(){
+    docID('menu-dropdown').classList.remove('d-none')
+}
+
+function closeDropdown(){
+    docID('menu-dropdown').classList.add('d-none')
+}
+
+function doNotClose(event) {
+    //die divs, die diese Funktion auslösen, schließen nicht das window beim onclick
+    event.stopPropagation();
+  }
+  
