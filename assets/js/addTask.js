@@ -21,7 +21,7 @@ let categories = [
   },
   {
     name: "Marketing",
-    img: "./assets/img/ellipsegreen.png",
+    img: "./assets/img/ellipseGreen.png",
     color: "#2AD300",
   },
 ];
