@@ -7,7 +7,7 @@ let start = [{
     "tel": "+49 1111 111 11 1"
 }]
 let users;
-let user = "Guest";
+let user;
 let userInitial = "G";
 let boardActive;
 let colorIndex = 0;
@@ -284,4 +284,5 @@ function logOut() {
     //window.href -> index.html
     //localstorage leeren
     //sessionstorage leeren
+
 }

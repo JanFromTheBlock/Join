@@ -79,6 +79,11 @@ function notPassLogin() {
     docID('wrong-user').classList.remove('d-none');
 }
 
+function guestLogin() {
+    user = "Guest"
+    window.location.href = './summary.html'
+}
+
 function successCheck() {
     let variable = new URLSearchParams(window.location.search).get('key');
     console.log('function started')
