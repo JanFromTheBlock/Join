@@ -57,7 +57,7 @@ function calculateInitials(name) {
 
 
 //kay -check
-function resetContactPage(){
+function resetContactPage() {
   colorIndex = 0;
   docID("contact-column").innerHTML = "";
 }
@@ -150,7 +150,7 @@ function addNewContactHTML() {
 function cancelNewContact() {
   if (docID(`add-contact-mask`) === null) { // check if edit or add
     docID(`edit-contact-mask`).classList.add(`open-contact-hide`)
-  }else {
+  } else {
     docID(`add-contact-mask`).classList.add(`open-contact-hide`);
   }
   animateCloseAddContact();  //function to close background with delay 
@@ -158,14 +158,14 @@ function cancelNewContact() {
 }
 
 //kay checked
-function animateCloseAddContact(){
+function animateCloseAddContact() {
   setTimeout(() => {
     docID("background-add-contact").classList.add("d-none");
   }, 325);
 }
 
 //function checked
-function emptyContactMask(){
+function emptyContactMask() {
   docID(`contact-name`).value = "";
   docID(`contact-mail`).value = "";
   docID(`contact-phone`).value = "";
@@ -197,7 +197,7 @@ function ContactInitNew() {
 }
 
 //function check
-function resetNewContactForm(){
+function resetNewContactForm() {
   docID("background-add-contact").classList.add("d-none");
   docID(`contact-name`).value = "";
   docID(`contact-mail`).value = "";
@@ -260,7 +260,7 @@ function onclickContact(clickedId) {
 }
 
 //reset color for before clicked person
-function resetColorOfAllContactContainer(){
+function resetColorOfAllContactContainer() {
   const contactContainers = document.querySelectorAll(".contact");
   contactContainers.forEach((container) => {
     container.style.backgroundColor = "";
@@ -272,7 +272,7 @@ function resetColorOfAllContactContainer(){
 }
 
 
-function setColorOfSelectedContact(clickedId){
+function setColorOfSelectedContact(clickedId) {
   const clickedContainer = docID("contact" + clickedId);
   clickedContainer.style.backgroundColor = "#4589FF";
   const clickedNameElement = clickedContainer.querySelector("#name");
@@ -317,7 +317,7 @@ function openEditContact(contactId, name, mail, phone, color, initials) {
 
 
 
-function fillInputs(name, mail, phone, color){
+function fillInputs(name, mail, phone, color) {
   docID("contact-name").value = name;
   docID("contact-mail").value = mail;
   docID("contact-phone").value = phone;
@@ -327,7 +327,7 @@ function fillInputs(name, mail, phone, color){
 }
 
 
-function animateOpenContactMask(){
+function animateOpenContactMask() {
   docID(`edit-contact-mask`).classList.remove(`d-none`);
   setTimeout(() => {
     docID(`edit-contact-mask`).classList.remove(`open-contact-hide`);
@@ -423,19 +423,20 @@ function closeContactDisplay() {
     mailElement.style.color = "";
   });
 }
-// window.addEventListener("resize", addClassIfBodyWidthLessThan900px);
+window.addEventListener("resize", addClassIfBodyWidthLessThan900px);
 
 
-// function addClassIfBodyWidthLessThan900px() {
-//   if (document.body.clientWidth < 900) {
-//     var contactDisplay = docID("contact-display");
-//     if (!contactDisplay.classList.contains("d-none")) {
-//       contactDisplay.classList.add("d-none");
-//       docID("background-responsive").style.display = "none";
-//       onclickContact(); // fehlt die Id - Was ist das Ziel?
-//     }
-//   }
-// }
+function addClassIfBodyWidthLessThan900px() {
+  if (document.body.clientWidth < 900) {
+    var contactDisplay = docID("contact-display");
+    if (!contactDisplay.classList.contains("d-none")) {
+      contactDisplay.classList.add("d-none");
+      docID("background-responsive").style.display = "none";
+      onclickContact(); // fehlt die Id - Was ist das Ziel?
+    }
+  }
+}
 
 function validatePhoneNumber(phoneInput) {     // Entferne alle Zeichen, die keine Zahlen sind, aus dem Eingabewert.     
-  phoneInput.value = phoneInput.value.replace(/[^0-9+/ ]/g, ''); }
+  phoneInput.value = phoneInput.value.replace(/[^0-9+/ ]/g, '');
+}
