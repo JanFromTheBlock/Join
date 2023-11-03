@@ -264,11 +264,14 @@ function newContactId() {
 }
 
 function showDropdown(){
-    docID('menu-dropdown').classList.remove('d-none')
+    docID('menu-dropdown').classList.remove('d-none');
+    docID('header-user-con').onclick = null;
+
 }
 
 function closeDropdown(){
-    docID('menu-dropdown').classList.add('d-none')
+    docID('menu-dropdown').classList.add('d-none');
+    headerRender();
 }
 
 function doNotClose(event) {
