@@ -63,13 +63,9 @@ async function login() {
                     window.location.href = './summary.html';
                     return
                 }
-                
-            }else {
-                notPassLogin();
             }
         if (i == data.length - 1) {
-            //docID('Fehler-Container').Classlist.remove("d-none")
-            console.log('email or password incorrect');
+            notPassLogin();
         }
     }
 }
@@ -109,7 +105,6 @@ async function onSubmitRQPassword(event) {
         resetRed();
     }
 }
-
 
 
 async function action(formData) {
