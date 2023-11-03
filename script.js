@@ -278,4 +278,10 @@ function doNotClose(event) {
     //die divs, die diese Funktion auslösen, schließen nicht das window beim onclick
     event.stopPropagation();
   }
-  
+
+
+function logOut() {
+    //window.href -> index.html
+    //localstorage leeren
+    //sessionstorage leeren
+}

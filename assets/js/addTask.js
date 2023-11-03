@@ -177,7 +177,7 @@ function changeColor(i) {
   } else if (i === "medium") {
     changeColorMedium(i);
     urgency = "./assets/img/mediumLogo.png";
-  } else if (i === "low") {
+  } else {
     urgency = "./assets/img/lowLogo.png";
     changeColorLow(i);
   }
@@ -236,10 +236,13 @@ function jumpToBoard() {
   }, 2000);
 }
 
-function newTask() {
+async function newTask() {
   if (edit === true) {
     safeEditedTask();
   } else {
+    if (urgency === undefined) {
+      changeColor('low')
+    }
     let title = docID(`inputFieldTitle`).value;
     let date = docID(`inputDate`).value;
     let category = docID(`selectCategory`).value;
@@ -253,11 +256,10 @@ function newTask() {
     taskId = highestTaskId + 1;
     clearTaskMask();
     let task = createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId);
-    getElement("tasks");
+    await getElement("tasks");
     cacheOfArrays();
     tasks.push(task);
-    setElement("tasks", tasks);
-    addBoardInit();
+    await setElement("tasks", tasks);
   }
 
   function findHighestId(tasks) {
