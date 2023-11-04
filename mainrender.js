@@ -16,7 +16,7 @@ function headerRender() {
         <div onclick="doNotClose(event)" id='menu-dropdown' class='d-none'>
           <a href="./legalNotes.html" class="dropdown-menu">Legal Notice</a>
           <a href="./privatePolicy.html" class="dropdown-menu">Privacy Policy</a>
-          <a class="dropdown-menu">Logout</a>
+          <a class="dropdown-menu" onclick="logOut()">Logout</a>
         </div>
         <div id="menu-responsive"></div>
     `;

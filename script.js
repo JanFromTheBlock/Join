@@ -48,22 +48,26 @@ async function withContacts() {
     } catch (error) {
         console.error('Error initializing contacts:', error);
     }
+    if (activeUser() == null) {
+        window.location.href = './summary.html';
+    }
 }
 
 function activeUser() {
     if (localStorage.getItem('activshort') === null) {
         if (sessionStorage.getItem('activshort') === null) {
-            user = "Guest";
-            userInitial = "G";
+            return true
         }
         else {
             userInitial = sessionStorage.getItem('activshort');
             user = sessionStorage.getItem('activeuser');
+            return true
         }
     } else {
         userInitial = localStorage.getItem('activshort');
         user = localStorage.getItem('activeuser');
     }
+
 }
 
 async function summaryInit() {
@@ -78,11 +82,6 @@ async function summaryInit() {
     squareButtonRender();
     sumOverviewRender();
 
-}
-
-function taskInit() {
-    headerRender();
-    navRender();
 }
 
 async function addTaskInit() {
@@ -174,10 +173,12 @@ function sessionUsersave(name) {
     sessionStorage.setItem('activshort', initials)
 }
 
-function localUserload() {
-    user = sessionStorage.getItem('activeuser');
-    userInitial = sessionStorage.getItem('activeshort');
+
+function sessionUserload() {
+    user = localStorage.getItem('activeuser');
+    userInitial = localStorage.getItem('activeshort');
 }
+
 
 async function newContactsign(name, mail) {
     let contactData = gatherContactDataSign(name, mail); //neue
@@ -281,8 +282,10 @@ function doNotClose(event) {
 
 
 function logOut() {
-    //window.href -> index.html
-    //localstorage leeren
-    //sessionstorage leeren
-
+    localStorage.removeItem('activeuser');
+    localStorage.removeItem('activshort');
+    sessionStorage.removeItem('activeuser');
+    sessionStorage.removeItem('activshort');
+    user = undefined;
+    window.location.href = './index.html';
 }
