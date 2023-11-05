@@ -273,6 +273,7 @@ function showDropdown(){
 function closeDropdown(){
     docID('menu-dropdown').classList.add('d-none');
     headerRender();
+    menuResponsiveRender();
 }
 
 function doNotClose(event) {
