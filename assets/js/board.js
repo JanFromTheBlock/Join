@@ -88,8 +88,14 @@ function renderContactArea(task, id) {
 
 
 function getInitialsTask(firstName, lastName) {
-  const initials = firstName.charAt(0) + lastName.charAt(0);
-  return initials.toUpperCase();
+  if (lastName) {
+    let initials = firstName.charAt(0) + lastName.charAt(0);
+    return initials.toUpperCase();
+  }else{
+    let initials = firstName.charAt(0);
+    return initials.toUpperCase();
+  }
+  
 }
 
 
