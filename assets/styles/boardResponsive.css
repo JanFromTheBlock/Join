@@ -6,6 +6,9 @@
     #board-input{
         margin-left: 35px;
     }
+    #board{
+        margin-bottom: 100px;
+    }
 }
 @media (max-width: 1000px) {
     .task-body {
