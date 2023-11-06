@@ -213,14 +213,15 @@ body {
     display: none;
     position: fixed;
     bottom: 0;
-    left: 50%;
-    margin-left: -220px;
+    left: 0;
     background-color: white;
+    width: 100%;
+    justify-content: center;
   }
   @media (max-width: 1150px){
     #nav{display: none;}
     #board{margin-left: 0px !important;}
-    #menu-responsive{display: block;}
+    #menu-responsive{display: flex;}
   }
   @media (max-width: 600px){
     #header-title{display: none;}
@@ -228,19 +229,12 @@ body {
   }
   
   @media (max-width: 450px){
-    #menu-responsive{
-    left: 53%;
-    margin-left: -40.5%;
-    }
     .button-responsive{
       padding: 0;
     }
   }
   
     @media (max-width: 380px){
-    #menu-responsive{
-      left: 48%
-    }
     
    #summary-responsive {
       height: 64px;
