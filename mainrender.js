@@ -186,7 +186,7 @@ function addTaskRender() {
          <img id="taskAddedToBoard" class="task-added-to-board-hide task-added-to-board" src="./assets/img/logoAddedToBoard.png">
   </form> 
       `;
-
+      docID('inputDate').min = new Date().toISOString().split("T")[0];
        // Unterschied zwischen addTask.html und board.html
        
 let addTaskUnderDiv = document.getElementById(`addTaskUnderDiv`);

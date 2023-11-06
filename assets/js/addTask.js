@@ -37,7 +37,9 @@ edit = false;
 let subtaskStatus = [];
 let statusSubtask;
 let newsubtask;
-let toggleContacts = false
+let toggleContacts = false;
+
+
 
 function showSubtasks(id) {
   if (id === undefined) {
