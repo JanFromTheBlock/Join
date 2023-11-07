@@ -177,6 +177,7 @@ async function newContact() {
   let contactData = gatherContactData();
   if (!contactData) return;
   firstname(contactData, true); //+ variable true
+  ContactInitNew();
 }
 
 // Kay check - 
