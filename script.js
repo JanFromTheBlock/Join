@@ -244,7 +244,7 @@ function sortContactsByKey() {
 
 //Kay check
 function updateColorIndex(colorIndex) {
-    return colorIndex === colors.length ? 0 : colorIndex + 1; //if-function to turn around
+    return colorIndex === colors.length-1 ? 0 : colorIndex + 1; //if-function to turn around
 }
 
 //funktion aufsplitten
