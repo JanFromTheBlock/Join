@@ -20,7 +20,7 @@ function passChangeMail(span, other) {
 
 
 function passAsterik(input, img) {
-    if (docID(input).value.length > 0 && docID(img).src != "http://" + window.location.host + "/assets/img/visibility.svg") {
+    if (docID(input).value.length > 0 && docID(img).src.includes('visibility.svg')) {
         docID(input).classList.add('password');
     } else {
         docID(input).classList.remove('password');
@@ -37,8 +37,8 @@ function passOutChange(input, pass, img) {
 }
 
 
-function passVisibility(input, img) {
-    if(docID(input).value.length > 0 && docID(img).src != "http://" + window.location.host + "/assets/img/visibility.svg") {
+function passVisibility(input, img) {  // docID(img).src.includes(visibility.svg)
+    if(docID(input).value.length > 0 && docID(input).type == "password") {
         docID(img).src = "./assets/img/visibility.svg";
         docID(input).classList.remove('password');
         docID(input).type = "text";

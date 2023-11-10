@@ -448,7 +448,7 @@ function changeDeleteImage(isHovering) {
   if (isHovering) {
     deleteButton.src = "./assets/img/delete_hover.png";
   } else {
-    deleteButton.src = "./assets/img/delete.png";
+    deleteButton.src = "./assets/img/Delete.png";
   }
 }
 
