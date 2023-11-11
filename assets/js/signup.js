@@ -17,13 +17,13 @@ async function newUser() {
 }
 
 
-
 function notMatchPass(login, other, span) {
     docID(login).classList.add('red-line');
     docID(login).classList.remove('blue-line');
     docID(other).classList.remove('blue-line');
     docID(span).classList.remove('d-none');
 }
+
 
 function transition() {
     docID('signup-success-con').classList.remove('d-none');

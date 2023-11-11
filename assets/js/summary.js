@@ -46,6 +46,7 @@ function urgentDateScreenRender() {
     `
 }
 
+
 function findMostUrgentDate(tasks) {
     let earliestDate = null;
 
@@ -107,6 +108,7 @@ function sumAmout(position, id){
     }
     return count
 }
+
 
 function sumGreeting() {
     date = new Date;
