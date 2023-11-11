@@ -1,4 +1,7 @@
 let menuId = ["menu-summary", "menu-board", "menu-add", "menu-contacts"];
+addTaskInitClicked = false;
+addBoardInitClicked = false;
+
 
 function headerRender() {
   docID("header").innerHTML = /*html*/ `
@@ -22,6 +25,7 @@ function headerRender() {
     `;
   oneLetter();
 }
+
 
 function oneLetter() {
   if (userInitial.length == 1) {
@@ -69,21 +73,12 @@ function menuRender() {
   }
 }
 
+
 function menuResponsiveRender(){
   docID('menu-responsive').innerHTML = "";
-  let urls = [
-    "./summary.html",
-    "./board.html",
-    "./addTask.html",
-    "./contacts.html",
-  ];
-  let imgs = [
-    "summary_button",
-    "board_button",
-    "addTask_button",
-    "contacts_button"
-  ];
-  let names = ["summary", "board", "add-task", "contacts"]
+  let urls = ["./summary.html", "./board.html", "./addTask.html", "./contacts.html"];
+  let imgs = ["summary_button", "board_button", "addTask_button", "contacts_button"];
+  let names = ["summary", "board", "add-task", "contacts"];
   for (let i = 0; i < imgs.length; i++) {
     const img = imgs[i];
     docID('menu-responsive').innerHTML += /*html*/`
@@ -91,6 +86,7 @@ function menuResponsiveRender(){
     `
   }
 }
+
 
 function activeSite(id) {
   for (let i = 0; i < menuId.length; i++) {
@@ -102,8 +98,6 @@ function activeSite(id) {
   }
 }
 
-addTaskInitClicked = false;
-addBoardInitClicked = false;
 
 function addTaskRender() {
   progress = 1;
@@ -209,7 +203,6 @@ if (addBoardInitClicked == true) {
 }
 
 
-
 function addContactsToTasks(id) {
   showContacts = docID('showContacts' + id);
   showContacts.innerHTML = '';
@@ -254,10 +247,5 @@ function addContactsToTasks(id) {
 </span>
     `
     docID(id +'show-contacts-icon' + i).style.backgroundColor = color;
-
   }
-
-
-
 }
-

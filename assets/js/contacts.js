@@ -123,7 +123,7 @@ function addNewContactHTML() {
   <div id="background-color-add-contact"></div>
   <div id="add-contact-mask" class="open-contact-hide d-none">
       <div id="add-contact-header">
-          <div id="add-contact-ow"><img onclick="cancelNewContact()" src="./assets/img/close_contact.png"></div>
+          <div id="add-contact-ow"><img onclick="cancelNewContact()" class="cursor-pointer" src="./assets/img/close_contact.png"></div>
           <div id="add-contact-center">
               <img id="add-contact-logo" src="./assets/img/contact_logo.png">
               <div id="add-contact-title">Add contact</div>
@@ -289,7 +289,7 @@ function openEditContact(contactId, name, mail, phone, color, initials) {
          <div id="background-color-add-contact"></div>
         <div id="edit-contact-mask" class="open-edit-contact-hide d-none">
             <div id="edit-contact-header">
-                <div id="add-contact-ow"><img onclick="cancelNewContact()" src="./assets/img/close_contact.png"></div>
+                <div id="add-contact-ow"><img onclick="cancelNewContact()" class="cursor-pointer" src="./assets/img/close_contact.png"></div>
                 <div id="add-contact-center">
                     <img id="add-contact-logo" src="./assets/img/contact_logo.png">
                     <div id="add-contact-title">Edit contact</div>

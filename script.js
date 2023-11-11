@@ -70,6 +70,7 @@ function activeUser() {
 
 }
 
+
 async function summaryInit() {
     activeUser();
     headerRender();
@@ -264,17 +265,20 @@ function newContactId() {
     return sum + 1;
 }
 
+
 function showDropdown(){
     docID('menu-dropdown').classList.remove('d-none');
     docID('header-user-con').onclick = null;
 
 }
 
+
 function closeDropdown(){
     docID('menu-dropdown').classList.add('d-none');
     headerRender();
     menuResponsiveRender();
 }
+
 
 function doNotClose(event) {
     //die divs, die diese Funktion auslösen, schließen nicht das window beim onclick
