@@ -124,7 +124,7 @@ function addTaskRender() {
               <div class="add-task-due-date">
                  <h2>Category</h2>
                  <div class="add-task-select-contact-edit">
-                   <input autocomplete="off" onclick="showCategories()" oninput="markColor()" required class="add-task-select-contact cursor-pointer" id="selectCategory" placeholder="Select Task category">
+                   <input autocomplete="off" onclick="showCategories()" required class="add-task-select-contact cursor-pointer" id="selectCategory" placeholder="Select Task category">
                    <img id="categorySelectArrow" src="./assets/img/selectfieldArrow.png">
                    <div class="add-task-placeholder-color-category">
                    <div id="taskCategoryColor" class="task-categorycolor d-none"></div>
@@ -140,14 +140,6 @@ function addTaskRender() {
                    <div id="showCategories" class="add-task-hide-contacts add-task-choose-contacts">
                      <span onclick="newCategory()" class="add-task-single-priority">New category</span>
                   </div>
-                   <div id="categoryColors" class="add-task-category-colors d-none">
-                       <img class="cursor-pointer" onclick="addColorToCategory(src)" id="lightBlue" src="./assets/img/ellipseLightblue.png">
-                       <img class="cursor-pointer" onclick="addColorToCategory(src)" id="red" src="./assets/img/ellipseRed.png">
-                       <img class="cursor-pointer" onclick="addColorToCategory(src)" id="green" src="./assets/img/ellipseGreen.png">
-                       <img class="cursor-pointer" onclick="addColorToCategory(src)" id="orange" src="./assets/img/ellipseOrange.png">
-                       <img class="cursor-pointer" onclick="addColorToCategory(src)" id="rosa" src="./assets/img/ellipseRosa.png">
-                       <img class="cursor-pointer" onclick="addColorToCategory(src)" id="blue" src="./assets/img/ellipseBlue.png">
-                   </div>
                 </div>
          
             <div class="add-task-priority">

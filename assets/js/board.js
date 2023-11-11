@@ -48,13 +48,13 @@ function loadTasks() {
 
 
 function renderContactArea(task, id) {
-  const contactArea = docID("contact-area" + id);
+  let contactArea = docID("contact-area" + id);
   contactArea.innerHTML = "";
   for (let contactIndex = 0; contactIndex < task["contact-firstname"].length; contactIndex++) {
-    const firstName = task["contact-firstname"][contactIndex];
-    const lastName = task["contact-lastname"][contactIndex];
-    const initials = getInitialsTask(firstName, lastName);
-    const color = task["contact-color"][contactIndex];
+    let firstName = task["contact-firstname"][contactIndex];
+    let lastName = task["contact-lastname"][contactIndex];
+    let initials = getInitialsTask(firstName, lastName);
+    let color = task["contact-color"][contactIndex];
     renderContactSymbol(contactArea, initials, color);
   }
 }
@@ -156,7 +156,6 @@ function renderCategoryColor(id) {
 function filterTasks() {
   const search = getSearchText();
   emptyTaskDivs();
-  k = 0;
 
   for (let id = 0; id < tasks.length; id++) {
     const name = tasks[id]["title"];
@@ -170,8 +169,7 @@ function filterTasks() {
 
 
 function getSearchText() {
-  const searchInput = docID("input");
-  return searchInput.value.toLowerCase();
+  return docID("input").value.toLowerCase();
 }
 
 
@@ -187,10 +185,8 @@ function renderContactFilterArea(id) {
   const contactArea = docID("contact-area" + id);
   contactArea.innerHTML = "";
   for (let i = 0; i < tasks[id]["contact-firstname"].length; i++) {
-    const initials = getContactInitials(id, i);
-    k++;
-    contactArea.innerHTML += createContactHTML(k, initials);
-    setContactBackgroundColor(k, tasks[id]["contact-color"][i]);
+    contactArea.innerHTML += createContactHTML(i + 1, getContactInitials(id, i));
+    setContactBackgroundColor(i + 1, tasks[id]["contact-color"][i]);
   }
 }
 
@@ -252,16 +248,12 @@ function renderWindow(id, IdOfTask) {
 
 
 async function renderStructureOfTheWindow(taskId, IdOfTask, subtask, editLabelsSubtasks) {
-  if (saveChangedTask == true) {
-    // Führe die Aufgabe aus
-  } else {
-    subtask = null;
-  }
+  if (saveChangedTask != true) {subtask = null;}
 
-  const subtasks = prepareSubtasks(subtask, editLabelsSubtasks, taskId);
-  const subtaskHTML = generateSubtaskHTML(subtasks);
-  
-  const taskWindow = docID("task-window");
+  let subtasks = prepareSubtasks(subtask, editLabelsSubtasks, taskId);
+  let subtaskHTML = generateSubtaskHTML(subtasks);
+  let taskWindow = docID("task-window");
+
   taskWindow.innerHTML = createTaskWindowHTML(taskId, subtasks, subtaskHTML, IdOfTask);
 }
 
@@ -305,8 +297,7 @@ function renderPriorityToTheWindow(id) {
 
 function addUrgencyImage(id) {
   //die Urgency de Tasks wird aus dem Array gelesen und in die src für das dazugehörige Img eingefügt, damit das entsprechende Bild angezeigt wird
-  let urgency = tasks[id]["urgency"];
-  docID("window-contact-img").src = urgency;
+  docID("window-contact-img").src = tasks[id]["urgency"];
 }
 
 
@@ -331,7 +322,6 @@ function renderContactInitials(id, contactID) {
   let Initial2 = lastName.charAt(0);
   let initials = Initial1 + Initial2;
   let initialsUpper = initials.toLocaleUpperCase();
-  let color = tasks[id]["contact-color"][contactID]; //Warum das?
 
   return /*html*/ `
       <div id="window-contact-area-inside">
@@ -345,12 +335,11 @@ function renderContactInitials(id, contactID) {
 
 
 function renderContactsToWindow(id) {
-  let windowContactArea = docID("window-contact-area");
-  windowContactArea.innerHTML = "";
+  docID("window-contact-area").innerHTML = "";
 
   for (let contactID = 0; contactID < tasks[id]["contact-firstname"].length; contactID++) {
       const contactHtml = renderContactInitials(id, contactID);
-      windowContactArea.insertAdjacentHTML("beforeend", contactHtml);
+      docID("window-contact-area").insertAdjacentHTML("beforeend", contactHtml);
       docID("initials" + contactID).style.backgroundColor = tasks[id]["contact-color"][contactID];
   }
 }
@@ -368,25 +357,16 @@ function deleteTask(id) {
 
 
 function changeDeleteImage(isHovering) {
-  const deleteButton = docID("delete-button");
-  if (isHovering) {
-    deleteButton.src = "./assets/img/delete_hover.png";
-  } else {
-    deleteButton.src = "./assets/img/Delete.png";
-  }
+  docID("delete-button").src = isHovering ? "./assets/img/delete_hover.png" : "./assets/img/delete.png";
 }
 
 
 function openAddTask(IdOfTask) {
   windowscrollToTop();
-  const addTaskUnder = docID(`addTask`);
-  const backgroundElements = getBackgroundElements();
-  const boardBody = docID(`boardBody`);
-  const board = docID(`board`);
-  const addTaskButtonToBoard = docID(`addTaskButtonToBoard`);
+  let backgroundElements = getBackgroundElements();
   adjustBackgroundElements(backgroundElements);
-  toggleAddTaskDisplay(addTaskUnder, addTaskButtonToBoard);
-  updateBoardBodyStyles(boardBody);
+  toggleAddTaskDisplay(docID(`addTask`), docID(`addTaskButtonToBoard`));
+  updateBoardBodyStyles(docID(`boardBody`));
   if (IdOfTask < 4) {
     setProgress(IdOfTask);
   }
@@ -411,7 +391,7 @@ function getBackgroundElements() {
 
 
 function adjustBackgroundElements(elements) {
-  for (const key in elements) {
+  for (const key in elements) { // const verhindert das ändern der Variable key im Verlauf
     if (elements.hasOwnProperty(key)) {
       const element = elements[key];
       element.classList.add(`decrease-opacity`);
@@ -453,7 +433,6 @@ function handleEditTask(IdOfTask) {
   edit = true;
   setSubtasks(jsonToEdit.subtasks);
   setEditMode();
-
 }
 
 
@@ -501,9 +480,7 @@ function setSubtasks() {
       const element = jsonToEdit.subtasks[subtaskToLoad];
       docID(`inputSubtask`).value = element;
       showSubtasks(subtaskToLoad);
-      
     }
-
   checkSubtasks();
 }
 
@@ -672,8 +649,4 @@ function setupInputField(){
     });
   }
 }
-
-
-
-
-  
+ 

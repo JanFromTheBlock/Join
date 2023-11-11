@@ -51,14 +51,14 @@ function showSubtasks(id) {
   checkSubtaskCheckbox(id);
 }
 
-function countDoneTasks(index, count){
+function countDoneTasks(index, count) {
   for (let key in index) {
-    if(index.hasOwnProperty(key) && index[key] ===1) {
+    if (index.hasOwnProperty(key) && index[key] === 1) {
       count++
     }
   }
-  doneSubtask = count; 
-  }
+  doneSubtask = count;
+}
 
 function checkSubtaskCheckbox(id) {
   docID(`inputSubtask`).value = "";
@@ -264,6 +264,7 @@ async function newTask() {
     await setElement("tasks", tasks);
   }
 
+  
   function findHighestId(tasks) {
     let highestTaskId = 3;
     for (const task of tasks) {
@@ -275,6 +276,7 @@ async function newTask() {
   }
 }
 
+
 function clearTaskMask() {
   docID(`inputFieldTitle`).value = ``;
   docID(`description`).value = ``;
@@ -282,6 +284,7 @@ function clearTaskMask() {
   docID(`selectCategory`).value = ``;
   docID(`placeholderColorCategory`).classList.add(`d-none`);
 }
+
 
 function clearTask(i) {
   tasks.splice(i, 1);
@@ -338,6 +341,7 @@ const contactStatusMap = new Map();
 let numberOfContactsToAdd = [];
 let numberOfColorsToAdd = [];
 let numberOfIdsToAdd = [];
+
 
 function chooseContact(i, contactName, initials, color, id, contactId) {
   let chooseBoxContact = docID(`${id}chooseBoxContact${i}`);
@@ -455,6 +459,7 @@ function showAddedCategory() {
   }
 }
 
+
 function cancelCategory() {
   cancelInputs(`selectCategory`);
   categoryColors.classList.add(`d-none`);
@@ -464,12 +469,14 @@ function cancelCategory() {
   placeholderColorCategory.classList.add(`d-none`);
 }
 
+
 function cancelContact(i, id) {
   const taskInitials = docID(`${id}taskInitials${i}`);
   if (taskInitials) {
     taskInitials.remove();
   }
 }
+
 
 function cancelInputs(elementId) {
   let element = docID(elementId);
@@ -478,78 +485,38 @@ function cancelInputs(elementId) {
 }
 
 function addColorToCategory(id) {
-  let colorOfCategory = id;
   placeholderColorCategory = docID(`placeholderColorCategory`);
-  placeholderColorCategory.src = `${colorOfCategory}`;
+  placeholderColorCategory.src = `${id}`;
   placeholderColorCategory.classList.remove(`d-none`);
-  if (
-    id === "http://127.0.0.1:5500/assets/img/ellipsegreen.png" ||
-    id === "./assets/img/ellipsegreen.png") {
-    categoryColor = "#2AD300";
-  } else if (
-    id === "http://127.0.0.1:5500/assets/img/ellipseOrange.png" ||
-    id === "./assets/img/ellipseOrange.png") {
-    categoryColor = "#FF7A00";
-  } else if (
-    id === "http://127.0.0.1:5500/assets/img/ellipseLightblue.png" ||
-    id === "./assets/img/ellipseLightblue.png") {
-    categoryColor = "#1FD7C1";
-  } else if (
-    id === "http://127.0.0.1:5500/assets/img/ellipseRed.png" ||
-    id === "./assets/img/ellipseRed.png") {
-    categoryColor = "#FF0000";
-  } else if (
-    id === "http://127.0.0.1:5500/assets/img/ellipseBlue.png" ||
-    id === "./assets/img/ellipseBlue.png") {
-    categoryColor = "#0038FF";
-  } else if (
-    id === "http://127.0.0.1:5500/assets/img/ellipseRosa.png" ||
-    id === "./assets/img/ellipseRosa.png") {
-    categoryColor = "#E200BE";
+  let imgs = ['ellipsegreen.png', 'ellipseOrange.png', 'ellipseLightblue.png', 'ellipseRed.png', 'ellipseBlue.png', 'ellipseRosa.png'];
+  let color = ["#2AD300", "#FF7A00", "#1FD7C1", "#FF0000", "#0038FF", "#E200BE"];
+  addcolorLoop(imgs,color, id);
+}
+
+
+function addcolorLoop(imgs,color, id) {
+  for (let i = 0; i < imgs.length; i++) {
+    if (id.includes(imgs[i])) {categoryColor = color[i];};
   }
 }
 
+
 function chooseCategory(i) {
-  let savedCategory = docID(`savedCategory${i}`);
-  let showCategories = docID(`showCategories`);
-  let selectCategory = docID(`selectCategory`);
-  let categoryImg = categories[i][`img`];
   // Zugriff auf das <img>-Element innerhalb des savedCategory-Containers
-  let savedCategoryImg = savedCategory.querySelector("img");
+  let savedCategoryImg = docID(`savedCategory${i}`).querySelector("img");
   // Ersetze das src-Attribut des placeholderColorCategory-Bildes mit dem des savedCategory-Bildes
   let placeholderColorCategory = docID("placeholderColorCategory");
   placeholderColorCategory.src = savedCategoryImg.src;
   // Setze den Wert des selectCategory-Eingabefeldes auf den Text der ausgewählten Kategorie
-  selectCategory.value = savedCategory.textContent;
-  placeholderColorCategory.classList.remove(`d-none`);
-  selectCategory.style.paddingLeft = "0";
-  showCategories.classList.add(`d-none`);
-  showCategories.classList.add(`add-task-hide-contacts`);
-  addColorToCategory(categoryImg);
+  docID(`selectCategory`).value = docID(`savedCategory${i}`).textContent;
+  docID("placeholderColorCategory").classList.remove(`d-none`);
+  docID(`selectCategory`).style.paddingLeft = "0";
+  docID(`showCategories`).classList.add(`d-none`);
+  docID(`showCategories`).classList.add(`add-task-hide-contacts`);
+  // addColorToCategory(categories[i][`img`]);
   categoryId = i;
 }
 
-function markColor() {
-  let selectCategory = docID("selectCategory").value;
-
-  if (selectCategory.includes("Sales")) {
-    docID("rosa").style.boxShadow =
-      "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
-    categories.push("#2AD300");
-  } else if (selectCategory.includes("Backoffice")) {
-    docID("lightBlue3,").style.boxShadow =
-      "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
-  } else if (selectCategory.includes("Design")) {
-    docID("orange").style.boxShadow =
-      "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
-  } else if (selectCategory.includes("Marketing")) {
-    docID("green").style.boxShadow =
-      "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
-  } else if (selectCategory.includes("Media")) {
-    docID("blue").style.boxShadow =
-      "0 4px 4px 0 rgba(0, 0, 0, 0.25)";
-  }
-}
 
 function deleteSubtask(id, taskId) {
   subtasks.splice(id, 1);
@@ -557,10 +524,12 @@ function deleteSubtask(id, taskId) {
   docID("subtask" + id).classList.add("d-none");
 }
 
+
 function renameSubtask(id) {
   docID("inputSubtask").value = docID("labelForSubtask" + id).innerHTML;
   deleteSubtask(id);
 }
+
 
 function logDivID(event) {
   let selectedTxtElement = event.target;
@@ -568,8 +537,4 @@ function logDivID(event) {
     showContactList(0);
   }
   selectedTxtElement = selectedTxtElement.parentNode;
-}
-
-function doNotCloseWindow(event){
-  event.stopPropagation();
 }

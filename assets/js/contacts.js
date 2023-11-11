@@ -77,35 +77,6 @@ function renderContactDisplay(index, id) {
   docID("contact-icon").style.backgroundColor = element.color;
 }
 
-//functional check 
-function renderContactDisplayHTML(initials, name, contactId, mail, phone, color) {
-  return /*html*/ `
-    <div id="contact-header">
-        <div id="contact-icon">${initials}</div>
-        <div id="contact-actions">
-            <div id="contact-display-name">${name}</div>
-            <div id="contact-imgs">
-                <div onclick="openEditContact(${contactId}, '${name}', '${mail}', '${phone}', '${color}', '${initials}')" class="contact-img"><img src="./assets/img/edit_contact.png">Edit</div>
-                <div onclick="deleteContact(${contactId})" class="contact-img"><img src="./assets/img/delete_contact.png">Delete</div>
-            </div>
-        </div>
-        <img src="./assets/img/back_arrow.png" id= "back-arrow" onclick = "closeContactDisplay()">
-    </div>
-    <div id="contact-body">
-        <div id="contact-information">Contact Information</div>
-        <div id="contact-mail-phone">
-            <div id="contact-mail">
-                <span id="contact-mail-title">E-Mail</span>
-                <span id="contact-mail-adress">${mail}</span>
-            </div>
-            <div id="contact-phone">
-                <span id="contact-phone-title">Phone</span>
-                <span id="contact-phone-number">${phone}</span>
-            </div>
-        </div>
-    </div>
-    `;
-}
 
 //functional check
 function addNewContact() {

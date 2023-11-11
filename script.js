@@ -22,10 +22,21 @@ const colors = [
     "#FF4646",
 ];
 
+function docID(id) {
+    return document.getElementById(id);
+}
+
+
+function doNotCloseWindow(event) {
+    event.stopPropagation();
+}
+
+
 async function setElement(key, value) {
     const payload = { key, value, token: JOIN_TOKEN };
     return await fetch(JOIN_URL, { method: 'POST', body: JSON.stringify(payload) });
 }
+
 
 async function getElement(key) {
     const url = `${JOIN_URL}?key=${key}&token=${JOIN_TOKEN}`; //store the fetchparameter in url variable
@@ -37,9 +48,6 @@ async function getElement(key) {
     });;
 }
 
-function docID(id) {
-    return document.getElementById(id);
-}
 
 async function withContacts() {
     try {
@@ -52,6 +60,7 @@ async function withContacts() {
         window.location.href = './summary.html';
     }
 }
+
 
 function activeUser() {
     if (localStorage.getItem('activshort') === null) {
@@ -85,6 +94,7 @@ async function summaryInit() {
 
 }
 
+
 async function addTaskInit() {
     addTaskInitClicked = true;
     activeUser();
@@ -93,12 +103,8 @@ async function addTaskInit() {
     activeSite("menu-add");
     getdata = await getElement('tasks');
     tasks = JSON.parse(getdata);
-    try {
-        const getdataContacts = await getElement('contacts');
-        contacts = JSON.parse(getdataContacts);
-    } catch (error) {
-        console.error('Error initializing contacts:', error);
-    }
+    let getdataContacts = await getElement('contacts');
+    contacts = JSON.parse(getdataContacts);
     getdata = await getElement('subtasks');
     subtasks = JSON.parse(getdata);
     addTaskRender();
@@ -107,21 +113,17 @@ async function addTaskInit() {
     docID('header').style.zIndex = '5';
 }
 
+
 async function addBoardInit() {
     addBoardInitClicked = true;
     activeUser();
     headerRender();
     navRender();
     activeSite("menu-board");
-
     getdata = await getElement('tasks');
     tasks = JSON.parse(getdata);
-    try {
-        const getdataContacts = await getElement('contacts');
-        contacts = JSON.parse(getdataContacts);
-    } catch (error) {
-        console.error('Error initializing contacts:', error);
-    }
+    let getdataContacts = await getElement('contacts');
+    contacts = JSON.parse(getdataContacts);
     getdata = await getElement('subtasks');
     subtasks = JSON.parse(getdata);
     addBoardRender();
@@ -129,25 +131,24 @@ async function addBoardInit() {
     docID('header').style.zIndex = '3';
 }
 
+
 function legalNotesInit() {
     headerRender();
     navRender();
     hideElements();
 }
 
+
 async function contactsInit() {
     activeUser(); // check if there is an active user and which one
     headerRender(); // render the header
     navRender(); // render the nav bar
     activeSite("menu-contacts"); //mark the contactsicon on the board.
-    try { // getting data from backend
-        const getdataContacts = await getElement('contacts');
-        contacts = JSON.parse(getdataContacts);
-    } catch (error) {
-        console.error('Error initializing contacts:', error);
-    }
+    let getdataContacts = await getElement('contacts'); // getting data from backend
+    contacts = JSON.parse(getdataContacts); // parse the backend data into JSON
     renderContacts();
 }
+
 
 function helpInit() {
     activeUser();
@@ -168,6 +169,7 @@ function localUserload() {
     userInitial = localStorage.getItem('activeshort');
 }
 
+
 function sessionUsersave(name) {
     let initials = name.match(/[A-Z]/g).join('').slice(0, 2)
     sessionStorage.setItem('activeuser', name);
@@ -187,6 +189,7 @@ async function newContactsign(name, mail) {
     firstname(contactData, false);
 }
 
+
 function gatherContactDataSign(name, mail) {
     let phone = "Keine Angabe";
     let color = colors[colorIndex];
@@ -195,12 +198,12 @@ function gatherContactDataSign(name, mail) {
     return { name: name, mail: mail, phone: phone, color: color, contactId: contactId }
 }
 
+
 function firstname(contactData, what) {
     let firstLetter = contactData.name.charAt(0).toUpperCase();
     addToContacts(firstLetter, contactData);
     orderAndSaveContacts(what);
 }
-
 
 // function to push the contact in contacts
 function addToContacts(firstLetter, contact) {
@@ -210,7 +213,7 @@ function addToContacts(firstLetter, contact) {
     contacts[firstLetter].push(contact);
 }
 
-//
+
 function orderAndSaveContacts(what) {
     orderContacts(); // order the contacts with alphabet
     setElement('contacts', contacts); //save the contacts in Backend
@@ -218,7 +221,6 @@ function orderAndSaveContacts(what) {
         ContactInitNew();
     }
 }
-
 
 //function check
 function orderContacts() {
@@ -245,7 +247,7 @@ function sortContactsByKey() {
 
 //Kay check
 function updateColorIndex(colorIndex) {
-    return colorIndex === colors.length-1 ? 0 : colorIndex + 1; //if-function to turn around
+    return colorIndex === colors.length - 1 ? 0 : colorIndex + 1; //if-function to turn around
 }
 
 //funktion aufsplitten
@@ -266,14 +268,13 @@ function newContactId() {
 }
 
 
-function showDropdown(){
+function showDropdown() {
     docID('menu-dropdown').classList.remove('d-none');
     docID('header-user-con').onclick = null;
-
 }
 
 
-function closeDropdown(){
+function closeDropdown() {
     docID('menu-dropdown').classList.add('d-none');
     headerRender();
     menuResponsiveRender();
@@ -283,7 +284,7 @@ function closeDropdown(){
 function doNotClose(event) {
     //die divs, die diese Funktion auslösen, schließen nicht das window beim onclick
     event.stopPropagation();
-  }
+}
 
 
 function logOut() {
