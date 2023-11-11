@@ -287,7 +287,7 @@ function openEditContact(contactId, name, mail, phone, color, initials) {
   docID("background-add-contact").classList.remove("d-none");
   docID("background-add-contact").innerHTML = /*html*/ `
          <div id="background-color-add-contact"></div>
-        <div id="edit-contact-mask" class="open-contact-hide d-none">
+        <div id="edit-contact-mask" class="open-edit-contact-hide d-none">
             <div id="edit-contact-header">
                 <div id="add-contact-ow"><img onclick="cancelNewContact()" src="./assets/img/close_contact.png"></div>
                 <div id="add-contact-center">
@@ -331,7 +331,7 @@ function fillInputs(name, mail, phone, color) {
 function animateOpenContactMask() {
   docID(`edit-contact-mask`).classList.remove(`d-none`);
   setTimeout(() => {
-    docID(`edit-contact-mask`).classList.remove(`open-contact-hide`);
+    docID(`edit-contact-mask`).classList.remove(`open-edit-contact-hide`);
   }, 100);
 }
 
