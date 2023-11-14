@@ -26,15 +26,6 @@ function renderBoardInput() {
 }
 
 
-function renderTaskAreas() {
-  for (let index = 0; index < taskTitles.length; index++) {
-    let indexFinal = index + 1;
-    docID("task-area").innerHTML += renderTaskAreasHTML(taskTitles[index], taskNames[index], indexFinal, index);
-  }
-  docID("task-img3").classList.add("d-none");
-}
-
-
 function loadTasks() {
   emptyTaskDivs();
   for (let i = 0; i < tasks.length; i++) {
@@ -47,19 +38,6 @@ function loadTasks() {
 }
 
 
-function renderContactArea(task, id) {
-  let contactArea = docID("contact-area" + id);
-  contactArea.innerHTML = "";
-  for (let contactIndex = 0; contactIndex < task["contact-firstname"].length; contactIndex++) {
-    let firstName = task["contact-firstname"][contactIndex];
-    let lastName = task["contact-lastname"][contactIndex];
-    let initials = getInitialsTask(firstName, lastName);
-    let color = task["contact-color"][contactIndex];
-    renderContactSymbol(contactArea, initials, color);
-  }
-}
-
-
 function getInitialsTask(firstName, lastName) {
   if (lastName) {
     let initials = firstName.charAt(0) + lastName.charAt(0);
@@ -68,16 +46,6 @@ function getInitialsTask(firstName, lastName) {
     let initials = firstName.charAt(0);
     return initials.toUpperCase();
   }
-  
-}
-
-
-function renderContactSymbol(contactArea, initials, color) {
-  const contactSymbol = document.createElement("span");
-  contactSymbol.className = "contacts";
-  contactSymbol.style.backgroundColor = color;
-  contactSymbol.textContent = initials;
-  contactArea.appendChild(contactSymbol);
 }
 
 
@@ -100,56 +68,20 @@ function emptyTaskDivs() {
 }
 
 
-function renderTaskBody(id) {
-  let taskBody = docID("tasks" + tasks[id]["progress"]);
-  taskBody.innerHTML += renderTaskBodyHTML(id, tasks[id]["taskId"], tasks[id]["urgency"], subtasks[id]);
-}
-
-
 function startDragging(element) {
-  //Funktion um die id der gedraggten Task in der Variable zu speichern; muss auch um 1 gesenkt werden, da bei den ids bei 1 statt bei 0 angefangen wurde
   currentDraggedElement = element;
 }
 
 
 function allowDrop(ev) {
-  //Funktion die dafür sorgt, dass Tasks gedroppt werden können in dem Bereich
   ev.preventDefault();
 }
 
 
 function moveTo(progress) {
-  //Funktion bekommt als Parameter den Ort, wo die gedraggte Task gedropt werden soll
-  tasks[currentDraggedElement]["progress"] = progress; // anschließend wird dies im array verändert an der entsprechenden Position
+  tasks[currentDraggedElement]["progress"] = progress;
   setElement("tasks", tasks);
-  addBoardRender(); // anschließend muss alles neu gerendert werden, damit die Änderungen geladen werden
-}
-
-
-function renderSubtasks(id) {
-    let a = tasks[id]["subtasks"].length; // Variable a sind die Anzahl an subtasks
-    let b = tasks[id]["done-tasks"]; // Variable b sind die Anzahl erledigter subtasks
-    let percent = (b / a) * 100; // Prozentanteil erledigter aufgaben wird berechnet
-    docID("progress-bar" + id).classList.remove("d-none"); //der progress-bar wird das d-none entfernt und sie wird sichtbar
-    docID("windowSubtask" + id).innerHTML = renderSubtasksHTML(a, b);// die Anzahl an subtass wird neben die progress-bar gerendert
-    docID("progress-bar-inside" + id).style.width = `${percent}%`; //der Prozentanteil erledigter Aufgaben wird als Füllmenge für die progress-bar verwnedet
-    subtasks.splice(id, subtasks.length); // alle subtasks werden gelöscht, so dass nicht alle in allen Tasks angezeigt werden
-}
-
-
-function renderSubtasksHTML(a, b) {
-  return /*html*/ `${b}/${a} Subtasks`; // die Anzahl an subtasks wird neben die progress-bar gerendert
-}
-
-
-function renderUrgencySymbol(id) {
-  docID("contact-area-img" + id).src = tasks[id]["urgency"]; //je nachdem welche urgency besteht, wird ein anderes Bild gerendert
-}
-
-
-function renderCategoryColor(id) {
-  //die Hintergrundfarbe für die Task-Kategorie wird geladen und dem div gegeben
-  docID("task-category" + id).style.backgroundColor = tasks[id]["category-color"];
+  addBoardRender();
 }
 
 
@@ -181,65 +113,34 @@ function renderTask(id) {
 }
 
 
-function renderContactFilterArea(id) {
-  const contactArea = docID("contact-area" + id);
-  contactArea.innerHTML = "";
-  for (let i = 0; i < tasks[id]["contact-firstname"].length; i++) {
-    contactArea.innerHTML += createContactHTML(i + 1, getContactInitials(id, i));
-    setContactBackgroundColor(i + 1, tasks[id]["contact-color"][i]);
-  }
-}
-
-
-function getContactInitials(id, i) {
-  const firstName = tasks[id]["contact-firstname"][i];
-  const lastName = tasks[id]["contact-lastname"][i];
-  const initial1 = firstName.charAt(0);
-  const initial2 = lastName.charAt(0);
-  return (initial1 + initial2).toUpperCase();
-}
-
-
-function createContactHTML(k, initials) {
-  return `<span class="contacts" id="contacts${k}">${initials}</span>`;
-}
-
-
-function setContactBackgroundColor(k, color) {
-  docID("contacts" + k).style.backgroundColor = color;
-}
-
-
 function clearInput() {
-  docID("input").value = ""; // Setze den Wert des Input-Feldes auf leer
+  docID("input").value = "";
 }
 
 
 function handleKeyPress(event) {
   if (event.key === "Enter") {
     clearInput();
-    // Hier kannst du die Funktion aufrufen, die deine divs nach dem Text filtert
   }
 }
 
 
 function openWindow(event, id, IdOfTask) {
-  docID("task-window").classList.remove("d-none"); //dem Div wird die d-none-Klasse genommen. und das Window wird sichtbar
-  event.stopPropagation(); // Funktion sorgt dafür, dass das Window nicht geschlossen wird, wenn man auf den onclick-Button drückt
-  window.scrollTo(0, 0); // wenn Fenster geöffnet wird, wird nach oben gescrollt
-  renderWindow(id, IdOfTask); // das Window wird mit seinen Inhalten gerendert
+  docID("task-window").classList.remove("d-none");
+  event.stopPropagation();
+  window.scrollTo(0, 0);
+  renderWindow(id, IdOfTask);
   openedTask = id;
   subtaskStatus = [];
 }
 
 
 function closeWindow() {
-  docID("task-window").classList.add("d-none"); //das window wird geschlossen, indem dem div die d-none-Klasse wieder hinzugefügt wird
+  docID("task-window").classList.add("d-none");
 }
 
 
 function renderWindow(id, IdOfTask) {
-  //das Window wird gerendert
   renderStructureOfTheWindow(id, IdOfTask);
   addColorOfTheCategory(id);
   renderPriorityToTheWindow(id);
@@ -247,43 +148,7 @@ function renderWindow(id, IdOfTask) {
 }
 
 
-async function renderStructureOfTheWindow(taskId, IdOfTask, subtask, editLabelsSubtasks) {
-  if (saveChangedTask != true) {subtask = null;}
-
-  let subtasks = prepareSubtasks(subtask, editLabelsSubtasks, taskId);
-  let subtaskHTML = generateSubtaskHTML(subtasks);
-  let taskWindow = docID("task-window");
-
-  taskWindow.innerHTML = createTaskWindowHTML(taskId, subtasks, subtaskHTML, IdOfTask);
-}
-
-
-function prepareSubtasks(subtask, editLabelsSubtasks, taskId) {
-  let subtasks = tasks[taskId]["subtasks"]; // Subtasks für diese Aufgabe
-
-  if (subtask !== null) {
-    subtask = editLabelsSubtasks;
-    subtasks.push(subtask);
-    subtasks = subtasks.filter((item) => item !== undefined);
-  }
-  return subtasks;
-}
-
-
-function generateSubtaskHTML(subtasks) {
-  let subtaskHTML = "";
-  for (let subtaskIndex = 0; subtaskIndex < subtasks.length; subtaskIndex++) {
-    let subtask = subtasks[subtaskIndex];
-    subtaskHTML += /*html*/ `
-      <div id="editSubtask${subtaskIndex}">${subtask}</div> 
-    `;
-  }
-  return subtaskHTML;
-}
-
-
 function addColorOfTheCategory(id) {
-  //Hintergrundfarbe der Kategorie wird angepasst
   let color = tasks[id]["category-color"];
   docID("window-category" + id).style.backgroundColor = color;
 }
@@ -296,13 +161,11 @@ function renderPriorityToTheWindow(id) {
 
 
 function addUrgencyImage(id) {
-  //die Urgency de Tasks wird aus dem Array gelesen und in die src für das dazugehörige Img eingefügt, damit das entsprechende Bild angezeigt wird
   docID("window-contact-img").src = tasks[id]["urgency"];
 }
 
 
 function addUrgencyColor(id) {
-  //Mit if-Abfragen wird abgefragt, welches der drei möglichen Prioritäten in dem array an Stelle id stehen. Je nachdem wird dann die dazugehörige Hintergrundfarbe dargstellt
   if (tasks[id]["urgency"] === "low") {
     docID("window-priority-inside").style.backgroundColor = "#CBFFC2";
   }
@@ -315,44 +178,13 @@ function addUrgencyColor(id) {
 }
 
 
-function renderContactInitials(id, contactID) {
-  let firstName = tasks[id]["contact-firstname"][contactID];
-  let lastName = tasks[id]["contact-lastname"][contactID];
-  let Initial1 = firstName.charAt(0);
-  let Initial2 = lastName.charAt(0);
-  let initials = Initial1 + Initial2;
-  let initialsUpper = initials.toLocaleUpperCase();
-
-  return /*html*/ `
-      <div id="window-contact-area-inside">
-          <div class="initials" id="initials${contactID}">${initialsUpper}</div>
-          <div class="name-contact">
-              <div>${firstName}</div>
-              <div>${lastName}</div>
-          </div>
-      </div>`;
-}
-
-
-function renderContactsToWindow(id) {
-  docID("window-contact-area").innerHTML = "";
-
-  for (let contactID = 0; contactID < tasks[id]["contact-firstname"].length; contactID++) {
-      const contactHtml = renderContactInitials(id, contactID);
-      docID("window-contact-area").insertAdjacentHTML("beforeend", contactHtml);
-      docID("initials" + contactID).style.backgroundColor = tasks[id]["contact-color"][contactID];
-  }
-}
-
-
 function deleteTask(id) {
-  //Löschen der ausgewählten Aufgabe
-  tasks.splice(id, 1); //aus dem array wird die Aufgabe an der Stelle id gelöscht
-  subtasks.splice(id, 1); // aus dem Array Subtask wird das Subtask an der Stelle id gelöscht
+  tasks.splice(id, 1);
+  subtasks.splice(id, 1); 
   setElement("tasks", tasks);
   setElement("subtasks", subtasks);
-  addBoardRender(); //anschließend wird das Board neu gerendert ohne das gelöschte Element
-  closeWindow(); //dann wird das Fenster wieder geschlossen
+  addBoardRender();
+  closeWindow();
 }
 
 
@@ -391,7 +223,7 @@ function getBackgroundElements() {
 
 
 function adjustBackgroundElements(elements) {
-  for (const key in elements) { // const verhindert das ändern der Variable key im Verlauf
+  for (const key in elements) {
     if (elements.hasOwnProperty(key)) {
       const element = elements[key];
       element.classList.add(`decrease-opacity`);
@@ -429,7 +261,6 @@ function handleEditTask(IdOfTask) {
   setEditTaskUI(jsonToEdit);
   setTaskPriority(jsonToEdit.urgency);
   setTaskContacts(jsonToEdit.contactid);
-
   edit = true;
   setSubtasks(jsonToEdit.subtasks);
   setEditMode();
@@ -459,46 +290,8 @@ function setTaskPriority(priority) {
 }
 
 
-function setTaskContacts(contactIds) {
-  docID("selectContact").click();
-  for (let i = 0; i < contactIds.length; i++) {
-    const elementId = `0and${contactIds[i]}`;
-    const element = docID(elementId);
-    if (element) {
-      element.click();
-
-    }
-  }
-  docID("selectContact").click();
-}
-
-
-function setSubtasks() {
-    doneSubtask = tasks[openedTask]["done-tasks"];
-    for (
-      let subtaskToLoad = 0;subtaskToLoad < jsonToEdit.subtasks.length; subtaskToLoad++    ) {
-      const element = jsonToEdit.subtasks[subtaskToLoad];
-      docID(`inputSubtask`).value = element;
-      showSubtasks(subtaskToLoad);
-    }
-  checkSubtasks();
-}
-
-
 function setEditMode() {
   docID("addTaskButtonToBoard").innerHTML = "Edit Task";
-}
-
-
-function checkSubtasks(){
-  for (let i = 0; i < subtasks.length; i++) {
-    if (subtaskStatus[i] === 1) {
-      let subtaskCheckbox = docID('subtaskCheckbox' + i);
-      subtaskCheckbox.checked = true; 
-      subtasksWereChecked = true
-    }
-
-  }
 }
 
 
@@ -519,9 +312,7 @@ function closeAddTaskToBoard() {
   let addTaskButtonToBoard = docID(`addTaskButtonToBoard`);
   hideAddTaskAtBoard(addTask, backgroundBoard, backgroundNav, backgroundHeader, addTaskButtonToBoard)
   addBoardInit();
-
   resetAddTaskMask();
-
 }
 
 
@@ -564,7 +355,7 @@ function safeEditedTask() {
   edit = true;
   jsonToEdit.title = docID("inputFieldTitle").value;
   jsonToEdit.date = docID("inputDate").value;
-  jsonToEdit.category = docID("selectCategory").value; // speichert neue Category
+  jsonToEdit.category = docID("selectCategory").value;
   jsonToEdit["category-color"] = categoryColor;
   jsonToEdit.categoryId = categoryId;
   jsonToEdit.description = docID("description").value;
@@ -591,62 +382,14 @@ function saveAndClearEditedTask(){
 }
 
 
-function safeContactsInTask() {
-  for (let i = 0; i < numberOfContactsToAdd.length; i++) {
-    let contactDiv = numberOfContactsToAdd[i];
-    const [firstNames, lastNames] = contactDiv.split(" ");
-    const contactcolor = numberOfColorsToAdd[i];
-    const contactid = numberOfIdsToAdd[i];
-    firstName.push(firstNames);
-    lastName.push(lastNames);
-    contactcolors.push(contactcolor);
-    contactIds.push(contactid);
-  }
-}
-
-
-function pushDoneSubtask(id) {
-  let subtaskCheckbox = docID(`subtaskCheckbox${id}`);
-  let isChecked = subtaskCheckbox.checked;
-  defineDoneSubtask();
-  adjustValuesOfTheSubtasks(id, isChecked)
-  taskId = tasks[openedTask]["taskId"];
-  doneSubtaskClicked = true;
-}
-
-
-function defineDoneSubtask(){
-  if (doneSubtask === 0) {
-    if (zero === false) { 
-    }
-    else{
-      doneSubtask = tasks[openedTask]["done-tasks"];
-    }
-  }
-}
-
-
-function adjustValuesOfTheSubtasks(id, isChecked){
-  if (isChecked) {   // Überprüfe den Status der Checkbox und füge/entferne die Teilaufgabe entsprechend hinzu/entferne
-    doneSubtask++;
-    subtaskStatus[id] = 1;
-  } else {     // Entferne die Teilaufgabe mit taskId aus doneSubtasks, wenn sie vorhanden ist
-    subtaskStatus[id] = 0;
-    doneSubtask--;
-    zero = false
-  }
-}
-
-
 function setupInputField(){
   const inputField = docID('inputSubtask');
   if (inputField) {
     docID('inputSubtask').addEventListener('keydown', function (event) {
       if (event.key === "Enter") {
-          event.preventDefault(); // Verhindert das Standardverhalten (z. B. Formularübermittlung)
-          showSubtasks(); // Ruft die Funktion addSubtask() auf
+          event.preventDefault(); 
+          showSubtasks();
       }
     });
   }
 }
- 

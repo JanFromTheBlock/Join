@@ -1,5 +1,5 @@
 function renderBoardInputHTML() {
-    return /*html*/ `
+  return /*html*/ `
             <div id="board-input">
                 <div id="find-task">
                     <input id="input" type="text" placeholder="Find Task" onkeyup="filterTasks(); handleKeyPress(event)">
@@ -15,7 +15,7 @@ function renderBoardInputHTML() {
 
 
 function renderTaskAreasHTML(taskTitle, taskName, indexFinal, index) {
-    return /*html*/ ` 
+  return /*html*/ ` 
     <div ondrop="moveTo('${taskTitle}')" ondragover="allowDrop(event)" class="task-body" id="task-body${index}">
         <div class="task-body-flex">
             <span>${taskName}</span>
@@ -28,7 +28,7 @@ function renderTaskAreasHTML(taskTitle, taskName, indexFinal, index) {
 
 
 function renderTaskBodyHTML(id, IdOfTask, prioritySmall, editSubtasks) {
-    return /*html*/ `           
+  return /*html*/ `           
     <div draggable="true" ondragstart="startDragging(${id})" onclick="openWindow(event, ${id}, ${IdOfTask})" id="task${id}" class="task-decoration">
         <div id="task-category${id}" class="task-category">${tasks[id]["category"]}</div>
         <div class="task-title" id="task-title${id}">${tasks[id]["title"]}</div>
@@ -41,14 +41,14 @@ function renderTaskBodyHTML(id, IdOfTask, prioritySmall, editSubtasks) {
         </div>
     </div>
   `
-  }
+}
 
-  function createTaskWindowHTML(taskId, subtasks, subtaskHTML, IdOfTask) {
-    let prioritySmall = tasks[taskId]["urgency"];
-    let priority = prioritySmall.charAt(0).toUpperCase() + prioritySmall.slice(1);
-    let dueDate = tasks[taskId]["date"];
-  
-    return /*html*/ `
+function createTaskWindowHTML(taskId, subtasks, subtaskHTML, IdOfTask) {
+  let prioritySmall = tasks[taskId]["urgency"];
+  let priority = prioritySmall.charAt(0).toUpperCase() + prioritySmall.slice(1);
+  let dueDate = tasks[taskId]["date"];
+
+  return /*html*/ `
       <div>
         <img id="close-img" onclick="closeWindow()" src="./assets/img/close.png">
         <div id="task-window-inside">
@@ -70,4 +70,40 @@ function renderTaskBodyHTML(id, IdOfTask, prioritySmall, editSubtasks) {
         </div>
       </div>
     `;
+}
+
+
+function renderTaskAreas() {
+  for (let index = 0; index < taskTitles.length; index++) {
+    let indexFinal = index + 1;
+    docID("task-area").innerHTML += renderTaskAreasHTML(taskTitles[index], taskNames[index], indexFinal, index);
   }
+  docID("task-img3").classList.add("d-none");
+}
+
+
+function renderTaskBody(id) {
+  let taskBody = docID("tasks" + tasks[id]["progress"]);
+  taskBody.innerHTML += renderTaskBodyHTML(id, tasks[id]["taskId"], tasks[id]["urgency"], subtasks[id]);
+}
+
+
+function renderUrgencySymbol(id) {
+  docID("contact-area-img" + id).src = tasks[id]["urgency"];
+}
+
+
+function renderCategoryColor(id) {
+  docID("task-category" + id).style.backgroundColor = tasks[id]["category-color"];
+}
+
+
+async function renderStructureOfTheWindow(taskId, IdOfTask, subtask, editLabelsSubtasks) {
+  if (saveChangedTask != true) {subtask = null;}
+
+  let subtasks = prepareSubtasks(subtask, editLabelsSubtasks, taskId);
+  let subtaskHTML = generateSubtaskHTML(subtasks);
+  let taskWindow = docID("task-window");
+
+  taskWindow.innerHTML = createTaskWindowHTML(taskId, subtasks, subtaskHTML, IdOfTask);
+}
