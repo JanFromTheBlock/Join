@@ -81,9 +81,10 @@ function notPassLogin() {
 }
 
 
-function guestLogin() {
-    user = "Guest"
-    window.location.href = './summary.html'
+async function guestLogin() {
+    user = "Guest";
+    await sessionUsersave(user);
+    window.location.href = './summary.html';
 }
 
 

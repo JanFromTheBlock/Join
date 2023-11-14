@@ -56,16 +56,13 @@ async function withContacts() {
     } catch (error) {
         console.error('Error initializing contacts:', error);
     }
-    if (activeUser() == null) {
-        window.location.href = './summary.html';
-    }
 }
 
 
 function activeUser() {
     if (localStorage.getItem('activshort') === null) {
         if (sessionStorage.getItem('activshort') === null) {
-            return true
+            window.location.href = './index.html'
         }
         else {
             userInitial = sessionStorage.getItem('activshort');
@@ -76,7 +73,6 @@ function activeUser() {
         userInitial = localStorage.getItem('activshort');
         user = localStorage.getItem('activeuser');
     }
-
 }
 
 
@@ -91,7 +87,6 @@ async function summaryInit() {
     sumBigBtn();
     squareButtonRender();
     sumOverviewRender();
-
 }
 
 
