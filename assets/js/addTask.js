@@ -164,7 +164,7 @@ function showTaskAddedToBoardButton() {
 }
 
 
-function cacheOfArrays() { // is foreach loop possible.
+function cacheOfArrays() { 
   firstName = [];
   lastName = [];
   numberOfContactsToAdd = [];
@@ -177,7 +177,7 @@ function cacheOfArrays() { // is foreach loop possible.
 
 function jumpToBoard() {
   setTimeout(() => {
-    window.location.href = "./board.html"; // springt nachdem AddTask gerendert wurde auf die BoardSeite
+    window.location.href = "./board.html";
     closeAddTaskToBoard();
   }, 2000);
 }
@@ -286,16 +286,15 @@ function showContactList(id) {
 function showCategories() {
   toggleVisibility("showCategories");
   docID(`selectCategory`).classList.add(`hide-cursor`);
-  showAddedCategory(); // zeigt die gespeicherten Catagories an
+  showAddedCategory();
 }
 
 
-// Initialien generieren
 function getInitials(contact) {
-  let words = contact.split(" "); // Teile den Namen in einzelne Wörter auf
-  let initialsOfName = ""; // Erzeuge einen leeren String für die Initialen
-  for (let i = 0; i < words.length; i++) { // Iteriere über die Wörter
-    initialsOfName += words[i].charAt(0).toUpperCase(); // Extrahiere den ersten Buchstaben des aktuellen Wortes und konvertiere ihn in Großbuchstaben
+  let words = contact.split(" "); 
+  let initialsOfName = ""; 
+    for (let i = 0; i < words.length; i++) {
+    initialsOfName += words[i].charAt(0).toUpperCase();
   }
   initials.innerHTML += `<div id="taskInitials" class="add-task-initials">${initialsOfName}</div>`;
 }
@@ -350,15 +349,15 @@ function addcolorLoop(imgs, color, id) {
 
 
 function chooseCategory(i) {
-  let savedCategoryImg = docID(`savedCategory${i}`).querySelector("img");// Zugriff auf das <img>-Element innerhalb des savedCategory-Containers
-  let placeholderColorCategory = docID("placeholderColorCategory");// Ersetze das src-Attribut des placeholderColorCategory-Bildes mit dem des savedCategory-Bildes
+  let savedCategoryImg = docID(`savedCategory${i}`).querySelector("img");
+  let placeholderColorCategory = docID("placeholderColorCategory");
   placeholderColorCategory.src = savedCategoryImg.src;
-  docID(`selectCategory`).value = docID(`savedCategory${i}`).textContent; // Setze den Wert des selectCategory-Eingabefeldes auf den Text der ausgewählten Kategorie
+  docID(`selectCategory`).value = docID(`savedCategory${i}`).textContent;
   docID("placeholderColorCategory").classList.remove(`d-none`);
   docID(`selectCategory`).style.paddingLeft = "0";
   docID(`showCategories`).classList.add(`d-none`);
   docID(`showCategories`).classList.add(`add-task-hide-contacts`);
-  categoryId = i; // addColorToCategory(categories[i][`img`]);
+  categoryId = i;
 }
 
 

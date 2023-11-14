@@ -74,7 +74,7 @@ function menuRender() {
 }
 
 
-function menuResponsiveRender(){
+function menuResponsiveRender() {
   docID('menu-responsive').innerHTML = "";
   let urls = ["./summary.html", "./board.html", "./addTask.html", "./contacts.html"];
   let imgs = ["summary_button", "board_button", "addTask_button", "contacts_button"];
@@ -101,7 +101,7 @@ function activeSite(id) {
 
 function addTaskRender() {
   progress = 1;
-  let addTask = document.getElementById(`addTask`); 
+  let addTask = document.getElementById(`addTask`);
   addTask.innerHTML = /*html*/ `
    <form onsubmit="newTask(); return false;">
       <div id="addTaskUnderDiv" class="add-task">
@@ -129,7 +129,6 @@ function addTaskRender() {
                    <div class="add-task-placeholder-color-category">
                    <div id="taskCategoryColor" class="task-categorycolor d-none"></div>
                      <img class="d-none" id="placeholderColorCategory">
-                     <!-- src="${categories[`color`]}" -->
                    </div>
                  </div>
                    <div id="showCategories" class="add-task-hide-contacts add-task-choose-contacts">
@@ -167,24 +166,24 @@ function addTaskRender() {
          <img id="taskAddedToBoard" class="task-added-to-board-hide task-added-to-board" src="./assets/img/logoAddedToBoard.png">
   </form> 
       `;
-      docID('inputDate').min = new Date().toISOString().split("T")[0];
-       // Unterschied zwischen addTask.html und board.html
-       
-let addTaskUnderDiv = document.getElementById(`addTaskUnderDiv`);
-let taskTitle = document.getElementById(`taskTitle`);
-addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
-if (addTaskInitClicked == true) {
+  docID('inputDate').min = new Date().toISOString().split("T")[0];
+}
+
+
+function addTaskRenderOption() {
+  let addTaskUnderDiv = document.getElementById(`addTaskUnderDiv`);
+  let taskTitle = document.getElementById(`taskTitle`);
+  addTaskButtonToBoard = document.getElementById(`addTaskButtonToBoard`);
+  if (addTaskInitClicked == true) {
     taskTitle.classList.add(`d-none`);
     addTaskButtonToBoard.classList.add(`d-none`);
-}
+  }
 
-let addTaskButton = document.getElementById(`addTaskButton`);
-if (addBoardInitClicked == true) {
+  let addTaskButton = document.getElementById(`addTaskButton`);
+  if (addBoardInitClicked == true) {
     addTaskButton.classList.add(`d-none`);
     addTaskUnderDiv.style.marginLeft = "-290px";
-    taskAddedToBoard
-}
-
+  }
   addContactsToTasks(0);
   setupInputField();
 }
@@ -195,22 +194,27 @@ function addContactsToTasks(id) {
   showContacts.innerHTML = '';
   const nameList = [];
   const colorList = [];
-  const idList =[];
+  const idList = [];
 
+  addContactsToTasksProperty();
+  addContactsToTasksName();
+}
+
+
+function addContactsToTasksProperty() {
   for (const letter in contacts) {
     if (contacts.hasOwnProperty(letter)) {
-      const contactsList = contacts[letter];
-      for (const contact of contactsList) {
-        const name = contact.name;
-        nameList.push(name);
-        const color = contact.color;
-        const contactId = contact.contactId;
-        colorList.push(color);
-        idList.push(contactId);
+      for (const contact of contacts[letter]) {
+        nameList.push(contact.name);
+        colorList.push(contact.color);
+        idList.push(contact.contactId);
       }
     }
   }
+}
 
+
+function addContactsToTasksName() {
   for (let i = 0; i < nameList.length; i++) {
     const contactName = nameList[i];
     const nameWords = contactName.split(/\s+/);
@@ -227,12 +231,12 @@ function addContactsToTasks(id) {
 
     showContacts.innerHTML += /*html*/`
         <span onclick="chooseContact(${i}, '${contactName}', '${initials}', '${color}', '${id}', '${contactId}')" id='${id}and${contactId}' class="add-task-single-contact">
-  <div id = 'center-contacts-row'>
-  <div class = 'show-contacts-icon' id = '${id}show-contacts-icon${i}'>${initials}</div><span id = 'selected-contact${i}'>${contactName}</span> 
-  </div>  
-  <img id="${id}chooseBoxContact${i}" src="./assets/img/logoChooseContact.png">
-</span>
+          <div id = 'center-contacts-row'>
+          <div class = 'show-contacts-icon' id = '${id}show-contacts-icon${i}'>${initials}</div><span id = 'selected-contact${i}'>${contactName}</span> 
+          </div>  
+          <img id="${id}chooseBoxContact${i}" src="./assets/img/logoChooseContact.png">
+        </span>
     `
-    docID(id +'show-contacts-icon' + i).style.backgroundColor = color;
+    docID(id + 'show-contacts-icon' + i).style.backgroundColor = color;
   }
 }
