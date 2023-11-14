@@ -1,25 +1,24 @@
-//kay check
 function renderContacts() {
-  resetContactPage(); //set contact-Colum to "" und Number and Index to 0
+  resetContactPage();
   for (let i in contacts) {
-    if (contacts[i].length === 0) { //if no contact inside do not render, skip it
+    if (contacts[i].length === 0) {
       continue;
     }
-    renderContactSection(i); //start the function for render the Names in the contactlist
+    renderContactSection(i);
   }
 }
 
 
 function renderContactSection(index) {
-  docID("contact-column").innerHTML += renderContactSectionHTML(index); //render the HTML for the letters
-  docID("contact" + index).innerHTML = ""; //clear the contactitem section before render
-  for (let id = 0; id < contacts[index].length; id++) { //for loop to upate the color and the function for the contacts
-    colorIndex = updateColorIndex(colorIndex); //update for the number of the color
-    renderContactItem(index, id); //start the function to create the contactitems
+  docID("contact-column").innerHTML += renderContactSectionHTML(index); 
+  docID("contact" + index).innerHTML = "";
+  for (let id = 0; id < contacts[index].length; id++) { 
+    colorIndex = updateColorIndex(colorIndex); 
+    renderContactItem(index, id);
   }
 }
 
-//Kay check - HTML part for renderContactSection(index)
+
 function renderContactSectionHTML(index) {
   return /*html*/ `
     <div id="letter-headline">${index}</div>
@@ -28,15 +27,14 @@ function renderContactSectionHTML(index) {
   `
 }
 
-//kay -check
-function renderContactItem(index, id) {
-  const { name, mail, color, contactId } = contacts[index][id]; //save the data in variables
-  const initials = calculateInitials(name); // start function to return the Initials
 
+function renderContactItem(index, id) {
+  const { name, mail, color, contactId } = contacts[index][id];
+  const initials = calculateInitials(name);
   docID("contact" + index).innerHTML += renderContactItemHTML(contactId, index, color, initials, name, mail, id); //start function to render the HTML code
 }
 
-//function check
+
 function renderContactItemHTML(contactId, index, color, initials, name, mail, id) {
   return /*html*/ ` 
     <div class="contact" id="contact${contactId}" onclick="onclickContact(${contactId}); renderContactDisplay('${index}', ${id})">
@@ -49,14 +47,13 @@ function renderContactItemHTML(contactId, index, color, initials, name, mail, id
   `
 }
 
-//function check - wie klappt das bei 2 Vornamen?
+
 function calculateInitials(name) {
   let initials = name.replace(/[a-z]/g, "").replace(/\s/g, "");
   return initials[0] + initials.slice(-1);
 }
 
 
-//kay -check
 function resetContactPage() {
   colorIndex = 0;
   docID("contact-column").innerHTML = "";
@@ -64,7 +61,6 @@ function resetContactPage() {
 
 
 function renderContactDisplay(index, id) {
-  //sollte das nicht übers CSS gelöst werden?
   if (document.body.clientWidth < 900) {
     docID("background-responsive").style.display = "block";
   }
@@ -78,7 +74,6 @@ function renderContactDisplay(index, id) {
 }
 
 
-//functional check
 function addNewContact() {
   docID("background-add-contact").classList.remove("d-none");
   docID("background-add-contact").innerHTML = addNewContactHTML();
@@ -89,25 +84,24 @@ function addNewContact() {
 }
 
 
-//functional check
 function cancelNewContact() {
-  if (docID(`add-contact-mask`) === null) { // check if edit or add
+  if (docID(`add-contact-mask`) === null) {
     docID(`edit-contact-mask`).classList.add(`open-contact-hide`)
   } else {
     docID(`add-contact-mask`).classList.add(`open-contact-hide`);
   }
-  animateCloseAddContact();  //function to close background with delay 
-  emptyContactMask(); // function to clear the value of the contact add masked
+  animateCloseAddContact();  
+  emptyContactMask();
 }
 
-//kay checked
+
 function animateCloseAddContact() {
   setTimeout(() => {
     docID("background-add-contact").classList.add("d-none");
   }, 325);
 }
 
-//function checked
+
 function emptyContactMask() {
   docID(`contact-name`).value = "";
   docID(`contact-mail`).value = "";
@@ -115,15 +109,14 @@ function emptyContactMask() {
 }
 
 
-// Kay check-
 async function newContact() {
   let contactData = gatherContactData();
   if (!contactData) return;
-  firstname(contactData, true); //+ variable true
+  firstname(contactData, true);
   ContactInitNew();
 }
 
-// Kay check - 
+
 function gatherContactData() {
   let name = docID('contact-name').value;
   let mail = docID('contact-mail').value;
@@ -134,13 +127,14 @@ function gatherContactData() {
   return (name && mail && phone) ? { name: name, mail: mail, phone: phone, color: color, contactId: contactId } : null;
 }
 
+
 function ContactInitNew() {
-  contactsInit(); // restart contact-page
-  resetNewContactForm(); //close the contact-page and clear the values
-  contactAddedSuccesfully(); //the pop up sign
+  contactsInit();
+  resetNewContactForm();
+  contactAddedSuccesfully();
 }
 
-//function check
+
 function resetNewContactForm() {
   docID("background-add-contact").classList.add("d-none");
   docID(`contact-name`).value = "";
@@ -148,7 +142,7 @@ function resetNewContactForm() {
   docID(`contact-phone`).value = "";
 }
 
-//funtion check
+
 function contactAddedSuccesfully() {
   let succesfully = docID(`contact-added-succesfully-animation`); // variablennamen kürzen
   succesfully.classList.remove(`contact-added-succesfully-hide`);
@@ -203,7 +197,7 @@ function onclickContact(clickedId) {
   setColorOfSelectedContact(clickedId)
 }
 
-//reset color for before clicked person
+
 function resetColorOfAllContactContainer() {
   const contactContainers = document.querySelectorAll(".contact");
   contactContainers.forEach((container) => {
@@ -350,12 +344,12 @@ function addClassIfBodyWidthLessThan900px() {
     if (!contactDisplay.classList.contains("d-none")) {
       contactDisplay.classList.add("d-none");
       docID("background-responsive").style.display = "none";
-      onclickContact(); // fehlt die Id - Was ist das Ziel?
+      onclickContact();
     }
   }
 }
 
 
-function validatePhoneNumber(phoneInput) {     // Entferne alle Zeichen, die keine Zahlen sind, aus dem Eingabewert.     
+function validatePhoneNumber(phoneInput) { 
   phoneInput.value = phoneInput.value.replace(/[^0-9+/ ]/g, '');
 }

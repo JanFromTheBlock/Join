@@ -131,11 +131,6 @@ function addTaskRender() {
                      <img class="d-none" id="placeholderColorCategory">
                      <!-- src="${categories[`color`]}" -->
                    </div>
-                   <div class="add-task-edit-category d-none" id="editCategory">
-                      <img onclick="finishPushCategoryToArray()" class="cursor-pointer" src="./assets/img/logoHaken.png">
-                      <img src="./assets/img/seperator.png">
-                      <img class="cursor-pointer" onclick="cancelCategory()" src="./assets/img/logoCancel.png">
-                   </div>
                  </div>
                    <div id="showCategories" class="add-task-hide-contacts add-task-choose-contacts">
                      <span onclick="newCategory()" class="add-task-single-priority">New category</span>

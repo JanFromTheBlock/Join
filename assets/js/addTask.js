@@ -38,18 +38,18 @@ let subtaskStatus = [];
 let statusSubtask;
 let newsubtask;
 let toggleContacts = false;
+let subtaskCounter = 0;
+let firstName = [];
+let lastName = [];
+let contactcolors = [];
+let contactIds = [];
+let contactsOpen;
+const contactStatusMap = new Map();
+let numberOfContactsToAdd = [];
+let numberOfColorsToAdd = [];
+let numberOfIdsToAdd = [];
+let savedCategory;
 
-
-
-function showSubtasks(id) {
-  if (id === undefined) {
-    id = subtaskCounter;
-    newsubtask = true
-  }
-  checkStatusSubtask(id);
-  renderSubtaskArea(id);
-  checkSubtaskCheckbox(id);
-}
 
 function countDoneTasks(index, count) {
   for (let key in index) {
@@ -60,25 +60,25 @@ function countDoneTasks(index, count) {
   doneSubtask = count;
 }
 
-function checkSubtaskCheckbox(id) {
-  docID(`inputSubtask`).value = "";
-  setElement("subtasks", subtasks);
-  if (subtasksWereChecked === true) {
-    checkSubtasks();
-    let count = 0
-    countDoneTasks(subtaskStatus, count)
-  }
+
+function editCheck() {
   if (edit === true) {
     if (jsonToEdit.subtaskStatus[id] === 1) {
       docID("inner-subtask" + id).classList.add("d-none");
     }
   }
-  if (
-    jsonToEdit && jsonToEdit.subtasks && jsonToEdit.subtasks[id] === undefined) {
+}
+
+
+function undefinedCheck() {
+  if (jsonToEdit && jsonToEdit.subtasks && jsonToEdit.subtasks[id] === undefined) {
     docID("subtaskCheckbox" + id).disabled = true;
     docID("subtaskCheckbox" + id).classList.remove("cursor-pointer");
-  } else {
   }
+}
+
+
+function jsonToEditCheck() {
   if (jsonToEdit) {
   } else {
     docID("subtaskCheckbox" + id).disabled = true;
@@ -86,103 +86,51 @@ function checkSubtaskCheckbox(id) {
   }
 }
 
-function checkStatusSubtask(id) {
-  if (edit === false || newsubtask === true) {
-    statusSubtask = 0;
-  } else {
-    statusSubtask = jsonToEdit.subtaskStatus[id];
-  }
-  newsubtask = false;
-}
-let subtaskCounter = 0;
-function renderSubtaskArea(id) {
-  let subtaskArea = docID(`subTaskArea`);
-  let inputSubtask = docID(`inputSubtask`).value;
-  subtaskArea.classList.remove(`d-none`);
-  subtasks.push(inputSubtask);
-  subtaskStatus.push(statusSubtask);
-  subtaskArea.innerHTML += /*html*/ `
-  <div id="subtask${id}" class="subTaskArea subtask${id}">
-  <div class ="inner-subtask1">
-    <input onclick=" pushDoneSubtask(${id})" id="subtaskCheckbox${id}" class="cursor-pointer" type="checkbox">
-    <label id="labelForSubtask${id}">${inputSubtask}</label>
-  </div>
-    <div class="inner-subtask2" id="inner-subtask${id}">
-      <img onclick="deleteSubtask(${id})" class="delete-subtask-button" src="./assets/img/delete_contact.png">
-      <img onclick = "renameSubtask(${id})" src="./assets/img/edit_contact.png">
-    </div>
-  </div>
-  `;
-  subtaskCounter++
+
+function changeColor(status) {
+  changeColorIdUrgent(docID(`urgent`), docID(`urgentLogo`), status)
+  changeColorIdMedium(docID(`medium`), docID(`mediumLogo`), status)
+  changeColorIdLow(docID(`low`), docID(`lowLogo`), status)
 }
 
-//Onclick auf PriorityButtons
 
-function changeColorUrgent() {
-  let urgent = docID(`urgent`);
-  let low = docID(`low`);
-  let medium = docID(`medium`);
-  let lowLogo = docID(`lowLogo`);
-  let mediumLogo = docID(`mediumLogo`);
-  let urgentLogo = docID(`urgentLogo`);
-  urgent.classList.add("change-color-urgent");
-  urgent.classList.add("clicked");
-  medium.classList.remove("change-color-medium");
-  medium.classList.remove("clicked");
-  low.classList.remove("clicked");
-  low.classList.remove("change-color-low");
-  urgentLogo.src = `./assets/img/urgentLogoWhite.png`;
-  lowLogo.src = `./assets/img/lowLogo.png`;
-  mediumLogo.src = `./assets/img/mediumLogo.png`;
-}
-
-function changeColorMedium() {
-  let urgent = docID(`urgent`);
-  let low = docID(`low`);
-  let medium = docID(`medium`);
-  let lowLogo = docID(`lowLogo`);
-  let mediumLogo = docID(`mediumLogo`);
-  let urgentLogo = docID(`urgentLogo`);
-  urgent.classList.remove("change-color-urgent");
-  medium.classList.add("clicked");
-  low.classList.remove("clicked");
-  urgent.classList.remove("clicked");
-  medium.classList.add("change-color-medium");
-  low.classList.remove("change-color-low");
-  lowLogo.src = `./assets/img/lowLogo.png`;
-  urgentLogo.src = `./assets/img/urgentLogo.png`;
-  mediumLogo.src = `./assets/img/mediumLogoWhite.png`;
-}
-
-function changeColorLow() {
-  let urgent = docID(`urgent`);
-  let low = docID(`low`);
-  let medium = docID(`medium`);
-  let lowLogo = docID(`lowLogo`);
-  let mediumLogo = docID(`mediumLogo`);
-  let urgentLogo = docID(`urgentLogo`);
-  urgent.classList.remove("change-color-urgent");
-  medium.classList.remove("change-color-medium");
-  low.classList.add("change-color-low");
-  medium.classList.remove("clicked");
-  urgent.classList.remove("clicked");
-  low.classList.add("clicked");
-  lowLogo.src = `./assets/img/lowLogoWhite.png`;
-  urgentLogo.src = `./assets/img/urgentLogo.png`;
-  mediumLogo.src = `./assets/img/mediumLogo.png`;
-}
-
-function changeColor(i) {
-  if (i === "urgent") {
-    changeColorUrgent(i);
+function changeColorIdUrgent(urgent, urgentLogo, status) {
+  if (status == "urgent") {
+    urgent.classList.add("change-color-urgent");
+    urgent.classList.add("clicked");
     urgency = "./assets/img/urgentLogo.png";
-  } else if (i === "medium") {
-    changeColorMedium(i);
+  }
+  else {
+    urgent.classList.remove("change-color-urgent");
+    urgent.classList.remove("clicked");
+  }
+  urgentLogo.src = `./assets/img/urgentLogoWhite.png`;
+}
+
+
+function changeColorIdMedium(medium, mediumLogo, status) {
+  if (status == "medium") {
+    medium.classList.add("change-color-medium");
+    medium.classList.add("clicked");
     urgency = "./assets/img/mediumLogo.png";
   } else {
-    urgency = "./assets/img/lowLogo.png";
-    changeColorLow(i);
+    medium.classList.remove("change-color-medium");
+    medium.classList.remove("clicked");
   }
+  mediumLogo.src = `./assets/img/mediumLogo.png`;
+}
+
+
+function changeColorIdLow(low, lowLogo, status) {
+  if (status == "low") {
+    low.classList.add("clicked");
+    low.classList.add("change-color-low");
+    urgency = "./assets/img/lowLogo.png";
+  } else {
+    low.classList.remove("clicked");
+    low.classList.remove("change-color-low");
+  }
+  lowLogo.src = `./assets/img/lowLogo.png`;
 }
 
 function createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId) {
@@ -208,20 +156,15 @@ function createJsonTask(title, description, category, subtasks, subtasksLength, 
   };
 }
 
-let firstName = [];
-let lastName = [];
-let contactcolors = [];
-let contactIds = [];
-
 
 function showTaskAddedToBoardButton() {
   let taskAddedToBoard = docID(`taskAddedToBoard`);
-  taskAddedToBoard.classList.remove(`d-none`);
-  taskAddedToBoard.classList.remove(`task-added-to-board-hide`);
+  taskAddedToBoard.classList.remove(`d-none`, `task-added-to-board-hide`);
   taskAddedToBoard.classList.add(`task-added-to-board`);
 }
 
-function cacheOfArrays() {
+
+function cacheOfArrays() { // is foreach loop possible.
   firstName = [];
   lastName = [];
   numberOfContactsToAdd = [];
@@ -231,6 +174,7 @@ function cacheOfArrays() {
   subtaskCounter = 0;
 }
 
+
 function jumpToBoard() {
   setTimeout(() => {
     window.location.href = "./board.html"; // springt nachdem AddTask gerendert wurde auf die BoardSeite
@@ -238,50 +182,59 @@ function jumpToBoard() {
   }, 2000);
 }
 
+
 async function newTask() {
   if (edit === true) {
     safeEditedTask();
   } else {
-    if (urgency === undefined) {
-      changeColor('low')
-    }
-    let title = docID(`inputFieldTitle`).value;
-    let date = docID(`inputDate`).value;
-    let category = docID(`selectCategory`).value;
-    let description = docID(`description`).value;
-    let subtasksLength = subtasks.length;
-    showTaskAddedToBoardButton();
-    jumpToBoard();
-    docID(`inputSubtask`).value = ``;
-    safeContactsInTask();
-    const highestTaskId = findHighestId(tasks);
-    taskId = highestTaskId + 1;
-    clearTaskMask();
-    let task = createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId);
-    await getElement("tasks");
-    cacheOfArrays();
-    tasks.push(task);
-    await setElement("tasks", tasks);
-  }
-
-  
-  function findHighestId(tasks) {
-    let highestTaskId = 3;
-    for (const task of tasks) {
-      if (task.taskId > highestTaskId) {
-        highestTaskId = task.taskId;
-      }
-    }
-    return highestTaskId;
+    newTaskElse();
   }
 }
 
 
+async function newTaskElse() {
+  if (urgency === undefined)
+    changeColor('low');
+  showTaskAddedToBoardButton();
+  jumpToBoard();
+  docID(`inputSubtask`).value = ``;
+  safeContactsInTask();
+  taskId = findHighestId(tasks) + 1;
+  clearTaskMask();
+  let task = newTaskJSONCreate();
+  await getElement("tasks");
+  cacheOfArrays();
+  tasks.push(task);
+  await setElement("tasks", tasks);
+}
+
+
+function newTaskJSONCreate() {
+  let title = docID(`inputFieldTitle`).value;
+  let date = docID(`inputDate`).value;
+  let category = docID(`selectCategory`).value;
+  let description = docID(`description`).value;
+  let subtasksLength = subtasks.length;
+  return createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId);
+}
+
+
+function findHighestId(tasks) {
+  let highestTaskId = 0;
+  for (const task of tasks) {
+    if (task.taskId > highestTaskId) {
+      highestTaskId = task.taskId;
+    }
+  }
+  return highestTaskId;
+}
+
+
 function clearTaskMask() {
-  docID(`inputFieldTitle`).value = ``;
-  docID(`description`).value = ``;
-  docID(`selectContact`).value = ``;
-  docID(`selectCategory`).value = ``;
+  let array = [`inputFieldTitle`, `description`, `selectContact`, `selectCategory`];
+  for (let i = 0; i < array.length; i++) {
+    docID(array[i]).value = ``;
+  }
   docID(`placeholderColorCategory`).classList.add(`d-none`);
 }
 
@@ -292,34 +245,34 @@ function clearTask(i) {
   setElement("tasks", tasks);
   setElement("subtasks", subtasks);
 }
-let contactsOpen;
+
 
 function toggleVisibility(elementId) {
-  let element = document.getElementById(elementId);
+  let element = docID(elementId);
   element.classList.remove("d-none");
   docID("showCategories").innerHTML = "";
 
   if (element.classList.contains("add-task-hide-contacts")) {
-    element.classList.remove("add-task-hide-contacts");
-    if (toggleContacts === true) {
-      if (boardActive === true) {
-        contactsOpen = true;
-      }
-      if (boardActive === false) {
-        contactsOpen = true;;
-      }
-    }
+    taskHiddenHide(element);
   } else {
-    element.classList.add("add-task-hide-contacts");
-    if (toggleContacts === true) {
-      if (boardActive === true) {
-        contactsOpen = false;
-      }
-      if (boardActive === false) {
-        contactsOpen = false;
-      }
-    }
+    taskHiddenHideElse(element);
   }
+}
+
+
+function taskHiddenHide(element) {
+  element.classList.remove("add-task-hide-contacts");
+    if (toggleContacts) {
+        contactsOpen = true;
+    }
+}
+
+
+function taskHiddenHideElse(element) {
+  element.classList.add("add-task-hide-contacts");
+    if (toggleContacts) {
+      contactsOpen = false;
+    }
 }
 
 
@@ -329,111 +282,34 @@ function showContactList(id) {
   toggleContacts = false;
 }
 
+
 function showCategories() {
-  let selectCategory = docID(`selectCategory`);
   toggleVisibility("showCategories");
-  selectCategory.classList.add(`hide-cursor`);
+  docID(`selectCategory`).classList.add(`hide-cursor`);
   showAddedCategory(); // zeigt die gespeicherten Catagories an
 }
 
-// Eine Map, um den Status der Kontakte zu verfolgen
-const contactStatusMap = new Map();
-let numberOfContactsToAdd = [];
-let numberOfColorsToAdd = [];
-let numberOfIdsToAdd = [];
-
-
-function chooseContact(i, contactName, initials, color, id, contactId) {
-  let chooseBoxContact = docID(`${id}chooseBoxContact${i}`);
-  let parentDiv = chooseBoxContact.parentElement;
-  // Überprüfe den aktuellen Status des Kontakts
-  const isClicked = contactStatusMap.get(i) || false;
-  if (!isClicked) {
-    chooseBoxContact.src = "./assets/img/checkButtonContact.png";
-    contactStatusMap.set(i, true);
-    showAddedContact(i, initials, color, id);
-    parentDiv.classList.add("add-task-select-contact-activate");
-    // Füge den Kontakt zum Array numberOfContactsToAdd hinzu
-    numberOfContactsToAdd.push(contactName);
-    numberOfColorsToAdd.push(color);
-    numberOfIdsToAdd.push(contactId);
-  } else {
-    deselectContact(i, contactName, color, id, contactId);
-  }
-}
-
-function deselectContact(i, contactName, color, id, contactId) {
-  let chooseBoxContact = docID(`${id}chooseBoxContact${i}`);
-  let parentDiv = chooseBoxContact.parentElement;
-
-  chooseBoxContact.src = "./assets/img/logoChooseContact.png";
-  contactStatusMap.set(i, false);
-  cancelContact(i, id);
-  parentDiv.classList.remove("add-task-select-contact-activate");
-  // Entferne den Kontakt aus den Arrays
-  const index = numberOfContactsToAdd.indexOf(contactName);
-  if (index !== -1) {
-    numberOfContactsToAdd.splice(index, 1);
-  }
-  const indexcol = numberOfColorsToAdd.indexOf(color);
-  if (indexcol !== -1) {
-    numberOfColorsToAdd.splice(indexcol, 1);
-  }
-  const indexid = numberOfIdsToAdd.indexOf(contactId);
-  if (indexid !== -1) {
-    numberOfIdsToAdd.splice(indexid, 1);
-  }
-}
-
-// add new Contact
-
-function addContact() {
-  let editContact = docID(`editContact`);
-  selectContact.placeholder = "Contact email";
-  selectContact.classList.remove(`hide-cursor`);
-  selectContact.focus();
-  editContact.classList.remove(`d-none`);
-  contactSelectArrow.classList.add(`d-none`);
-}
-
-function showAddedContact(i, initials, color, id) {
-  let initialsIcon = docID(`${id}initials${id}`);
-  initialsIcon.classList.remove(`d-none`);
-  initialsIcon.innerHTML += `<div id="${id}taskInitials${i}" class="add-task-initials">${initials}</div>`;
-  docID(id + "taskInitials" + i).style.backgroundColor =
-    color;
-}
 
 // Initialien generieren
-
 function getInitials(contact) {
-  // Teile den Namen in einzelne Wörter auf
-  let words = contact.split(" ");
-  // Erzeuge einen leeren String für die Initialen
-  let initialsOfName = "";
-  // Iteriere über die Wörter
-  for (let i = 0; i < words.length; i++) {
-    // Extrahiere den ersten Buchstaben des aktuellen Wortes und konvertiere ihn in Großbuchstaben
-    initialsOfName += words[i].charAt(0).toUpperCase();
+  let words = contact.split(" "); // Teile den Namen in einzelne Wörter auf
+  let initialsOfName = ""; // Erzeuge einen leeren String für die Initialen
+  for (let i = 0; i < words.length; i++) { // Iteriere über die Wörter
+    initialsOfName += words[i].charAt(0).toUpperCase(); // Extrahiere den ersten Buchstaben des aktuellen Wortes und konvertiere ihn in Großbuchstaben
   }
   initials.innerHTML += `<div id="taskInitials" class="add-task-initials">${initialsOfName}</div>`;
 }
 
+
 function newCategory() {
-  let showCategories = docID(`showCategories`);
-  let editCategory = docID(`editCategory`);
-  let selectCategory = docID(`selectCategory`);
-  let categoryColors = docID(`categoryColors`);
-  categoryColors.classList.remove(`d-none`);
-  categorySelectArrow.classList.add(`d-none`);
-  editCategory.classList.remove(`d-none`);
-  showCategories.classList.add(`d-none`);
-  selectCategory.placeholder = "New category name";
-  selectCategory.classList.remove(`hide-cursor`);
-  selectCategory.focus();
+  docID(`categorySelectArrow`).classList.add(`d-none`);
+  docID(`editCategory`).classList.remove(`d-none`);
+  docID(`showCategories`).classList.add(`d-none`);
+  docID(`selectCategory`).placeholder = "New category name";
+  docID(`selectCategory`).classList.remove(`hide-cursor`);
+  docID(`selectCategory`).focus();
 }
 
-let savedCategory;
 
 function pushCategoryToArray(categoryColor) {
   let selectCategory = docID(`selectCategory`).value;
@@ -446,9 +322,6 @@ function pushCategoryToArray(categoryColor) {
   }
 }
 
-function finishPushCategoryToArray() {
-  categoryColors.classList.add(`d-none`);
-}
 
 function showAddedCategory() {
   let showCategories = docID(`showCategories`);
@@ -459,75 +332,33 @@ function showAddedCategory() {
   }
 }
 
-
-function cancelCategory() {
-  cancelInputs(`selectCategory`);
-  categoryColors.classList.add(`d-none`);
-  selectCategory.placeholder = "Select Task category";
-  editCategory.classList.add(`d-none`);
-  categorySelectArrow.classList.remove(`d-none`);
-  placeholderColorCategory.classList.add(`d-none`);
-}
-
-
-function cancelContact(i, id) {
-  const taskInitials = docID(`${id}taskInitials${i}`);
-  if (taskInitials) {
-    taskInitials.remove();
-  }
-}
-
-
-function cancelInputs(elementId) {
-  let element = docID(elementId);
-  element.value = ``;
-  initials.classList.add(`d-none`);
-}
-
 function addColorToCategory(id) {
   placeholderColorCategory = docID(`placeholderColorCategory`);
   placeholderColorCategory.src = `${id}`;
   placeholderColorCategory.classList.remove(`d-none`);
   let imgs = ['ellipsegreen.png', 'ellipseOrange.png', 'ellipseLightblue.png', 'ellipseRed.png', 'ellipseBlue.png', 'ellipseRosa.png'];
   let color = ["#2AD300", "#FF7A00", "#1FD7C1", "#FF0000", "#0038FF", "#E200BE"];
-  addcolorLoop(imgs,color, id);
+  addcolorLoop(imgs, color, id);
 }
 
 
-function addcolorLoop(imgs,color, id) {
+function addcolorLoop(imgs, color, id) {
   for (let i = 0; i < imgs.length; i++) {
-    if (id.includes(imgs[i])) {categoryColor = color[i];};
+    if (id.includes(imgs[i])) { categoryColor = color[i]; };
   }
 }
 
 
 function chooseCategory(i) {
-  // Zugriff auf das <img>-Element innerhalb des savedCategory-Containers
-  let savedCategoryImg = docID(`savedCategory${i}`).querySelector("img");
-  // Ersetze das src-Attribut des placeholderColorCategory-Bildes mit dem des savedCategory-Bildes
-  let placeholderColorCategory = docID("placeholderColorCategory");
+  let savedCategoryImg = docID(`savedCategory${i}`).querySelector("img");// Zugriff auf das <img>-Element innerhalb des savedCategory-Containers
+  let placeholderColorCategory = docID("placeholderColorCategory");// Ersetze das src-Attribut des placeholderColorCategory-Bildes mit dem des savedCategory-Bildes
   placeholderColorCategory.src = savedCategoryImg.src;
-  // Setze den Wert des selectCategory-Eingabefeldes auf den Text der ausgewählten Kategorie
-  docID(`selectCategory`).value = docID(`savedCategory${i}`).textContent;
+  docID(`selectCategory`).value = docID(`savedCategory${i}`).textContent; // Setze den Wert des selectCategory-Eingabefeldes auf den Text der ausgewählten Kategorie
   docID("placeholderColorCategory").classList.remove(`d-none`);
   docID(`selectCategory`).style.paddingLeft = "0";
   docID(`showCategories`).classList.add(`d-none`);
   docID(`showCategories`).classList.add(`add-task-hide-contacts`);
-  // addColorToCategory(categories[i][`img`]);
-  categoryId = i;
-}
-
-
-function deleteSubtask(id, taskId) {
-  subtasks.splice(id, 1);
-  subtaskStatus.splice(id, 1);
-  docID("subtask" + id).classList.add("d-none");
-}
-
-
-function renameSubtask(id) {
-  docID("inputSubtask").value = docID("labelForSubtask" + id).innerHTML;
-  deleteSubtask(id);
+  categoryId = i; // addColorToCategory(categories[i][`img`]);
 }
 
 
