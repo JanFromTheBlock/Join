@@ -1,0 +1,67 @@
+.add-task-select-contact-activate:hover {
+    background-color: #005DFF !important;
+}
+
+.add-task-single-contact:hover {
+    cursor: pointer;
+    background-color: #d2e3ff;
+}
+
+.add-task-single-contact-invite:hover {
+    cursor: pointer;
+    background-color: #d2e3ff;
+}
+
+.add-task-single-priority:hover {
+    cursor: pointer;
+    background-color: #d2e3ff;
+}
+
+.subTaskArea:hover {
+    background-color: #D2E3FF;
+}
+
+.subTaskArea:hover .inner-subtask2 {
+    display: block;
+}
+
+#urgent:hover {
+    box-shadow: 0 4px 0px 0px #ff3d00;
+}
+
+#medium:hover {
+    box-shadow: 0 4px 0px 0px #ffa800;
+}
+
+#low:hover {
+    box-shadow: 0 4px 0px 0px #7ae229;
+}
+
+.add-task-button-clear:hover {
+    box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.3);
+    border: 2px solid #4589FF;
+}
+
+.add-task-button-clear:hover {
+    border: 1px solid rga#647188;
+    color: #005dff;
+}
+
+.add-task-button-create:hover {
+    border: 1px solid rga#647188;
+    background-color: #005dff;
+}
+
+.add-task-button-create-board:hover {
+    border: 1px solid rga#647188;
+    background-color: #005dff;
+}
+
+.add-task-to-board-close-button:hover {
+    cursor: pointer;
+    background-color: #dde0e5;
+}
+
+.add-task-select-contact-activate {
+    background-color: #4589FF;
+}

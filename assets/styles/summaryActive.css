@@ -1,0 +1,111 @@
+/* the big urgent-card on the upper dashboard while clicking on it - active effect */
+#urgency-summary:active {
+    width: 672px;
+    height: 191px;
+    border-radius: 30px;
+    background: #005DFF;
+    margin-right: 19px;
+  }
+  
+  /* the active effect from big urgent-Card on the span Tasks urgent */
+  #urgency-summary:active #sum-urgent-square-span {
+    color: #FFFFFF;
+    font-size: 23px;
+  
+  }
+  
+  /* the active effect from big urgent-Card on the number of the urgent tasks  */
+  #urgency-summary:active #sum-urgent-con-in-span {
+    color: #FFFFFF;
+    font-size: 48px;
+  }
+  
+  /* the active effect from big urgent-Card on the icon of the urgent tasks  */
+  #urgency-summary:active #icon {
+    width: 72px;
+    height: 72px;
+  }
+  
+  /* the active effect from big urgent-Card on the vertical line */
+  #urgency-summary:active svg path {
+    stroke: #FFFFFF;
+  }
+  
+  /* the active effect from big urgent-Card on the container of the urgent date */
+  #urgency-summary:active #urgent-date-screen-date {
+    color: #FFFFFF;
+    font-size: 33px;
+  }
+  
+  /* the active effect from big urgent-Card on text Upcoming Deadline */
+  #urgency-summary:active #urgent-date-screen-deadline {
+    color: #FFFFFF;
+    font-size: 23px;
+  }
+
+  #square-button:active {
+    border-radius: 30px;
+    background: #4589FF;
+    margin-left: 19px;
+  }
+  
+  #square-button:active .board-btn-img-icon {
+    width: 76px;
+    height: 76px;
+  }
+  
+  #square-button:active .sum-board-btn-in-span{
+    color: #FFFFFF;
+    font-size: 23px;
+  }
+  
+  #square-button:active #board-btn-img-span{
+    color: #FFFFFF;
+    font-size: 48px;
+  }
+  
+  #square-button:active .board-btn-img-icon img {
+    display: block;
+    position: absolute;
+    width: 66px;
+    height: 74px;
+    left: 4px;
+    transition: ease-in-out 100ms;
+  }
+
+  .sum-board-btn:active {
+    border-radius: 30px;
+    background: #FFFFFF;
+    margin: 0px 18px;
+  }
+  
+  .sum-board-btn:first-child:active {
+    margin-right: 18px;
+  }
+  
+  .sum-board-btn:last-child:active {
+    margin-left: 18px;
+  }
+  
+  .sum-board-btn:active .board-btn-img-span {
+    color: #000000;
+    font-size: 48px;
+  }
+  
+  .sum-board-btn:active .sum-board,
+  .sum-board-btn:active .sum-progress,
+  .sum-board-btn:active .sum-awaiting,
+  .sum-board-btn:active .sum-done 
+  .sum-board-btn:active .task-do-to {
+    width: 76px;
+    height: 76px;
+  }
+  
+  .sum-board-btn:active .sum-board-btn-in-span {
+    color: #4589FF;
+    font-size: 23px;
+  }
+  
+  .sum-board-btn:active .board-btn-img-icon img{
+    display: none;
+  }

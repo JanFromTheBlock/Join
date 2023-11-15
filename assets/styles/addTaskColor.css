@@ -1,0 +1,84 @@
+#lightBlue {
+  height: 20px;
+  width: 20px;
+  background-color: #1FD7C1;
+  border-radius: 46px;
+  border: 2px solid white;
+  margin-right: 15px;
+}
+
+
+#red {
+  height: 20px;
+  width: 20px;
+  background-color: lightblue;
+  border-radius: 46px;
+  border: 2px solid white;
+  margin-right: 15px;
+}
+
+#green {
+  height: 20px;
+  width: 20px;
+  background-color: lightblue;
+  border-radius: 46px;
+  border: 2px solid white;
+  margin-right: 15px;
+}
+
+#orange {
+  height: 20px;
+  width: 20px;
+  background-color: lightblue;
+  border-radius: 46px;
+  border: 2px solid white;
+  margin-right: 15px;
+}
+
+#rosa {
+  height: 20px;
+  width: 20px;
+  background-color: lightblue;
+  border-radius: 46px;
+  border: 2px solid white;
+  margin-right: 15px;
+}
+
+#blue {
+  height: 20px;
+  width: 20px;
+  background-color: lightblue;
+  border-radius: 46px;
+  border: 2px solid white;
+  margin-right: 15px;
+}
+
+.add-task-category-colors {
+  display: flex;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 32px;
+}
+
+.add-task-category-colors img {
+  margin-right: 15px;
+}
+
+.add-task-placeholder-color-category {
+  margin-left: -230px;
+}
+
+.change-color-urgent {
+  background-color: #ff3d00 !important;
+  color: white;
+}
+
+.change-color-medium {
+  background-color: #ffa800 !important;
+  color: white;
+}
+
+.change-color-low {
+  background-color: #7ae229 !important;
+  color: white;
+}
