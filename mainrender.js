@@ -112,7 +112,7 @@ function addTaskRender() {
              <input required autocomplete="off" id="inputFieldTitle" class="add-task-title cursor-pointer" placeholder="Enter a title" type="text">
             <div  class="add-task-select-contact-edit do-not-close">
                  <input onclick="showContactList(0), doNotCloseWindow(event)" autocomplete="off" placeholder="Selected contacts to assign" class="do-not-close add-task-select-contact cursor-pointer" id="selectContact" type="email"> 
-                 <img id="contactSelectArrow" src="./assets/img/selectfieldArrow.png">
+                 <img id="contactSelectArrow" class="cursor-pointer" onclick="showContactList(0), doNotCloseWindow(event)" src="./assets/img/selectfieldArrow.png">
             </div>
             <div onclick="doNotCloseWindow(event)"  id="showContacts0" class="add-task-hide-contacts add-task-choose-contacts do-not-close">
             </div>
@@ -125,7 +125,7 @@ function addTaskRender() {
                  <h2>Category</h2>
                  <div class="add-task-select-contact-edit">
                    <input autocomplete="off" onclick="showCategories()" required class="add-task-select-contact cursor-pointer" id="selectCategory" placeholder="Select Task category">
-                   <img id="categorySelectArrow" src="./assets/img/selectfieldArrow.png">
+                   <img id="categorySelectArrow" onclick="showCategories()" src="./assets/img/selectfieldArrow.png">
                    <div class="add-task-placeholder-color-category">
                    <div id="taskCategoryColor" class="task-categorycolor d-none"></div>
                      <img class="d-none" id="placeholderColorCategory">
@@ -192,16 +192,16 @@ function addTaskRenderOption() {
 function addContactsToTasks(id) {
   showContacts = docID('showContacts' + id);
   showContacts.innerHTML = '';
-  const nameList = [];
-  const colorList = [];
-  const idList = [];
+  let nameList = [];
+  let colorList = [];
+  let idList = [];
 
-  addContactsToTasksProperty();
-  addContactsToTasksName();
+  addContactsToTasksProperty(nameList, colorList, idList);
+  addContactsToTasksName(nameList, colorList, idList, id);
 }
 
 
-function addContactsToTasksProperty() {
+function addContactsToTasksProperty(nameList, colorList, idList) {
   for (const letter in contacts) {
     if (contacts.hasOwnProperty(letter)) {
       for (const contact of contacts[letter]) {
@@ -214,7 +214,7 @@ function addContactsToTasksProperty() {
 }
 
 
-function addContactsToTasksName() {
+function addContactsToTasksName(nameList, colorList, idList, id) {
   for (let i = 0; i < nameList.length; i++) {
     const contactName = nameList[i];
     const nameWords = contactName.split(/\s+/);

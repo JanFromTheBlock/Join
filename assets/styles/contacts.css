@@ -314,12 +314,14 @@
   display: flex;
   gap: 10px;
   align-items: center;
+  cursor: pointer;
 }
 
 #contact-create:hover {
   border: 2px solid #647188;
   background-color: #005dff;
-  cursor: pointer;
+  padding: 15px 9px;
+  
 }
 
 #contact-buttons {
@@ -337,7 +339,7 @@
   cursor: pointer;
   color: #4589ff;
   border: 3px solid #4589ff;
-  margin-right: -2px;
+  padding: 12px 8px;
 }
 
 #x-button {
@@ -433,6 +435,3 @@
 #back-arrow:hover {
   cursor: pointer;
 }
-
-
-  

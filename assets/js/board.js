@@ -16,6 +16,7 @@ function addBoardRender() {
   renderBoardInput();
   renderTaskAreas();
   addTaskRender();
+  addTaskRenderOption()
   loadTasks();
 }
 

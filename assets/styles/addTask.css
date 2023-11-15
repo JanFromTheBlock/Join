@@ -584,7 +584,7 @@ input[type="date"]::placeholder {
 .add-task-to-board-title {
   background-color: white;
   position: fixed;
-  z-index: 999;
+  z-index: 4;
   width: 422px;
   margin-top: -138px;
 }
@@ -686,4 +686,3 @@ input[type="date"]::placeholder {
 #full-height{
   height: 100vh;
 }
-
