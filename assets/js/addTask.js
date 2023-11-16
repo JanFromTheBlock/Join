@@ -61,7 +61,7 @@ function countDoneTasks(index, count) {
 }
 
 
-function editCheck() {
+function editCheck(id) {
   if (edit === true) {
     if (jsonToEdit.subtaskStatus[id] === 1) {
       docID("inner-subtask" + id).classList.add("d-none");
@@ -70,7 +70,7 @@ function editCheck() {
 }
 
 
-function undefinedCheck() {
+function undefinedCheck(id) {
   if (jsonToEdit && jsonToEdit.subtasks && jsonToEdit.subtasks[id] === undefined) {
     docID("subtaskCheckbox" + id).disabled = true;
     docID("subtaskCheckbox" + id).classList.remove("cursor-pointer");
@@ -78,7 +78,7 @@ function undefinedCheck() {
 }
 
 
-function jsonToEditCheck() {
+function jsonToEditCheck(id) {
   if (jsonToEdit) {
   } else {
     docID("subtaskCheckbox" + id).disabled = true;

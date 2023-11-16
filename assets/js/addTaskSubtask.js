@@ -13,9 +13,9 @@ function checkSubtaskCheckbox(id) {
     docID(`inputSubtask`).value = "";
     setElement("subtasks", subtasks);
     subtasksWereCheckedCheck();
-    editCheck();
-    undefinedCheck();
-    jsonToEditCheck();
+    editCheck(id);
+    undefinedCheck(id);
+    jsonToEditCheck(id);
 }
 
 
@@ -42,12 +42,12 @@ function renderSubtaskArea(id) {
     subtaskArea.classList.remove(`d-none`);
     subtasks.push(inputSubtask);
     subtaskStatus.push(statusSubtask);
-    subtaskArea.innerHTML += renderSubtaskAreaHTML();
+    subtaskArea.innerHTML += renderSubtaskAreaHTML(id);
     subtaskCounter++
 }
 
 
-function renderSubtaskAreaHTML() {
+function renderSubtaskAreaHTML(id) {
     return /*html*/ `
     <div id="subtask${id}" class="subTaskArea subtask${id}">
     <div class ="inner-subtask1">
