@@ -130,6 +130,8 @@ function openWindow(event, id, IdOfTask) {
   docID("task-window").classList.remove("d-none");
   event.stopPropagation();
   window.scrollTo(0, 0);
+  let backgroundElements = getBackgroundElements();
+  adjustBackgroundElements(backgroundElements);
   renderWindow(id, IdOfTask);
   openedTask = id;
   subtaskStatus = [];
@@ -138,6 +140,7 @@ function openWindow(event, id, IdOfTask) {
 
 function closeWindow() {
   docID("task-window").classList.add("d-none");
+  hideAddTaskMain();
 }
 
 
@@ -307,17 +310,23 @@ function findJSON(IdOfTask, tasks) {
 
 function closeAddTaskToBoard() {
   let addTask = docID(`addTask`);
-  let backgroundBoard = docID(`board`);
-  let backgroundNav = docID(`nav`);
-  let backgroundHeader = docID(`header`);
   let addTaskButtonToBoard = docID(`addTaskButtonToBoard`);
-  hideAddTaskAtBoard(addTask, backgroundBoard, backgroundNav, backgroundHeader, addTaskButtonToBoard)
+  hideAddTaskAtBoard(addTask, addTaskButtonToBoard);
+  hideAddTaskMain();
   addBoardInit();
   resetAddTaskMask();
 }
 
+function hideAddTaskMain() {
+  let backgroundArray = [docID(`board`), docID(`nav`), docID(`header`) ]
+  for (let i = 0; i < backgroundArray.length; i++) {
+    backgroundArray[i].classList.add(`full-opacity`);
+    backgroundArray[i].classList.remove(`decrease-opacity`);
+  }
+}
 
-function hideAddTaskAtBoard(addTask, backgroundBoard, backgroundNav, backgroundHeader, addTaskButtonToBoard){
+
+function hideAddTaskAtBoard(addTask, addTaskButtonToBoard){
   boardBody.style.backgroundAttachment = "initial";
   boardBody.style.overflow = "visible";
   addTaskButtonToBoard.classList.add(`d-none`);
@@ -326,12 +335,6 @@ function hideAddTaskAtBoard(addTask, backgroundBoard, backgroundNav, backgroundH
   setTimeout(() => {
     addTask.classList.add(`d-none`);
   }, 325);
-  backgroundBoard.classList.add(`full-opacity`);
-  backgroundHeader.classList.add(`full-opacity`);
-  backgroundNav.classList.add(`full-opacity`);
-  backgroundBoard.classList.remove(`decrease-opacity`);
-  backgroundHeader.classList.remove(`decrease-opacity`);
-  backgroundNav.classList.remove(`decrease-opacity`);
 }
 
 
