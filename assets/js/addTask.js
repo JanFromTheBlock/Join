@@ -221,7 +221,7 @@ function newTaskJSONCreate() {
 
 
 function findHighestId(tasks) {
-  let highestTaskId = 0;
+  let highestTaskId = 3;
   for (const task of tasks) {
     if (task.taskId > highestTaskId) {
       highestTaskId = task.taskId;
