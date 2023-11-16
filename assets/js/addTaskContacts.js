@@ -1,15 +1,15 @@
-function chooseContact(i, contactName, color, id, contactId) {
+function chooseContact(i, contactName, initials, color, id, contactId) {
     let chooseBoxContact = docID(`${id}chooseBoxContact${i}`);
     const isClicked = contactStatusMap.get(i) || false; // Überprüfe den aktuellen Status des Kontakts
     if (!isClicked) {
-        chooseContactIsntClicked(chooseBoxContact);
+        chooseContactIsntClicked(i, contactName, initials, color, id, contactId, chooseBoxContact);
     } else {
         deselectContact(i, contactName, color, id, contactId);
     }
 }
 
 
-function chooseContactIsntClicked(chooseBoxContact) {
+function chooseContactIsntClicked(i, contactName, initials, color, id, contactId, chooseBoxContact) {
     let parentDiv = chooseBoxContact.parentElement;
     chooseBoxContact.src = "./assets/img/checkButtonContact.png";
     contactStatusMap.set(i, true);
