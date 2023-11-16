@@ -42,12 +42,12 @@ function renderSubtaskArea(id) {
     subtaskArea.classList.remove(`d-none`);
     subtasks.push(inputSubtask);
     subtaskStatus.push(statusSubtask);
-    subtaskArea.innerHTML += renderSubtaskAreaHTML(id);
+    subtaskArea.innerHTML += renderSubtaskAreaHTML(id, inputSubtask);
     subtaskCounter++
 }
 
 
-function renderSubtaskAreaHTML(id) {
+function renderSubtaskAreaHTML(id, inputSubtask) {
     return /*html*/ `
     <div id="subtask${id}" class="subTaskArea subtask${id}">
     <div class ="inner-subtask1">
