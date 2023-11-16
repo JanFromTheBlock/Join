@@ -200,8 +200,8 @@ async function newTaskElse() {
   docID(`inputSubtask`).value = ``;
   safeContactsInTask();
   taskId = findHighestId(tasks) + 1;
-  clearTaskMask();
   let task = newTaskJSONCreate();
+  clearTaskMask();
   await getElement("tasks");
   cacheOfArrays();
   tasks.push(task);
