@@ -215,6 +215,7 @@ function newTaskJSONCreate() {
   let category = docID(`selectCategory`).value;
   let description = docID(`description`).value;
   let subtasksLength = subtasks.length;
+  let categoryColor = categories[categoryId]['color'];
   return createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId);
 }
 
