@@ -361,7 +361,7 @@ function safeEditedTask() {
   jsonToEdit.title = docID("inputFieldTitle").value;
   jsonToEdit.date = docID("inputDate").value;
   jsonToEdit.category = docID("selectCategory").value;
-  jsonToEdit["category-color"] = categoryColor;
+  jsonToEdit["category-color"] = categories[categoryId]['color'];
   jsonToEdit.categoryId = categoryId;
   jsonToEdit.description = docID("description").value;
   jsonToEdit.urgency = urgency;
