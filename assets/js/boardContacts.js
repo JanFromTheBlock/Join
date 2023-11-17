@@ -1,16 +1,16 @@
 function renderContactArea(task, id) {
     let contactArea = docID("contact-area" + id);
     contactArea.innerHTML = "";
-    for (let contactIndex = 0; contactIndex < task["contact-firstname"].length && contactIndex < 4 ; contactIndex++) {
+    for (let contactIndex = 0; contactIndex < task["contact-firstname"].length && contactIndex < 4; contactIndex++) { //Kontaktsymbole werden nur bis zum 3. Kontakt normal gerendert. WEnn ein vierter Kontakt gerendert werden soll, wird der Textinhalt des 3. Kontakticons mit "+${Anzahl weiterer Kontakte}" gefüllt, damit nicht unendlich Kontakte gerendert werden können. Der Renderprozess endet anschließend
         if (contactIndex == 3) {
             let furtherContacts = task["contact-firstname"].length - 2;
             docID(id + 'span2').innerHTML = /*html*/` + ${furtherContacts}`
-        }else{
+        } else {
             let firstName = task["contact-firstname"][contactIndex];
-        let lastName = task["contact-lastname"][contactIndex];
-        let initials = getInitialsTask(firstName, lastName);
-        let color = task["contact-color"][contactIndex];
-        renderContactSymbol(contactArea, initials, color, id, contactIndex);
+            let lastName = task["contact-lastname"][contactIndex];
+            let initials = getInitialsTask(firstName, lastName);
+            let color = task["contact-color"][contactIndex];
+            renderContactSymbol(contactArea, initials, color, id, contactIndex);
         }
     }
 }
@@ -101,13 +101,13 @@ function setTaskContacts(contactIds) {
 
 function safeContactsInTask() {
     for (let i = 0; i < numberOfContactsToAdd.length; i++) {
-      let contactDiv = numberOfContactsToAdd[i];
-      const [firstNames, lastNames] = contactDiv.split(" ");
-      const contactcolor = numberOfColorsToAdd[i];
-      const contactid = numberOfIdsToAdd[i];
-      firstName.push(firstNames);
-      lastName.push(lastNames);
-      contactcolors.push(contactcolor);
-      contactIds.push(contactid);
+        let contactDiv = numberOfContactsToAdd[i];
+        const [firstNames, lastNames] = contactDiv.split(" ");
+        const contactcolor = numberOfColorsToAdd[i];
+        const contactid = numberOfIdsToAdd[i];
+        firstName.push(firstNames);
+        lastName.push(lastNames);
+        contactcolors.push(contactcolor);
+        contactIds.push(contactid);
     }
-  }
+}

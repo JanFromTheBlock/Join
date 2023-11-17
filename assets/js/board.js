@@ -92,7 +92,8 @@ function filterTasks() {
 
   for (let id = 0; id < tasks.length; id++) {
     const name = tasks[id]["title"];
-    if (name.toLowerCase().includes(search)) {
+    const desc = tasks[id]["description"];
+    if (name.toLowerCase().includes(search) || desc.toLowerCase().includes(search)) { //searching in tasks.description & tasks.name for the input text
       renderTask(id);
       renderContactFilterArea(id);
     }
