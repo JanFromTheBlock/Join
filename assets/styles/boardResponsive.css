@@ -36,6 +36,10 @@
         #board{
             padding-top: 150px;
         }
+        .font-size-title {
+            font-size: 38px;
+        }
+    
 }
 
 @media (max-width: 450px) {
@@ -50,5 +54,8 @@
         padding: 25px;
         width: 250px !important;
         margin-left: -150px;
+    }
+    .font-size-title {
+        font-size: 30px;
     }
 }
