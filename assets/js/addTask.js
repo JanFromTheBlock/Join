@@ -99,12 +99,16 @@ function changeColorIdUrgent(urgent, urgentLogo, status) {
     urgent.classList.add("change-color-urgent");
     urgent.classList.add("clicked");
     urgency = "./assets/img/urgentLogo.png";
+    urgentLogo.src = `./assets/img/urgentLogoWhite.png`;
+    mediumLogo.src = `./assets/img/mediumLogo.png`;
+    lowLogo.src = `./assets/img/lowLogo.png`;
   }
   else {
     urgent.classList.remove("change-color-urgent");
     urgent.classList.remove("clicked");
   }
-  urgentLogo.src = `./assets/img/urgentLogoWhite.png`;
+ 
+  
 }
 
 
@@ -113,11 +117,14 @@ function changeColorIdMedium(medium, mediumLogo, status) {
     medium.classList.add("change-color-medium");
     medium.classList.add("clicked");
     urgency = "./assets/img/mediumLogo.png";
+    mediumLogo.src = `./assets/img/mediumLogoWhite.png`;
+    lowLogo.src = `./assets/img/lowLogo.png`;
+    urgentLogo.src = `./assets/img/urgentLogo.png`;
   } else {
     medium.classList.remove("change-color-medium");
     medium.classList.remove("clicked");
   }
-  mediumLogo.src = `./assets/img/mediumLogo.png`;
+  
 }
 
 
@@ -126,11 +133,14 @@ function changeColorIdLow(low, lowLogo, status) {
     low.classList.add("clicked");
     low.classList.add("change-color-low");
     urgency = "./assets/img/lowLogo.png";
+    lowLogo.src = `./assets/img/lowLogoWhite.png`;
+    urgentLogo.src = `./assets/img/urgentLogo.png`;
+    mediumLogo.src = `./assets/img/mediumLogo.png`;
   } else {
     low.classList.remove("clicked");
     low.classList.remove("change-color-low");
   }
-  lowLogo.src = `./assets/img/lowLogo.png`;
+ 
 }
 
 function createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId) {
