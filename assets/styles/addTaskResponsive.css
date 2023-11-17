@@ -1,6 +1,6 @@
 @media (max-width: 1400px) {
   .add-task-button {
-    margin-left: -330px;
+    margin-left: 0px;
     margin-top: 160px;
   }
 }
@@ -11,6 +11,8 @@
   }
   .add-task-button {
     margin-bottom: 100px;
+    margin-top: 310px;
+    margin-left: -400px;
   }
 }
 
@@ -21,7 +23,6 @@
   }
   .add-task-button {
     margin-left: -289px;
-    margin-top: 189px;
   }
 
   .add-task-single-contact {
