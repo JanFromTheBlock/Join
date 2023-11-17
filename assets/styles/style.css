@@ -2,7 +2,7 @@
 
 body {
     margin: 0;
-    font-family: 'Open-Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
   }
   
   .d-none {
@@ -150,7 +150,6 @@ body {
     padding: 66px 20px;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
     box-sizing: border-box;
-    font-family: "Open Sans";
     font-size: 16px;
     color: #42526e;
   }
@@ -187,7 +186,6 @@ body {
   
   .topic span {
     color: #42526E;
-    font-family: 'Open Sans';
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
