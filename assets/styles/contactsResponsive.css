@@ -97,6 +97,15 @@
   #back-arrow {
     margin-right: 15px;
   }
+  .contact-added-succesfully-succesfully {
+    width: 300px;
+    margin-left: calc(50% - 150px);
+  }
+  
+  .contact-added-succesfully-hide {
+    width: 300px;
+    margin-left: calc(50% - 150px);
+  }
 }
 
 @media (max-width: 400px) {
