@@ -1,22 +1,28 @@
 function renderContactArea(task, id) {
     let contactArea = docID("contact-area" + id);
     contactArea.innerHTML = "";
-    for (let contactIndex = 0; contactIndex < task["contact-firstname"].length; contactIndex++) {
-        let firstName = task["contact-firstname"][contactIndex];
+    for (let contactIndex = 0; contactIndex < task["contact-firstname"].length && contactIndex < 4 ; contactIndex++) {
+        if (contactIndex == 3) {
+            let furtherContacts = task["contact-firstname"].length - 2;
+            docID(id + 'span2').innerHTML = /*html*/` + ${furtherContacts}`
+        }else{
+            let firstName = task["contact-firstname"][contactIndex];
         let lastName = task["contact-lastname"][contactIndex];
         let initials = getInitialsTask(firstName, lastName);
         let color = task["contact-color"][contactIndex];
-        renderContactSymbol(contactArea, initials, color);
+        renderContactSymbol(contactArea, initials, color, id, contactIndex);
+        }
     }
 }
 
 
-function renderContactSymbol(contactArea, initials, color) {
+function renderContactSymbol(contactArea, initials, color, id, contactIndex) {
     const contactSymbol = document.createElement("span");
     contactSymbol.className = "contacts";
     contactSymbol.style.backgroundColor = color;
     contactSymbol.textContent = initials;
     contactArea.appendChild(contactSymbol);
+    contactSymbol.id = id + "span" + contactIndex;
 }
 
 
