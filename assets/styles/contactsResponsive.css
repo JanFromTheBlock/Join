@@ -86,7 +86,12 @@
   }
 
   #contact-display-name {
+    font-size: 24px;
+  }
+  #contact-icon{
     font-size: 30px;
+    height: 80px;
+    width: 80px;
   }
 
   #back-arrow {
