@@ -39,6 +39,9 @@
         .font-size-title {
             font-size: 38px;
         }
+        #arrows-mobile{
+            display: flex;
+        }
     
 }
 

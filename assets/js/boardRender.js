@@ -31,6 +31,10 @@ function renderTaskBodyHTML(id, IdOfTask, prioritySmall, editSubtasks) {
   return /*html*/ `           
     <div draggable="true" ondragstart="startDragging(${id})" onclick="openWindow(event, ${id}, ${IdOfTask})" id="task${id}" class="task-decoration">
         <div id="task-category${id}" class="task-category">${tasks[id]["category"]}</div>
+        <div id = "arrows-mobile">
+          <img id="arrow-mobile-up" onclick="changeProgressBackward(event, ${id})" class = "arrow-mobile" src="./assets/img/back_arrow.png">
+          <img id="arrow-mobile-down" onclick="changeProgressForward(event, ${id})" class = "arrow-mobile" src="./assets/img/back_arrow.png">
+        </div>
         <div class="task-title" id="task-title${id}">${tasks[id]["title"]}</div>
         <div id="task-description${id}">${tasks[id]["description"]}</div>
         <div class = "progress-bar d-none" id="progress-bar${id}"><div id="progress-bar-outside"><div class="progress-bar-inside" id="progress-bar-inside${id}"></div></div><span id="windowSubtask${id}"></span></div>
@@ -42,6 +46,25 @@ function renderTaskBodyHTML(id, IdOfTask, prioritySmall, editSubtasks) {
     </div>
   `
 }
+
+function changeProgressBackward(event, id){
+  event.stopPropagation();
+  if(tasks[id]['progress'] !== 1){
+    tasks[id]['progress'] = tasks[id]['progress'] - 1;
+    setElement("tasks", tasks);
+    addBoardInit();
+  }
+}
+
+function changeProgressForward(event, id){
+  event.stopPropagation();
+  if(tasks[id]['progress'] !== 4){
+    tasks[id]['progress'] = tasks[id]['progress'] + 1;
+    setElement("tasks", tasks);
+    addBoardInit();
+  }
+}
+
 
 function createTaskWindowHTML(taskId, subtasks, subtaskHTML, IdOfTask) {
   let prioritySmall = tasks[taskId]["urgency"];
