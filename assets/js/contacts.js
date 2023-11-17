@@ -10,10 +10,10 @@ function renderContacts() {
 
 
 function renderContactSection(index) {
-  docID("contact-column").innerHTML += renderContactSectionHTML(index); 
+  docID("contact-column").innerHTML += renderContactSectionHTML(index);
   docID("contact" + index).innerHTML = "";
-  for (let id = 0; id < contacts[index].length; id++) { 
-    colorIndex = updateColorIndex(colorIndex); 
+  for (let id = 0; id < contacts[index].length; id++) {
+    colorIndex = updateColorIndex(colorIndex);
     renderContactItem(index, id);
   }
 }
@@ -90,7 +90,7 @@ function cancelNewContact() {
   } else {
     docID(`add-contact-mask`).classList.add(`open-contact-hide`);
   }
-  animateCloseAddContact();  
+  animateCloseAddContact();
   emptyContactMask();
 }
 
@@ -211,12 +211,14 @@ function resetColorOfAllContactContainer() {
 
 
 function setColorOfSelectedContact(clickedId) {
-  const clickedContainer = docID("contact" + clickedId);
-  clickedContainer.style.backgroundColor = "#4589FF";
-  const clickedNameElement = clickedContainer.querySelector("#name");
-  const clickedMailElement = clickedContainer.querySelector("#mail");
-  clickedNameElement.style.color = "white";
-  clickedMailElement.style.color = "white";
+  if (typeof clickedId !== 'undefined') {
+    const clickedContainer = docID("contact" + clickedId);
+    clickedContainer.style.backgroundColor = "#4589FF";
+    const clickedNameElement = clickedContainer.querySelector("#name");
+    const clickedMailElement = clickedContainer.querySelector("#mail");
+    clickedNameElement.style.color = "white";
+    clickedMailElement.style.color = "white";
+  }
 }
 
 
@@ -350,6 +352,6 @@ function addClassIfBodyWidthLessThan900px() {
 }
 
 
-function validatePhoneNumber(phoneInput) { 
+function validatePhoneNumber(phoneInput) {
   phoneInput.value = phoneInput.value.replace(/[^0-9+/ ]/g, '');
 }
