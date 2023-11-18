@@ -1,10 +1,10 @@
 @media (max-width: 800px) {
     .epass {
-      width: 320px;
+      width: 405px;
     }
   
     .epass input {
-      width: 280px;
+      width: 380px;
     }
   
     #forget-con {
@@ -26,6 +26,11 @@
       top: 16px;
       left: 47px;
     }
+
+    .login-form {
+      width: 250px;
+      margin-top: 0;
+    }
   }
   
   @media (max-width: 650px) {
@@ -35,12 +40,8 @@
     #login-signup-con-responsive {
       display: inline-flex;
     }
-    .epass {
-      width: 220px;
-    }
-    .epass input {
-      width: 200px;
-    }
+  
+  
     #forget-con {
       margin-left: -64%;
     }
@@ -64,10 +65,10 @@
       padding: 48px 40px;
     }
     .epass {
-      width: 170px;
+      width: 260px;
     }
     .epass input {
-      width: 150px;
+      width: 220px;
     }
     #forget-con {
       margin-left: -40%;

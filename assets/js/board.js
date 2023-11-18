@@ -129,6 +129,9 @@ function handleKeyPress(event) {
 
 function openWindow(event, id, IdOfTask) {
   docID("task-window").classList.remove("d-none");
+  docID("task-area").style.position = "fixed";
+  docID("board-input").style.position = "fixed";
+  docID("task-window").style.paddingBottom = "100px";
   event.stopPropagation();
   window.scrollTo(0, 0);
   let backgroundElements = getBackgroundElements();
@@ -141,6 +144,8 @@ function openWindow(event, id, IdOfTask) {
 
 function closeWindow() {
   docID("task-window").classList.add("d-none");
+  docID("task-area").style.position = "static";
+  docID("board-input").style.position = "static";
   hideAddTaskMain();
 }
 

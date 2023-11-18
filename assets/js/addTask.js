@@ -279,7 +279,7 @@ function taskHiddenHide(element) {
         contactsOpen = true;
     }
     if (toggleCategories) {
-      categoriesOpen = true      
+      categoriesOpen = true;   
     }
 }
 
@@ -290,7 +290,7 @@ function taskHiddenHideElse(element) {
       contactsOpen = false;
     }
     if (toggleCategories) {
-      categoriesOpen = true;
+      categoriesOpen = false;
     }
 }
 

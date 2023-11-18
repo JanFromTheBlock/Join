@@ -79,7 +79,7 @@
 
 @media (max-width: 450px) {
   .add-task {
-    margin-left: calc(50% - 125px) !important;
+    margin-left: calc(50% - 137px) !important;
     padding-left: 0;
     left: 0;
   }
