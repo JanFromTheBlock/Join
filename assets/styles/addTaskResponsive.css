@@ -58,7 +58,7 @@
     width: 250px;
   }
   .add-task-to-board-close-button {
-    margin-left: 270px;
+    margin-left: 270px !important;
   }
   .add-task-to-board {
     width: 300px;
@@ -79,9 +79,20 @@
 
 @media (max-width: 450px) {
   .add-task {
-    margin-left: -328px;
+    margin-left: calc(50% - 125px) !important;
+    padding-left: 0;
+    left: 0;
   }
-  .add-task-button {
+
+  .add-task-to-board{
+    width: 100% !important;
+  }
+
+  .add-task-button-create-board{
+    margin-left: 80px !important;
+  }
+
+    .add-task-button {
     margin-left: -200px;
   }
 
