@@ -123,9 +123,9 @@ function addTaskRender() {
             </div>
               <div class="add-task-due-date">
                  <h2>Category</h2>
-                 <div class="add-task-select-contact-edit">
-                   <input autocomplete="off" onclick="showCategories()" required class="add-task-select-contact cursor-pointer" id="selectCategory" placeholder="Select Task category">
-                   <img id="categorySelectArrow" onclick="showCategories()" src="./assets/img/selectfieldArrow.png">
+                 <div class="add-task-select-contact-edit do-not-close2">
+                   <input autocomplete="off" onclick="showCategories(), doNotCloseWindow(event)" required class="add-task-select-contact cursor-pointer do-not-close2" id="selectCategory" placeholder="Select Task category">
+                   <img id="categorySelectArrow" class="do-not-close2" onclick="showCategories(), doNotCloseWindow(event)" src="./assets/img/selectfieldArrow.png">
                    <div class="add-task-placeholder-color-category">
                    <div id="taskCategoryColor" class="task-categorycolor d-none"></div>
                      <img class="d-none" id="placeholderColorCategory">

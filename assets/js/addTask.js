@@ -38,12 +38,14 @@ let subtaskStatus = [];
 let statusSubtask;
 let newsubtask;
 let toggleContacts = false;
+let toggleCategories = false;
 let subtaskCounter = 0;
 let firstName = [];
 let lastName = [];
 let contactcolors = [];
 let contactIds = [];
 let contactsOpen;
+let categoriesOpen;
 const contactStatusMap = new Map();
 let numberOfContactsToAdd = [];
 let numberOfColorsToAdd = [];
@@ -276,6 +278,9 @@ function taskHiddenHide(element) {
     if (toggleContacts) {
         contactsOpen = true;
     }
+    if (toggleCategories) {
+      categoriesOpen = true      
+    }
 }
 
 
@@ -283,6 +288,9 @@ function taskHiddenHideElse(element) {
   element.classList.add("add-task-hide-contacts");
     if (toggleContacts) {
       contactsOpen = false;
+    }
+    if (toggleCategories) {
+      categoriesOpen = true;
     }
 }
 
@@ -295,7 +303,9 @@ function showContactList(id) {
 
 
 function showCategories() {
+  toggleCategories = true
   toggleVisibility("showCategories");
+  toggleCategories = false;
   docID(`selectCategory`).classList.add(`hide-cursor`);
   showAddedCategory();
 }
@@ -376,6 +386,9 @@ function logDivID(event) {
   let selectedTxtElement = event.target;
   if (selectedTxtElement.id !== "do-not-close" && contactsOpen === true) {
     showContactList(0);
+  }
+  if (selectedTxtElement.id !== "do-not-close2" && categoriesOpen === true) {
+      showCategories();
   }
   selectedTxtElement = selectedTxtElement.parentNode;
 }
