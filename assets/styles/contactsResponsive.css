@@ -1,3 +1,14 @@
+/*responsive im HandyQuerformat*/
+@media (orientation: landscape) {
+  #add-contact-body {
+    background-color: white;
+  }
+
+  #background-add-contact {
+    height: 160vh;
+  }
+}
+
 @media (max-width: 1150px) {
   #contact-list {
     margin-left: 0;
