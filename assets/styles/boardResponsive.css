@@ -1,3 +1,11 @@
+
+/*responsive im HandyHochformat*/
+@media (orientation: portrait) {
+    #close-img {
+        margin-left: 90%;
+    }
+}
+
 @media (max-width: 1250px) {
     #task-area {
         margin-left: 35px;

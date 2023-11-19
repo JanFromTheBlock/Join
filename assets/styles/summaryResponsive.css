@@ -1,3 +1,25 @@
+/*responisve im HandyQuerformat*/
+@media only screen and (max-width: 915px) and (orientation: landscape) {
+  .summary {
+    height: 200vh!important;
+  }
+
+  #summary-con {
+    margin-top: 150px;
+  }
+
+  #sum-overview {
+    margin-bottom: 200px;
+  }
+}
+
+/*responsive im HandyHochformat*/
+@media only screen and (max-width: 415px) and (orientation: portrait) {
+.summary {
+  height: 100vh!important;
+}
+}
+
 @media (max-width: 1150px) {
     .summary {
     margin-left: 0;
@@ -62,6 +84,14 @@
   @media screen and (max-width: 500px) {
     #grtng-con {
       display: none;
+    }
+
+    .summary {
+      height: 100vh;
+    }
+
+    #sum-urgent-square-span {
+      padding-left: 20px;
     }
   }
 }

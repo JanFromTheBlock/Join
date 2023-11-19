@@ -1,3 +1,11 @@
+
+/*responsive im Querformat*/
+@media (orientation: landscape) {
+  #login-legal {
+    bottom: 75px;
+  }
+}
+
 @media (max-width: 800px) {
     .epass {
       width: 405px;
