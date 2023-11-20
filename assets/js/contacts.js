@@ -1,79 +1,24 @@
-function renderContacts() {
-  resetContactPage();
-  for (let i in contacts) {
-    if (contacts[i].length === 0) {
-      continue;
-    }
-    renderContactSection(i);
-  }
-}
-
-
-function renderContactSection(index) {
-  docID("contact-column").innerHTML += renderContactSectionHTML(index);
-  docID("contact" + index).innerHTML = "";
-  for (let id = 0; id < contacts[index].length; id++) {
-    colorIndex = updateColorIndex(colorIndex);
-    renderContactItem(index, id);
-  }
-}
-
-
-function renderContactSectionHTML(index) {
-  return /*html*/ `
-    <div id="letter-headline">${index}</div>
-    <div id="line"></div>
-    <div id="contact${index}"></div>
-  `
-}
-
-
-function renderContactItem(index, id) {
-  const { name, mail, color, contactId } = contacts[index][id];
-  const initials = calculateInitials(name);
-  docID("contact" + index).innerHTML += renderContactItemHTML(contactId, index, color, initials, name, mail, id); //start function to render the HTML code
-}
-
-
-function renderContactItemHTML(contactId, index, color, initials, name, mail, id) {
-  return /*html*/ ` 
-    <div class="contact" id="contact${contactId}" onclick="onclickContact(${contactId}); renderContactDisplay('${index}', ${id})">
-      <div class="contact-sign" id="contact-sign${contactId}" style="background-color: ${color}">${initials}</div>
-      <div id="contact-data">
-        <div id="name">${name}</div>
-        <div id="mail">${mail}</div>
-      </div>
-    </div>
-  `
-}
-
-
+/**
+ * Function to calculate initials from a name.
+ * @param {string} name - The name of the contact.
+ * @returns {string} The calculated initials.
+ */
 function calculateInitials(name) {
   let initials = name.replace(/[a-z]/g, "").replace(/\s/g, "");
   return initials[0] + initials.slice(-1);
 }
 
-
+/**
+ * Function to reset the contact page.
+ */
 function resetContactPage() {
   colorIndex = 0;
   docID("contact-column").innerHTML = "";
 }
 
-
-function renderContactDisplay(index, id) {
-  if (document.body.clientWidth < 900) {
-    docID("background-responsive").style.display = "block";
-  }
-  let element = contacts[index][id];
-  let name = element.name;
-  let initials = calculateInitials(name);
-  docID("contact-display").classList.remove("d-none");
-  docID("contact-display").innerHTML = "";
-  docID("contact-display").innerHTML += renderContactDisplayHTML(initials, name, element.contactId, element.mail, element.phone, element.color)
-  docID("contact-icon").style.backgroundColor = element.color;
-}
-
-
+/**
+ * Function to add a new contact.
+ */
 function addNewContact() {
   docID("background-add-contact").classList.remove("d-none");
   docID("background-add-contact").innerHTML = addNewContactHTML();
@@ -83,7 +28,9 @@ function addNewContact() {
   }, 100);
 }
 
-
+/**
+ * Function to cancel adding a new contact.
+ */
 function cancelNewContact() {
   if (docID(`add-contact-mask`) === null) {
     docID(`edit-contact-mask`).classList.add(`open-contact-hide`)
@@ -95,20 +42,27 @@ function cancelNewContact() {
 }
 
 
+/**
+ * Function to animate the closing of the add contact background.
+ */
 function animateCloseAddContact() {
   setTimeout(() => {
     docID("background-add-contact").classList.add("d-none");
   }, 325);
 }
 
-
+/**
+ * Function to empty the contact form.
+ */
 function emptyContactMask() {
   docID(`contact-name`).value = "";
   docID(`contact-mail`).value = "";
   docID(`contact-phone`).value = "";
 }
 
-
+/**
+ * Function to handle the creation of a new contact.
+ */
 async function newContact() {
   let contactData = gatherContactData();
   if (!contactData) return;
@@ -116,7 +70,10 @@ async function newContact() {
   ContactInitNew();
 }
 
-
+/**
+ * Function to gather contact data from the contact form.
+ * @returns {Object | null} Object with contact data or null if data is incomplete.
+ */
 function gatherContactData() {
   let name = docID('contact-name').value;
   let mail = docID('contact-mail').value;
@@ -127,14 +84,18 @@ function gatherContactData() {
   return (name && mail && phone) ? { name: name, mail: mail, phone: phone, color: color, contactId: contactId } : null;
 }
 
-
+/**
+ * Function to initialize a new contact.
+ */
 function ContactInitNew() {
   contactsInit();
   resetNewContactForm();
   contactAddedSuccesfully();
 }
 
-
+/**
+ * Function to reset the new contact form.
+ */
 function resetNewContactForm() {
   docID("background-add-contact").classList.add("d-none");
   docID(`contact-name`).value = "";
@@ -142,7 +103,9 @@ function resetNewContactForm() {
   docID(`contact-phone`).value = "";
 }
 
-
+/**
+ * Function to display a success message when a contact is added.
+ */
 function contactAddedSuccesfully() {
   let succesfully = docID(`contact-added-succesfully-animation`); // variablennamen kürzen
   succesfully.classList.remove(`contact-added-succesfully-hide`);
@@ -152,7 +115,10 @@ function contactAddedSuccesfully() {
   }, 2000);
 }
 
-
+/**
+ * Function to delete a contact.
+ * @param {string} contactId - The unique identifier of the contact to be deleted.
+ */
 function deleteContact(contactId) {
   for (let letter in contacts) {
     if (contacts.hasOwnProperty(letter)) {
@@ -168,7 +134,11 @@ function deleteContact(contactId) {
   console.log("Contact not found with contactId:", contactId);
 }
 
-
+/**
+ * Function to remove a contact from the contacts array.
+ * @param {Array} contactArray - The array of contacts.
+ * @param {number} index - The index of the contact to be removed.
+ */
 async function removeContact(contactArray, index) {
   contactArray.splice(index, 1);
   await setElement("contacts", contacts);
@@ -179,25 +149,36 @@ async function removeContact(contactArray, index) {
   docID("background-responsive").style.display = "none";
 }
 
-
+/**
+ * Function to change the border color of an input element.
+ * @param {HTMLElement} input - The input element.
+ */
 function changeBorderColor(input) {
   var inputOutside = input.parentNode;
   inputOutside.style.borderBottomColor = "#4086FF";
 }
 
-
+/**
+ * Function to reset the border color of an input element.
+ * @param {HTMLElement} input - The input element.
+ */
 function resetBorderColor(input) {
   var inputOutside = input.parentNode;
   inputOutside.style.borderBottomColor = "#D1D1D1";
 }
 
-
+/**
+ * Function to handle the click event on a contact.
+ * @param {string} clickedId - The ID of the clicked contact.
+ */
 function onclickContact(clickedId) {
   resetColorOfAllContactContainer()
   setColorOfSelectedContact(clickedId)
 }
 
-
+/**
+ * Function to reset the color of all contact containers.
+ */
 function resetColorOfAllContactContainer() {
   const contactContainers = document.querySelectorAll(".contact");
   contactContainers.forEach((container) => {
@@ -209,7 +190,10 @@ function resetColorOfAllContactContainer() {
   });
 }
 
-
+/**
+ * Function to set the color of the selected contact.
+ * @param {string} clickedId - The ID of the clicked contact.
+ */
 function setColorOfSelectedContact(clickedId) {
   if (typeof clickedId !== 'undefined') {
     const clickedContainer = docID("contact" + clickedId);
@@ -221,7 +205,15 @@ function setColorOfSelectedContact(clickedId) {
   }
 }
 
-
+/**
+ * Function to open the edit contact form.
+ * @param {string} contactId - The unique identifier of the contact to be edited.
+ * @param {string} name - The name of the contact.
+ * @param {string} mail - The email address of the contact.
+ * @param {string} phone - The phone number of the contact.
+ * @param {string} color - The color associated with the contact.
+ * @param {string} initials - The initials of the contact.
+ */
 function openEditContact(contactId, name, mail, phone, color, initials) {
   docID("background-add-contact").classList.remove("d-none");
   openEditContactHTML(contactId, initials);
@@ -230,7 +222,13 @@ function openEditContact(contactId, name, mail, phone, color, initials) {
   closeContactDisplay();
 }
 
-
+/**
+ * Function to fill input fields with contact data for editing.
+ * @param {string} name - The name of the contact.
+ * @param {string} mail - The email address of the contact.
+ * @param {string} phone - The phone number of the contact.
+ * @param {string} color - The color associated with the contact.
+ */
 function fillInputs(name, mail, phone, color) {
   docID("contact-name").value = name;
   docID("contact-mail").value = mail;
@@ -240,7 +238,9 @@ function fillInputs(name, mail, phone, color) {
   docID("create").style.marginLeft = "24px";
 }
 
-
+/**
+ * Function to animate the opening of the contact edit mask.
+ */
 function animateOpenContactMask() {
   docID(`edit-contact-mask`).classList.remove(`d-none`);
   setTimeout(() => {
@@ -248,7 +248,10 @@ function animateOpenContactMask() {
   }, 100);
 }
 
-
+/**
+ * Function to edit a contact.
+ * @param {string} contactId - The unique identifier of the contact to be edited.
+ */
 async function editContact(contactId) {
   const nameInput = docID("contact-name");
   const mailInput = docID("contact-mail");
@@ -269,7 +272,11 @@ async function editContact(contactId) {
   hideAddContactBackground();
 }
 
-
+/**
+ * Function to find a contact by its unique identifier.
+ * @param {string} contactId - The unique identifier of the contact to be found.
+ * @returns {Object} - Object containing the found contact and the old key.
+ */
 function findContactByKey(contactId) {
   let oldKey = null;
   let foundContact = null;
@@ -287,14 +294,25 @@ function findContactByKey(contactId) {
   return { foundContact, oldKey };
 }
 
-
+/**
+ * Function to update contact values with new information.
+ * @param {Object} contact - The contact object to be updated.
+ * @param {string} name - The updated name of the contact.
+ * @param {string} mail - The updated email address of the contact.
+ * @param {string} phone - The updated phone number of the contact.
+ */
 function updateContactValues(contact, name, mail, phone) {
   contact.name = name;
   contact.mail = mail;
   contact.phone = phone;
 }
 
-
+/**
+ * Function to move a contact to a new key in the contacts array.
+ * @param {string} oldKey - The old key of the contact.
+ * @param {string} newKey - The new key for the contact.
+ * @param {Object} foundContact - The contact object to be moved.
+ */
 function moveContactToNewKey(oldKey, newKey, foundContact) {
   if (newKey !== oldKey) {
     contacts[newKey] = contacts[newKey] || [];
@@ -306,25 +324,36 @@ function moveContactToNewKey(oldKey, newKey, foundContact) {
   }
 }
 
-
+/**
+ * Function to update contacts data after editing.
+ */
 async function updateContactsData() {
   await setElement("contacts", contacts);
   contactsInit();
 }
 
-
+/**
+ * Function to reset the contact form after editing.
+ * @param {HTMLElement} nameInput - The input field for the contact name.
+ * @param {HTMLElement} mailInput - The input field for the contact email.
+ * @param {HTMLElement} phoneInput - The input field for the contact phone number.
+ */
 function resetContactForm(nameInput, mailInput, phoneInput) {
   nameInput.value = "";
   mailInput.value = "";
   phoneInput.value = "";
 }
 
-
+/**
+ * Function to hide the add contact background.
+ */
 function hideAddContactBackground() {
   docID("background-add-contact").classList.add("d-none");
 }
 
-
+/**
+ * Function to close the contact display.
+ */
 function closeContactDisplay() {
   docID("contact-display").innerHTML = "";
   docID("background-responsive").style.display = "none";
@@ -337,9 +366,12 @@ function closeContactDisplay() {
     mailElement.style.color = "";
   });
 }
+
 window.addEventListener("resize", addClassIfBodyWidthLessThan900px);
 
-
+/**
+ * Function to add a class if the body width is less than 900px.
+ */
 function addClassIfBodyWidthLessThan900px() {
   if (document.body.clientWidth < 900) {
     var contactDisplay = docID("contact-display");
@@ -351,7 +383,10 @@ function addClassIfBodyWidthLessThan900px() {
   }
 }
 
-
+/**
+ * Function to validate a phone number input.
+ * @param {HTMLElement} phoneInput - The input field for the phone number.
+ */
 function validatePhoneNumber(phoneInput) {
   phoneInput.value = phoneInput.value.replace(/[^0-9+/ ]/g, '');
 }

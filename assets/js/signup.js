@@ -1,3 +1,6 @@
+/**
+ * Handles the process of creating a new user.
+ */
 async function newUser() {
     let getdata = await getElement('users');
     users = JSON.parse(getdata.replace(/'/g, "\""))
@@ -16,7 +19,12 @@ async function newUser() {
     transition();
 }
 
-
+/**
+ * Handles the visual changes and error messaging for non-matching passwords.
+ * @param {string} login - ID of the password input field.
+ * @param {string} other - ID of another input field.
+ * @param {string} span - ID of the span element for error messages.
+ */
 function notMatchPass(login, other, span) {
     docID(login).classList.add('red-line');
     docID(login).classList.remove('blue-line');
@@ -24,13 +32,17 @@ function notMatchPass(login, other, span) {
     docID(span).classList.remove('d-none');
 }
 
-
+/**
+ * Initiates a transition and displays a success message.
+ */
 function transition() {
     docID('signup-success-con').classList.remove('d-none');
     setTimeout(openIndex, 2000);
 }
 
-
+/**
+ * Opens the index.html page.
+ */
 function openIndex() {
     window.open('../../index.html', "_self");
 }

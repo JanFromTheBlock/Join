@@ -53,6 +53,12 @@ let numberOfIdsToAdd = [];
 let savedCategory;
 
 
+/**
+ * Counts the number of done tasks based on the provided index.
+ *
+ * @param {Object} index - The index to count done tasks from.
+ * @param {number} count - The initial count value.
+ */
 function countDoneTasks(index, count) {
   for (let key in index) {
     if (index.hasOwnProperty(key) && index[key] === 1) {
@@ -62,7 +68,11 @@ function countDoneTasks(index, count) {
   doneSubtask = count;
 }
 
-
+/**
+ * Checks and modifies the edit status for the given subtask ID.
+ *
+ * @param {number} id - The ID of the subtask to check.
+ */
 function editCheck(id) {
   if (edit === true) {
     if (jsonToEdit.subtaskStatus[id] === 1) {
@@ -71,7 +81,11 @@ function editCheck(id) {
   }
 }
 
-
+/**
+ * Checks if a subtask with the given ID is undefined and disables the corresponding checkbox.
+ *
+ * @param {number} id - The ID of the subtask to check.
+ */
 function undefinedCheck(id) {
   if (jsonToEdit && jsonToEdit.subtasks && jsonToEdit.subtasks[id] === undefined) {
     docID("subtaskCheckbox" + id).disabled = true;
@@ -79,7 +93,11 @@ function undefinedCheck(id) {
   }
 }
 
-
+/**
+ * Checks the existence of the `jsonToEdit` variable and disables the corresponding checkbox if it doesn't exist.
+ *
+ * @param {number} id - The ID of the subtask to check.
+ */
 function jsonToEditCheck(id) {
   if (jsonToEdit) {
   } else {
@@ -88,32 +106,13 @@ function jsonToEditCheck(id) {
   }
 }
 
-
-function changeColor(status) {
-  changeColorIdUrgent(docID(`urgent`), docID(`urgentLogo`), status)
-  changeColorIdMedium(docID(`medium`), docID(`mediumLogo`), status)
-  changeColorIdLow(docID(`low`), docID(`lowLogo`), status)
-}
-
-
-function changeColorIdUrgent(urgent, urgentLogo, status) {
-  if (status == "urgent") {
-    urgent.classList.add("change-color-urgent");
-    urgent.classList.add("clicked");
-    urgency = "./assets/img/urgentLogo.png";
-    urgentLogo.src = `./assets/img/urgentLogoWhite.png`;
-    mediumLogo.src = `./assets/img/mediumLogo.png`;
-    lowLogo.src = `./assets/img/lowLogo.png`;
-  }
-  else {
-    urgent.classList.remove("change-color-urgent");
-    urgent.classList.remove("clicked");
-  }
- 
-  
-}
-
-
+/**
+ * Changes the color for the "Medium" status and updates corresponding elements.
+ *
+ * @param {Object} medium - The "Medium" button element.
+ * @param {Object} mediumLogo - The "Medium" logo element.
+ * @param {string} status - The status to change the color.
+ */
 function changeColorIdMedium(medium, mediumLogo, status) {
   if (status == "medium") {
     medium.classList.add("change-color-medium");
@@ -129,22 +128,24 @@ function changeColorIdMedium(medium, mediumLogo, status) {
   
 }
 
-
-function changeColorIdLow(low, lowLogo, status) {
-  if (status == "low") {
-    low.classList.add("clicked");
-    low.classList.add("change-color-low");
-    urgency = "./assets/img/lowLogo.png";
-    lowLogo.src = `./assets/img/lowLogoWhite.png`;
-    urgentLogo.src = `./assets/img/urgentLogo.png`;
-    mediumLogo.src = `./assets/img/mediumLogo.png`;
-  } else {
-    low.classList.remove("clicked");
-    low.classList.remove("change-color-low");
-  }
- 
-}
-
+/**
+ * Creates a JSON object for a new task with provided details.
+ *
+ * @param {string} title - The title of the new task.
+ * @param {string} description - The description of the new task.
+ * @param {string} category - The category of the new task.
+ * @param {Object} subtasks - The subtasks of the new task.
+ * @param {number} subtasksLength - The length of subtasks.
+ * @param {Object} urgency - The urgency of the new task.
+ * @param {string} date - The due date of the new task.
+ * @param {Array<string>} firstName - The first names associated with the new task.
+ * @param {Array<string>} lastName - The last names associated with the new task.
+ * @param {string} categoryColor - The color of the category associated with the new task.
+ * @param {Array<number>} contactIds - The contact IDs associated with the new task.
+ * @param {Array<string>} contactcolors - The contact colors associated with the new task.
+ * @param {number} taskId - The ID of the new task.
+ * @returns {Object} - The created JSON object for the new task.
+ */
 function createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId) {
   return {
     title: title,
@@ -168,14 +169,18 @@ function createJsonTask(title, description, category, subtasks, subtasksLength, 
   };
 }
 
-
+/**
+ * Shows the "Task Added to Board" button.
+ */
 function showTaskAddedToBoardButton() {
   let taskAddedToBoard = docID(`taskAddedToBoard`);
   taskAddedToBoard.classList.remove(`d-none`, `task-added-to-board-hide`);
   taskAddedToBoard.classList.add(`task-added-to-board`);
 }
 
-
+/**
+ * Clears arrays used for caching contact information.
+ */
 function cacheOfArrays() { 
   firstName = [];
   lastName = [];
@@ -186,7 +191,9 @@ function cacheOfArrays() {
   subtaskCounter = 0;
 }
 
-
+/**
+ * Navigates to the board page after a delay.
+ */
 function jumpToBoard() {
   setTimeout(() => {
     window.location.href = "./board.html";
@@ -194,7 +201,9 @@ function jumpToBoard() {
   }, 2000);
 }
 
-
+/**
+ * Handles the creation of a new task or the editing of an existing task.
+ */
 async function newTask() {
   if (edit === true) {
     safeEditedTask();
@@ -203,7 +212,9 @@ async function newTask() {
   }
 }
 
-
+/**
+ * Handles the creation of a new task when not in edit mode.
+ */
 async function newTaskElse() {
   if (urgency === undefined)
     changeColor('low');
@@ -220,7 +231,11 @@ async function newTaskElse() {
   await setElement("tasks", tasks);
 }
 
-
+/**
+ * Creates a new task JSON object.
+ *
+ * @returns {Object} - The created JSON object for the new task.
+ */
 function newTaskJSONCreate() {
   let title = docID(`inputFieldTitle`).value;
   let date = docID(`inputDate`).value;
@@ -231,7 +246,12 @@ function newTaskJSONCreate() {
   return createJsonTask(title, description, category, subtasks, subtasksLength, urgency, date, firstName, lastName, categoryColor, contactIds, contactcolors, taskId);
 }
 
-
+/**
+ * Finds the highest task ID from an array of tasks.
+ *
+ * @param {Array<Object>} tasks - The array of tasks to find the highest ID from.
+ * @returns {number} - The highest task ID.
+ */
 function findHighestId(tasks) {
   let highestTaskId = 3;
   for (const task of tasks) {
@@ -242,7 +262,9 @@ function findHighestId(tasks) {
   return highestTaskId;
 }
 
-
+/**
+ * Clears input fields in the task creation form.
+ */
 function clearTaskMask() {
   let array = [`inputFieldTitle`, `description`, `selectContact`, `selectCategory`];
   for (let i = 0; i < array.length; i++) {
@@ -251,7 +273,11 @@ function clearTaskMask() {
   docID(`placeholderColorCategory`).classList.add(`d-none`);
 }
 
-
+/**
+ * Clears a task at the specified index.
+ *
+ * @param {number} i - The index of the task to clear.
+ */
 function clearTask(i) {
   tasks.splice(i, 1);
   subtasks.splice(i, 1);
@@ -259,7 +285,11 @@ function clearTask(i) {
   setElement("subtasks", subtasks);
 }
 
-
+/**
+ * Toggles the visibility of an element based on its ID.
+ *
+ * @param {string} elementId - The ID of the element to toggle.
+ */
 function toggleVisibility(elementId) {
   let element = docID(elementId);
   element.classList.remove("d-none");
@@ -272,7 +302,11 @@ function toggleVisibility(elementId) {
   }
 }
 
-
+/**
+ * Handles the visibility of the "Contacts" and "Categories" sections when not hidden.
+ *
+ * @param {Object} element - The element to handle visibility for.
+ */
 function taskHiddenHide(element) {
   element.classList.remove("add-task-hide-contacts");
     if (toggleContacts) {
@@ -283,7 +317,11 @@ function taskHiddenHide(element) {
     }
 }
 
-
+/**
+ * Handles the visibility of the "Contacts" and "Categories" sections when hidden.
+ *
+ * @param {Object} element - The element to handle visibility for.
+ */
 function taskHiddenHideElse(element) {
   element.classList.add("add-task-hide-contacts");
     if (toggleContacts) {
@@ -294,14 +332,20 @@ function taskHiddenHideElse(element) {
     }
 }
 
-
+/**
+ * Shows the contact list for the specified ID.
+ *
+ * @param {number} id - The ID of the contact list to show.
+ */
 function showContactList(id) {
   toggleContacts = true;
   toggleVisibility("showContacts" + id);
   toggleContacts = false;
 }
 
-
+/**
+ * Shows the categories section.
+ */
 function showCategories() {
   toggleCategories = true
   toggleVisibility("showCategories");
@@ -310,7 +354,11 @@ function showCategories() {
   showAddedCategory();
 }
 
-
+/**
+ * Gets the initials of a contact's name.
+ *
+ * @param {string} contact - The contact's name.
+ */
 function getInitials(contact) {
   let words = contact.split(" "); 
   let initialsOfName = ""; 
@@ -321,67 +369,11 @@ function getInitials(contact) {
 }
 
 
-function newCategory() {
-  docID(`categorySelectArrow`).classList.add(`d-none`);
-  docID(`editCategory`).classList.remove(`d-none`);
-  docID(`showCategories`).classList.add(`d-none`);
-  docID(`selectCategory`).placeholder = "New category name";
-  docID(`selectCategory`).classList.remove(`hide-cursor`);
-  docID(`selectCategory`).focus();
-}
-
-
-function pushCategoryToArray(categoryColor) {
-  let selectCategory = docID(`selectCategory`).value;
-  let category = { name: selectCategory, color: categoryColor };
-
-  if (!categories.includes(selectCategory)) {
-    categories.push(category);
-  } else {
-    alert(`Ist bereits vorhanden`);
-  }
-}
-
-
-function showAddedCategory() {
-  let showCategories = docID(`showCategories`);
-  for (let i = 0; i < categories.length; i++) {
-    const category = categories[i];
-    showCategories.innerHTML += /*html*/ `<span id="savedCategory${i}" onclick="chooseCategory(${i})" class="add-task-single-priority">
-    ${category[`name`]}<img src=${category["img"]}></span>`;
-  }
-}
-
-function addColorToCategory(id) {
-  placeholderColorCategory = docID(`placeholderColorCategory`);
-  placeholderColorCategory.src = `${id}`;
-  placeholderColorCategory.classList.remove(`d-none`);
-  let imgs = ['ellipsegreen.png', 'ellipseOrange.png', 'ellipseLightblue.png', 'ellipseRed.png', 'ellipseBlue.png', 'ellipseRosa.png'];
-  let color = ["#2AD300", "#FF7A00", "#1FD7C1", "#FF0000", "#0038FF", "#E200BE"];
-  addcolorLoop(imgs, color, id);
-}
-
-
-function addcolorLoop(imgs, color, id) {
-  for (let i = 0; i < imgs.length; i++) {
-    if (id.includes(imgs[i])) { categoryColor = color[i]; };
-  }
-}
-
-
-function chooseCategory(i) {
-  let savedCategoryImg = docID(`savedCategory${i}`).querySelector("img");
-  let placeholderColorCategory = docID("placeholderColorCategory");
-  placeholderColorCategory.src = savedCategoryImg.src;
-  docID(`selectCategory`).value = docID(`savedCategory${i}`).textContent;
-  docID("placeholderColorCategory").classList.remove(`d-none`);
-  docID(`selectCategory`).style.paddingLeft = "0";
-  docID(`showCategories`).classList.add(`d-none`);
-  docID(`showCategories`).classList.add(`add-task-hide-contacts`);
-  categoryId = i;
-}
-
-
+/**
+ * Logs the ID of a clicked div element.
+ *
+ * @param {Object} event - The click event.
+ */
 function logDivID(event) {
   let selectedTxtElement = event.target;
   if (selectedTxtElement.id !== "do-not-close" && contactsOpen === true) {

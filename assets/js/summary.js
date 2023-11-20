@@ -1,3 +1,6 @@
+/**
+ * Renders the greeting message based on the current time of day and user status.
+ */
 function greetingNameRender() {
     let greeting = sumGreeting();
     if (user == "Guest") {
@@ -13,13 +16,17 @@ function greetingNameRender() {
     }
 }
 
-
+/**
+ * Calls functions related to rendering the big buttons and urgent date screen.
+ */
 function sumBigBtn() {
     urgentSquareButton();
     urgentDateScreenRender();
 }
 
-
+/**
+ * Renders the urgent square button with the number of urgent tasks.
+ */
 function urgentSquareButton() {
     let urgentNr = sumAmout(
         "./assets/img/urgentLogo.png", "urgency");
@@ -36,7 +43,9 @@ function urgentSquareButton() {
     `
 }
 
-
+/**
+ * Renders the urgent date screen with the upcoming deadline.
+ */
 function urgentDateScreenRender() {
     let date = findMostUrgentDate(tasks);
     let text = "Upcoming Deadline";
@@ -46,7 +55,11 @@ function urgentDateScreenRender() {
     `
 }
 
-
+/**
+ * Finds the most urgent date among tasks.
+ * @param {Array} tasks - Array of tasks.
+ * @returns {string} - The most urgent date.
+ */
 function findMostUrgentDate(tasks) {
     let earliestDate = null;
 
@@ -60,7 +73,9 @@ function findMostUrgentDate(tasks) {
     return earliestDate;
 }
 
-
+/**
+ * Renders the square button for a specific category.
+ */
 function squareButtonRender() {
     let todonr = sumAmout("1", "progress");
     docID('square-button').innerHTML = /*html*/`
@@ -76,7 +91,9 @@ function squareButtonRender() {
     `
 }
 
-
+/**
+ * Renders the summary overview section with various categories.
+ */
 function sumOverviewRender() {
     let lower = ["Task in <br>Board", "Task in <br>Progress", "Awaiting <br>Feedback", "Tasks <br>Done"];
     let amount = [tasks.length, sumAmout("2", "progress"), sumAmout("3", "progress"), sumAmout("4", "progress")];
@@ -98,7 +115,12 @@ function sumOverviewRender() {
     }
 }
 
-
+/**
+ * Counts the number of tasks with a specific property value.
+ * @param {string} position - The property value to count.
+ * @param {string} id - The property name.
+ * @returns {number} - The count of tasks with the specified property value.
+ */
 function sumAmout(position, id){
     count = 0;
     for (let i = 0; i < tasks.length; i++) {
@@ -109,7 +131,10 @@ function sumAmout(position, id){
     return count
 }
 
-
+/**
+ * Generates a greeting message based on the time of day.
+ * @returns {string} - The generated greeting message.
+ */
 function sumGreeting() {
     date = new Date;
     hour = date.getHours();
@@ -125,4 +150,3 @@ function sumGreeting() {
         return "good evening"
     }
 }
-

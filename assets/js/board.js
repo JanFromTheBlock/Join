@@ -11,7 +11,9 @@ let doneSubtask = 0;
 let subtasksWereChecked
 let zero = true;
 
-
+/**
+ * Function to render the board input area and task areas.
+ */
 function addBoardRender() {
   renderBoardInput();
   renderTaskAreas();
@@ -20,13 +22,9 @@ function addBoardRender() {
   loadTasks();
 }
 
-
-function renderBoardInput() {
-  docID("board").innerHTML = "";
-  docID("board").innerHTML += renderBoardInputHTML();
-}
-
-
+/**
+ * Function to load tasks and render them on the board.
+ */
 function loadTasks() {
   emptyTaskDivs();
   for (let i = 0; i < tasks.length; i++) {
@@ -38,7 +36,12 @@ function loadTasks() {
   findEmptyTaskAreas();
 }
 
-
+/**
+ * Function to get the initials of a contact's name.
+ * @param {string} firstName - The first name of the contact.
+ * @param {string} lastName - The last name of the contact.
+ * @returns {string} The initials of the contact's name.
+ */
 function getInitialsTask(firstName, lastName) {
   if (lastName) {
     let initials = firstName.charAt(0) + lastName.charAt(0);
@@ -49,7 +52,9 @@ function getInitialsTask(firstName, lastName) {
   }
 }
 
-
+/**
+ * Function to find empty task areas and display a message.
+ */
 function findEmptyTaskAreas() {
   for (let i = 0; i < taskTitles.length; i++) {
     let progressTitle = taskNames[i];
@@ -61,31 +66,44 @@ function findEmptyTaskAreas() {
   }
 }
 
-
+/**
+ * Function to empty task divs.
+ */
 function emptyTaskDivs() {
   for (let i = 1; i < taskTitles.length +1; i++) {
     docID(`tasks${i}`).innerHTML = "";
   }
 }
 
-
+/**
+ * Function to start dragging a task.
+ * @param {string} element - The ID of the dragged element.
+ */
 function startDragging(element) {
   currentDraggedElement = element;
 }
 
-
+/**
+ * Function to allow dropping of a dragged element.
+ * @param {Event} ev - The drop event.
+ */
 function allowDrop(ev) {
   ev.preventDefault();
 }
 
-
+/**
+ * Function to move a task to a specified progress area.
+ * @param {string} progress - The progress area to move the task to.
+ */
 function moveTo(progress) {
   tasks[currentDraggedElement]["progress"] = progress;
   setElement("tasks", tasks);
   addBoardRender();
 }
 
-
+/**
+ * Function to filter tasks based on the search text.
+ */
 function filterTasks() {
   const search = getSearchText();
   emptyTaskDivs();
@@ -101,12 +119,10 @@ function filterTasks() {
   findEmptyTaskAreas();
 }
 
-
-function getSearchText() {
-  return docID("input").value.toLowerCase();
-}
-
-
+/**
+ * Function to render a task on the board.
+ * @param {number} id - The ID of the task.
+ */
 function renderTask(id) {
   renderTaskBody(id);
   renderSubtasks(id);
@@ -114,42 +130,21 @@ function renderTask(id) {
   renderCategoryColor(id);
 }
 
-
-function clearInput() {
-  docID("input").value = "";
-}
-
-
+/**
+ * Function to handle key presses, specifically the Enter key.
+ * @param {KeyboardEvent} event - The key press event.
+ */
 function handleKeyPress(event) {
   if (event.key === "Enter") {
     clearInput();
   }
 }
 
-
-function openWindow(event, id, IdOfTask) {
-  docID("task-window").classList.remove("d-none");
-  docID("task-area").style.position = "fixed";
-  docID("board-input").style.position = "fixed";
-  docID("task-window").style.paddingBottom = "100px";
-  event.stopPropagation();
-  window.scrollTo(0, 0);
-  let backgroundElements = getBackgroundElements();
-  adjustBackgroundElements(backgroundElements);
-  renderWindow(id, IdOfTask);
-  openedTask = id;
-  subtaskStatus = [];
-}
-
-
-function closeWindow() {
-  docID("task-window").classList.add("d-none");
-  docID("task-area").style.position = "static";
-  docID("board-input").style.position = "static";
-  hideAddTaskMain();
-}
-
-
+/**
+ * Function to render the task window with details.
+ * @param {number} id - The ID of the task.
+ * @param {number} IdOfTask - The ID of the task.
+ */
 function renderWindow(id, IdOfTask) {
   renderStructureOfTheWindow(id, IdOfTask);
   addColorOfTheCategory(id);
@@ -157,37 +152,19 @@ function renderWindow(id, IdOfTask) {
   renderContactsToWindow(id);
 }
 
-
+/**
+ * Function to add the color of the category to the task window.
+ * @param {number} id - The ID of the task.
+ */
 function addColorOfTheCategory(id) {
   let color = tasks[id]["category-color"];
   docID("window-category" + id).style.backgroundColor = color;
 }
 
-
-function renderPriorityToTheWindow(id) {
-  addUrgencyImage(id);
-  addUrgencyColor(id);
-}
-
-
-function addUrgencyImage(id) {
-  docID("window-contact-img").src = tasks[id]["urgency"];
-}
-
-
-function addUrgencyColor(id) {
-  if (tasks[id]["urgency"] === "low") {
-    docID("window-priority-inside").style.backgroundColor = "#CBFFC2";
-  }
-  if (tasks[id]["urgency"] === "medium") {
-    docID("window-priority-inside").style.backgroundColor = "#FFEBB9";
-  }
-  if (tasks[id]["urgency"] === "urgent") {
-    docID("window-priority-inside").style.backgroundColor = "#FFD2D2";
-  }
-}
-
-
+/**
+ * Function to delete a task.
+ * @param {number} id - The ID of the task.
+ */
 function deleteTask(id) {
   tasks.splice(id, 1);
   subtasks.splice(id, 1); 
@@ -197,12 +174,10 @@ function deleteTask(id) {
   closeWindow();
 }
 
-
-function changeDeleteImage(isHovering) {
-  docID("delete-button").src = isHovering ? "./assets/img/delete_hover.png" : "./assets/img/delete.png";
-}
-
-
+/**
+ * Function to open the add task section.
+ * @param {number} IdOfTask - The ID of the task.
+ */
 function openAddTask(IdOfTask) {
   windowscrollToTop();
   let backgroundElements = getBackgroundElements();
@@ -217,12 +192,17 @@ function openAddTask(IdOfTask) {
   }
 }
 
-
+/**
+ * Function to scroll to the top of the window.
+ */
 function windowscrollToTop() {
   window.scrollTo(0, 0);
 }
 
-
+/**
+ * Function to get the background elements.
+ * @returns {Object} An object containing background elements.
+ */
 function getBackgroundElements() {
   return {
     backgroundBoard: docID(`board`),
@@ -231,18 +211,11 @@ function getBackgroundElements() {
   };
 }
 
-
-function adjustBackgroundElements(elements) {
-  for (const key in elements) {
-    if (elements.hasOwnProperty(key)) {
-      const element = elements[key];
-      element.classList.add(`decrease-opacity`);
-      element.classList.remove(`full-opacity`);
-    }
-  }
-}
-
-
+/**
+ * Function to toggle the display of the add task section.
+ * @param {HTMLElement} addTaskUnder - The element representing the add task section.
+ * @param {HTMLElement} addTaskButtonToBoard - The element representing the add task button.
+ */
 function toggleAddTaskDisplay(addTaskUnder, addTaskButtonToBoard) {
   addTaskUnder.classList.remove(`d-none`);
   setTimeout(() => {
@@ -251,7 +224,10 @@ function toggleAddTaskDisplay(addTaskUnder, addTaskButtonToBoard) {
   }, 100);
 }
 
-
+/**
+ * Function to update styles for the board body.
+ * @param {HTMLElement} boardBody - The element representing the board body.
+ */
 function updateBoardBodyStyles(boardBody) {
   boardBody.style.backgroundAttachment = "fixed";
   boardBody.style.overflow = "hidden";
@@ -259,13 +235,19 @@ function updateBoardBodyStyles(boardBody) {
   board.classList.add(`overflowY`);
 }
 
-
+/**
+ * Function to set the progress of the task being added.
+ * @param {number} IdOfTask - The ID of the task.
+ */
 function setProgress(IdOfTask) {
   progress = IdOfTask;
   edit = false;
 }
 
-
+/**
+ * Function to handle editing an existing task.
+ * @param {number} IdOfTask - The ID of the task being edited.
+ */
 function handleEditTask(IdOfTask) {
   findJSON(IdOfTask, tasks)
   setEditTaskUI(jsonToEdit);
@@ -276,7 +258,10 @@ function handleEditTask(IdOfTask) {
   setEditMode();
 }
 
-
+/**
+ * Function to set the UI for editing a task.
+ * @param {Object} jsonToEdit - The JSON object representing the task being edited.
+ */
 function setEditTaskUI(jsonToEdit) {
   docID("add-edit-task").innerHTML = "Edit Task";
   docID("inputFieldTitle").value = jsonToEdit.title;
@@ -287,7 +272,10 @@ function setEditTaskUI(jsonToEdit) {
   docID("description").value = jsonToEdit.description;
 }
 
-
+/**
+ * Function to set the priority of the task being edited.
+ * @param {string} priority - The urgency/priority of the task.
+ */
 function setTaskPriority(priority) {
   const priorityMap = {
     "./assets/img/urgentLogo.png": "urgent",
@@ -299,12 +287,11 @@ function setTaskPriority(priority) {
   }
 }
 
-
-function setEditMode() {
-  docID("addTaskButtonToBoard").innerHTML = "Edit Task";
-}
-
-
+/**
+ * Function to find a JSON object by task ID.
+ * @param {number} IdOfTask - The ID of the task.
+ * @param {Array} tasks - An array of tasks.
+ */
 function findJSON(IdOfTask, tasks) {
   for (let i = 0; i < tasks.length; i++) {
     if (tasks[i].taskId === IdOfTask) {
@@ -313,7 +300,9 @@ function findJSON(IdOfTask, tasks) {
   }
 }
 
-
+/**
+ * Function to close the add task section.
+ */
 function closeAddTaskToBoard() {
   let addTask = docID(`addTask`);
   let addTaskButtonToBoard = docID(`addTaskButtonToBoard`);
@@ -323,15 +312,11 @@ function closeAddTaskToBoard() {
   resetAddTaskMask();
 }
 
-function hideAddTaskMain() {
-  let backgroundArray = [docID(`board`), docID(`nav`), docID(`header`) ]
-  for (let i = 0; i < backgroundArray.length; i++) {
-    backgroundArray[i].classList.add(`full-opacity`);
-    backgroundArray[i].classList.remove(`decrease-opacity`);
-  }
-}
-
-
+/**
+ * Function to hide the add task section at the board.
+ * @param {HTMLElement} addTask - The element representing the add task section.
+ * @param {HTMLElement} addTaskButtonToBoard - The element representing the add task button.
+ */
 function hideAddTaskAtBoard(addTask, addTaskButtonToBoard){
   boardBody.style.backgroundAttachment = "initial";
   boardBody.style.overflow = "visible";
@@ -343,7 +328,9 @@ function hideAddTaskAtBoard(addTask, addTaskButtonToBoard){
   }, 325);
 }
 
-
+/**
+ * Function to reset the add task section.
+ */
 function resetAddTaskMask(){
   contactStatusMap.clear();
   numberOfContactsToAdd = [];
@@ -360,7 +347,9 @@ function resetAddTaskMask(){
   jsonToEdit = undefined;
 }
 
-
+/**
+ * Function to save the edited task.
+ */
 function safeEditedTask() {
   edit = true;
   jsonToEdit.title = docID("inputFieldTitle").value;
@@ -381,7 +370,9 @@ function safeEditedTask() {
   saveAndClearEditedTask();
 }
 
-
+/**
+ * Function to save and clear the edited task.
+ */
 function saveAndClearEditedTask(){
   setElement("tasks", tasks);
   doneSubtask = '';
@@ -391,7 +382,9 @@ function saveAndClearEditedTask(){
   jsonToEdit = undefined;
 }
 
-
+/**
+ * Function to set up the input field for subtasks.
+ */
 function setupInputField(){
   const inputField = docID('inputSubtask');
   if (inputField) {

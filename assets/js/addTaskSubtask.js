@@ -1,3 +1,9 @@
+
+/**
+ * Displays the subtasks for a given task.
+ *
+ * @param {number} id - The ID of the task. If undefined, a new subtask is assumed.
+ */
 function showSubtasks(id) {
     if (id === undefined) {
         id = subtaskCounter;
@@ -8,7 +14,11 @@ function showSubtasks(id) {
     checkSubtaskCheckbox(id);
 }
 
-
+/**
+ * Checks the state of the subtask checkbox and performs related actions.
+ *
+ * @param {number} id - The ID of the subtask.
+ */
 function checkSubtaskCheckbox(id) {
     docID(`inputSubtask`).value = "";
     setElement("subtasks", subtasks);
@@ -18,7 +28,9 @@ function checkSubtaskCheckbox(id) {
     jsonToEditCheck(id);
 }
 
-
+/**
+ * Checks if subtasks were checked and updates accordingly.
+ */
 function subtasksWereCheckedCheck() {
     if (subtasksWereChecked === true) {
         checkSubtasks();
@@ -26,7 +38,11 @@ function subtasksWereCheckedCheck() {
     }
 }
 
-
+/**
+ * Checks the status of a subtask.
+ *
+ * @param {number} id - The ID of the subtask.
+ */
 function checkStatusSubtask(id) {
     if (edit === false || newsubtask === true) {
         statusSubtask = 0;
@@ -36,6 +52,11 @@ function checkStatusSubtask(id) {
     newsubtask = false;
 }
 
+/**
+ * Renders the subtask area by adding HTML to the DOM.
+ *
+ * @param {number} id - The ID of the subtask.
+ */
 function renderSubtaskArea(id) {
     let subtaskArea = docID(`subTaskArea`);
     let inputSubtask = docID(`inputSubtask`).value;
@@ -46,7 +67,13 @@ function renderSubtaskArea(id) {
     subtaskCounter++
 }
 
-
+/**
+ * Generates HTML for the subtask area.
+ *
+ * @param {number} id - The ID of the subtask.
+ * @param {string} inputSubtask - The content of the subtask.
+ * @returns {string} - The HTML representation of the subtask area.
+ */
 function renderSubtaskAreaHTML(id, inputSubtask) {
     return /*html*/ `
     <div id="subtask${id}" class="subTaskArea subtask${id}">
@@ -62,14 +89,22 @@ function renderSubtaskAreaHTML(id, inputSubtask) {
     `;
 }
 
-
+/**
+ * Deletes a subtask.
+ *
+ * @param {number} id - The ID of the subtask to be deleted.
+ */
 function deleteSubtask(id) {
     subtasks.splice(id, 1);
     subtaskStatus.splice(id, 1);
     docID("subtask" + id).classList.add("d-none");
   }
   
-  
+  /**
+ * Renames a subtask.
+ *
+ * @param {number} id - The ID of the subtask to be renamed.
+ */
   function renameSubtask(id) {
     docID("inputSubtask").value = docID("labelForSubtask" + id).innerHTML;
     deleteSubtask(id);

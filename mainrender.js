@@ -2,7 +2,10 @@ let menuId = ["menu-summary", "menu-board", "menu-add", "menu-contacts"];
 addTaskInitClicked = false;
 addBoardInitClicked = false;
 
-
+/**
+ * Renders the header with the project title, logo, help button, and user information.
+ * Also includes the dropdown menu for legal notes and logout.
+ */
 function headerRender() {
   docID("header").innerHTML = /*html*/ `
         <img class="header-img" src="./assets/img/logo624.png">
@@ -26,14 +29,18 @@ function headerRender() {
   oneLetter();
 }
 
-
+/**
+ * Adds a CSS class to the user name element if it contains only one letter.
+ */
 function oneLetter() {
   if (userInitial.length == 1) {
     docID('header-user-name').classList.add('one-letter');
   }
 }
 
-
+/**
+ * Renders the navigation bar with menu options and legal information links.
+ */
 function navRender() {
   docID("nav").innerHTML = /*html*/ `
         <div id="menu" class="menu"></div>
@@ -52,6 +59,9 @@ function navRender() {
   menuResponsiveRender();
 }
 
+/**
+ * Renders menu options dynamically based on menu IDs, URLs, names, and images.
+ */
 function menuRender() {
   docID("menu").innerHTML = "";
   let urls = [
@@ -73,7 +83,9 @@ function menuRender() {
   }
 }
 
-
+/**
+ * Renders responsive menu options dynamically based on URLs, images, and names.
+ */
 function menuResponsiveRender() {
   docID('menu-responsive').innerHTML = "";
   let urls = ["./summary.html", "./board.html", "./addTask.html", "./contacts.html"];
@@ -87,7 +99,11 @@ function menuResponsiveRender() {
   }
 }
 
-
+/**
+ * Highlights the active menu option based on the provided ID.
+ *
+ * @param {string} id - The ID of the active menu option.
+ */
 function activeSite(id) {
   for (let i = 0; i < menuId.length; i++) {
     if (menuId[i] == id) {
@@ -98,7 +114,9 @@ function activeSite(id) {
   }
 }
 
-
+/**
+ * Renders the "Add Task" form, including input fields for task details, contacts, due date, category, priority, and description.
+ */
 function addTaskRender() {
   progress = 1;
   let addTask = document.getElementById(`addTask`);
@@ -169,7 +187,9 @@ function addTaskRender() {
   docID('inputDate').min = new Date().toISOString().split("T")[0];
 }
 
-
+/**
+ * Modifies the rendering options for the "Add Task" form based on initialization flags.
+ */
 function addTaskRenderOption() {
   let addTaskUnderDiv = document.getElementById(`addTaskUnderDiv`);
   let taskTitle = document.getElementById(`taskTitle`);
@@ -188,7 +208,11 @@ function addTaskRenderOption() {
   setupInputField();
 }
 
-
+/**
+ * Populates the contacts section in the "Add Task" form with available contacts.
+ *
+ * @param {number} id - The ID of the contacts section.
+ */
 function addContactsToTasks(id) {
   showContacts = docID('showContacts' + id);
   showContacts.innerHTML = '';
@@ -200,7 +224,13 @@ function addContactsToTasks(id) {
   addContactsToTasksName(nameList, colorList, idList, id);
 }
 
-
+/**
+ * Retrieves contact information and populates the contacts section in the "Add Task" form.
+ *
+ * @param {Array<string>} nameList - List of contact names.
+ * @param {Array<string>} colorList - List of contact colors.
+ * @param {Array<number>} idList - List of contact IDs.
+ */
 function addContactsToTasksProperty(nameList, colorList, idList) {
   for (const letter in contacts) {
     if (contacts.hasOwnProperty(letter)) {
@@ -213,7 +243,14 @@ function addContactsToTasksProperty(nameList, colorList, idList) {
   }
 }
 
-
+/**
+ * Renders contacts in the "Add Task" form based on name, initials, color, and contact ID.
+ *
+ * @param {Array<string>} nameList - List of contact names.
+ * @param {Array<string>} colorList - List of contact colors.
+ * @param {Array<number>} idList - List of contact IDs.
+ * @param {number} id - The ID of the contacts section.
+ */
 function addContactsToTasksName(nameList, colorList, idList, id) {
   for (let i = 0; i < nameList.length; i++) {
     const contactName = nameList[i];
