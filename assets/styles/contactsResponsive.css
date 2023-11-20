@@ -3,10 +3,6 @@
   #add-contact-body {
     background-color: white;
   }
-
-  #background-add-contact {
-    height: 160vh;
-  }
 }
 
 @media (max-width: 1150px) {
