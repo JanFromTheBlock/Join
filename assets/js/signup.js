@@ -9,7 +9,7 @@ async function newUser() {
     let newPass = docID('signup-pass').value;
     let confirmPass = docID('signup-pass-input').value;
     if (newPass != confirmPass) {
-        notMatchPass('signup-pass-confirm', 'sigup-pass-con', 'not-match-span');
+        notMatchPass('signup-pass-confirm', 'signup-pass-con', 'not-match-span');
         return;
     }
     let newUser = {'name': newName, 'email':newEmail, 'pass': newPass, 'tel': ""};

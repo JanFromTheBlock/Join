@@ -3,15 +3,21 @@
 }
 
 .login-con {
-   height: 111vh;
+   height: 100vh;
   }
 
 /*Responsive*/
 
+@media (orientation: landscape) {
+  .signup-form {
+    margin-top: 200px!important;
+  }
+}
+
 @media (max-width: 1100px) {
   .signup-form {
     width: 350px;
-    margin-top: 55px;
+    margin-top: -140px;
   }
 
   .epass {

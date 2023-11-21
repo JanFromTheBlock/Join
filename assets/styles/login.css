@@ -64,7 +64,7 @@
   width: 240px;
   height: 35px;
   flex-shrink: 0;
-  bottom: -260px;
+  bottom: 0;
 }
 
 /* the links for legal policy login and sign up page*/
@@ -196,8 +196,8 @@
   display: inline-flex;
   align-items: center;
   position: absolute;
-  top: 35px;
-  right: 106px;
+  top: 10px;
+  right: 100px;
   gap: 35px;
 }
 
