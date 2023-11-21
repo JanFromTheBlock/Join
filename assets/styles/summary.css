@@ -5,7 +5,7 @@
 .summary {
     flex-direction: column;
     margin-top: 97px;
-    height: calc(100vh - 97px);
+    height: 110vh;
     margin-left: 232px;
     gap: 83px;
 }

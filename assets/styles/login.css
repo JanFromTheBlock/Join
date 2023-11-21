@@ -64,7 +64,7 @@
   width: 240px;
   height: 35px;
   flex-shrink: 0;
-  bottom: 42px;
+  bottom: -260px;
 }
 
 /* the links for legal policy login and sign up page*/
@@ -111,7 +111,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
 }
 
 /* the headline text for all pages in login section.*/
@@ -196,8 +196,8 @@
   display: inline-flex;
   align-items: center;
   position: absolute;
-  top: 67px;
-  right: 86px;
+  top: 35px;
+  right: 106px;
   gap: 35px;
 }
 

@@ -1,12 +1,5 @@
 
-/*responsive im Querformat*/
-@media (orientation: landscape) {
-  #login-legal {
-    bottom: 75px;
-  }
-}
-
-@media (max-width: 800px) {
+@media (max-width: 1100px) {
     .epass {
       width: 405px;
     }
@@ -20,6 +13,10 @@
       flex-direction: column-reverse;
       margin-left: -70%;
     }
+
+    #login-form {
+      margin-top: 254px;
+    }
   
     #login-btn-con {
       gap: 21px;
@@ -32,7 +29,7 @@
       height: 67px;
       width: auto;
       top: 16px;
-      left: 47px;
+      left: 23px;
     }
 
     .login-form {
@@ -49,7 +46,10 @@
       display: inline-flex;
     }
   
-  
+    .login-legal {
+      bottom: -200px;
+    }
+
     #forget-con {
       margin-left: -64%;
     }
