@@ -37,11 +37,20 @@
       margin-top: 0;
     }
   }
+
+  @media (max-width: 750px) {
+  #login-signup-con button {
+    padding: 5px 8px;
+    font-size: 18px;
+  }
+}
+
   
   @media (max-width: 650px) {
     #login-signup-con {
       display: none;
     }
+    
     #login-signup-con-responsive {
       display: inline-flex;
     }

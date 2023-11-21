@@ -7,6 +7,7 @@
     <title>Sign up</title>
     <link rel="stylesheet" href="./assets/styles/style.css">
     <link rel="stylesheet" href="./assets/styles/login.css">
+    <link rel="stylesheet" href="./assets/styles/signup.css">
     <link rel="stylesheet" href="./assets/fontello-16a74537/css/aste.css">
     <link rel="stylesheet" href="./assets/fontello-420fc6fa/css/aste.css">
     <link rel="icon" type="image/x-icon" href="./assets/img/favicon_white.png">
@@ -35,8 +36,8 @@
                     <input id="signup-email" type="email" required placeholder="Email">
                     <img src="./assets/img/mail-icon.svg">
                 </div>
-                <div id="sigup-pass-con" class="epass">
-                    <input id="signup-pass" type="password" required placeholder="Password" onfocusin="passChange('sigup-pass-con','signup-pass-img', 'not-match-span', 'signup-pass-confirm')" onfocusout="passOutChange('signup-pass', 'sigup-pass-con','signup-pass-img')" oninput="passAsterik('signup-pass', 'signup-pass-img')">
+                <div id="signup-pass-con" class="epass">
+                    <input id="signup-pass" type="password" required placeholder="Password" onfocusin="passChange('signup-pass-con','signup-pass-img', 'not-match-span', 'signup-pass-confirm')" onfocusout="passOutChange('signup-pass', 'signup-pass-con','signup-pass-img')" oninput="passAsterik('signup-pass', 'signup-pass-img')">
                     <img id="signup-pass-img" src="./assets/img/lock-icon.svg" onclick="passVisibility('signup-pass', 'signup-pass-img' )">
                 </div>
                 <div id="signup-pass-confirm" class="epass">
