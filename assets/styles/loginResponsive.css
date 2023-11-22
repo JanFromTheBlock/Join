@@ -59,6 +59,7 @@
 
   #login-signup-con-responsive {
     display: inline-flex;
+    margin-bottom: 80px;
   }
 
   #forget-con {
