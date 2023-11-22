@@ -121,3 +121,14 @@
     margin-left: 45px !important;
   }
 }
+
+@media (max-height: 600px) {
+  .login-legal{
+    position: unset;
+  }
+
+  .login-con{
+    height: 100%;
+    padding-bottom: 250px;
+  }
+}
