@@ -1,5 +1,5 @@
 
-@media (orientation: landscape) {
+@media (orientation: landscape) and (max-heigth: 500px){
   #login-form {
     margin-top: 300px!important;
   }
@@ -31,6 +31,7 @@
   }
   .login-btn {
     padding: 10px 61px;
+    width: 100%;
   }
   .login-brand {
     height: 67px;
