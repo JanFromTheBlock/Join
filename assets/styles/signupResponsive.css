@@ -62,7 +62,7 @@
   
   @media (max-width: 450px) {
       .signup-form {
-          width: 255px;
+          width: 300px;
         }
   
         #signup-name {
