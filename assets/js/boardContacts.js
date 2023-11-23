@@ -44,9 +44,14 @@ function renderContactSymbol(contactArea, initials, color, id, contactIndex) {
 function renderContactFilterArea(id) {
     const contactArea = docID("contact-area" + id);
     contactArea.innerHTML = "";
-    for (let i = 0; i < tasks[id]["contact-firstname"].length; i++) {
-        contactArea.innerHTML += createContactHTML(i + 1, getContactInitials(id, i));
-        setContactBackgroundColor(i + 1, tasks[id]["contact-color"][i]);
+    for (let i = 0; i < tasks[id]["contact-firstname"].length && i < 4; i++) {
+        if (i == 3) {
+            let furtherContacts = tasks[id]["contact-firstname"].length - 2;
+            docID(id + 'span3').innerHTML = /*html*/` + ${furtherContacts}`
+        } else {
+            contactArea.innerHTML += createContactHTML(i + 1, getContactInitials(id, i), id);
+            setContactBackgroundColor(i + 1, tasks[id]["contact-color"][i], id);
+        }
     }
 }
 
@@ -70,8 +75,8 @@ function getContactInitials(id, i) {
  * @param {string} initials - The initials of the contact.
  * @returns {string} HTML code for the contact.
  */
-function createContactHTML(k, initials) {
-    return `<span class="contacts" id="contacts${k}">${initials}</span>`;
+function createContactHTML(k, initials, id) {
+    return `<span class="contacts" id="${id}span${k}">${initials}</span>`;
 }
 
 /**
@@ -79,8 +84,8 @@ function createContactHTML(k, initials) {
  * @param {number} k - The index of the contact.
  * @param {string} color - The color associated with the contact.
  */
-function setContactBackgroundColor(k, color) {
-    docID("contacts" + k).style.backgroundColor = color;
+function setContactBackgroundColor(k, color, id) {
+    docID(id + "span" + k).style.backgroundColor = color;
 }
 
 /**
