@@ -79,14 +79,14 @@
 
 @media (max-width: 450px) {
   .add-task {
-    margin-left: calc(50% - 137px) !important;
+    margin-left: calc(45% - 137px) !important;
     padding-left: 0;
     left: 0;
   }
-
-  .add-task-to-board{
-    width: 100% !important;
-  }
+    .add-task-to-board {
+        width: 300px!important;
+    }
+}
 
   .add-task-button-create-board{
     margin-left: 80px !important;
@@ -106,4 +106,10 @@
     height: 45px;
     font-size: 16px;
   }
+
+@media (max-width: 340px) {
+  .add-task-to-board {
+    width: 280px!important;
+}
+
 }
