@@ -81,7 +81,7 @@ function renderTaskBodyHTML(id, IdOfTask, prioritySmall, editSubtasks) {
 function changeProgressBackward(event, id){
   event.stopPropagation();
   if(tasks[id]['progress'] !== 1){
-    tasks[id]['progress'] = tasks[id]['progress'] - 1;
+    tasks[id]['progress'] = parseInt(tasks[id]['progress']) - 1;
     setElement("tasks", tasks);
     addBoardInit();
   }
