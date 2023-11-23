@@ -272,6 +272,7 @@
   align-items: center;
   padding: 38px 81px 71px 81px;
   gap: 32px;
+  background-color: white;
 }
 
 #add-contact-icon {

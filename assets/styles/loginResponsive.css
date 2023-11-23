@@ -11,6 +11,22 @@
     width: 405px;
   }
 
+  #signup-name {
+    width: 360px;
+  }
+
+  #signup-email {
+    width: 360px;
+  }
+
+  #signup-pass {
+    width: 360px;
+  }
+
+  #signup-pass-input {
+    width: 360px;
+  }
+
   .epass input {
     width: 380px;
   }
@@ -58,6 +74,10 @@
     display: none;
   }
 
+  .epass {
+    width: 400px;
+  }
+
   #login-signup-con-responsive {
     display: inline-flex;
     margin-bottom: 80px;
@@ -85,6 +105,8 @@
   .login-form {
     padding: 48px 40px;
   }
+
+  
   .epass {
     width: 260px;
   }
@@ -102,9 +124,6 @@
   }
   #back-arrow {
     left: 25px;
-  }
-  #signup-email {
-    margin-left: 48px !important;
   }
 }
 
@@ -140,9 +159,7 @@
     font-size: 17px;
     margin: 10px;
   }
-  #signup-email {
-    margin-left: 45px !important;
-  }
+ 
 }
 
 @media (max-height: 600px) {

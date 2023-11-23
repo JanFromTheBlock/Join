@@ -261,6 +261,7 @@ body {
     padding: 10px;
     border-radius: 10px 0px 10px 10px;
     font-size: 14px;
+    background-color: white;
   }
 
   .dropdown-menu{

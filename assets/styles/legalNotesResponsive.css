@@ -19,7 +19,7 @@
       padding: 0;
     }
     #help-back-arrow {
-     margin-right: 0px;
+     margin-right: 30px;
     }
   }
   
@@ -27,5 +27,14 @@
     .legal-notice {
       width: 280px;
       margin-left: -135px;
+    }
+  }
+
+  /*Responsive*/
+
+  @media (max-width: 400px) {
+    #help-con {
+      width: 300px;
+      left: 54%;
     }
   }
