@@ -94,6 +94,7 @@
 
   #contact-display-name {
     font-size: 24px;
+    min-width: 160px;
   }
   #contact-icon{
     font-size: 30px;
