@@ -109,6 +109,27 @@
 }
 
 @media (max-width: 420px) {
+
+  .login-user {
+    width: 220px;
+  }
+
+  .epass input {
+    width: 170px;
+  }
+
+  #login-form {
+    width: 205px;
+  }
+
+  .epass{
+    width: 200px;
+  }
+
+  .login-email{
+    margin-left: 12px;
+  }
+
   .signup-form {
     width: 318px;
   }
