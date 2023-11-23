@@ -162,6 +162,13 @@
  
 }
 
+@media (max-height: 850px) and (max-width: 600px){
+  .signup-form{
+    max-height: 450px;
+    margin-top: 50px !important;
+  }
+}
+
 @media (max-height: 600px) {
   .login-legal{
     position: unset;
