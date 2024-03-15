@@ -1,0 +1,397 @@
+/* generell Classes */
+
+/* background-color page blue */
+.bg-blue {
+  background-color: #4589ff;
+}
+
+/* background-color strong blue */
+.bg-white {
+  background-color: #ffffff;
+}
+
+/* focus line for password divs */
+.blue-line {
+  border-bottom: 1px solid #005dff !important;
+}
+
+/* red line for password divs */
+.red-line {
+  border-bottom: 1px solid #ff8190 !important;
+}
+
+/* the asteriks for the password-inputs */
+.password {
+  font-family: "aste" !important;
+  font-size: 12px !important;
+  line-height: 190% !important;
+}
+
+/* logo on all pages in login section */
+.login-brand {
+  position: absolute;
+  top: 80px;
+  left: 77px;
+}
+
+/* container für die form inputs*/
+.epass {
+  display: flex;
+  align-items: center;
+  width: 422px;
+  padding: 12px 21px;
+  border-bottom: 1px solid #d1d1d1;
+  gap: 10px;
+  background: #ffffff;
+}
+
+/* the inputs for the forms */
+.epass input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 380px;
+  border: none;
+  outline: none;
+  flex-shrink: 0;
+  font-size: 19px;
+  line-height: 120%;
+}
+
+/* container for the legal policy links login and sign up page*/
+.login-legal {
+  position: absolute;
+  width: 240px;
+  height: 35px;
+  flex-shrink: 0;
+  bottom: 0;
+}
+
+/* the links for legal policy login and sign up page*/
+.login-legal a {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px;
+  gap: 8px;
+  font-size: 16px;
+  line-height: 120%;
+  text-decoration: none;
+}
+
+/* hover effect for the links for legal policy login and sign up page */
+.login-legal a:hover {
+  color: #005dff;
+}
+
+/* page container for all login section*/
+.login-con {
+  flex-direction: column;
+  position: relative;
+  height: 100vh;
+}
+
+/* size of the Join image in white  all login-section*/
+.signup-brand {
+  width: 101px;
+  height: 122px;
+}
+
+/* the form for all login sectors*/
+.general-form {
+  display: inline-flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 30px;
+  background: #ffffff;
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* the headline container of all pages in login section. */
+.login-headline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* the headline text for all pages in login section.*/
+.login-headline span {
+  color: #000000;
+  text-align: center;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 120%;
+}
+
+/* introduction text of the form element*/
+.loss-span {
+  font-size: 23px;
+  line-height: 120%;
+}
+
+/* the blur bg for succes plates  */
+.blur-bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255, 255, 255, 0.5);
+  z-index: 3;
+}
+
+/* the success plate */
+.signup-success {
+  width: 326px;
+  height: 74px;
+  border-radius: 20px;
+  background: #4589ff;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
+  font-size: 23px;
+  line-height: 120%;
+  color: #ffffff;
+}
+
+/* error text für password segment */
+.not-match-con {
+  display: flex;
+  align-items: center;
+  height: 25px;
+  color: #ff8190;
+  width: 450px;
+}
+
+/* Login page */
+
+/* start animation bg */
+#start-con {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #4589ff;
+  animation-name: colorChange;
+  z-index: 3;
+}
+
+/* start animation img */
+#login-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 265px;
+  height: 323px;
+  transform: translateX(-50%) translateY(-50%);
+  animation-name: imgVanish;
+}
+
+/* start animation parameter */
+.start-animation {
+  animation-duration: 500ms;
+  animation-delay: 300ms;
+  animation-fill-mode: forwards;
+}
+
+/* container for signup button on login-in page */
+#login-signup-con {
+  display: inline-flex;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  right: 100px;
+  gap: 35px;
+}
+
+/* text for signup button on login-in page */
+#login-signup-con span {
+  color: #000;
+  font-size: 23px;
+  line-height: 120%;
+}
+
+/* the signup button on login-in page */
+#login-signup-con button {
+  padding: 10px 16px;
+}
+
+/* the textdecoration for signup button on login-in page */
+#login-signup-con a {
+  text-decoration: none;
+}
+
+#login-signup-con-responsive {
+  display: none;
+  align-items: center;
+  gap: 35px;
+  margin-top: 25px;
+}
+
+/* text for signup button on login-in page */
+#login-signup-con-responsive span {
+  color: #000;
+  font-size: 23px;
+  line-height: 120%;
+}
+
+/* the signup button on login-in page */
+#login-signup-con-responsive button {
+  padding: 10px 16px;
+}
+
+/* the textdecoration for signup button on login-in page */
+#login-signup-con-responsive a {
+  text-decoration: none;
+}
+
+/* spefic paarameter for log in form */
+.login-form {
+  padding: 48px 115px;
+  gap: 39px;
+  margin-top: 100px;
+}
+
+/* the login-input container */
+.login-user {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 152px;
+  gap: 32px;
+}
+
+#worng-user-con {
+  position: relative;
+  top: -32px;
+}
+
+/* container for Remember me and forgot pass link */
+#forget-con {
+  gap: 53px;
+}
+
+/* container for the checkbox on login-page */
+#rem-checkbox {
+  gap: 4px;
+}
+
+/* text for the checkbox */
+#rem-checkbox span {
+  font-size: 16px;
+  line-height: 120%;
+}
+#signup-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* link for forgot password */
+#forgot-link {
+  margin-left: 10px;
+  text-decoration: none;
+  color: #005dff;
+  font-size: 16px;
+  line-height: 120%;
+}
+
+/* the hover effect  */
+#forgot-link:hover {
+  font-weight: 600;
+  text-decoration: underline;
+  margin-left: -3px;
+}
+
+/* container of the login buttons */
+#login-btn-con {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 35px;
+}
+
+/* the login button.  */
+.login-btn {
+  padding: 10px 35px;
+  border-radius: 8px;
+  border: none;
+  gap: 10px;
+  background: #4589ff;
+  color: #ffffff;
+  font-size: 23px;
+  line-height: 120%;
+}
+
+/* login button hovver effect */
+.login-btn:hover {
+  background: #005dff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+/* the link designed like a button */
+#login-guest {
+  padding: 10px 35px;
+  gap: 10px;
+  border-radius: 8px;
+  border: 1px solid #647188;
+  background: #ffffff;
+  color: #647188;
+  font-size: 23px;
+  line-height: 120%;
+  text-decoration: none;
+}
+
+/* hover effect for the link designed like a Button */
+#login-guest:hover {
+  border: 2px solid #4589ff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  color: #4589ff;
+  padding: 9px 34px;
+}
+
+/* color for legal links login-page */
+.login-legal-link {
+  color: black;
+}
+
+/* signup-page */
+
+/* spefic paarameter for log in form in blue bg */
+.signup-form {
+  position: relative;
+  padding: 48px 80px;
+  gap: 35px;
+}
+
+/* link back to the prevouis page */
+#back-arrow {
+  position: absolute;
+  top: 66px;
+  left: 50px;
+  cursor: pointer;
+}
+
+/* color for legal links signup-page */
+.signup-legal-link {
+  color: #ffffff;
+}
+
+/* animations */
+
+/* blue bg vanish*/
+@keyframes colorChange {
+  100% {
+    background-color: none;
+    z-index: 0;
+    display: none;
+  }
+}
+
+/* image move to the left-top corner */
+@keyframes imgVanish {
+  100% {
+    top: 80px;
+    left: 77px;
+    height: 101px;
+    width: 122px;
+    opacity: 0.2;
+  }
+}

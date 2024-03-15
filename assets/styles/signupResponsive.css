@@ -1,0 +1,107 @@
+@media (orientation: landscape) {
+    .signup-form {
+      margin-top: 200px!important;
+    }
+  }
+  
+  @media (max-width: 1100px) {
+    .signup-form {
+      width: 350px;
+      margin-top: -140px;
+    }
+  
+    .epass {
+      width: 300px;
+    }
+  
+    #signup-name {
+      width: 265px;
+    }
+  
+    #signup-email {
+      width: 265px;
+    }
+  
+    #signup-pass {
+      width: 265px;
+    }
+  
+    #signup-pass-input {
+      width: 265px;
+    }
+  
+    .signup-brand {
+      width: 54px;
+      height: 70px;
+      top: 20px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .login-btn {
+        width: 30vw;
+        font-size: 20px;
+    }
+
+    #signup-name {
+        width: 240px;
+      }
+    
+      #signup-email {
+        width: 240px;
+      }
+    
+      #signup-pass {
+        width: 240px;
+      }
+    
+      #signup-pass-input {
+        width: 240px;
+      }
+}
+  
+  @media (max-width: 450px) {
+      .signup-form {
+          width: 300px;
+        }
+  
+        #signup-name {
+          width: 165px;
+        }
+      
+        #signup-email {
+          width: 165px;
+        }
+      
+        #signup-pass {
+          width: 165px;
+        }
+      
+        #signup-pass-input {
+          width: 165px;
+        }
+      
+        .signup-brand {
+          width: 40px;
+          height: 52px;
+          top: 14px;
+        }
+  
+        .epass {
+          width: 190px;
+        }
+  
+        .login-headline span {
+          font-size: 35px;
+        }
+  
+        .signup-brand {
+          left: 20px;
+        }
+  
+        .not-match-con {
+          width: 250px;
+        }
+  }
+
+

@@ -1,0 +1,72 @@
+
+/*responsive im HandyHochformat*/
+@media (orientation: portrait) {
+    #close-img {
+        margin-left: 90%;
+    }
+}
+
+@media (max-width: 1250px) {
+    #task-area {
+        margin-left: 35px;
+        margin-right: 35px;
+    }
+    #board-input{
+        margin-left: 35px;
+    }
+    #board{
+        margin-bottom: 100px;
+    }
+}
+@media (max-width: 1000px) {
+    .task-body {
+        width: 48%;}
+        #task-area{
+            flex-wrap: wrap;
+        } 
+        #task-window{
+            width: 320px !important;
+            margin-left: -210px; 
+         }
+}
+@media (max-width: 750px) {
+    .task-body {
+        width: 85%;}
+        #task-area{
+            justify-content: center;
+        }
+        #board-input{
+            justify-content: center;
+        } 
+        #board-button{
+            display: none;
+        } 
+        #board{
+            padding-top: 150px;
+        }
+        .font-size-title {
+            font-size: 38px;
+        }
+        #arrows-mobile{
+            display: flex;
+        }
+    
+}
+
+@media (max-width: 450px) {
+    #task-area{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    #board-input{
+        margin-left: 10px;
+    } 
+    #task-window{
+        padding: 25px;
+        width: 250px !important;
+        margin-left: -150px;
+    }
+    .font-size-title {
+        font-size: 30px;
+    }
+}

@@ -1,0 +1,40 @@
+
+@media (max-width: 1150px) {
+    .legal-notice {
+      position: absolute;
+      left: 50%;
+      margin-left: -160px;
+      width: 320px;
+    }
+  
+    .legal-notice-title h1 {
+      font-size: 40px;
+    }
+  
+    #help-con {
+      position: absolute;
+      left: 50%;
+      margin-left: -160px;
+      width: 320px;
+      padding: 0;
+    }
+    #help-back-arrow {
+     margin-right: 30px;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .legal-notice {
+      width: 280px;
+      margin-left: -135px;
+    }
+  }
+
+  /*Responsive*/
+
+  @media (max-width: 400px) {
+    #help-con {
+      width: 300px;
+      left: 54%;
+    }
+  }

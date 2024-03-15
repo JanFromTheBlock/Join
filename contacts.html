@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts</title>
+    <link rel="stylesheet" href="./assets/styles/style.css">
+    <link rel="stylesheet" href="./assets/styles/contacts.css">
+    <link rel="stylesheet" href="./assets/styles/contactsResponsive.css">
+    <link rel="stylesheet" href="./assets/styles/fonts.css">
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon_white.png">
+    <script src="script.js"></script>
+    <script src="mainrender.js"></script>
+    <script src="./assets/js/contacts.js"></script>
+    <script src="./assets/js/contactsRender.js"></script>
+    <script src="./assets/js/addTask.js"></script>
+    <script src="./assets/js/addTaskContacts.js"></script>
+    <script src="./assets/js/addTaskSubtask.js"></script>
+    <script src="./assets/js/addTaskColor.js"></script>
+    <script src="./assets/js/addTaskCategory.js"></script>
+</head>
+
+<body onload="contactsInit()" onclick="closeDropdown()">
+    <header id="header"></header>
+    <nav id="nav" class="nav"></nav>
+    <div id="background-responsive"></div>
+    <div class="d-none" id="background-add-contact">
+        <div id="background-color-add-contact"></div>
+        <div id="add-contact-mask" class="open-contact-hide d-none">
+            <div id="add-contact-header">
+                <div id="add-contact-back-arrow"><img onclick="cancelNewContact()" src="./assets/img/close_contact.png"></div>
+                <div id="add-contact-center">
+                    <img id="add-contact-logo" src="./assets/img/contact_logo.png">
+                    <div id="add-contact-title">Add contact</div>
+                    <div id="add-contact-subtitle">Tasks are bett with a team!</div>
+                </div>
+            </div>
+            <div id="add-contact-body">
+                <img id="add-contact-icon" src="./assets/img/contact_icon.png">
+                <form onsubmit="newContact(); return false">
+                    <div class="input-outside"><input id="contact-name" class="input" required type="text" placeholder="Name" onfocus="changeBorderColor(this)" onblur="resetBorderColor(this)"><img src="./assets/img/person.png" ></div>
+                    <div class="input-outside"><input id="contact-mail" class="input" required type="text" placeholder="Email" onfocus="changeBorderColor(this)" onblur="resetBorderColor(this)"><img src="./assets/img/mail.png" ></div>
+                    <div class="input-outside"><input id="contact-phone" class="input" required type="text" placeholder="Phone" onfocus="changeBorderColor(this)" onblur="resetBorderColor(this)"><img src="./assets/img/call.png"></div>
+                    <div id="contact-buttons">
+                        <button id="contact-cancel" onclick="cancelNewContact()"><span id="cancel">Cancel</span> <div id="x-button">x</div></button>
+                        <button id="contact-create" type="submit"><span id="create">Create contact </span><img src="./assets/img/contact-check.png"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="contacts-outside">
+        <div id="contact-list">
+            <div id="contact-list-inside">
+                <div>
+                    <button onclick="addNewContact()" id="add-contact">Add new contact <img src="./assets/img/person_add.png"></button>
+                </div>
+            </div>
+            <div id="contact-column">
+            </div>
+        </div>
+        <div id="contact-display" class="d-none"> </div>
+    </div>
+    <img id="contact-added-succesfully-animation" class="contact-added-succesfully-succesfully contact-added-succesfully contact-added-succesfully-hide" src="./assets/img/logoAddedContactSuccesfully.png.png">
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/styles/style.css">
+    <link rel="stylesheet" href="./assets/styles/login.css">
+    <link rel="stylesheet" href="./assets/styles/loginResponsive.css">
+    <link rel="stylesheet" href="./assets/fontello-16a74537/css/aste.css">
+    <link rel="stylesheet" href="./assets/fontello-420fc6fa/css/aste.css">
+    <link rel="icon" href="./assets/img/contact_logo.png">
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon_white.png">
+    <script src="script.js"></script>
+    <script src="./assets/js/login.js"></script>
+    <title>Log In</title>
+</head>
+<body onload="withContacts()">
+    <div id="start-con" class="start-animation">
+        <img id="login-img" class="start-animation" src="./assets/img/logo624.png">
+    </div>
+    <div id="login-con" class="flex-center login-con bg-white">
+        <img class="login-brand" src="./assets/img/logo624-blue.svg">
+        <form id="login-form" class="general-form login-form" onsubmit="login(); return false">
+            <div class="login-headline">
+                <span>Log in</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="154" height="4" viewBox="0 0 154 4" fill="none">
+                    <path d="M152 2L2 2" stroke="#4589FF" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div id="login-user" class="login-user">
+                <div id="login-email" class="epass">
+                    <input id="email-input" type="email" required placeholder="Email" onfocusin="passChangeMail('wrong-user', 'login-pass')">
+                    <img src="./assets/img/mail-icon.svg">
+                </div>
+                <div id="login-pass" class="epass">
+                    <input id="pass-input"  type="password" required placeholder="Password" onfocusin="passChange('login-pass', 'pass-img', 'wrong-user', 'login-pass')" onfocusout="passOutChange('pass-input', 'login-pass', 'pass-img')" oninput="passAsterik('pass-input', 'pass-img')">
+                    <img id="pass-img" src="./assets/img/lock-icon.svg" onclick="passVisibility('pass-input', 'pass-img')">
+                </div>
+                <div class="not-match-con" id="worng-user-con"><span id="wrong-user" class="d-none">Your username or password are wrong</span></div>
+            </div>
+            <div id="forget-con" class="flex-center">
+                <div id="rem-checkbox" class="flex-center">
+                    <input id="accept-me" type="checkbox" class="accept-me">
+                    <span>Remember me</span>
+                </div>
+            </div>
+            <div id="login-btn-con">
+                <button type="submit" class="flex-center login-btn">Log in</button>
+                <a id="login-guest" class="flex-center" href="./summary.html" onclick="guestLogin()">Guest log in</a>
+            </div>
+            
+        </form>
+        <div id="login-signup-con" class="login-signup-con">
+            <span>Not a join user?</span>
+            <a href="./register.html"><button class="login-btn">Sign up</button></a>
+        </div>
+        <div id="login-signup-con-responsive" class="login-signup-con">
+            <span>Not a join user?</span>
+            <a href="./register.html"><button class="login-btn">Sign up</button></a>
+        </div>
+        <div id="login-legal" class="login-legal">
+            <a class="login-legal-link" href="./privatePolicy.html">Privacy Policy</a>
+            <a class="login-legal-link" href="./legalNotes.html">Legal Notice</a>
+        </div>
+    </div>
+    <div id="msgBox"></div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const msg = urlParams.get('msg');
+
+        if(msg){
+            docID('msgBox').innerHTML = msg;
+        }
+    </script>
+</body>
+</html>

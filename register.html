@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="./assets/styles/style.css">
+    <link rel="stylesheet" href="./assets/styles/login.css">
+    <link rel="stylesheet" href="./assets/styles/signup.css">
+    <link rel="stylesheet" href="./assets/styles/loginResponsive.css">
+    <link rel="stylesheet" href="./assets/styles/signupResponsive.css">
+    <link rel="stylesheet" href="./assets/fontello-16a74537/css/aste.css">
+    <link rel="stylesheet" href="./assets/fontello-420fc6fa/css/aste.css">
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon_white.png">
+    <script src="./assets/js/signup.js"></script>
+    <script src="./assets/js/login.js"></script>
+    <script src="script.js"></script>
+</head>
+
+<body onload="withContacts()">
+    <div class="flex-center login-con bg-blue">
+        <img class="login-brand signup-brand" src="./assets/img/logo624.png">
+        <form class="general-form signup-form" onsubmit="newUser(); return false">
+            <img id="back-arrow" src="./assets/img/back_arrow.png" onclick="history.back()">
+            <div class="login-headline">
+                <span>Sign up</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="154" height="4" viewBox="0 0 154 4" fill="none">
+                    <path d="M152 2L2 2" stroke="#4589FF" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div id="signup-user">
+                <div class="epass">
+                    <input id="signup-name" type="name" required placeholder="Name">
+                    <img src="./assets/img/person-icon.svg">
+                </div>
+                <div class="epass">
+                    <input id="signup-email" type="email" required placeholder="Email">
+                    <img src="./assets/img/mail-icon.svg">
+                </div>
+                <div id="signup-pass-con" class="epass">
+                    <input id="signup-pass" type="password" required placeholder="Password" onfocusin="passChange('signup-pass-con','signup-pass-img', 'not-match-span', 'signup-pass-confirm')" onfocusout="passOutChange('signup-pass', 'signup-pass-con','signup-pass-img')" oninput="passAsterik('signup-pass', 'signup-pass-img')">
+                    <img id="signup-pass-img" src="./assets/img/lock-icon.svg" onclick="passVisibility('signup-pass', 'signup-pass-img' )">
+                </div>
+                <div id="signup-pass-confirm" class="epass">
+                    <input id="signup-pass-input" type="password" required placeholder="Confirm Password" onfocusin="passChange('signup-pass-confirm', 'signup-pass-con-img')" onfocusout="passOutChange('signup-pass-input', 'signup-pass-confirm', 'signup-pass-con-img' )" oninput="passAsterik('signup-pass-input', 'signup-pass-con-img')">
+                    <img id="signup-pass-con-img" src="./assets/img/lock-icon.svg" onclick="passVisibility('signup-pass-input', 'signup-pass-con-img' )">
+                </div>
+                <div class="not-match-con"><span id="not-match-span" class="d-none">Your Passwords don't match. Try again.</span></div>
+            </div>
+            <div id="accept-con">
+                <div class="accept-checkbox">
+                    <input type="checkbox" class="accept-me" required>
+                    <span>I accept the <a href="./privatePolicy.html">Private Policy</a></span>
+                </div>
+            </div>
+            <button class="flex-center login-btn">Sign up</button>
+        </form>
+
+        <div id="signup-success-con" class="flex-center blur-bg d-none">
+            <div class="flex-center signup-success">You Signed Up successfully</div>
+        </div>
+        <div class="login-legal">
+            <a class="signup-legal-link" href="./privatePolicy.html">Privacy Policy</a>
+            <a class="signup-legal-link" href="./legalNotes.html">Legal Notice</a>
+        </div>
+    </div>
+</body>
+
+</html>

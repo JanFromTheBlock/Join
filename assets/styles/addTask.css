@@ -1,0 +1,369 @@
+.add-task {
+  position: absolute;
+  flex-direction: column;
+  display: flex;
+  left: 320px;
+  width: 460px;
+  top: 120px;
+}
+
+.add-task-title {
+  width: 380px;
+  height: 74px;
+  margin-bottom: 20px;
+  padding: 0px 21px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.16) !important;
+  outline: none;
+  border: none;
+  font-size: 40px;
+}
+
+.add-task-title::placeholder {
+  color: #d1d1d1;
+}
+
+.add-task-select-contact {
+  width: 380px;
+  height: 51px;
+  border: 0px 0px 1px 0px;
+  padding-right: 40px;
+  padding-left: 0px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.16) !important;
+  border: none;
+  outline: none;
+  font-size: 19px;
+  appearance: none;
+}
+
+.add-task-select-contact-edit {
+  display: flex;
+  align-items: center;
+  z-index: 4;
+}
+
+.add-task-select-contact-edit img {
+  margin-left: -40px;
+  margin-right: 5px;
+}
+
+.add-task-choose-contacts {
+  display: flex;
+  flex-direction: column;
+  font-size: 19px;
+  opacity: 1;
+  max-height: 210px;
+  overflow: hidden;
+  transition: max-height 300ms;
+  overflow-y: scroll;
+  z-index: 4;
+}
+
+.add-task-choose-contacts::-webkit-scrollbar {
+  width: 20px;
+}
+
+.add-task-choose-contacts::-webkit-scrollbar-thumb {
+  background-color: #A8A8A8;
+  border: 6px solid transparent;
+  border-radius: 10px;
+  background-clip: content-box;
+  height: 30px;
+}
+
+.add-task-choose-contacts::-webkit-scrollbar-track {
+  background-color: white;
+}
+
+.add-task-hide-contacts {
+  display: flex;
+  flex-direction: column;
+  font-size: 19px;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.add-task-single-contact {
+  width: 377px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 38px;
+  padding: 7px 16px;
+  border-radius: 10px;
+}
+
+.add-task-single-contact-invite {
+  width: 400px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 38px;
+  padding-left: 24px;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.add-task-single-contact img {
+  margin-right: 20px;
+}
+
+.add-task-single-contact-invite img {
+  margin-right: 20px;
+}
+
+.hide-cursor {
+  caret-color: transparent;
+}
+
+.add-task-initials-area {
+  display: flex;
+  max-width: 400px;
+  overflow: auto;
+}
+
+.add-task-initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  margin-right: 3px;
+  border-radius: 58px;
+  height: 45px;
+  min-width: 45px !important;
+  background-color: #0190e0;
+  color: white;
+  font-size: 21px;
+  margin-bottom: 20px;
+}
+
+.add-task-due-date {
+  width: 420px;
+  border: none;
+  outline: none;
+  margin-top: 0;
+}
+
+.add-task-edit-category {
+  margin-left: 240px;
+}
+
+.add-task-due-date h2 {
+  color: #42526e;
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.add-task-due-date-input {
+  width: 380px;
+  padding: 18px 21px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.16) !important;
+  border: none;
+  outline: none;
+  color: black;
+}
+
+input[type="date"]::placeholder {
+  color: #d1d1d1;
+}
+
+.add-task-due-date-input::-webkit-calendar-picker-indicator {
+  width: 23px;
+  height: 23px;
+  background-image: url("../img/date-logo.png");
+}
+
+.add-task-priority {
+  display: flex;
+  justify-content: center;
+  width: 422px;
+  margin-top: 10px;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.add-task-choose-priority {
+  display: flex;
+  flex-direction: column;
+  font-size: 19px;
+}
+
+.add-task-single-priority {
+  width: 400px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+.add-task-single-priority img {
+  margin-left: 12px;
+}
+
+.add-task-button-priority {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 136px;
+  height: 51px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: white;
+  border-radius: 10px;
+  padding: 18px 10px;
+  gap: 10px;
+  font-size: 19px;
+}
+
+.add-task-description {
+  margin-top: 20px;
+}
+
+.add-task-description-form {
+  margin-top: 20px;
+}
+
+.add-task-textarea {
+  width: 387px;
+  height: 103px;
+  padding: 16px;
+  outline: none;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-radius: 0 10px 10px 10px;
+  font-size: 19px;
+}
+
+.add-task-textarea::placeholder {
+  color: #d1d1d1;
+}
+
+.add-task-subtask {
+  width: 380px;
+  height: 74px;
+  margin-bottom: 20px;
+  padding: 0px 21px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.16) !important;
+  outline: none;
+  border: none;
+  font-size: 19px;
+}
+
+.subTaskArea {
+  justify-content: space-between;
+  padding: 10px 10px 10px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 7px 0;
+  border-radius: 10px;
+}
+
+.inner-subtask1 {
+  padding: 4px 0;
+}
+
+.delete-subtask-button {
+  border-right: 1px solid #A8A8A8;
+  padding: 0 5px 0 0;
+}
+
+.subtask .inner-subtask2 {
+  /* Standardmäßig ausgeblendete Kinder */
+  display: none;
+  cursor: pointer;
+}
+
+.add-task-plus-button {
+  margin-left: -50px;
+}
+
+.add-task-subtask::placeholder {
+  color: #d1d1d1;
+}
+
+#urgent.clicked {
+  box-shadow: none;
+}
+
+#medium.clicked {
+  box-shadow: none;
+}
+
+#low.clicked {
+  box-shadow: none;
+}
+
+.subtask {
+  display: flex;
+}
+
+.add-task-button-clear {
+  margin-left: 5px;
+  background-color: white;
+  color: #647188;
+  border-radius: 10px;
+  border: 1px solid #647188;
+  font-size: 23px;
+  width: 136px;
+  height: 61px;
+}
+
+.add-task-button-create {
+  background-color: #4589ff;
+  color: white;
+  border-radius: 10px;
+  border: 1px solid;
+  font-size: 23px;
+  width: 180px;
+  height: 61px;
+}
+
+.add-task-button-clear img {
+  margin-left: 12px;
+}
+
+.add-task-button-create img {
+  margin-left: 12px;
+}
+
+.add-task-button {
+  gap: 10px;
+  margin-left: 319px;
+  display: flex;
+  align-items: end;
+  margin-top: 80px;
+}
+
+#task {
+  margin-top: 100px;
+  width: 208px;
+  margin-left: 825px;
+}
+
+.task-added-to-board {
+  position: fixed;
+  margin-top: 450px;
+  margin-left: 40%;
+  transition: margin-top 300ms;
+  z-index: 9999;
+}
+
+.task-added-to-board-board {
+  transition: margin-top 300ms;
+  z-index: 9999;
+  margin-left: 40%;
+  margin-top: -240px;
+  position: fixed;
+}
+
+.task-added-to-board-hide {
+  margin-top: 1500px;
+  margin-left: 9%;
+  transition: margin-top 300ms;
+}
+#subTaskArea{
+  max-height: 150px;
+  overflow: auto;
+}

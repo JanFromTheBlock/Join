@@ -1,0 +1,117 @@
+@media (max-width: 1400px) {
+  .add-task-button {
+    margin-left: 0px;
+    margin-top: 160px;
+  }
+}
+
+@media (max-width: 1150px) {
+  .add-task {
+    margin-left: -230px;
+  }
+  .add-task-button {
+    margin-bottom: 100px;
+    margin-top: 310px;
+    margin-left: -400px;
+  }
+}
+
+@media (max-width: 600px) {
+  .add-task {
+    width: 290px;
+    padding-left: 10px;
+  }
+  .add-task-button {
+    margin-left: -289px;
+  }
+
+  .add-task-single-contact {
+    width: 270px;
+    font-size: 16px;
+  }
+  .add-task-title {
+    width: 260px;
+    margin-top: -15px !important;
+  }
+  .add-task-select-contact {
+    width: 260px;
+  }
+  .add-task-due-date-input {
+    width: 260px;
+  }
+
+  .add-task-due-date {
+    width: 260px;
+  }
+  .add-task-priority {
+    width: unset;
+  }
+  .add-task-button-priority {
+    width: 95px;
+    padding: 18px 0px;
+    font-size: 16px;
+  }
+  .add-task-textarea {
+    width: 260px;
+  }
+  .add-task-subtask {
+    width: 250px;
+  }
+  .add-task-to-board-close-button {
+    margin-left: 270px !important;
+  }
+  .add-task-to-board {
+    width: 300px;
+    padding-left: 55px;
+  }
+
+  .add-task-button-create-board {
+    margin-left: 46px;
+  }
+  #inputFieldTitle {
+    font-size: 35px;
+  }
+
+  .add-task-select-contact-edit img {
+    margin-right: 170px;
+  }
+}
+
+@media (max-width: 450px) {
+  .add-task {
+    margin-left: calc(45% - 137px) !important;
+    padding-left: 0;
+    left: 0;
+  }
+    .add-task-to-board {
+        width: 300px!important;
+    }
+}
+
+  .add-task-button-create-board{
+    margin-left: 80px !important;
+  }
+
+    .add-task-button {
+    margin-left: -200px;
+    margin-top: 200px;
+    margin-bottom: 100px;
+  }
+
+  .add-task-button-clear {
+    width: 100px;
+    height: 45px;
+    font-size: 16px;
+  }
+  .add-task-button-create {
+    width: 100px;
+    height: 45px;
+    font-size: 16px;
+  }
+
+@media (max-width: 340px) {
+  .add-task-to-board {
+    width: 280px!important;
+}
+
+}

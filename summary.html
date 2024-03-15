@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary</title>
+    <link rel="stylesheet" href="./assets/styles/style.css">
+    <link rel="stylesheet" href="./assets/styles/summary.css">
+    <link rel="stylesheet" href="./assets/styles/summaryResponsive.css">
+    <link rel="stylesheet" href="./assets/styles/summaryActive.css">
+    <link rel="stylesheet" href="./assets/styles/fonts.css">
+    <link rel="icon" href="./assets/img/contact_logo.png">
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon_white.png">
+    <script src="script.js"></script>
+    <script src="mainrender.js"></script>
+    <script src="./assets/js/summary.js"></script>
+    <script src="./assets/js/addTask.js"></script>
+</head>
+<body onload="summaryInit()" onclick="closeDropdown()">
+    <header id="header"></header>
+    <nav id="nav" class="nav">
+    </nav>
+    <div id="summary" class="flex-center summary">
+        <div id="grtng-con"></div>
+        <div id="summary-con">
+            <div id="summary-con-upper">
+                    <a id="urgency-summary" class="flex-center summary-link" href="./board.html">
+                        <div id="sum-urgent-square" class="flex-center"></div>
+                        <div id="ver-line">
+                            <svg viewBox="0 0 4 149" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 2L2.00001 147" stroke-width="3" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div id="urgent-date-screen"></div>
+                    </a>
+                    <a id="square-button" class="summary-link" href="./board.html"></a>
+            </div>
+            <div id="sum-overview"></div>
+        </div>
+    </div>
+</body>
+</html>

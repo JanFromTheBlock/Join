@@ -1,0 +1,143 @@
+/*responsive im HandyQuerformat*/
+@media (orientation: landscape) {
+  #add-contact-body {
+    background-color: white;
+  }
+}
+
+@media (max-width: 1150px) {
+  #contact-list {
+    margin-left: 0;
+    height: calc(100vh - 179px);
+    margin-bottom: 80px;
+  }
+
+  #contact-display {
+    margin-left: 0;
+    left: 600px;
+  }
+}
+
+@media (max-width: 1000px) {
+  #contact-display {
+    margin-left: 0;
+    left: 500px;
+  }
+}
+
+@media (min-width: 900px) {
+  #background-responsive {
+    display: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  #contacts-outside {
+    justify-content: center;
+  }
+
+  #contact-list {
+    box-shadow: 4px 0px 6px 0px #00000014, -4px 0px 6px 0px #00000014;
+  }
+
+  #contact-display {
+    left: 50%;
+    margin-left: -162px;
+    z-index: 99;
+  }
+
+  #back-arrow {
+    display: block;
+  }
+}
+
+@media (max-width: 600px) {
+  #add-contact {
+    width: 290px;
+  }
+
+  #add-contact-mask {
+    width: 400px;
+  }
+
+  #edit-contact-mask {
+    width: 400px;
+  }
+
+  #add-contact-subtitle {
+    font-size: 24px;
+  }
+
+  #edit-contact-subtitle {
+    font-size: 24px;
+  }
+
+  .input-outside {
+    width: 300px;
+  }
+
+  #contact-column {
+    width: 290px;
+  }
+
+  #line {
+    width: 290px;
+  }
+
+  #contact-header {
+    gap: 25px;
+  }
+
+  #contact-display {
+    margin-left: -142px;
+  }
+
+  #contact-display-name {
+    font-size: 24px;
+    min-width: 160px;
+  }
+  #contact-icon{
+    font-size: 30px;
+    height: 80px;
+    width: 80px;
+  }
+
+  #back-arrow {
+    margin-right: 15px;
+  }
+  .contact-added-succesfully-succesfully {
+    width: 300px;
+    margin-left: calc(50% - 150px);
+  }
+  
+  .contact-added-succesfully-hide {
+    width: 300px;
+    margin-left: calc(50% - 150px);
+  }
+}
+
+@media (max-width: 400px) {
+  #add-contact-title {
+    font-size: 42px;
+  }
+
+  #add-contact-mask {
+    width: 310px;
+  }
+
+  .input-outside {
+    width: 230px;
+  }
+
+  #contact-create {
+    font-size: 19px;
+  }
+
+  #contact-cancel {
+    font-size: 19px;
+  }
+
+  #edit-contact-mask {
+    width: 310px;
+  }
+}
