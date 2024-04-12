@@ -35,7 +35,7 @@ function renderBoardInputHTML() {
  */
 function renderTaskAreasHTML(taskTitle, taskName, indexFinal, index) {
   return /*html*/ ` 
-    <div ondrop="moveTo('${taskTitle}')" ondragover="allowDrop(event)" class="task-body" id="task-body${index}">
+    <div ondrop="moveTo('${taskTitle}')" ondragover="allowDrop(event)" ondragleave="dragLeave(event)"  class="task-body" id="task-body${index}">
         <div class="task-body-flex">
             <span>${taskName}</span>
             <img onclick="openAddTask(${indexFinal})" id="task-img${index}" src="./assets/img/board_plus.png">

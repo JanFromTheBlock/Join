@@ -137,7 +137,7 @@ function addTaskRender() {
             <div class="add-task-initials-area" id="0initials0"></div>
             <div class="add-task-due-date">
             <h2>Due Date</h2>
-               <input id="inputDate" required class="add-task-due-date-input cursor-pointer cursor-pointer" id="dueDate" type="date">
+               <input id="inputDate" required class="add-task-due-date-input cursor-pointer cursor-pointer" id="dueDate" type="date" max='2099-12-31'>
             </div>
               <div class="add-task-due-date">
                  <h2>Category</h2>

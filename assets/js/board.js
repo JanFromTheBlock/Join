@@ -89,6 +89,11 @@ function startDragging(element) {
  */
 function allowDrop(ev) {
   ev.preventDefault();
+  ev.currentTarget.classList.add("drop-target")
+}
+
+function dragLeave(ev) {
+  ev.currentTarget.classList.remove('drop-target');
 }
 
 /**

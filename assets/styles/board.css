@@ -93,6 +93,12 @@
     min-height: 400px;
 }
 
+.drop-target {
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border: dashed 1px rgba(0, 0, 0, 1);
+}
+
 .task-body img {
     width: 24px;
 }
@@ -119,7 +125,7 @@
     box-shadow: 2px 0px 12px 4px rgba(0, 0, 0, 0.16);
 }
 
-.task-title{
+.task-title {
     font-size: 16px;
     color: #4589FF;
     font-weight: 700;
@@ -135,7 +141,7 @@
     margin-right: auto;
     border-radius: 8px;
     color: white;
-   
+
 }
 
 
@@ -364,7 +370,8 @@
     font-size: 42px;
     ;
 }
-.notasks{
+
+.notasks {
     display: flex;
     padding: 14.5px;
     border-radius: 10px;
@@ -375,25 +382,30 @@
     color: #A8A8A8;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
 }
-#arrows-mobile{
+
+#arrows-mobile {
     display: none;
     justify-content: end;
     margin-top: -50px;
     gap: 10px;
 }
-.arrow-mobile{
+
+.arrow-mobile {
     border: 1px solid blue;
     border-radius: 20px;
     padding: 5px;
 }
-#arrow-mobile-up{
+
+#arrow-mobile-up {
     transform: rotateZ(90deg);
     width: 16px;
 }
-#arrow-mobile-down{
+
+#arrow-mobile-down {
     transform: rotateZ(270deg);
     width: 16px;
 }
-.arrow-mobile:hover{
+
+.arrow-mobile:hover {
     background: aqua;
 }
